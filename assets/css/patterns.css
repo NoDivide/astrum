@@ -1,0 +1,212 @@
+/**
+ * Base styles
+ * ----------------------------------------//
+ */
+.ndpl-body {
+    background-color: #FFF;
+    margin: 0;
+    padding: 0;
+}
+.ndpl-header,
+.ndpl-sidebar,
+.ndpl-library {
+    font-family: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+}
+
+/**
+ * Sidebar
+ * ----------------------------------------//
+ */
+.ndpl-sidebar {
+    border-right: 1px solid #DDD;
+    bottom: 24px;
+    left: 0;
+    padding: 24px;
+    position: fixed;
+    top: 24px;
+    width: 252px;
+    z-index: 1;
+}
+
+/**
+ * Copyright
+ * ----------------------------------------//
+ */
+.ndpl-copyright {
+    left: 24px;
+    bottom: 0;
+    font-size: 12px;
+    line-height: 21px;
+    position: absolute;
+    right: 24px;
+}
+    .ndpl-copyright p {
+        color: #9F9F9F;
+        margin: 0 0 12px;
+    }
+
+/**
+ * Navigation
+ * ----------------------------------------//
+ */
+.ndpl-nav {
+    padding: 6px 0;
+}
+.ndpl-nav__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+    .ndpl-nav__title {
+        color: #000;
+        display: block;
+        font-weight: 700;
+    }
+    .ndpl-nav__child-items {
+        font-size: 14px;
+        list-style: none;
+        margin: 12px 0;
+        padding: 0;
+    }
+    .ndpl-nav__child-item {
+        border-radius: 4px;
+        margin-bottom: 6px;
+    }
+
+    .ndpl-nav__child-title {
+        color: #000;
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+    }
+        .ndpl-inverted .active .ndpl-nav__child-title {
+            color: #FFF;
+        }
+        .ndpl-nav__child-title:hover {
+            color: #000 !important;
+            background-color: #EEE;
+        }
+
+/**
+ * Header
+ * ----------------------------------------//
+ */
+.ndpl-header {
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    position: relative;
+    z-index: 2;
+}
+    .ndpl-header:after {
+        clear: left;
+        content: "";
+        display: block;
+    }
+.ndpl-header__title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 46px;
+    float: left;
+    margin: 0;
+}
+.ndpl-header__project-url {
+    float: right;
+    font-size: 14px;
+    line-height: 46px;
+}
+
+/**
+ * Component Library
+ * ----------------------------------------//
+ */
+.ndpl-library {
+    padding: 48px 48px 48px 324px;
+}
+    .ndpl-library__title {
+        border-bottom: 1px solid #DDD;
+        font-size: 30px;
+        margin: 0 0 48px;
+        padding-bottom: 12px;
+    }
+
+/**
+ * Component 
+ * ----------------------------------------//
+ */
+.ndpl-component {
+    margin-bottom: 48px;
+}
+    .ndpl-component__title {
+        font-size: 24px;
+        margin: 0 0 24px;
+    }
+    .ndpl-component__title small {
+        font-size: 50%;
+        font-style: italic;
+        margin: 0;
+    }
+    .ndpl-component__description {
+        color: #9F9F9F;
+        font-size: 16px;
+        line-height: 24px;
+    }
+        .ndpl-component__description p {
+            margin: 0 0 24px;
+        }
+        .ndpl-component__description code {
+            background-color: #F5F5F5;
+            border-radius: 6px;
+            color: #999;
+            display: inline-block;
+            padding: 0 4px;
+        }
+    .ndpl-component__sample {
+        border: 1px solid #DDD;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        padding: 48px 24px;
+        position: relative;
+    }
+        .ndpl-component__sample:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        .ndpl-component__sample--darkened {
+            background-color: #666;
+        }
+        .ndpl-component__sample .ndpl-component__label {
+            background-color: #FFF;
+            border: 1px solid #DDD;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 24px;
+            height: 24px;
+            left: 24px;
+            padding: 0 9px;
+            position: absolute;
+            text-transform: uppercase;
+            top: -12px;
+        }
+    .ndpl-component__code {
+        position: relative;
+    }
+        .ndpl-component__code code {
+            border-radius: 12px;
+            font-size: 14px;
+            padding: 24px;
+        }
+        .ndpl-component__code .ndpl-component__label {
+            background-color: #FFF;
+            border: 1px solid #DDD;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 24px;
+            height: 24px;
+            left: 24px;
+            padding: 0 9px;
+            position: absolute;
+            text-transform: uppercase;
+            top: -12px;
+        }

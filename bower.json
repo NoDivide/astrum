@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "vue": "~1.0.20",
-    "jquery": "~2.2.2"
+    "jquery": "~2.2.2",
+    "highlightjs": "^9.2.0"
   }
 }

@@ -1,12 +1,21 @@
 {
     "title": "No Divide Pattern Library",
+    "project_url": "http://nodividestudio.com",
+    "theme": {
+      "brand_color": "#fEA1AC",
+      "invert_text": true,
+      "code_highlight_theme": "solarized-dark"
+    },
     "assets": {
         "css": [
-
+            "http://nodividestudio.com/assets/css/dist/site/all.css"
         ],
         "js": [
 
         ]
+    },
+    "font_libraries": {
+        "typekit_code": "dxp5bzu"
     },
     "groups": [
         {

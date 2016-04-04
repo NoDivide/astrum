@@ -8,6 +8,11 @@ new Vue({
 
     ready: function() {
         this.loadDataFile();
+
+        /**
+         * Initialise syntax highlighting
+         */
+        hljs.initHighlightingOnLoad();
     },
 
     methods: {
