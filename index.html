@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pattern Library</title>
+    <title v-text="title"></title>
+
+    <link rel="stylesheet" href="assets/css/patterns.css">
+    
+    <!-- Stylesheets are loaded from the assets.css array in patterns.json -->
+    <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
 </head>
 <body>
     <h1 v-text="title"></h1>
 
     <nav>
         <ul>
+            <li v-for="group in groups">
+                <span v-text="group.title"></span>
+            </li>
             <li v-for="component in components">
                 <span v-text="component.title"></span>
             </li>
@@ -16,8 +24,12 @@
     </nav>
 
 
+    <div class="group" v-for="group in groups">
+        <h2 v-text="group.title"></h2>
+    </div>
+
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/vue/dist/vue.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="assets/js/patterns.js"></script>
 </body>
 </html>

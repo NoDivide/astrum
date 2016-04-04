@@ -1,8 +1,28 @@
 {
-    "title": "Pattern Library",
+    "title": "No Divide Pattern Library",
+    "assets": {
+        "css": [
+            
+        ],
+        "js": [
+
+        ]
+    },
+    "groups": [
+        {
+            "name": "typography",
+            "title": "Typography"
+        },
+        {
+            "title": "Navigation"
+        }
+    ],
     "components": [
         {
-            "title": "Element One"
+            "title": "Element One",
+            "group": "typography",
+            "template": "element-one",
+            "description": ""
         },
         {
             "title": "Element Two"
