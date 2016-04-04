@@ -5,7 +5,7 @@
     <title v-text="title"></title>
 
     <link rel="stylesheet" href="assets/css/patterns.css">
-    
+
     <!-- Stylesheets are loaded from the assets.css array in patterns.json -->
     <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
 </head>
@@ -16,9 +16,12 @@
         <ul>
             <li v-for="group in groups">
                 <span v-text="group.title"></span>
-            </li>
-            <li v-for="component in components">
-                <span v-text="component.title"></span>
+
+                <ul v-if="group.components.length">
+                    <li v-for="component in group.components">
+                        <span v-text="component.title"></span>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>
@@ -26,7 +29,17 @@
 
     <div class="group" v-for="group in groups">
         <h2 v-text="group.title"></h2>
+
+        <div class="component" v-for="component in group.components">
+            <h3 v-text="component.title"></h3>
+
+            {{ component.description }}
+
+            <pre v-text="component.html"></pre>
+        </div>
     </div>
+
+    <pre>{{ $data | json }}</pre>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/vue/dist/vue.min.js"></script>

@@ -2,7 +2,7 @@
     "title": "No Divide Pattern Library",
     "assets": {
         "css": [
-            
+
         ],
         "js": [
 
@@ -14,6 +14,7 @@
             "title": "Typography"
         },
         {
+            "name": "navigation",
             "title": "Navigation"
         }
     ],
@@ -21,14 +22,17 @@
         {
             "title": "Element One",
             "group": "typography",
-            "template": "element-one",
-            "description": ""
+            "template": "element-one"
         },
         {
-            "title": "Element Two"
+            "title": "Element Two",
+            "group": "navigation",
+            "template": "element-two"
         },
         {
-            "title": "Element Three"
+            "title": "Element Three",
+            "group": "typography",
+            "template": "element-three"
         }
     ]
 }
