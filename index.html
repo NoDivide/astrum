@@ -56,9 +56,7 @@
 
             <div v-for="component in group.components" class="component" v-bind:id="component.template">
                 <h3 class="ndpl-component__title">{{ component.title }} <small v-if="component.class" v-text="component.class"></small></h3>
-                <div class="ndpl-component__description">
-                    {{ component.description }}
-                </div>
+                <div class="ndpl-component__description" v-html="component.description"></div>
 
                 <div class="ndpl-component__sample">
                     <span class="ndpl-component__label">Example</span>
@@ -77,6 +75,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
     <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script src="bower_components/marked/lib/marked.js"></script>
     <script src="assets/js/patterns.js"></script>
 </body>
 </html>

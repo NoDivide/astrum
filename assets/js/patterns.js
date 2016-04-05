@@ -62,14 +62,12 @@ new Vue({
             $.get('components/' + component.template + '.html', function(data) {
                 component.html = data;
             }).always(function() {
-                console.log('loading');
                 _this.incrementComponentsLoaded();
             });
 
             $.get('components/' + component.template + '.md', function(data) {
-                component.description = data;
+                component.description = marked(data);
             }).always(function() {
-                console.log('loading');
                 _this.incrementComponentsLoaded();
             });
         },
