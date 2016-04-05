@@ -15,7 +15,9 @@
         ]
     },
     "font_libraries": {
-        "typekit_code": "dxp5bzu"
+        "typekit_code": "dxp5bzu",
+        "google_web_fonts": null,
+        "typography_web_fonts": null
     },
     "groups": [
         {

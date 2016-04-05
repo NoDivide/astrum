@@ -5,7 +5,7 @@
     <title v-text="title"></title>
 
     <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <style>
         .ndpl-branded              { color: {{ theme.brand_color }} !important; }
         .ndpl-branded-anchor       { color: {{ theme.brand_color }} !important; text-decoration: none !important; }
@@ -14,6 +14,10 @@
     </style>
     <link rel="stylesheet" :href="'bower_components/highlightjs/styles/' + theme.code_highlight_theme + '.css'">
     <link rel="stylesheet" href="assets/css/patterns.css">
+
+    <!-- Font Libraries -->
+    <link rel="stylesheet" v-if="font_libraries.google_web_fonts" v-bind:href="font_libraries.google_web_fonts">
+    <link rel="stylesheet" v-if="font_libraries.typography_web_fonts" v-bind:href="font_libraries.typography_web_fonts">
 
     <!-- Custom stylesheets are loaded from the assets.css array in patterns.json -->
     <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
