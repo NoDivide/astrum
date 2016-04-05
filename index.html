@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title v-text="title"></title>
 
+    <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <style>
         .ndpl-branded              { color: {{ theme.brand_color }} !important; }
@@ -11,13 +12,13 @@
         .ndpl-branded-anchor:hover { color: {{ theme.brand_color }} !important; text-decoration: underline !important; }
         .ndpl-branded-bg.active    { background-color: {{ theme.brand_color }} !important; }
     </style>
-    <link rel="stylesheet" href="bower_components/highlightjs/styles/{{ theme.code_highlight_theme }}.css">
+    <link rel="stylesheet" :href="'bower_components/highlightjs/styles/' + theme.code_highlight_theme + '.css'">
     <link rel="stylesheet" href="assets/css/patterns.css">
 
-    <!-- Stylesheets are loaded from the assets.css array in patterns.json -->
+    <!-- Custom stylesheets are loaded from the assets.css array in patterns.json -->
     <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
 </head>
-<body class="ndpl-body ndpl-inverted">
+<body class="ndpl-body" v-bind:class="{ 'ndpl-inverted': theme.invert_text }">
     <div class="ndpl-sidebar">
         <nav class="ndpl-nav">
             <ul class="ndpl-nav__items">
@@ -42,7 +43,7 @@
     <div class="ndpl-library">
         <header class="ndpl-header">
             <h1 class="ndpl-header__title" v-text="title"></h1>
-            <a class="ndpl-header__project-url ndpl-branded-anchor" href="{{ project_url }}" v-if="project_url" v-text="project_url"></a>
+            <a class="ndpl-header__project-url ndpl-branded-anchor" :href="project_url" v-if="project_url" v-text="project_url"></a>
         </header>
 
         <div class="ndpl-library__group">

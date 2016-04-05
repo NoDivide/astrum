@@ -31,6 +31,21 @@ new Vue({
                 _this.loadScripts();
                 _this.setupGroups();
                 _this.loadComponents();
+
+                if (_this.font_libraries.typekit_code) {
+                    _this.loadTypekit();
+                }
+            });
+        },
+
+        /**
+         * Loads TypeKit
+         *
+         * @return {undefined}
+         */
+        loadTypekit: function() {
+            $.getScript('https://use.typekit.net/' + this.font_libraries.typekit_code + '.js', function() {
+                try{Typekit.load({ async: true });}catch(e){};
             });
         },
 
