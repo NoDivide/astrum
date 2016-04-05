@@ -9,7 +9,10 @@
 }
 .ndpl-header,
 .ndpl-sidebar,
-.ndpl-library {
+.ndpl-library__title,
+.ndpl-component__title,
+.ndpl-component__description,
+.ndpl-component__label {
     font-family: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 }
 
@@ -24,7 +27,7 @@
     padding: 24px;
     position: fixed;
     top: 24px;
-    width: 252px;
+    width: 302px;
     z-index: 1;
 }
 
@@ -121,7 +124,7 @@
  * ----------------------------------------//
  */
 .ndpl-library {
-    padding: 48px 48px 48px 324px;
+    padding: 48px 48px 48px 374px;
 }
     .ndpl-library__title {
         border-bottom: 1px solid #DDD;
@@ -149,13 +152,14 @@
     .ndpl-component__description {
         color: #9F9F9F;
         font-size: 16px;
+        margin-bottom: 48px;
         line-height: 24px;
     }
         .ndpl-component__description p {
             margin: 0 0 24px;
         }
         .ndpl-component__description code {
-            background-color: #F5F5F5;
+            background-color: #EEE;
             border-radius: 6px;
             color: #999;
             display: inline-block;
@@ -173,8 +177,8 @@
             content: "";
             display: block;
         }
-        .ndpl-component__sample--darkened {
-            background-color: #666;
+        .ndpl-component__sample--inverted {
+            background-color: #333;
         }
         .ndpl-component__sample .ndpl-component__label {
             background-color: #FFF;
