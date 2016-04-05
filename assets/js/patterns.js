@@ -4,11 +4,6 @@ new Vue({
 
     ready: function() {
         this.loadDataFile();
-
-        var _this = this;
-        setTimeout(function() {
-            console.log(_this);
-        }, 3000);
     },
 
     methods: {
@@ -23,10 +18,25 @@ new Vue({
 
             $.get('patterns.json', function(data) {
                 _this.$data = data;
+                _this.componentsLoaded = 0;
 
-                _this.loadScripts();
                 _this.setupGroups();
                 _this.loadComponents();
+
+                if (_this.font_libraries.typekit_code) {
+                    _this.loadTypekit();
+                }
+            });
+        },
+
+        /**
+         * Loads TypeKit
+         *
+         * @return {undefined}
+         */
+        loadTypekit: function() {
+            $.getScript('https://use.typekit.net/' + this.font_libraries.typekit_code + '.js', function() {
+                try{Typekit.load({ async: true });}catch(e){};
             });
         },
 
@@ -51,11 +61,35 @@ new Vue({
 
             $.get('components/' + component.template + '.html', function(data) {
                 component.html = data;
+            }).always(function() {
+                console.log('loading');
+                _this.incrementComponentsLoaded();
             });
 
             $.get('components/' + component.template + '.md', function(data) {
                 component.description = data;
+            }).always(function() {
+                console.log('loading');
+                _this.incrementComponentsLoaded();
             });
+        },
+
+        incrementComponentsLoaded: function() {
+            this.componentsLoaded += 1;
+
+            if (this.componentsLoaded === this.components.length * 2) {
+                /**
+                 * Load custom JavaScripts
+                 */
+                this.loadScripts();
+
+                /**
+                 * Initialize code highlighting
+                 */
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            }
         },
 
         setupGroups: function() {
@@ -74,8 +108,6 @@ new Vue({
                     }
                 }
             }
-
-            delete this.$delete('components');
         }
 
     }

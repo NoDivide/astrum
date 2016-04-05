@@ -4,44 +4,78 @@
     <meta charset="UTF-8">
     <title v-text="title"></title>
 
+    <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <style>
+        .ndpl-branded              { color: {{ theme.brand_color }} !important; }
+        .ndpl-branded-anchor       { color: {{ theme.brand_color }} !important; text-decoration: none !important; }
+        .ndpl-branded-anchor:hover { color: {{ theme.brand_color }} !important; text-decoration: underline !important; }
+        .ndpl-branded-bg.active    { background-color: {{ theme.brand_color }} !important; }
+    </style>
+    <link rel="stylesheet" :href="'bower_components/highlightjs/styles/' + theme.code_highlight_theme + '.css'">
     <link rel="stylesheet" href="assets/css/patterns.css">
 
-    <!-- Stylesheets are loaded from the assets.css array in patterns.json -->
+    <!-- Font Libraries -->
+    <link rel="stylesheet" v-if="font_libraries.google_web_fonts" v-bind:href="font_libraries.google_web_fonts">
+    <link rel="stylesheet" v-if="font_libraries.typography_web_fonts" v-bind:href="font_libraries.typography_web_fonts">
+
+    <!-- Custom stylesheets are loaded from the assets.css array in patterns.json -->
     <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
 </head>
-<body>
-    <h1 v-text="title"></h1>
+<body class="ndpl-body" v-bind:class="{ 'ndpl-inverted': theme.invert_text }">
+    <div class="ndpl-sidebar">
+        <nav class="ndpl-nav">
+            <ul class="ndpl-nav__items">
+                <li class="ndpl-nav__item" v-for="group in groups">
+                    <span class="ndpl-nav__title" v-text="group.title"></span>
 
-    <nav>
-        <ul>
-            <li v-for="group in groups">
-                <a v-text="group.title" v-bind:href="'#' + group.name"></a>
+                    <ul class="ndpl-nav__child-items" v-if="group.components.length">
+                        <li class="ndpl-nav__child-item ndpl-branded-bg" v-for="component in group.components">
+                            <a v-bind:href="'#' + component.template" class="ndpl-nav__child-title" v-text="component.title"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
-                <ul v-if="group.components.length">
-                    <li v-for="component in group.components">
-                        <a v-text="component.title" v-bind:href="'#' + component.template"></a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-
-    <div v-for="group in groups"  class="group" v-bind:id="group.name">
-        <h2 v-text="group.title"></h2>
-
-        <div v-for="component in group.components" class="component" v-bind:id="component.template">
-            <h3 v-text="component.title"></h3>
-
-            {{ component.description }}
-
-            <pre><code>{{{ component.html }}}</code></pre>
+        <div class="ndpl-copyright">
+            <p>&copy; 2015-2016 - <a class="ndpl-branded-anchor" href="http://nodividestudio.com" target="_blank">No Divide Studio Ltd</a>.</p>
+            <p>This pattern library was created by Ryan Taylor.</p>
         </div>
     </div>
 
-    <pre v-text="$data | json"></pre>
+    <div class="ndpl-library">
+        <header class="ndpl-header">
+            <h1 class="ndpl-header__title" v-text="title"></h1>
+            <a class="ndpl-header__project-url ndpl-branded-anchor" :href="project_url" v-if="project_url" v-text="project_url"></a>
+        </header>
+
+
+        <div v-for="group in groups"  class="ndpl-library__group" v-bind:id="group.name">
+            <h2 class="ndpl-library__title">{{ group.title }}</h2>
+
+            <div v-for="component in group.components" class="component" v-bind:id="component.template">
+                <h3 class="ndpl-component__title">{{ component.title }} <small v-if="component.class" v-text="component.class"></small></h3>
+                <div class="ndpl-component__description">
+                    {{ component.description }}
+                </div>
+
+                <div class="ndpl-component__sample">
+                    <span class="ndpl-component__label">Example</span>
+                    {{{ component.html }}}
+                </div>
+
+                <div class="ndpl-component__code">
+                    <span class="ndpl-component__label">Code</span>
+                    <pre><code class="html" v-text="component.html"></code></pre>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
     <script src="bower_components/vue/dist/vue.min.js"></script>
     <script src="assets/js/patterns.js"></script>
 </body>

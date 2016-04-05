@@ -1,12 +1,23 @@
 {
     "title": "No Divide Pattern Library",
+    "project_url": "http://nodividestudio.com",
+    "theme": {
+      "brand_color": "#fEA1AC",
+      "invert_text": true,
+      "code_highlight_theme": "solarized-dark"
+    },
     "assets": {
         "css": [
-
+            "http://nodividestudio.com/assets/css/dist/site/all.css"
         ],
         "js": [
-
+            
         ]
+    },
+    "font_libraries": {
+        "typekit_code": "dxp5bzu",
+        "google_web_fonts": null,
+        "typography_web_fonts": null
     },
     "groups": [
         {
@@ -22,17 +33,20 @@
         {
             "title": "Element One",
             "group": "typography",
-            "template": "element-one"
+            "template": "element-one",
+            "class": ".element-one"
         },
         {
             "title": "Element Two",
             "group": "navigation",
-            "template": "element-two"
+            "template": "element-two",
+            "class": ".element-two"
         },
         {
             "title": "Element Three",
             "group": "typography",
-            "template": "element-three"
+            "template": "element-three",
+            "class": ".element-three"
         }
     ]
 }
