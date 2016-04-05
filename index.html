@@ -15,11 +15,11 @@
     <nav>
         <ul>
             <li v-for="group in groups">
-                <span v-text="group.title"></span>
+                <a v-text="group.title" v-bind:href="'#' + group.name"></a>
 
                 <ul v-if="group.components.length">
                     <li v-for="component in group.components">
-                        <span v-text="component.title"></span>
+                        <a v-text="component.title" v-bind:href="'#' + component.template"></a>
                     </li>
                 </ul>
             </li>
@@ -27,19 +27,19 @@
     </nav>
 
 
-    <div class="group" v-for="group in groups">
+    <div v-for="group in groups"  class="group" v-bind:id="group.name">
         <h2 v-text="group.title"></h2>
 
-        <div class="component" v-for="component in group.components">
+        <div v-for="component in group.components" class="component" v-bind:id="component.template">
             <h3 v-text="component.title"></h3>
 
             {{ component.description }}
 
-            <pre v-text="component.html"></pre>
+            <pre><code>{{{ component.html }}}</code></pre>
         </div>
     </div>
 
-    <pre>{{ $data | json }}</pre>
+    <pre v-text="$data | json"></pre>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/vue/dist/vue.min.js"></script>

@@ -2,12 +2,13 @@ new Vue({
 
     el: 'html',
 
-    data: {
-
-    },
-
     ready: function() {
         this.loadDataFile();
+
+        var _this = this;
+        setTimeout(function() {
+            console.log(_this);
+        }, 3000);
     },
 
     methods: {
@@ -38,24 +39,23 @@ new Vue({
         loadComponents: function() {
             for (var i = 0; i < this.groups.length; i++) {
                 for (var j = 0; j < this.groups[i].components.length; j++) {
-                    this.groups[i].components[j] = this.loadComponent(this.groups[i].components[j]);
+                    var component = this.groups[i].components[j];
+
+                    this.loadComponent(component);
                 }
             }
         },
 
         loadComponent: function(component) {
+            var _this = this;
 
-            // FIXME: need the original component model to get updated here.
             $.get('components/' + component.template + '.html', function(data) {
-                component.$set('html', data);
+                component.html = data;
             });
 
             $.get('components/' + component.template + '.md', function(data) {
-                // TODO: Parse markdown
-                component.$set('description', data);
+                component.description = data;
             });
-
-            return component;
         },
 
         setupGroups: function() {
@@ -66,10 +66,16 @@ new Vue({
 
                 for (var j = 0; j < this.components.length; j++) {
                     if (this.components[j].group === group.name) {
+                        // Add html and description properties to the component object.
+                        this.$set('components[' + j + '].html', '');
+                        this.$set('components[' + j + '].description', '')
+
                         group.components.push(this.components[j]);
                     }
                 }
             }
+
+            delete this.$delete('components');
         }
 
     }
