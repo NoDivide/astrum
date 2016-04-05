@@ -1,9 +1,15 @@
 {
-    "title": "No Divide Pattern Library",
+    "project_name": "No Divide Studio",
     "project_url": "http://nodividestudio.com",
+    "copyright_year": "2015 - 2016",
+    "client_name": "No Divide Studio Ltd",
+    "client_url": "http://nodividestudio.com",
+    "creator": "Ryan Taylor",
+    "creator_url": "http://twitter.com/ryanhavoc",
     "theme": {
       "brand_color": "#fEA1AC",
       "invert_text": true,
+      "background_color": "#F4F4F4",
       "code_highlight_theme": "solarized-dark"
     },
     "assets": {
@@ -79,7 +85,7 @@
             "title": "Arrow",
             "label": ".btn--arrow",
             "template": "buttons/arrow",
-            "dark_example_bg": true
+            "dark_example_background": true
         },
         {
             "group": "navigation",

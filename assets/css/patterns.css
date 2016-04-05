@@ -3,7 +3,7 @@
  * ----------------------------------------//
  */
 .ndpl-body {
-    background-color: #FFF;
+    background-color: #F4F4F4;
     margin: 0;
     padding: 0;
 }
@@ -21,15 +21,20 @@
  * ----------------------------------------//
  */
 .ndpl-sidebar {
+    background-color: #FFF;
     border-right: 1px solid #DDD;
-    bottom: 24px;
+    bottom: 0;
     left: 0;
     padding: 24px;
     position: fixed;
-    top: 24px;
+    top: 0;
     width: 302px;
     z-index: 1;
 }
+    .ndpl-sidebar__title {
+        font-size: 21px;
+        margin: 21px 0;
+    }
 
 /**
  * Copyright
@@ -37,7 +42,7 @@
  */
 .ndpl-copyright {
     left: 24px;
-    bottom: 0;
+    bottom: 12px;
     font-size: 12px;
     line-height: 21px;
     position: absolute;
@@ -61,29 +66,49 @@
     padding: 0;
 }
     .ndpl-nav__title {
-        color: #000;
+        border-bottom: 1px solid #DDD;
+        color: #484848;
+        cursor: pointer;
         display: block;
-        font-weight: 700;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        padding: 6px 0;
     }
+        .ndpl-nav__item:first-of-type .ndpl-nav__title {
+            border-top: 1px solid #DDD;
+        }
     .ndpl-nav__child-items {
+        display: none;
         font-size: 14px;
         list-style: none;
-        margin: 12px 0;
+        margin: 6px 0;
+        min-height: 0;
         padding: 0;
     }
+        .open .ndpl-nav__child-items {
+            display: block;
+        }
     .ndpl-nav__child-item {
         border-radius: 4px;
         margin-bottom: 6px;
     }
 
     .ndpl-nav__child-title {
-        color: #000;
+        border-radius: 3px;
+        color: #484848;
         display: block;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 21px;
         padding: 6px 12px;
         text-decoration: none;
     }
-        .ndpl-inverted .active .ndpl-nav__child-title {
+        .ndpl-inverted .ndpl-nav__child-title.active {
             color: #FFF;
+        }
+        .ndpl-inverted .ndpl-nav__child-title.active:hover {
+            color: #FFF !important;
         }
         .ndpl-nav__child-title:hover {
             color: #000 !important;
@@ -107,16 +132,33 @@
         display: block;
     }
 .ndpl-header__title {
-    font-size: 36px;
-    font-weight: 600;
+    color: #484848;
+    font-size: 42px;
+    font-weight: 700;
     line-height: 46px;
     float: left;
     margin: 0;
 }
+    .ndpl-header__title small {
+        font-size: 50%;
+        font-weight: 300;
+    }
 .ndpl-header__project-url {
+    border-radius: 6px;
     float: right;
     font-size: 14px;
-    line-height: 46px;
+    line-height: 42px;
+    padding: 0 24px;
+    position: relative;
+    top: -3px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.ndpl-header__project-url:hover {
+    color: #484848 !important;
+}
+.ndpl-inverted .ndpl-header__project-url:hover {
+    color: #FFF !important;
 }
 
 /**
@@ -124,11 +166,13 @@
  * ----------------------------------------//
  */
 .ndpl-library {
-    padding: 48px 48px 48px 374px;
+    padding: 24px 48px 24px 350px;
 }
     .ndpl-library__title {
+        color: #484848;
         border-bottom: 1px solid #DDD;
-        font-size: 30px;
+        font-size: 36px;
+        font-weight: 400;
         margin: 0 0 48px;
         padding-bottom: 12px;
     }
@@ -138,10 +182,15 @@
  * ----------------------------------------//
  */
 .ndpl-component {
+    background-color: #FFF;
+    border-radius: 12px;
     margin-bottom: 48px;
+    padding: 32px 24px;
 }
     .ndpl-component__title {
-        font-size: 24px;
+        color: #484848;
+        font-size: 30px;
+        font-weight: 300;
         margin: 0 0 24px;
     }
     .ndpl-component__title small {
@@ -150,10 +199,10 @@
         margin: 0;
     }
     .ndpl-component__description {
-        color: #9F9F9F;
+        color: #484848;
         font-size: 16px;
-        margin-bottom: 48px;
         line-height: 24px;
+        margin-bottom: 48px;
     }
         .ndpl-component__description p {
             margin: 0 0 24px;
@@ -196,6 +245,9 @@
     .ndpl-component__code {
         position: relative;
     }
+        .ndpl-component__code pre {
+            margin-bottom: 0;
+        }
         .ndpl-component__code code {
             border-radius: 12px;
             font-size: 14px;

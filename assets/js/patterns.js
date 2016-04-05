@@ -26,6 +26,43 @@ new Vue({
                 if (_this.font_libraries.typekit_code) {
                     _this.loadTypekit();
                 }
+
+                _this.scrollWatch();
+            });
+        },
+
+        openGroup: function(e) {
+            var _this = this;
+
+            $('.ndpl-nav__item').removeClass('open');
+            $(e.target).parent('.ndpl-nav__item').addClass('open');
+        },
+
+        scrollToComponent: function(e) {
+            var _this = this;
+
+            $('.ndpl-nav__child-title').removeClass('active');
+            $(e.target).addClass('active');
+        },
+
+        scrollWatch: function() {
+            var _this = this;
+
+            $(document).on('scroll', function(e) {
+                var _document = this;
+
+                $('.ndpl-component').each(function(index, value) {
+                    var nextEl = $('.ndpl-component')[index + 1],
+                        offsetBottom = nextEl === undefined ? $(_document).height() : $(nextEl).offset().top;
+
+                    if($(_document).scrollTop() > $(this).offset().top && $(_document).scrollTop() < offsetBottom) {
+                        $('.ndpl-nav__child-title').removeClass('active');
+                        $('.ndpl-nav__child-title[href="#' + $(this).attr('id') + '"]').addClass('active');
+
+                        $('.ndpl-nav__item').removeClass('open');
+                        $('.ndpl-nav__child-title[href="#' + $(this).attr('id') + '"]').parents('.ndpl-nav__item').addClass('open');
+                    }
+                });
             });
         },
 

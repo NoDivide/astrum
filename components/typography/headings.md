@@ -1,4 +1,4 @@
-Standard h1 to h6 headings. Each heading also has a corresponding class so that the heading size can be applied to other elements. These are:
+Standard h1 to h6 headings. Each heading also has a corresponding class so that the heading size can be applied to other [elements](http://google.com). These are:
  
  * h1: `.alpha`
  * h2: `.beta`
