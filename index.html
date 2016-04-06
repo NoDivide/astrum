@@ -36,7 +36,7 @@
 
                     <ul class="ndpl-nav__child-items" v-if="group.components.length">
                         <li class="ndpl-nav__child-item" v-for="component in group.components">
-                            <a v-bind:href="'#' + component.template" class="ndpl-nav__child-title" v-text="component.title" v-on:click="scrollToComponent"></a>
+                            <a v-bind:href="'#' + component.id" class="ndpl-nav__child-title" v-text="component.title" v-on:click="scrollToComponent"></a>
                         </li>
                     </ul>
                 </li>
@@ -58,7 +58,7 @@
         <div v-for="group in groups"  class="ndpl-library__group" v-bind:id="group.name">
             <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
-            <div v-for="component in group.components" class="ndpl-component" v-bind:id="component.template">
+            <div v-for="component in group.components" class="ndpl-component" v-bind:id="component.id">
                 <h3 class="ndpl-component__title">{{ component.title }} <small v-if="component.label" v-text="component.label"></small></h3>
                 <div class="ndpl-component__description" v-html="component.description"></div>
 

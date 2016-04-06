@@ -2,6 +2,8 @@ new Vue({
 
     el: 'html',
 
+    scrollWatch: true,
+
     ready: function() {
         this.loadDataFile();
     },
@@ -31,6 +33,10 @@ new Vue({
             });
         },
 
+        updateHash: function(hash) {
+            window.location.hash = hash;
+        },
+
         openGroup: function(e) {
             var _this = this;
 
@@ -40,9 +46,18 @@ new Vue({
 
         scrollToComponent: function(e) {
             var _this = this;
+            e.preventDefault();
 
             $('.ndpl-nav__child-title').removeClass('active');
-            $(e.target).addClass('active');
+
+            _this.scrollWatch = false;
+            $('html, body').animate({
+                scrollTop: $($(e.target).attr('href')).offset().top
+            }, 600, 'swing', function() {
+                $(e.target).addClass('active');
+                _this.scrollWatch = true;
+                _this.updateHash($(e.target).attr('href'));
+            });
         },
 
         scrollWatch: function() {
@@ -53,14 +68,16 @@ new Vue({
 
                 $('.ndpl-component').each(function(index, value) {
                     var nextEl = $('.ndpl-component')[index + 1],
-                        offsetBottom = nextEl === undefined ? $(_document).height() : $(nextEl).offset().top;
+                        offsetBottom = nextEl === undefined ? $(_document).height() : $(nextEl).offset().top - 50;
 
-                    if($(_document).scrollTop() > $(this).offset().top && $(_document).scrollTop() < offsetBottom) {
+                    if(_this.scrollWatch && $(_document).scrollTop() > $(this).offset().top - 50 && $(_document).scrollTop() < offsetBottom) {
                         $('.ndpl-nav__child-title').removeClass('active');
                         $('.ndpl-nav__child-title[href="#' + $(this).attr('id') + '"]').addClass('active');
 
                         $('.ndpl-nav__item').removeClass('open');
                         $('.ndpl-nav__child-title[href="#' + $(this).attr('id') + '"]').parents('.ndpl-nav__item').addClass('open');
+
+                        _this.updateHash($(this).attr('id'));
                     }
                 });
             });
@@ -135,9 +152,11 @@ new Vue({
 
                 for (var j = 0; j < this.components.length; j++) {
                     if (this.components[j].group === group.name) {
+
                         // Add html and description properties to the component object.
                         this.$set('components[' + j + '].html', '');
-                        this.$set('components[' + j + '].description', '')
+                        this.$set('components[' + j + '].description', '');
+                        this.$set('components[' + j + '].id', this.components[j].template.replace(/[/]/g, '-'));
 
                         group.components.push(this.components[j]);
                     }
