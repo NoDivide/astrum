@@ -39,10 +39,15 @@ new Vue({
         },
 
         openGroup: function(e) {
-            var _this = this;
+            var _this = this,
+                group = $(e.target).parent('.ndpl-nav__item');
 
-            $('.ndpl-nav__item').removeClass('open');
-            $(e.target).parent('.ndpl-nav__item').addClass('open');
+            if(group.hasClass('open')) {
+                group.removeClass('open');
+            } else {
+                $('.ndpl-nav__item').removeClass('open');
+                group.toggleClass('open');
+            }
         },
 
         scrollTo: function(e) {

@@ -93,6 +93,9 @@
     margin: 0;
     padding: 0;
 }
+    .ndpl-nav__item {
+        position: relative;
+    }
     .ndpl-nav__title {
         border-bottom: 1px solid #DDD;
         color: #484848;
@@ -105,6 +108,17 @@
     }
         .ndpl-nav__item:first-of-type .ndpl-nav__title {
             border-top: 1px solid #DDD;
+        }
+    .ndpl-nav__arrow {
+        margin: -4px 0 0;
+        opacity: 0.25;
+        position: absolute;
+        right: 12px;
+        top: 18px;
+        width: 16px;
+    }
+        .open .ndpl-nav__arrow {
+            transform: rotate(180deg);
         }
     .ndpl-nav__child-items {
         display: none;

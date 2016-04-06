@@ -33,6 +33,7 @@
             <ul class="ndpl-nav__items">
                 <li class="ndpl-nav__item" v-for="group in groups">
                     <span class="ndpl-nav__title" v-text="group.title" v-on:click="openGroup"></span>
+                    <img class="ndpl-nav__arrow" src="/assets/images/arrow.svg" alt=" "/>
 
                     <ul class="ndpl-nav__child-items" v-if="group.components.length">
                         <li class="ndpl-nav__child-item" v-for="component in group.components">
