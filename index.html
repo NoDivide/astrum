@@ -54,6 +54,10 @@
             <a class="ndpl-header__project-url ndpl-branded-anchor" :href="project_url" v-if="project_url" target="_blank">Visit the Project</a>
         </header>
 
+        <div class="ndpl-intro" v-if="intro">
+            {{{ intro }}}
+        </div>
+
 
         <div v-for="group in groups"  class="ndpl-library__group" v-bind:id="group.name">
             <h2 class="ndpl-library__title">{{ group.title }}</h2>

@@ -22,6 +22,7 @@ new Vue({
                 _this.$data = data;
                 _this.componentsLoaded = 0;
 
+                _this.loadIntro();
                 _this.setupGroups();
                 _this.loadComponents();
 
@@ -92,6 +93,14 @@ new Vue({
             $.getScript('https://use.typekit.net/' + this.font_libraries.typekit_code + '.js', function() {
                 try{Typekit.load({ async: true });}catch(e){};
             });
+        },
+
+        loadIntro: function() {
+            var _this = this;
+
+            $.get('templates/intro.md', function(data) {
+                _this.$set('intro', marked(data));
+            })
         },
 
         loadScripts: function() {
