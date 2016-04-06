@@ -45,7 +45,7 @@ new Vue({
             $(e.target).parent('.ndpl-nav__item').addClass('open');
         },
 
-        scrollToComponent: function(e) {
+        scrollTo: function(e) {
             var _this = this;
             e.preventDefault();
 

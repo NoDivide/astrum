@@ -26,9 +26,9 @@
     <!-- Custom stylesheets are loaded from the assets.css array in patterns.json -->
     <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
 </head>
-<body class="ndpl-body" v-bind:class="{ 'ndpl-inverted': theme.invert_text }">
+<body id="top" class="ndpl-body" v-bind:class="{ 'ndpl-inverted': theme.invert_text }">
     <div class="ndpl-sidebar">
-        <h2 class="ndpl-sidebar__title">Components</h2>
+        <h2 class="ndpl-sidebar__title"><a href="#top" v-on:click="scrollTo">Components</a></h2>
         <nav class="ndpl-nav">
             <ul class="ndpl-nav__items">
                 <li class="ndpl-nav__item" v-for="group in groups">
@@ -36,7 +36,7 @@
 
                     <ul class="ndpl-nav__child-items" v-if="group.components.length">
                         <li class="ndpl-nav__child-item" v-for="component in group.components">
-                            <a v-bind:href="'#' + component.id" class="ndpl-nav__child-title" v-text="component.title" v-on:click="scrollToComponent"></a>
+                            <a v-bind:href="'#' + component.id" class="ndpl-nav__child-title" v-text="component.title" v-on:click="scrollTo"></a>
                         </li>
                     </ul>
                 </li>

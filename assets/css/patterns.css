@@ -9,12 +9,30 @@
 }
 .ndpl-header,
 .ndpl-sidebar,
+.ndpl-intro,
 .ndpl-library__title,
 .ndpl-component__title,
 .ndpl-component__description,
 .ndpl-component__label {
     font-family: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 }
+
+/**
+ * Intro
+ * ----------------------------------------//
+ */
+.ndpl-intro {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 48px;
+}
+    .ndpl-intro code {
+        background-color: #FFF;
+        border-radius: 6px;
+        color: #999;
+        display: inline-block;
+        padding: 0 4px;
+    }
 
 /**
  * Sidebar
@@ -34,6 +52,16 @@
     .ndpl-sidebar__title {
         font-size: 21px;
         margin: 21px 0;
+    }
+    .ndpl-sidebar__title a,
+    .ndpl-sidebar__title a:focus,
+    .ndpl-sidebar__title a[href]:focus {
+        color: #484848 !important;
+        text-decoration: none;
+    }
+    .ndpl-sidebar__title a:hover,
+    .ndpl-sidebar__title a[href]:hover{
+        color: #484848 !important;
     }
 
 /**
@@ -104,6 +132,10 @@
         padding: 6px 12px;
         text-decoration: none;
     }
+        .ndpl-nav__child-title:focus,
+        .ndpl-nav__child-title[href]:focus {
+            color: #484848;
+        }
         .ndpl-inverted .ndpl-nav__child-title.active {
             color: #FFF;
         }
@@ -121,7 +153,7 @@
  */
 .ndpl-header {
     border-bottom: 1px solid #DDD;
-    margin-bottom: 48px;
+    margin-bottom: 36px;
     padding-bottom: 24px;
     position: relative;
     z-index: 2;

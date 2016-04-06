@@ -17,7 +17,7 @@
             "http://nodividestudio.com/assets/css/dist/site/all.css"
         ],
         "js": [
-            
+            "http://nodividestudio.com/assets/js/dist/site/all.js"
         ]
     },
     "font_libraries": {
@@ -108,6 +108,12 @@
             "title": "Other Clients",
             "label": null,
             "template": "modules/clients"
+        },
+        {
+            "group": "modules",
+            "title": "Team Members",
+            "label": null,
+            "template": "modules/team-members"
         }
     ]
 }
