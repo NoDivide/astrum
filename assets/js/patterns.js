@@ -199,7 +199,7 @@ new Vue({
                         // Add html and description properties to the component object.
                         this.$set('components[' + j + '].html', '');
                         this.$set('components[' + j + '].description', '');
-                        this.$set('components[' + j + '].id', this.components[j].template.replace(/[/]/g, '-'));
+                        this.$set('components[' + j + '].id', this.components[j].name);
 
                         group.components.push(this.components[j]);
                     }
