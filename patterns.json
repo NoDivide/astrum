@@ -50,70 +50,70 @@
     "components": [
         {
             "group": "typography",
+            "name": "headings",
             "title": "Headings",
-            "label": null,
-            "template": "typography/headings"
+            "label": null
         },
         {
             "group": "typography",
+            "name": "generic-elements",
             "title": "Generic Elements",
-            "label": null,
-            "template": "typography/elements"
+            "label": null
         },
         {
             "group": "branding",
+            "name": "logos",
             "title": "Logos",
-            "label": null,
-            "template": "branding/logos"
+            "label": null
         },
         {
             "group": "branding",
+            "name": "icons",
             "title": "Icons",
-            "label": null,
-            "template": "branding/icons"
+            "label": null
         },
         {
             "group": "buttons",
+            "name": "default",
             "title": "Default",
-            "label": null,
-            "template": "buttons/default"
+            "label": null
         },
         {
             "group": "buttons",
+            "name": "call-to-action",
             "title": "Call-to-Action",
-            "label": ".btn--cta",
-            "template": "buttons/call-to-action"
+            "label": ".btn--cta"
         },
         {
             "group": "buttons",
+            "name": "arrow",
             "title": "Arrow",
             "label": ".btn--arrow",
-            "template": "buttons/arrow",
             "dark_example_background": true
         },
         {
             "group": "navigation",
+            "name": "primary-full-width",
             "title": "Primary: Full Width",
-            "label": ".nav--full-width",
-            "template": "navigation/primary/full-width"
+            "label": ".nav--full-width"
         },
         {
             "group": "navigation",
+            "name": "primary-top-right-positioning",
             "title": "Primary: Top Right Positioning",
-            "label": ".nav--top-right",
-            "template": "navigation/primary/top-right"
+            "label": ".nav--top-right"
         },
         {
             "group": "modules",
+            "name": "other-clients",
             "title": "Other Clients",
-            "label": null,
-            "template": "modules/clients"
+            "label": null
         },
         {
             "group": "modules",
+            "name": "team-members",
             "title": "Team Members",
-            "label": null,
-            "template": "modules/team-members"
+            "label": null
         }
     ]
 }
