@@ -37,16 +37,40 @@
     </div>
 
     <div class="ndpl-sidebar">
-        <h2 class="ndpl-sidebar__title"><a href="#top" v-on:click="scrollTo">Components</a></h2>
+        <h2 class="ndpl-sidebar__title">
+            <a href="#top"
+               v-on:click="scrollTo">
+                Components
+            </a>
+        </h2>
         <nav class="ndpl-nav">
             <ul class="ndpl-nav__items">
-                <li class="ndpl-nav__item" v-for="group in groups">
-                    <span class="ndpl-nav__title" v-text="group.title" v-on:click="openGroup"></span>
-                    <img class="ndpl-nav__arrow" src="/assets/images/arrow.svg" alt=" "/>
+                <li class="ndpl-nav__item"
+                    id="group-{{ group.name }}"
+                    v-bind:class="{ 'open': group.open }"
+                    v-for="group in groups">
 
-                    <ul class="ndpl-nav__child-items" v-if="group.components.length">
-                        <li class="ndpl-nav__child-item" v-for="component in group.components">
-                            <a v-bind:href="'#' + component.id" class="ndpl-nav__child-title" v-text="component.title" v-on:click="scrollTo"></a>
+                    <span class="ndpl-nav__title"
+                          v-text="group.title"
+                          v-on:click="openGroup">
+                    </span>
+
+                    <img class="ndpl-nav__arrow"
+                         src="/assets/images/arrow.svg"
+                         alt=" "/>
+
+                    <ul class="ndpl-nav__child-items"
+                        v-if="group.components.length">
+
+                        <li class="ndpl-nav__child-item"
+                            v-for="component in group.components">
+
+                            <a v-bind:href="'#component-' + group.name + '-' + component.name"
+                               class="ndpl-nav__child-title"
+                               v-bind:class="{ 'active': component.active }"
+                               v-text="component.title"
+                               v-on:click="scrollTo">
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -69,10 +93,10 @@
         </div>
 
 
-        <div v-for="group in groups"  class="ndpl-library__group" v-bind:id="group.name">
+        <div v-for="group in groups"  class="ndpl-library__group" v-bind:id="'group-' + group.name">
             <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
-            <div v-for="component in group.components" class="ndpl-component" v-bind:id="component.id">
+            <div v-for="component in group.components" class="ndpl-component" v-bind:id="'component-' + group.name + '-' + component.name">
                 <h3 class="ndpl-component__title">{{ component.title }} <small v-if="component.label" v-text="component.label"></small></h3>
                 <div class="ndpl-component__description" v-html="component.description"></div>
 
@@ -88,12 +112,20 @@
             </div>
         </div>
 
+
+        <div class="ndpl-library__group">
+            <div class="ndpl-component">
+                <div class="ndpl-component__code">
+                    <pre><code class="json">{{ $data | json }}</code></pre>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
-    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script src="bower_components/vue/dist/vue.js"></script>
     <script src="bower_components/marked/lib/marked.js"></script>
     <script src="assets/js/patterns.js"></script>
 </body>
