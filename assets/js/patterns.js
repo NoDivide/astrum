@@ -156,13 +156,13 @@ new Vue({
         loadComponent: function(component) {
             var _this = this;
 
-            $.get('components/' + component.group + '/' + component.name + 'markup.html', function(data) {
+            $.get('components/' + component.group + '/' + component.name + '/markup.html', function(data) {
                 component.html = data;
             }).always(function() {
                 _this.incrementComponentsLoaded();
             });
 
-            $.get('components/' + component.group + '/' + component.name + 'description.md', function(data) {
+            $.get('components/' + component.group + '/' + component.name + '/description.md', function(data) {
                 component.description = marked(data);
             }).always(function() {
                 _this.incrementComponentsLoaded();
