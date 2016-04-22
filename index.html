@@ -27,6 +27,15 @@
     <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
 </head>
 <body id="top" class="ndpl-body" v-bind:class="{ 'ndpl-inverted': theme.invert_text }">
+
+    <div class="ndpl-nav-palm-handle" v-on:click="togglePalmNav">
+        <div class="ndpl-nav-palm-handle__container">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
     <div class="ndpl-sidebar">
         <h2 class="ndpl-sidebar__title"><a href="#top" v-on:click="scrollTo">Components</a></h2>
         <nav class="ndpl-nav">

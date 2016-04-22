@@ -50,6 +50,35 @@ new Vue({
             }
         },
 
+        togglePalmNav: function(e) {
+            //var _this = this,
+            //    handle = $(e.target);
+            //
+            //console.log(handle);
+            //
+            //var body = $('body');
+            //
+            //// Toggle class on handle
+            //handle.toggleClass('open');
+            //
+            //// Toggle classes on palm nav (finished cancels
+            //// transition on close)
+            //$('.ndpl-sidebar').toggleClass('open finished');
+            //
+            //// Toggle class on body (locks overflow to prevent
+            //// scrolling)
+            //body.toggleClass('js-nav-palm-open');
+            //
+            //// Disable scrolling on mobile
+            //if(body.hasClass('js-nav-palm-open')) {
+            //    $(document).bind('touchmove', function(e) {
+            //        e.preventDefault();
+            //    });
+            //} else {
+            //    $(document).unbind('touchmove');
+            //}
+        },
+
         scrollTo: function(e) {
             var _this = this;
             e.preventDefault();

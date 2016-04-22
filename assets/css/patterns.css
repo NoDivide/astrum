@@ -7,6 +7,9 @@
     margin: 0;
     padding: 0;
 }
+    .ndpl-body.nav-open {
+        overflow-y: hidden;
+    }
 .ndpl-header,
 .ndpl-sidebar,
 .ndpl-intro,
@@ -42,12 +45,15 @@
     background-color: #FFF;
     border-right: 1px solid #DDD;
     bottom: 0;
+    display: block;
+    height: 100%;
     left: 0;
     padding: 24px;
     position: fixed;
+    right: 0;
     top: 0;
-    width: 302px;
-    z-index: 1;
+    width: 100%;
+    z-index: 2;
 }
     .ndpl-sidebar__title {
         font-size: 21px;
@@ -64,27 +70,113 @@
         color: #484848 !important;
     }
 
+@media only screen and (min-width: 60em) {
+
+    .ndpl-sidebar {
+        background-color: #FFF;
+        border-right: 1px solid #DDD;
+        bottom: 0;
+        left: 0;
+        padding: 24px;
+        position: fixed;
+        top: 0;
+        width: 302px;
+        z-index: 1;
+    }
+    .ndpl-sidebar__title {
+        font-size: 21px;
+        margin: 21px 0;
+    }
+    .ndpl-sidebar__title a,
+    .ndpl-sidebar__title a:focus,
+    .ndpl-sidebar__title a[href]:focus {
+        color: #484848 !important;
+        text-decoration: none;
+    }
+    .ndpl-sidebar__title a:hover,
+    .ndpl-sidebar__title a[href]:hover{
+        color: #484848 !important;
+    }
+}
+
 /**
  * Copyright
  * ----------------------------------------//
  */
 .ndpl-copyright {
-    left: 24px;
-    bottom: 12px;
-    font-size: 12px;
-    line-height: 21px;
-    position: absolute;
-    right: 24px;
+    display: none;
 }
-    .ndpl-copyright p {
-        color: #9F9F9F;
-        margin: 0 0 12px;
+
+@media only screen and (min-width: 60em) {
+
+    .ndpl-copyright {
+        display: block;
+        left: 24px;
+        bottom: 12px;
+        font-size: 12px;
+        line-height: 21px;
+        position: absolute;
+        right: 24px;
     }
+        .ndpl-copyright p {
+            color: #9F9F9F;
+            margin: 0 0 12px;
+        }
+}
 
 /**
  * Navigation
  * ----------------------------------------//
  */
+.ndpl-nav-palm-handle {
+    display: none;
+    cursor: pointer;
+    height: 31px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    top: 24px;
+    width: 55px;
+    z-index: 20;
+}
+    .ndpl-nav-palm-handle__container {
+         padding: 24px 0 0;
+    }
+    .ndpl-nav-palm-handle span {
+        background-color: #484848;
+        display: block;
+        height: 3px;
+        opacity: 1;
+        position: absolute;
+        right: 24px;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+        width: 31px;
+    }
+        .ndpl-nav-palm-handle span:nth-child(1) {
+            top: 0px;
+        }
+        .ndpl-nav-palm-handle span:nth-child(2) {
+            top: 11px;
+        }
+        .ndpl-nav-palm-handle span:nth-child(3) {
+            top: 22px;
+        }
+        .ndpl-nav-palm-handle.open span:nth-child(1) {
+             top: 11px;
+             transform: rotate(-45deg);
+        }
+        .ndpl-nav-palm-handle.open span:nth-child(2) {
+             opacity: 0;
+             right: -60px;
+        }
+        .ndpl-nav-palm-handle.open span:nth-child(3) {
+             top: 11px;
+             transform: rotate(45deg);
+        }
+
 .ndpl-nav {
     padding: 6px 0;
 }
@@ -169,8 +261,10 @@
     border-bottom: 1px solid #DDD;
     margin-bottom: 36px;
     padding-bottom: 24px;
+    padding-left: 12px;
+    padding-right: 12px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
     .ndpl-header:after {
         clear: left;
@@ -207,12 +301,20 @@
     color: #FFF !important;
 }
 
+@media only screen and (min-width: 60em) {
+
+    .ndpl-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 /**
  * Component Library
  * ----------------------------------------//
  */
 .ndpl-library {
-    padding: 24px 48px 24px 350px;
+    padding: 24px 0 24px 0;
 }
     .ndpl-library__title {
         color: #484848;
@@ -222,6 +324,13 @@
         margin: 0 0 48px;
         padding-bottom: 12px;
     }
+
+@media only screen and (min-width: 60em) {
+
+    .ndpl-library {
+        padding: 24px 48px 24px 350px;
+    }
+}
 
 /**
  * Component 
