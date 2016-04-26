@@ -284,6 +284,8 @@ new Vue({
 
             _this.$http.get('/templates/intro.md').then(function(response) {
                 _this.$set('intro', marked(response.data));
+            }, function() {
+                _this.logError('Failed to load <strong>intro</strong> template from <code>/templates/intro.md</code>. Is it missing?');
             });
         },
 
@@ -341,7 +343,7 @@ new Vue({
                 component.html = response.data;
                 _this.areComponentsLoaded();
             }, function () {
-                _this.logError('HTML file for "' + component.name + '" failed to load from "' + component_path + '/html.md"');
+                _this.logError('HTML file for <strong>' + component.name + '</strong> component failed to load from <code>/' + component_path + '/html.md</code>');
             });
 
             // Get and set component description
@@ -349,7 +351,7 @@ new Vue({
                 component.description = marked(response.data);
                 _this.areComponentsLoaded();
             }, function () {
-                _this.logError('Description file for "' + component.name + '" failed to load from "' + component_path + '/description.md"');
+                _this.logError('Description file for <strong>' + component.name + '</strong> component failed to load from <code>/' + component_path + '/description.md</code>');
             });
         },
 

@@ -51,8 +51,13 @@
                 <div class="ndpl-cube3 ndpl-cube"></div>
             </div>
 
-            <h3 class="ndpl-loading__title" v-if="! loaded">Building pattern library...</h3>
-            <h3 class="ndpl-loading__title" v-if="resizing">Realigning pattern library...</h3>
+            <h3 class="ndpl-loading__title" v-if="! loaded && !error_log.length">Building pattern library...</h3>
+            <h3 class="ndpl-loading__title" v-if="resizing && !error_log.length">Realigning pattern library...</h3>
+            <h3 class="ndpl-loading__title" v-if="error_log.length">Hold up! We have some errors...</h3>
+
+            <ul class="ndpl-errors" v-if="error_log.length">
+                <li class="ndpl-error" v-for="error in error_log">{{{ error }}}</li>
+            </ul>
         </div>
 
         <div class="ndpl-container" :class="{ 'loaded': loaded && ! resizing, 'resizing': resizing }">
