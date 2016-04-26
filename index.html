@@ -74,7 +74,7 @@
             <div class="ndpl-sidebar"
                  :class="{ 'open': open_nav }">
                 <h2 class="ndpl-sidebar__title">
-                    <a href="#top" @click.prevent="scrollTo">Components</a>
+                    <a href="#top" @click.prevent="scrollToHref">Components</a>
                 </h2>
                 <nav class="ndpl-nav">
                     <ul class="ndpl-nav__items">
@@ -102,7 +102,7 @@
                                        class="ndpl-nav__child-title"
                                        :class="{ 'active': component.id == active_component.id }"
                                        v-text="component.title"
-                                       @click.prevent="scrollTo">
+                                       @click.prevent="scrollToHref">
                                     </a>
                                 </li>
                             </ul>

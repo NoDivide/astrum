@@ -212,6 +212,14 @@ new Vue({
         }
     },
 
+    watch: {
+        loaded: function() {
+            var _this = this;
+
+            _this.scrollTo(window.location.hash);
+        }
+    },
+
     ready: function() {
         var _this = this;
 
@@ -410,13 +418,24 @@ new Vue({
          *
          * @param e
          */
-        scrollTo: function(e) {
+        scrollToHref: function(e) {
+            var _this = this;
+
+            _this.scrollTo(e.target.hash);
+        },
+
+        /**
+         * Scroll to animation
+         *
+         * @param hash
+         */
+        scrollTo: function(hash) {
             var _this = this,
                 offset = _this.mobile_view ? 52 : 124;
 
             _this.scrolling_to = true;
 
-            smoothScroll.animateScroll(e.target.hash, null, {
+            smoothScroll.animateScroll(hash, null, {
                 offset: offset,
                 callback: function() {
                     _this.scrolling_to = false;
