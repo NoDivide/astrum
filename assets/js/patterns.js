@@ -433,6 +433,8 @@ new Vue({
             var _this = this,
                 offset = _this.mobile_view ? 52 : 124;
 
+            if(!hash) return;
+
             _this.scrolling_to = true;
 
             smoothScroll.animateScroll(hash, null, {
