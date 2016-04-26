@@ -1,0 +1,2 @@
+The No Divide logo (Marvin the Oxen) come in two sizes with one variant. The smaller size is default. To present a larger version use the `.logo--large` modifier class 
+and to see poor Marvin all beaten up (as he appears on the 404: Page Not Found template) add the `.logo--beaten` modifier class.

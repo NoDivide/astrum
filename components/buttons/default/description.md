@@ -1,0 +1,1 @@
+For instances where the default button needs to sit above a darker background the `.btn--inverted` class can be used.
