@@ -1,132 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title v-text="project_name + ' | Pattern Library'"></title>
+    <head>
+        <meta charset="UTF-8">
+        <title v-text="project_name + ' | Pattern Library'"></title>
 
-    <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-    <style>
-        .ndpl-body                           { background-color: {{ theme.background_color }} !important; }
-        .ndpl-nav__child-title.active        { background-color: {{ theme.brand_color }} !important; }
-        .ndpl-header__project-url            { color: {{ theme.brand_color }} !important; border: 2px solid {{ theme.brand_color }} !important;  }
-        .ndpl-header__project-url:hover      { background-color: {{ theme.brand_color }} !important; }
-        .ndpl-copyright a,
-        .ndpl-component__description a       { color: {{ theme.brand_color }} !important; text-decoration: none !important; }
-        .ndpl-copyright a:hover,
-        .ndpl-component__description a:hover { color: {{ theme.brand_color }} !important; text-decoration: underline !important;}
-    </style>
-    <link rel="stylesheet" :href="'bower_components/highlightjs/styles/' + theme.code_highlight_theme + '.css'">
-    <link rel="stylesheet" href="assets/css/patterns.css">
+        <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ['Open Sans']
+                }
+            });
+        </script>
+        <style>
+            .ndpl-body                            { background-color: {{ theme.background_color }} !important; }
+            .ndpl-nav__child-title.active         { background-color: {{ theme.brand_color }} !important; }
+            .ndpl-btn                             { color: {{ theme.brand_color }} !important; border: 2px solid {{ theme.brand_color }} !important;  }
+            .ndpl-folding-cube .ndpl-cube:before,
+            .ndpl-btn:hover                       { background-color: {{ theme.brand_color }} !important; }
+            .ndpl-copyright a,
+            .ndpl-component__description a        { color: {{ theme.brand_color }} !important; text-decoration: none !important; }
+            .ndpl-header__title a:hover,
+            .ndpl-copyright a:hover,
+            .ndpl-component__description a:hover  { color: {{ theme.brand_color }} !important; text-decoration: underline !important;}
+        </style>
+        <link rel="stylesheet" :href="'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/' + theme.code_highlight_theme + '.min.css'">
+        <link rel="stylesheet" href="assets/css/patterns.css">
 
-    <!-- Font Libraries -->
-    <link rel="stylesheet" v-if="font_libraries.google_web_fonts" v-bind:href="font_libraries.google_web_fonts">
-    <link rel="stylesheet" v-if="font_libraries.typography_web_fonts" v-bind:href="font_libraries.typography_web_fonts">
+        <!-- Font Libraries -->
+        <link rel="stylesheet" v-if="font_libraries.google_web_fonts" :href="font_libraries.google_web_fonts">
+        <link rel="stylesheet" v-if="font_libraries.typography_web_fonts" :href="font_libraries.typography_web_fonts">
+        <ndpl-script :script="'https://use.typekit.net/' + font_libraries.typekit_code + '.js'" v-if="font_libraries.typekit_code" inline-template>
+            <script :src="script" @load="loadTypekit"></script>
+        </ndpl-script>
 
-    <!-- Custom stylesheets are loaded from the assets.css array in patterns.json -->
-    <link rel="stylesheet" v-for="css in assets.css" v-bind:href="css">
-</head>
-<body id="top" class="ndpl-body" v-bind:class="{ 'ndpl-inverted': theme.invert_text }">
+        <!-- Custom stylesheets are loaded from the assets.css array in patterns.json -->
+        <link rel="stylesheet" v-for="css in assets.css" :href="css">
+    </head>
+    <body id="top"
+          class="ndpl-body"
+          :class="{ 'ndpl-inverted': theme.invert_text}">
 
-    <div class="ndpl-nav-palm-handle" v-on:click="togglePalmNav">
-        <div class="ndpl-nav-palm-handle__container">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="ndpl-loading" :class="{ 'in-progress': ! loaded || resizing }">
+            <div class="ndpl-folding-cube">
+                <div class="ndpl-cube1 ndpl-cube"></div>
+                <div class="ndpl-cube2 ndpl-cube"></div>
+                <div class="ndpl-cube4 ndpl-cube"></div>
+                <div class="ndpl-cube3 ndpl-cube"></div>
+            </div>
+
+            <h3 class="ndpl-loading__title" v-if="! loaded">Building pattern library...</h3>
+            <h3 class="ndpl-loading__title" v-if="resizing">Realigning pattern library...</h3>
         </div>
-    </div>
 
-    <div class="ndpl-sidebar">
-        <h2 class="ndpl-sidebar__title">
-            <a href="#top"
-               v-on:click="scrollTo">
-                Components
-            </a>
-        </h2>
-        <nav class="ndpl-nav">
-            <ul class="ndpl-nav__items">
-                <li class="ndpl-nav__item"
-                    id="group-{{ group.name }}"
-                    v-bind:class="{ 'open': group.open }"
-                    v-for="group in groups">
+        <div class="ndpl-container" :class="{ 'loaded': loaded && ! resizing, 'resizing': resizing }">
+            <div class="ndpl-nav-handle"
+                 :class="{ 'open': open_nav }"
+                 @click="toggleNav">
+                <div class="ndpl-nav-handle__container">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
 
-                    <span class="ndpl-nav__title"
-                          v-text="group.title"
-                          v-on:click="openGroup">
-                    </span>
+            <div class="ndpl-sidebar"
+                 :class="{ 'open': open_nav }">
+                <h2 class="ndpl-sidebar__title">
+                    <a href="#top" @click.prevent="scrollTo">Components</a>
+                </h2>
+                <nav class="ndpl-nav">
+                    <ul class="ndpl-nav__items">
+                        <li class="ndpl-nav__item"
+                            v-for="group in groups"
+                            :class="{ 'active': group.id == active_component.group_id || group.id == open_group, }">
 
-                    <img class="ndpl-nav__arrow"
-                         src="/assets/images/arrow.svg"
-                         alt=" "/>
-
-                    <ul class="ndpl-nav__child-items"
-                        v-if="group.components.length">
-
-                        <li class="ndpl-nav__child-item"
-                            v-for="component in group.components">
-
-                            <a v-bind:href="'#component-' + group.name + '-' + component.name"
-                               class="ndpl-nav__child-title"
-                               v-bind:class="{ 'active': component.active }"
-                               v-text="component.title"
-                               v-on:click="scrollTo">
+                            <a :href="'#' + group.id"
+                               class="ndpl-nav__title"
+                               v-text="group.title"
+                               @click.prevent="toggleOpenGroups(group)">
                             </a>
+
+                            <img class="ndpl-nav__arrow"
+                                 src="/assets/images/arrow.svg"
+                                 alt=" "/>
+
+                            <ul class="ndpl-nav__child-items"
+                                v-if="group.components.length">
+
+                                <li class="ndpl-nav__child-item"
+                                    v-for="component in group.components">
+
+                                    <a :href="'#' + component.id"
+                                       class="ndpl-nav__child-title"
+                                       :class="{ 'active': component.id == active_component.id }"
+                                       v-text="component.title"
+                                       @click.prevent="scrollTo">
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                </li>
-            </ul>
-        </nav>
+                </nav>
 
-        <div class="ndpl-copyright">
-            <p>&copy; {{ copyright_year }} - <a class="ndpl-branded-anchor" href="{{ client_url }}" target="_blank">{{ client_name }}</a>.<br/>Pattern library created by <a href="{{ creator_url }}" target="_blank" >{{ creator }}</a>.</p>
-        </div>
-    </div>
+                <div class="ndpl-copyright">
+                    <p>&copy; {{ copyright_year }} - <a class="ndpl-branded-anchor" href="{{ client_url }}" target="_blank">{{ client_name }}</a>.<br/>Pattern library created by {{{ allCreators }}}.</p>
+                </div>
+            </div>
 
-    <div class="ndpl-library">
-        <header class="ndpl-header">
-            <h1 class="ndpl-header__title"><span v-text="project_name"></span> <small>Pattern Library</small></h1>
-            <a class="ndpl-header__project-url ndpl-branded-anchor" :href="project_url" v-if="project_url" target="_blank">Visit the Project</a>
-        </header>
+            <header class="ndpl-header">
+                <h1 class="ndpl-header__title"><a :href="project_url" target="_blank"><span v-text="project_name"></span></a> <small>Pattern Library</small></h1>
+                <a class="ndpl-btn ndpl-branded-anchor" :href="project_url" v-if="project_url" target="_blank">Visit the Project</a>
+            </header>
 
-        <div class="ndpl-intro" v-if="intro">
-            {{{ intro }}}
-        </div>
+            <div class="ndpl-library">
 
-
-        <div v-for="group in groups"  class="ndpl-library__group" v-bind:id="'group-' + group.name">
-            <h2 class="ndpl-library__title">{{ group.title }}</h2>
-
-            <div v-for="component in group.components" class="ndpl-component" v-bind:id="'component-' + group.name + '-' + component.name">
-                <h3 class="ndpl-component__title">{{ component.title }} <small v-if="component.label" v-text="component.label"></small></h3>
-                <div class="ndpl-component__description" v-html="component.description"></div>
-
-                <div class="ndpl-component__sample" v-bind:class="{ 'ndpl-component__sample--inverted': component.dark_example_background }">
-                    <span class="ndpl-component__label">Example</span>
-                    {{{ component.html }}}
+                <div class="ndpl-intro" v-if="intro">
+                    {{{ intro }}}
                 </div>
 
-                <div class="ndpl-component__code">
-                    <span class="ndpl-component__label">Code</span>
-                    <pre><code class="html" v-text="component.html"></code></pre>
-                </div>
+                <ndpl-group v-for="group in groups" :group="group" inline-template>
+                    <div class="ndpl-library__group" :id="group.id">
+                        <h2 class="ndpl-library__title">{{ group.title }}</h2>
+
+                        <ndpl-component v-for="component in group.components" :component="component" inline-template>
+                            <div class="ndpl-component" :id="component.id" :group-id="component.group_id">
+                                <h3 class="ndpl-component__title">{{ component.title }} <small v-if="component.label" v-text="component.label"></small></h3>
+
+                                <div class="ndpl-component__description" v-html="component.description"></div>
+
+                                <div class="ndpl-component__sample" :class="{ 'ndpl-component__sample--inverted': component.dark_example_background }">
+                                    <span class="ndpl-component__label">Example</span>
+                                    {{{ component.html }}}
+                                </div>
+
+                                <div class="ndpl-component__code" v-show="toggleCode" :transition="">
+                                    <span class="ndpl-component__label">Code</span>
+                                    <pre><code class="html" v-text="component.html"></code></pre>
+                                </div>
+
+                                <button class="ndpl-btn ndpl-btn--small"
+                                        @click.prevent="component.code_show = ! component.code_show"
+                                        v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></button>
+                            </div>
+                        </ndpl-component>
+                    </div>
+                </ndpl-group>
             </div>
         </div>
 
+        <ndpl-script v-for="script in assets.js" :script="script" v-if="loaded" inline-template>
+            <script :src="script"></script>
+        </ndpl-script>
 
-        <div class="ndpl-library__group">
-            <div class="ndpl-component">
-                <div class="ndpl-component__code">
-                    <pre><code class="json">{{ $data | json }}</code></pre>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
-    <script src="bower_components/vue/dist/vue.js"></script>
-    <script src="bower_components/marked/lib/marked.js"></script>
-    <script src="assets/js/patterns.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.0.0/js/smooth-scroll.min.js"></script>
+        <script src="assets/js/patterns.js"></script>
+    </body>
 </html>

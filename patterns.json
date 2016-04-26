@@ -1,11 +1,19 @@
 {
     "project_name": "No Divide Studio",
     "project_url": "http://nodividestudio.com",
-    "copyright_year": "2015 - 2016",
+    "copyright_start_year": "2015",
     "client_name": "No Divide Studio Ltd",
     "client_url": "http://nodividestudio.com",
-    "creator": "Ryan Taylor",
-    "creator_url": "http://twitter.com/ryanhavoc",
+    "creators": [
+        {
+            "name": "Ryan Taylor",
+            "url": "http://twitter.com/ryanhavoc"
+        },
+        {
+            "name": "Dan Edwards",
+            "url": "http://twitter.com/de"
+        }
+    ],
     "theme": {
         "brand_color": "#FEA1AC",
         "invert_text": true,
@@ -35,7 +43,6 @@
             "title": "Branding"
         },
         {
-            "open": true,
             "name": "buttons",
             "title": "Buttons"
         },
