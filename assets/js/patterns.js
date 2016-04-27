@@ -248,12 +248,12 @@ new Vue({
     methods: {
 
         /**
-         * Reads the patterns.json file.
+         * Reads the data.json file.
          */
         loadDataFile: function () {
             var _this = this;
 
-            _this.$http.get('/patterns.json').then(function (response) {
+            _this.$http.get('/data.json').then(function (response) {
 
                 _this.initData(response.data);
 

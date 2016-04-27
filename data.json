@@ -97,7 +97,6 @@
             "label": ".btn--cta"
         },
         {
-            "active": true,
             "group": "buttons",
             "name": "arrow",
             "title": "Arrow",

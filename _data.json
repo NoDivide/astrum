@@ -1,0 +1,131 @@
+{
+    "project_name": "No Divide Studio",
+    "project_url": "http://nodividestudio.com",
+    "copyright_start_year": "2015",
+    "client_name": "No Divide Studio Ltd",
+    "client_url": "http://nodividestudio.com",
+    "creators": [
+        {
+            "name": "Ryan Taylor",
+            "url": "http://twitter.com/ryanhavoc"
+        },
+        {
+            "name": "Matt West",
+            "url": "http://twitter.com/mattantwest"
+        },
+        {
+            "name": "Dan Edwards",
+            "url": "http://twitter.com/de"
+        }
+    ],
+    "theme": {
+        "brand_color": "#FEA1AC",
+        "invert_text": true,
+        "background_color": "#F4F4F4",
+        "code_highlight_theme": "solarized-dark"
+    },
+    "assets": {
+        "css": [
+            "http://nodividestudio.com/assets/css/dist/site/all.css"
+        ],
+        "js": [
+            "http://nodividestudio.com/assets/js/dist/site/all.js"
+        ]
+    },
+    "font_libraries": {
+        "typekit_code": "dxp5bzu",
+        "google_web_fonts": null,
+        "typography_web_fonts": null
+    },
+    "groups": [
+        {
+            "name": "typography",
+            "title": "Typography"
+        },
+        {
+            "name": "branding",
+            "title": "Branding"
+        },
+        {
+            "name": "buttons",
+            "title": "Buttons"
+        },
+        {
+            "name": "navigation",
+            "title": "Navigation"
+        },
+        {
+            "name": "modules",
+            "title": "Modules"
+        }
+    ],
+    "components": [
+        {
+            "group": "typography",
+            "name": "headings",
+            "title": "Headings",
+            "label": null
+        },
+        {
+            "group": "typography",
+            "name": "generic-elements",
+            "title": "Generic Elements",
+            "label": null
+        },
+        {
+            "group": "branding",
+            "name": "logos",
+            "title": "Logos",
+            "label": null
+        },
+        {
+            "group": "branding",
+            "name": "icons",
+            "title": "Icons",
+            "label": null
+        },
+        {
+            "group": "buttons",
+            "name": "default",
+            "title": "Default",
+            "label": null
+        },
+        {
+            "group": "buttons",
+            "name": "call-to-action",
+            "title": "Call-to-Action",
+            "label": ".btn--cta"
+        },
+        {
+            "group": "buttons",
+            "name": "arrow",
+            "title": "Arrow",
+            "label": ".btn--arrow",
+            "dark_example_background": true
+        },
+        {
+            "group": "navigation",
+            "name": "primary-full-width",
+            "title": "Primary: Full Width",
+            "label": ".nav--full-width"
+        },
+        {
+            "group": "navigation",
+            "name": "primary-top-right-positioning",
+            "title": "Primary: Top Right Positioning",
+            "label": ".nav--top-right"
+        },
+        {
+            "group": "modules",
+            "name": "other-clients",
+            "title": "Other Clients",
+            "label": null
+        },
+        {
+            "group": "modules",
+            "name": "team-members",
+            "title": "Team Members",
+            "label": null
+        }
+    ]
+}
