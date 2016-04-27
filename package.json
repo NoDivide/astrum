@@ -1,8 +1,8 @@
 {
-  "name": "patterns",
+  "name": "Patterns",
   "version": "1.0.0",
   "description": "A command-line utility tool for managing Patterns components.",
-  "main": "./manager.js",
+  "main": "./manager/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,7 @@
   "author": "Ryan Taylor",
   "license": "MIT",
   "bin": {
-    "patterns": "./manager.js"
+    "patterns": "./manager/index.js"
   },
   "bugs": {
     "url": "https://github.com/NoDivide/patterns/issues"
