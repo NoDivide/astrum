@@ -148,7 +148,6 @@ new Vue({
         client_url: null,
         creators: {},
         groups: {},
-        components: {},
         theme: {
             brand_color: '#FEA1AC',
             background_color: '#F4F4F4',
@@ -165,6 +164,7 @@ new Vue({
             typography_web_fonts: null
         },
         error_log: [],
+        components_count: 0,
         components_loaded_count: 0,
         loaded: false,
         resizing: false,
@@ -312,27 +312,23 @@ new Vue({
                 _this.$set('groups[' + i + '].id', groupId);
                 _this.$set('groups[' + i + '].active', false);
 
-                // Set group components array
-                _this.$set('groups[' + i + '].components', []);
+                // Count components
+                _this.components_count += group.components.length;
 
                 // Add group components to group
-                for (var j = 0; j < _this.components.length; j++) {
-                    if (_this.components[j].group === group.name) {
+                for (var j = 0; j < group.components.length; j++) {
 
-                        // Set component navigation variables
-                        _this.$set('components[' + j + '].id', 'component-' + _this.components[j].name);
-                        _this.$set('components[' + j + '].group_id', groupId);
-                        _this.$set('components[' + j + '].active', false);
-                        _this.$set('components[' + j + '].code_show', false);
+                    // Set component navigation variables
+                    _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
+                    _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
+                    _this.$set('groups[' + i + '].components[' + j + '].active', false);
+                    _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
 
-                        // Add html and description properties to the component object.
-                        _this.$set('components[' + j + '].html', '');
-                        _this.$set('components[' + j + '].description', '');
-
-                        group.components.push(_this.components[j]);
-
-                        _this.loadComponent(_this.components[j]);
-                    }
+                    // Add html and description properties to the component object.
+                    _this.$set('groups[' + i + '].components[' + j + '].html', '');
+                    _this.$set('groups[' + i + '].components[' + j + '].description', '');
+                    
+                    _this.loadComponent(_this.groups[i].components[j]);
                 }
             }
         },
@@ -371,7 +367,7 @@ new Vue({
 
             _this.components_loaded_count += 1;
 
-            if (_this.components_loaded_count === _this.components.length * 2) {
+            if (_this.components_loaded_count === _this.components_count * 2) {
 
                 setTimeout(function() {
                     _this.loaded = true;
