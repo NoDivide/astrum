@@ -29,8 +29,8 @@ module.exports = {
             console.log('[%s] %s:', i, chalk.green(g.name));
 
             var k = 0;
-            for (var j = 0; j < components.length; j++) {
-                var c = components[j];
+            for (var j = 0; j < groups[i].components.length; j++) {
+                var c = groups[i].components[j];
 
                 if (c.group === g.name) {
                     console.log('     %s [%s] %s', String.fromCharCode(0x21B3), k, chalk.yellow(c.name));
@@ -55,13 +55,16 @@ module.exports = {
                 error = true;
             }
 
-            console.log();
-            console.log(chalk.green('Pattern library updated successfully!'));
-
             return callback();
         });
 
         return ! error;
+    },
+
+    getGroupIndex: function(group) {
+        return this.$data.groups.findIndex(function(item) {
+            return item.name == group;
+        });
     },
 
     createGroupFolder: function(group_path, callback) {
@@ -144,6 +147,23 @@ module.exports = {
         return ! error;
     },
 
+    moveComponentFiles: function(original_component, edited_component) {
+        var oPath = 'components/' + original_component.group + '/' + original_component.name,
+            dPath = 'components/' + edited_component.group + '/' + edited_component.name,
+            error = false;
+
+        if(oPath != dPath) {
+            fs.move(oPath, dPath, function(err) {
+                if (err) {
+                    console.error(chalk.red('Error: ' + err));
+                    error = true;
+                }
+            });
+        }
+
+        return ! error;
+    },
+
     deleteComponentFiles: function(group_name) {
         var component_path = 'components/' + group_name,
             error = false;
@@ -177,13 +197,17 @@ module.exports = {
     },
 
     componentExists: function(group_name) {
-        var parts = group_name.split("/");
+        var _this = this,
+            parts = group_name.split("/"),
+            groupIndex = _this.getGroupIndex(parts[0]);
 
-        for (var i = 0; i < this.$data.components.length; i++) {
-            var c = this.$data.components[i];
+        if (groupIndex !== -1) {
+            for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
+                var c = _this.$data.groups[groupIndex].components[i];
 
-            if (c.group == parts[0] && c.name == parts[1]) {
-                return i;
+                if (c.name == parts[1]) {
+                    return i;
+                }
             }
         }
 
@@ -192,16 +216,8 @@ module.exports = {
 
     groupExists: function(group_name) {
         var parts = group_name.split("/");
-
-        for (var i = 0; i < this.$data.groups.length; i++) {
-            var g = this.$data.groups[i];
-
-            if (g.name == parts[0]) {
-                return i;
-            }
-        }
-
-        return false;
+        
+        return this.getGroupIndex(parts[0]) == -1 ? false : true;
     },
 
     getGroupPositionChoices: function() {
@@ -225,37 +241,123 @@ module.exports = {
         return choices;
     },
 
+    getGroupChoices: function() {
+        var choices = [];
+
+        for (var i = 0; i < this.$data.groups.length; i++) {
+            var g = this.$data.groups[i];
+
+            choices.push({
+                name: g.name,
+                value: g.name
+            });
+        }
+
+        choices.push(new inquirer.Separator());
+
+        choices.push({
+            name: 'Create a new group...',
+            value: 'create_new_group'
+        });
+
+        return choices;
+    },
+
+    getComponentChangePositionChoices: function(component) {
+        var _this = this,
+            choices = [],
+            currentPosition = null;
+
+        group = _this.$data.groups.filter(function(group) {
+            return group.name == component.group;
+        });
+
+        console.log(group);
+
+        //for (var i = 0; i < this.$data.groups.length; i++) {
+        //    if (this.$data.groups[i].name == component.group) {
+        //
+        //    }
+        //}
+
+        //var first = true;
+        //for (var i = 0; i < this.$data.components.length; i++) {
+        //    var c = this.$data.components[i];
+        //    if(first && c.group == component.group && c.name != component.name) {
+        //        choices.push({
+        //            name: 'Position first',
+        //            value: 0
+        //        });
+        //        first = false;
+        //    }
+        //
+        //    if(c.group == component.group && c.name == component.name) {
+        //        choices.pop();
+        //        currentPosition = i;
+        //    }
+        //
+        //    if(c.group == component.group && c.name != component.name) {
+        //        choices.push({
+        //            name: 'Position after ' + chalk.yellow(c.name),
+        //            value: i + 1
+        //        });
+        //    }
+        //}
+        //
+        //choices.push(new inquirer.Separator());
+        //choices.push({
+        //    name: 'Keep current position after ' + chalk.yellow(this.$data.components[currentPosition - 1].name),
+        //    value: currentPosition
+        //});
+
+        return choices;
+    },
+
     getComponentPositionChoices: function(group) {
-        var choices = [{
-            name: 'Position first',
-            value: 0
-        }];
+        var _this = this,
+            groupIndex = _this.getGroupIndex(group),
+            choices = [{
+                name: 'Position first',
+                value: 0
+            }];
 
-        for (var i = 0; i < this.$data.components.length; i++) {
-            var c = this.$data.components[i];
-
-            if(c.group == group) {
-                choices.push({
-                    name: 'Position after ' + c.name,
-                    value: i + 1
-                });
-            }
+        for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
+            var c = _this.$data.groups[groupIndex].components[i];
+            choices.push({
+                name: 'Position after ' + c.name,
+                value: i + 1
+            });
         }
 
         return choices;
     },
 
-    getGroupComponentCount: function(group_name) {
-        var count = 0;
+    getGroupComponentCount: function(group) {
+        return this.$data.groups[this.getGroupIndex(group)].components.length;
+    },
+
+    getComponent: function(group_name) {
+        var _this = this,
+            parts = group_name.split('/');
 
         for(var i = 0; i < this.$data.components.length; i++) {
             var c = this.$data.components[i];
 
-            if(c.group == group_name) {
-                count++;
+            if(c.group == parts[0] && c.name == parts[1]) {
+                return c;
             }
         }
 
-        return count;
+        return false;
+    },
+
+    validateSlug: function(string) {
+        var slug = string.match(/^[a-z0-9-]+$/);
+
+        return this.validateString(string) && slug && !! slug.length;
+    },
+
+    validateString: function(string) {
+        return string != '';
     }
 };

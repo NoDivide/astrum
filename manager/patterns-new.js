@@ -13,7 +13,6 @@ program
 var group_name = program.args[0];
 if (group_name) {
 
-    // Validate new component
     if (group_name !== true && utils.validateComponent(group_name)) {
 
         // Build new component
@@ -27,14 +26,21 @@ if (group_name) {
         inquirer.prompt([
             {
                 name: 'title',
-                message: 'Enter a component title:',
+                message: function() {
+                    console.log();
+                    console.log(chalk.grey('New component details:'));
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    console.log(chalk.grey('Component group: ' + parts[0]));
+                    console.log(chalk.grey('Component name: ' + parts[1]));
+                    return 'Component title:'
+                },
                 validate: function (str) {
                     return str !== '';
                 }
             },
             {
                 name: 'label',
-                message: 'Add a label to the title? (optional):'
+                message: 'Component label (optional):'
             }
         ]).then(function (answers) {
             newComponent.title = answers.title;
@@ -43,11 +49,17 @@ if (group_name) {
             // If new group prompt for new group details
             if (!utils.groupExists(group_name)) {
                 var newGroup = {};
-
+                
                 inquirer.prompt([
                     {
                         name: 'title',
-                        message: 'This component is going in a new group so enter a group title:',
+                        message: function() {
+                            console.log();
+                            console.log(chalk.grey('New group details:'));
+                            console.log(chalk.grey('----------------------------------------------------------------'));
+                            console.log(chalk.grey('Group name: ' + parts[0]));
+                            return 'Group title:';
+                        },
                         validate: function (str) {
                             return str !== '';
                         }
@@ -55,19 +67,23 @@ if (group_name) {
                     {
                         type: 'list',
                         name: 'group_position',
-                        message: 'Select a position for the group in the library:',
+                        message: 'Select group position:',
                         choices: utils.getGroupPositionChoices()
                     }
                 ]).then(function (answers) {
                     newGroup.name = parts[0];
-                    newGroup.title = answers.title;
-
+                    newGroup.title = answers.title;;
+                    
                     utils.$data.groups.splice(answers.group_position, 0, newGroup);
-                    utils.$data.components.push(newComponent);
+                    utils.$data.groups[answers.group_position].components = [newComponent];
 
                     if(utils.createComponentFiles(newComponent)) {
                         utils.saveData(function() {
+                            console.log();
                             console.log(chalk.grey('----------------------------------------------------------------'));
+                            console.log(chalk.green('\u2713 Pattern library data saved successfully.'));
+                            console.log(chalk.grey('----------------------------------------------------------------'));
+                            console.log();
                             console.log(chalk.yellow('Add your component markup to /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                             console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                             console.log();
@@ -75,23 +91,28 @@ if (group_name) {
                     }
                 });
 
-                // Else prompt to position new component in group
+            // Else prompt to position new component in group
             } else {
 
                 inquirer.prompt([
                     {
                         type: 'list',
                         name: 'component_position',
-                        message: 'Select a position for the component in the "' + newComponent.group + '" group:',
+                        message: 'Select component position in the "' + newComponent.group + '" group:',
                         choices: utils.getComponentPositionChoices(newComponent.group)
                     }
                 ]).then(function (answers) {
+                    var groupIndex = utils.findGroupIndex(newComponent.group);
 
-                    utils.$data.components.splice(answers.component_position, 0, newComponent);
+                    utils.$data.groups[groupIndex].components.splice(answers.component_position, 0, newComponent);
 
                     if(utils.createComponentFiles(newComponent)) {
                         utils.saveData(function() {
+                            console.log();
                             console.log(chalk.grey('----------------------------------------------------------------'));
+                            console.log(chalk.green('\u2713 Pattern library data saved successfully.'));
+                            console.log(chalk.grey('----------------------------------------------------------------'));
+                            console.log();
                             console.log(chalk.yellow('Add your component markup to /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                             console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                             console.log();
