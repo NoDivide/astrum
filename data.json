@@ -57,24 +57,6 @@
             ]
         },
         {
-            "name": "branding",
-            "title": "Branding",
-            "components": [
-                {
-                    "group": "branding",
-                    "name": "logos",
-                    "title": "Logos",
-                    "label": null
-                },
-                {
-                    "group": "branding",
-                    "name": "icons",
-                    "title": "Icons",
-                    "label": null
-                }
-            ]
-        },
-        {
             "name": "buttons",
             "title": "Buttons",
             "components": [
@@ -83,6 +65,12 @@
                     "name": "default",
                     "title": "Default",
                     "label": null
+                },
+                {
+                    "name": "element",
+                    "title": "Element",
+                    "label": null,
+                    "group": "buttons"
                 },
                 {
                     "group": "buttons",

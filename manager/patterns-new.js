@@ -102,7 +102,7 @@ if (group_name) {
                         choices: utils.getComponentPositionChoices(newComponent.group)
                     }
                 ]).then(function (answers) {
-                    var groupIndex = utils.findGroupIndex(newComponent.group);
+                    var groupIndex = utils.getGroupIndex(newComponent.group);
 
                     utils.$data.groups[groupIndex].components.splice(answers.component_position, 0, newComponent);
 

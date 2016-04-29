@@ -241,16 +241,20 @@ module.exports = {
         return choices;
     },
 
-    getGroupChoices: function() {
+    getGroupChoices: function(exclude_group) {
+        exclude_group = typeof exclude_group !== 'undefined' ? exclude_group : null;
+        
         var choices = [];
 
         for (var i = 0; i < this.$data.groups.length; i++) {
             var g = this.$data.groups[i];
 
-            choices.push({
-                name: g.name,
-                value: g.name
-            });
+            if(exclude_group != g.name) {
+                choices.push({
+                    name: g.name,
+                    value: g.name
+                });
+            }
         }
 
         choices.push(new inquirer.Separator());
@@ -266,49 +270,45 @@ module.exports = {
     getComponentChangePositionChoices: function(component) {
         var _this = this,
             choices = [],
-            currentPosition = null;
+            message,
+            currentPosition = null,
+            groupIndex = _this.getGroupIndex(component.group);
 
-        group = _this.$data.groups.filter(function(group) {
-            return group.name == component.group;
+        first = true;
+        passedCurrentPosition = false;
+        for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
+            var c = _this.$data.groups[groupIndex].components[i];
+
+            if(first && c.name != component.name) {
+                choices.push({
+                    name: 'Position first',
+                    value: 0
+                });
+            }
+            first = false;
+
+            if(c.name == component.name) {
+                if(i != 0) choices.pop();
+                currentPosition = i;
+                passedCurrentPosition = true;
+            }
+
+            if(c.name != component.name) {
+                choices.push({
+                    name: 'Position after ' + chalk.yellow(c.name),
+                    value: passedCurrentPosition ? i : i + 1
+                });
+            }
+        }
+
+        choices.push(new inquirer.Separator());
+        
+        message = currentPosition == 0 ? 'Keep current first position' : 'Keep current position after ' + chalk.yellow(_this.$data.groups[groupIndex].components[currentPosition - 1].name);
+        
+        choices.push({
+            name: message,
+            value: currentPosition
         });
-
-        console.log(group);
-
-        //for (var i = 0; i < this.$data.groups.length; i++) {
-        //    if (this.$data.groups[i].name == component.group) {
-        //
-        //    }
-        //}
-
-        //var first = true;
-        //for (var i = 0; i < this.$data.components.length; i++) {
-        //    var c = this.$data.components[i];
-        //    if(first && c.group == component.group && c.name != component.name) {
-        //        choices.push({
-        //            name: 'Position first',
-        //            value: 0
-        //        });
-        //        first = false;
-        //    }
-        //
-        //    if(c.group == component.group && c.name == component.name) {
-        //        choices.pop();
-        //        currentPosition = i;
-        //    }
-        //
-        //    if(c.group == component.group && c.name != component.name) {
-        //        choices.push({
-        //            name: 'Position after ' + chalk.yellow(c.name),
-        //            value: i + 1
-        //        });
-        //    }
-        //}
-        //
-        //choices.push(new inquirer.Separator());
-        //choices.push({
-        //    name: 'Keep current position after ' + chalk.yellow(this.$data.components[currentPosition - 1].name),
-        //    value: currentPosition
-        //});
 
         return choices;
     },
@@ -320,7 +320,7 @@ module.exports = {
                 name: 'Position first',
                 value: 0
             }];
-
+        
         for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
             var c = _this.$data.groups[groupIndex].components[i];
             choices.push({
@@ -340,11 +340,13 @@ module.exports = {
         var _this = this,
             parts = group_name.split('/');
 
-        for(var i = 0; i < this.$data.components.length; i++) {
-            var c = this.$data.components[i];
+        for(var i = 0; i < _this.$data.groups.length; i++) {
+            for(var j = 0; j < _this.$data.groups[i].components.length; j++) {
+                var c = _this.$data.groups[i].components[j];
 
-            if(c.group == parts[0] && c.name == parts[1]) {
-                return c;
+                if(c.group == parts[0] && c.name == parts[1]) {
+                    return c;
+                }
             }
         }
 
