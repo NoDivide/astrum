@@ -67,6 +67,22 @@ module.exports = {
         });
     },
 
+    getComponentIndex: function(group_name) {
+        var _this = this,
+            parts = group_name.split("/"),
+            groupIndex = _this.getGroupIndex(parts[0]);
+
+        if (groupIndex !== -1) {
+            for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
+                var c = _this.$data.groups[groupIndex].components[i];
+
+                if (c.name == parts[1]) {
+                    return i;
+                }
+            }
+        }
+    },
+
     createGroupFolder: function(group_path, callback) {
         callback = typeof callback !== 'undefined' ? callback : function(){};
 
@@ -164,6 +180,23 @@ module.exports = {
         return ! error;
     },
 
+    moveGroupFolder: function(original_group, edited_group) {
+        var oPath = 'components/' + original_group.name,
+            dPath = 'components/' + edited_group.name,
+            error = false;
+
+        if(oPath != dPath) {
+            fs.move(oPath, dPath, function(err) {
+                if (err) {
+                    console.error(chalk.red('Error: ' + err));
+                    error = true;
+                }
+            });
+        }
+
+        return ! error;
+    },
+
     deleteComponentFiles: function(group_name) {
         var component_path = 'components/' + group_name,
             error = false;
@@ -206,7 +239,7 @@ module.exports = {
                 var c = _this.$data.groups[groupIndex].components[i];
 
                 if (c.name == parts[1]) {
-                    return i;
+                    return true;
                 }
             }
         }
@@ -272,10 +305,10 @@ module.exports = {
             choices = [],
             message,
             currentPosition = null,
-            groupIndex = _this.getGroupIndex(component.group);
+            groupIndex = _this.getGroupIndex(component.group),
+            first = true,
+            passedCurrentPosition = false;
 
-        first = true;
-        passedCurrentPosition = false;
         for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
             var c = _this.$data.groups[groupIndex].components[i];
 
@@ -313,6 +346,52 @@ module.exports = {
         return choices;
     },
 
+    getGroupChangePositionChoices: function(group) {
+        var _this = this,
+            choices = [],
+            message,
+            currentPosition = null,
+            groupIndex = _this.getGroupIndex(group.name),
+            first = true,
+            passedCurrentPosition = false;
+        
+        for (var i = 0; i < _this.$data.groups.length; i++) {
+            var g = _this.$data.groups[i];
+
+            if(first && g.name != group.name) {
+                choices.push({
+                    name: 'Position first',
+                    value: 0
+                });
+            }
+            first = false;
+
+            if(g.name == group.name) {
+                if(i != 0) choices.pop();
+                currentPosition = i;
+                passedCurrentPosition = true;
+            }
+
+            if(g.name != group.name) {
+                choices.push({
+                    name: 'Position after ' + chalk.yellow(g.name),
+                    value: passedCurrentPosition ? i : i + 1
+                });
+            }
+        }
+
+        choices.push(new inquirer.Separator());
+
+        message = currentPosition == 0 ? 'Keep current first position' : 'Keep current position after ' + chalk.yellow(_this.$data.groups[groupIndex - 1].name);
+
+        choices.push({
+            name: message,
+            value: currentPosition
+        });
+
+        return choices;
+    },
+
     getComponentPositionChoices: function(group) {
         var _this = this,
             groupIndex = _this.getGroupIndex(group),
@@ -334,6 +413,10 @@ module.exports = {
 
     getGroupComponentCount: function(group) {
         return this.$data.groups[this.getGroupIndex(group)].components.length;
+    },
+
+    getGroupCount: function(group) {
+        return this.$data.groups.length;
     },
 
     getComponent: function(group_name) {

@@ -67,12 +67,6 @@
                     "label": null
                 },
                 {
-                    "name": "element",
-                    "title": "Element",
-                    "label": null,
-                    "group": "buttons"
-                },
-                {
                     "group": "buttons",
                     "name": "call-to-action",
                     "title": "Call-to-Action",

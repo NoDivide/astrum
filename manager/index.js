@@ -6,13 +6,17 @@ var program = require('commander'),
     utils = require('./utils');
 
 program
-    .command('new [group_name]', 'New component.')
-    .command('edit [group_name]', 'Edit component.')
-    .command('delete [group_name]', 'Delete component.')
-    .command('list', 'List components.')
+    .version('1.0.0')
+    .usage('[command]')
+    .command('new', 'create a new component')
+    .command('edit', 'edit a component and/or group')
+    .command('delete', 'delete component and/or group')
+    .command('list', 'list components')
     .parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
 
 // init - Initialise pattern library.
 // config - Edit pattern library config.
-// edit --group - Edit group.
-// delete --group - Delete group.

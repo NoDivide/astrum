@@ -8,12 +8,14 @@ var program = require('commander'),
 utils.init();
 
 program
+    .usage('[options] <group_name/component_name>')
+    .option('-g, --group <group_name>', 'edit group details')
     .parse(process.argv);
 
 var group_name = program.args[0];
 if (group_name) {
     var parts = group_name.split('/'),
-        existingComponentIndex = utils.componentExists(group_name),
+        existingComponentIndex = utils.getComponentIndex(group_name),
         existingGroupIndex = utils.getGroupIndex(parts[0]);
 
     if (existingComponentIndex !== false) {
@@ -167,7 +169,7 @@ if (group_name) {
             }
 
             // Check for duplicate data
-            if(originalComponent.group != editedComponent.group && utils.componentExists(editedComponent.group + '/' + editedComponent.name) == false) {
+            if(originalComponent.name != editedComponent.name && utils.componentExists(editedComponent.group + '/' + editedComponent.name)) {
                 console.log(chalk.red('Error: Component with same name already exists in group.'));
                 error = true;
             }
@@ -208,5 +210,91 @@ if (group_name) {
         // Return error
     } else {
         console.log(chalk.red('Error: Component not found.'))
+    }
+}
+
+if(program.group) {
+    var existingGroupIndex = utils.getGroupIndex(program.group);
+
+    if(existingGroupIndex !== false) {
+        var group = utils.$data.groups[existingGroupIndex];
+        
+        inquirer.prompt([
+            {
+                name: 'name',
+                message: function () {
+                    console.log();
+                    console.log(chalk.grey('Edit group details:'));
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    return 'Group name:'
+                },
+                validate: function (str) {
+                    return utils.validateSlug(str);
+                },
+                default: group.name
+            },
+            {
+                name: 'title',
+                message: function() {
+                    return 'Group title:'
+                },
+                validate: function (str) {
+                    return utils.validateString(str);
+                },
+                default: group.title
+            },
+            {
+                type: 'list',
+                name: 'group_position',
+                message: 'Change the position for the group:',
+                choices: utils.getGroupChangePositionChoices(group),
+                default: utils.getGroupCount(group) - 1
+            }
+        ]).then(function (answers) {
+            var originalGroup = utils.$data.groups[existingGroupIndex],
+                editedGroup = {},
+                error = false;
+
+            editedGroup.name = answers.name;
+            editedGroup.title = answers.title;
+            editedGroup.components = [];
+
+            for(var i = 0; i < originalGroup.components.length; i++) {
+                editedGroup.components[i] = originalGroup.components[i];
+                editedGroup.components[i].group = answers.name;
+            }
+
+            // Check for duplicate data
+            if(originalGroup.name != editedGroup.name && utils.groupExists(editedGroup.name)) {
+                console.log(chalk.red('Error: Group with same name already exists in.'));
+                error = true;
+            }
+
+            if(!error) {
+                // Remove original component in data
+                utils.$data.groups.splice(answers.group_position, 0, editedGroup);
+
+                // Move component files
+                if (utils.moveGroupFolder(originalGroup, editedGroup)) {
+
+                    utils.$data.groups.splice(existingGroupIndex, 1);
+
+                    utils.saveData(function () {
+                        console.log();
+                        console.log(chalk.grey('----------------------------------------------------------------'));
+                        console.log(chalk.green('\u2713 Pattern library data saved successfully.'));
+                        console.log(chalk.grey('----------------------------------------------------------------'));
+                        console.log();
+
+                        if(originalGroup.name != editedGroup.name) {
+                            console.log(chalk.yellow('Group components have been moved to /components/' + editedGroup.name));
+                            console.log();
+                        }
+                    });
+                }
+            }
+        });
+    } else {
+        console.log(chalk.red('Error: Group not found.'));
     }
 }

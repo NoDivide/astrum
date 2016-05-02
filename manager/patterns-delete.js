@@ -8,6 +8,8 @@ var program = require('commander'),
 utils.init();
 
 program
+    .usage('[options] <group_name/component_name>')
+    .option('-g, --group <group_name>', 'delete group')
     .parse(process.argv);
 
 var group_name = program.args[0];
@@ -92,6 +94,52 @@ if (group_name) {
             }
         });
     } else {
-        console.log(chalk.red('Error: Component does not exist.'));
+        console.log(chalk.red('Error: Component not found.'));
+    }
+}
+
+if(program.group) {
+    var existingGroupIndex = utils.getGroupIndex(program.group);
+
+    if(existingGroupIndex !== false) {
+        var group = utils.$data.groups[existingGroupIndex];
+
+        inquirer.prompt([
+            {
+                type: 'confirm',
+                name: 'delete',
+                message: function() {
+                    console.log();
+                    console.log(chalk.grey('Delete "' + group.name + '" and all it\'s components:'));
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    return chalk.red('Are you sure you want to delete this group?');
+                },
+                default: false
+            }
+        ]).then(function (answers) {
+            if(!answers.delete) {
+                console.log();
+                console.log(chalk.grey('----------------------------------------------------------------'));
+                console.log(chalk.green('\u2713 Deletion cancelled.'));
+                console.log(chalk.grey('----------------------------------------------------------------'));
+                console.log();
+                return;
+            }
+
+            if(answers.delete) {
+                utils.$data.groups.splice(existingGroupIndex, 1);
+                utils.deleteGroupFolder(group.name);
+
+                utils.saveData(function () {
+                    console.log();
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    console.log(chalk.green('\u2713 Group and component deleted successfully.'));
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    console.log();
+                });
+            }
+        });
+    } else {
+        console.log(chalk.red('Error: Group not found.'));
     }
 }
