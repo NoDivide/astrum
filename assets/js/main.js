@@ -10,7 +10,17 @@ var ndplComponent = Vue.extend({
     },
 
     computed: {
-        toggleCode: function() {
+        inline_styles: function() {
+            var styles = '';
+
+            if(this.component.min_height) {
+                styles += 'min-height:' + this.component.min_height + 'px;';
+            }
+            
+            return styles;
+        },
+
+        toggle_code: function() {
             // If code_show was set to true on page load set it to false
             if(this.component.code_show && this.$root.window_outer_width >= this.$root.breakpoint) {
                 this.component.code_show = false;
@@ -197,7 +207,7 @@ new Vue({
             return this.copyright_start_year + ' - ' + date.getFullYear();
         },
 
-        allCreators: function() {
+        all_creators: function() {
             var formattedCreators = '';
 
             for(var i = 0; i < this.creators.length; i++) {

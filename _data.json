@@ -40,92 +40,100 @@
     "groups": [
         {
             "name": "typography",
-            "title": "Typography"
+            "title": "Typography",
+            "components": [
+                {
+                    "group": "typography",
+                    "name": "headings",
+                    "title": "Headings",
+                    "label": null
+                },
+                {
+                    "group": "typography",
+                    "name": "generic-elements",
+                    "title": "Generic Elements",
+                    "label": null
+                }
+            ]
         },
         {
             "name": "branding",
-            "title": "Branding"
+            "title": "Branding",
+            "components": [
+                {
+                    "group": "branding",
+                    "name": "logos",
+                    "title": "Logos",
+                    "label": null
+                },
+                {
+                    "group": "branding",
+                    "name": "icons",
+                    "title": "Icons",
+                    "label": null
+                }
+            ]
         },
         {
             "name": "buttons",
-            "title": "Buttons"
+            "title": "Buttons",
+            "components": [
+                {
+                    "group": "buttons",
+                    "name": "default",
+                    "title": "Default",
+                    "label": null
+                },
+                {
+                    "group": "buttons",
+                    "name": "call-to-action",
+                    "title": "Call-to-Action",
+                    "label": ".btn--cta"
+                },
+                {
+                    "group": "buttons",
+                    "name": "arrow",
+                    "title": "Arrow",
+                    "label": ".btn--arrow",
+                    "dark_example_background": true
+                }
+            ]
         },
         {
             "name": "navigation",
-            "title": "Navigation"
+            "title": "Navigation",
+            "components": [
+                {
+                    "group": "navigation",
+                    "name": "primary-full-width",
+                    "title": "Primary: Full Width",
+                    "label": ".nav--full-width"
+                },
+                {
+                    "group": "navigation",
+                    "name": "primary-top-right-positioning",
+                    "title": "Primary: Top Right Positioning",
+                    "label": ".nav--top-right"
+                }
+            ]
         },
         {
             "name": "modules",
-            "title": "Modules"
-        }
-    ],
-    "components": [
-        {
-            "group": "typography",
-            "name": "headings",
-            "title": "Headings",
-            "label": null
-        },
-        {
-            "group": "typography",
-            "name": "generic-elements",
-            "title": "Generic Elements",
-            "label": null
-        },
-        {
-            "group": "branding",
-            "name": "logos",
-            "title": "Logos",
-            "label": null
-        },
-        {
-            "group": "branding",
-            "name": "icons",
-            "title": "Icons",
-            "label": null
-        },
-        {
-            "group": "buttons",
-            "name": "default",
-            "title": "Default",
-            "label": null
-        },
-        {
-            "group": "buttons",
-            "name": "call-to-action",
-            "title": "Call-to-Action",
-            "label": ".btn--cta"
-        },
-        {
-            "group": "buttons",
-            "name": "arrow",
-            "title": "Arrow",
-            "label": ".btn--arrow",
-            "dark_example_background": true
-        },
-        {
-            "group": "navigation",
-            "name": "primary-full-width",
-            "title": "Primary: Full Width",
-            "label": ".nav--full-width"
-        },
-        {
-            "group": "navigation",
-            "name": "primary-top-right-positioning",
-            "title": "Primary: Top Right Positioning",
-            "label": ".nav--top-right"
-        },
-        {
-            "group": "modules",
-            "name": "other-clients",
-            "title": "Other Clients",
-            "label": null
-        },
-        {
-            "group": "modules",
-            "name": "team-members",
-            "title": "Team Members",
-            "label": null
+            "title": "Modules",
+            "components": [
+                {
+                    "group": "modules",
+                    "name": "other-clients",
+                    "title": "Other Clients",
+                    "label": null
+                },
+                {
+                    "group": "modules",
+                    "name": "team-members",
+                    "title": "Team Members",
+                    "label": null
+                }
+            ]
         }
     ]
 }

@@ -19,10 +19,12 @@
         }
     ],
     "theme": {
+        "border_color": "#E0E6ED",
+        "highlight_color": "#F9FAFC",
         "brand_color": "#FEA1AC",
-        "invert_text": true,
-        "background_color": "#F4F4F4",
-        "code_highlight_theme": "solarized-dark"
+        "background_color": "#FFFFFF",
+        "code_highlight_theme": "github",
+        "override_code_highlight_bg": "#F9FAFC"
     },
     "assets": {
         "css": [
@@ -45,14 +47,28 @@
                 {
                     "group": "typography",
                     "name": "headings",
-                    "title": "Headings",
-                    "label": null
+                    "title": "Headings"
                 },
                 {
                     "group": "typography",
                     "name": "generic-elements",
-                    "title": "Generic Elements",
-                    "label": null
+                    "title": "Generic Elements"
+                }
+            ]
+        },
+        {
+            "name": "branding",
+            "title": "Branding",
+            "components": [
+                {
+                    "group": "branding",
+                    "name": "logos",
+                    "title": "Logos"
+                },
+                {
+                    "group": "branding",
+                    "name": "icons",
+                    "title": "Icons"
                 }
             ]
         },
@@ -63,20 +79,17 @@
                 {
                     "group": "buttons",
                     "name": "default",
-                    "title": "Default",
-                    "label": null
+                    "title": "Default"
                 },
                 {
                     "group": "buttons",
                     "name": "call-to-action",
-                    "title": "Call-to-Action",
-                    "label": ".btn--cta"
+                    "title": "Call-to-Action"
                 },
                 {
                     "group": "buttons",
                     "name": "arrow",
                     "title": "Arrow",
-                    "label": ".btn--arrow",
                     "dark_example_background": true
                 }
             ]
@@ -88,14 +101,13 @@
                 {
                     "group": "navigation",
                     "name": "primary-full-width",
-                    "title": "Primary: Full Width",
-                    "label": ".nav--full-width"
+                    "title": "Primary: Full Width"
                 },
                 {
                     "group": "navigation",
                     "name": "primary-top-right-positioning",
                     "title": "Primary: Top Right Positioning",
-                    "label": ".nav--top-right"
+                    "min_height": 130
                 }
             ]
         },
@@ -106,14 +118,12 @@
                 {
                     "group": "modules",
                     "name": "other-clients",
-                    "title": "Other Clients",
-                    "label": null
+                    "title": "Other Clients"
                 },
                 {
                     "group": "modules",
                     "name": "team-members",
-                    "title": "Team Members",
-                    "label": null
+                    "title": "Team Members"
                 }
             ]
         }
