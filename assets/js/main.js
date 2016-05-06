@@ -16,7 +16,7 @@ var ndplComponent = Vue.extend({
             if(this.component.min_height) {
                 styles += 'min-height:' + this.component.min_height + 'px;';
             }
-            
+
             return styles;
         },
 
@@ -60,12 +60,29 @@ var ndplComponent = Vue.extend({
         updateActive: function() {
             var _this = this;
 
-            if(_this.$root.scroll_position >= _this.$el.offsetTop - 80 &&
-                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) {
+            if(_this.$root.scroll_position >= _this.$el.offsetTop &&
+                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight + 58 &&
+                _this.$root.active_components.indexOf(_this.component) == -1) {
                 if(!_this.$root.scrolling_to) {
-                    _this.$root.active_component = _this.component;
+                    _this.$root.active_components.push(_this.component);
                     _this.$root.open_group = null;
                     _this.$root.updateHash(_this.component.id);
+                }
+            }
+
+            if ((_this.$root.scroll_position < _this.$el.offsetTop ||
+                _this.$root.scroll_position > _this.$el.offsetTop + _this.$el.offsetHeight + 58 ) &&
+                _this.$root.active_components.indexOf(_this.component) >= 0) {
+                if(!_this.$root.scrolling_to) {
+
+                    for (var i = 0; i < _this.$root.active_components.length; i++) {
+                        var component = _this.$root.active_components[i];
+
+                        if (component.id === _this.component.id) {
+                            _this.$root.active_components.splice(i, 1);
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -102,8 +119,8 @@ var ndplGroup = Vue.extend({
             if(_this.$root.scroll_position >= _this.$el.offsetTop &&
                 _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) {
                 if(!_this.$root.scrolling_to) {
-                    if(_this.$root.active_component.group != _this.group.name) {
-                        _this.$root.active_component = _this.group.components[0];
+                    if(_this.$root.active_components.length && _this.$root.active_components[0].group != _this.group.name) {
+                        _this.$root.active_components = [ _this.group.components[0] ];
                         _this.$root.open_group = null;
                         _this.$root.updateHash(_this.group.components[0].id);
                     }
@@ -181,10 +198,7 @@ new Vue({
         typekit_loaded: false,
         errored: false,
         scroll_position: 0,
-        active_component: {
-            group_id: '',
-            id: ''
-        },
+        active_components: [],
         open_group: null,
         scrolling_to: false,
         window_outer_width: 0,
@@ -337,7 +351,7 @@ new Vue({
                     // Add html and description properties to the component object.
                     _this.$set('groups[' + i + '].components[' + j + '].html', '');
                     _this.$set('groups[' + i + '].components[' + j + '].description', '');
-                    
+
                     _this.loadComponent(_this.groups[i].components[j]);
                 }
             }
@@ -437,7 +451,7 @@ new Vue({
          */
         scrollTo: function(hash) {
             var _this = this,
-                offset = _this.mobile_view ? 52 : 124;
+                offset = _this.mobile_view ? 52 : 0;
 
             if(!hash) return;
 
