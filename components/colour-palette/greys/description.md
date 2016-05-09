@@ -1,0 +1,1 @@
+Grey colours are used for text, backgrounds, lines and borders.

@@ -20,6 +20,7 @@ var ndplComponent = Vue.extend({
             return styles;
         },
 
+        // FIXME: Redundant
         toggle_code: function() {
             // If code_show was set to true on page load set it to false
             if(this.component.code_show && this.$root.window_outer_width >= this.$root.breakpoint) {
@@ -68,6 +69,22 @@ var ndplComponent = Vue.extend({
                     _this.$root.updateHash(_this.component.id);
                 }
             }
+        },
+
+        shouldInvertText: function(hex) {
+            var rgb = this.$root.convertHexToRgb(hex),
+                brightness = this.$root.getColorBrightness(rgb);
+
+            return brightness > 210;
+        },
+
+        shouldApplyBorder: function(hex) {
+            var rgb = this.$root.convertHexToRgb(hex),
+                brightness = this.$root.getColorBrightness(rgb);
+
+            console.log(hex+' '+brightness);
+            
+            return brightness > 240;
         }
     }
 });
@@ -333,6 +350,7 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
                     _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
+                    _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type :'standard');
 
                     // Add html and description properties to the component object.
                     _this.$set('groups[' + i + '].components[' + j + '].html', '');
@@ -481,6 +499,37 @@ new Vue({
                     _this.resizing = false;
                 }, 1000);
             }
+        },
+
+        /**
+         * Convert hex color value to rgb color values
+         *
+         * @param hex
+         * @returns {{r: number, g: number, b: number}}
+         */
+        convertHexToRgb: function(hex) {
+            // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+            var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                return r + r + g + g + b + b;
+            });
+
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        },
+
+        /**
+         * Get color brightness value from rgb color values
+         *
+         * @param rgb
+         * @returns {number}
+         */
+        getColorBrightness: function(rgb) {
+            return Math.round(((parseInt(rgb.r) * 299) + (parseInt(rgb.g) * 587) + (parseInt(rgb.b) * 114)) /1000);
         }
     }
 });

@@ -41,6 +41,38 @@
     },
     "groups": [
         {
+            "name": "colour-palette",
+            "title": "Colour Palette",
+            "components": [
+                {
+                    "type": "colors",
+                    "group": "colour-palette",
+                    "name": "primary",
+                    "title": "Primary Brand Colours",
+                    "colors": [
+                        "#7da9f9,#507ed3",
+                        "#f469a7,#c14c80",
+                        "#60ceb8,#3fa18d",
+                        "#f5d13f,#f5a63f",
+                        "#e199e5,#c776cb"
+                    ]
+                },
+                {
+                    "type": "colors",
+                    "group": "colour-palette",
+                    "name": "greys",
+                    "title": "Grey Colours",
+                    "colors": [
+                        "#4c4c4c",
+                        "#7d8284",
+                        "#a6b1b5",
+                        "#e6eaf2",
+                        "#FFFFFF"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "typography",
             "title": "Typography",
             "components": [

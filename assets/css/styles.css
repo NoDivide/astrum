@@ -21,7 +21,7 @@
 .ndpl-component__description,
 .ndpl-component__label,
 .ndpl-component__toggle-code,
-.ndpl-btn {
+.ndpl-component__color {
     font-family: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 }
 
@@ -78,6 +78,22 @@
 .ndpl-nsc[href]:visited {
     color: #303637 !important;
     text-decoration: none;
+}
+
+.ndpl-cf:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ndpl-dark-text {
+    color: #616367 !important;
+}
+.ndpl-light-text {
+    color: #FFF !important;
+}
+.ndpl-apply-border {
+    border: 1px solid #E0E6ED;
 }
 
 /**
@@ -800,12 +816,57 @@
 .ndpl-component__description {
     color: #616367;
 }
+.ndpl-component__description {
+    margin-bottom: 36px;
+}
 .ndpl-component__description code {
     display: inline-block;
     color: #BABEC7;
     border: 1px solid #E1E1E1;
     border-radius: 3px;
     padding: 3px 6px;
+}
+
+/**
+ * Component - Colours
+ * ----------------------------------------//
+ */
+.ndpl-component__color-container {
+    float: left;
+    margin-right: 5%;
+    width: 16%;
+}
+.ndpl-component__color-container:last-of-type {
+    margin-right: 0;
+}
+.ndpl-component__color {
+    line-height: 1;
+    padding: 48px 0;
+    text-align: center;
+}
+.ndpl-component__color:first-of-type {
+    border-radius: 6px 6px 0 0;
+}
+.ndpl-component__color:last-of-type {
+    border-radius: 0 0 6px 6px;
+}
+.ndpl-component__color:first-of-type:last-of-type {
+    border-radius: 6px;
+}
+.ndpl-component__color div {
+    border: 1px solid #FFF;
+    border-radius: 3px;
+    color: #FFF;
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 13px;
+    padding: 6px 9px;
+    text-transform: uppercase;
+}
+.ndpl-component__color div.ndpl-dark-text {
+    color: #B0B1B3 !important;
+    border-color: #B0B1B3;
 }
 
 /**

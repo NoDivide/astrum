@@ -146,19 +146,36 @@
 
                                 <div class="ndpl-component__description" v-html="component.description"></div>
 
-                                <div class="ndpl-component__sample"
-                                     :class="{ 'ndpl-component__sample--inverted': component.dark_example_background }"
-                                     :style="inline_styles">
-                                    {{{ component.html }}}
-                                </div>
+                                <template v-if="component.type == 'colors'">
+                                    <div class="ndpl-component__colors ndpl-cf">
+                                        <div class="ndpl-component__color-container"
+                                             v-for="color in component.colors">
+                                            <div class="ndpl-component__color"
+                                                 v-for="item in color.split(',')"
+                                                 :class="{ 'ndpl-apply-border ndpl-c-border': shouldApplyBorder(item), }"
+                                                 :style="'background-color:' + item">
+                                                <div :class="{ 'ndpl-dark-text': shouldInvertText(item) }">{{ item }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <div class="ndpl-component__sample"
+                                         :class="{ 'ndpl-component__sample--inverted': component.dark_example_background }"
+                                         :style="inline_styles">
+                                        {{{ component.html }}}
+                                    </div>
 
-                                <div class="ndpl-component__code" v-show="toggle_code" :transition="">
-                                    <pre><code class="html" v-text="component.html"></code></pre>
-                                </div>
+                                    <div class="ndpl-component__code"
+                                         v-show="toggle_code"
+                                         :transition="">
+                                        <pre><code class="html" v-text="component.html"></code></pre>
+                                    </div>
 
-                                <a class="ndpl-component__code-toggle"
-                                   @click.prevent="component.code_show = ! component.code_show"
-                                   v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
+                                    <a class="ndpl-component__code-toggle"
+                                       @click.prevent="component.code_show = ! component.code_show"
+                                       v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
+                                </template>
                             </div>
                         </ndpl-component>
                     </div>
