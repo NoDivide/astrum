@@ -85,6 +85,18 @@
                     "group": "typography",
                     "name": "generic-elements",
                     "title": "Generic Elements"
+                },
+                {
+                    "group": "typography",
+                    "width": "half",
+                    "name": "unordered-list",
+                    "title": "Unordered List"
+                },
+                {
+                    "group": "typography",
+                    "width": "half",
+                    "name": "ordered-list",
+                    "title": "Ordered List"
                 }
             ]
         },

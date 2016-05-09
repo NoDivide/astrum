@@ -775,10 +775,12 @@
         padding: 36px 36px 36px 300px;
     }
 }
-/***/
- /** Component Library*/
- /** ----------------------------------------//*/
- /**/
+
+.ndpl-library__group {
+    overflow: auto;
+    zoom: 1;
+}
+
 /*.ndpl-library {*/
     /*padding: 76px 0 24px 0;*/
     /*position: relative;*/
@@ -811,6 +813,17 @@
  */
 .ndpl-component {
     margin-bottom: 60px;
+}
+.ndpl-component--half {
+    float: left;
+    width: 50%;
+    vertical-align: top;
+}
+.ndpl-component--half:nth-child(even) {
+    padding-right: 18px;
+}
+.ndpl-component--half:nth-child(odd) {
+    padding-left: 18px;
 }
 .ndpl-component__title,
 .ndpl-component__description {

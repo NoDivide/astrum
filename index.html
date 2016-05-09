@@ -99,7 +99,7 @@
                     <ul class="ndpl-nav__items ndpl-c-border">
                         <li class="ndpl-nav__item"
                             v-for="group in groups"
-                            :class="{ 'active': group.id == active_component.group_id || group.id == open_group, }">
+                            :class="{ 'active': active_components.length > 0 && (group.id == active_components[0].group_id || group.id == open_group) }">
 
                             <a :href="'#' + group.id"
                                class="ndpl-nav__group ndpl-nsc"
@@ -115,7 +115,7 @@
 
                                     <a :href="'#' + component.id"
                                        class="ndpl-nav__component ndpl-nsc"
-                                       :class="{ 'active': component.id == active_component.id }"
+                                       :class="{ 'active': active_components.indexOf(component) >= 0 }"
                                        v-text="component.title"
                                        @click.prevent="scrollToHref">
                                     </a>
@@ -141,7 +141,7 @@
                         <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
                         <ndpl-component v-for="component in group.components" :component="component" inline-template>
-                            <div class="ndpl-component" :id="component.id" :group-id="component.group_id">
+                            <div class="ndpl-component" :id="component.id" :group-id="component.group_id" :class="{ 'ndpl-component--half': component.width == 'half' }">
                                 <h3 class="ndpl-component__title">{{ component.title }}</h3>
 
                                 <div class="ndpl-component__description" v-html="component.description"></div>
