@@ -91,6 +91,7 @@
             <div class="ndpl-sidebar"
                  :class="{ 'open': open_nav }">
                 <header class="ndpl-sidebar__header">
+                    <img class="ndpl-sidebar__logo" src="http://nodividestudio.com/assets/images/site/logo--white.svg" :alt="project_name"/>
                     <h1 class="ndpl-sidebar__title"><a :href="project_url" target="_blank"><span v-text="project_name"></span></a> <small>Pattern Library</small></h1>
                 </header>
 
@@ -141,7 +142,10 @@
                         <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
                         <ndpl-component v-for="component in group.components" :component="component" inline-template>
-                            <div class="ndpl-component" :id="component.id" :group-id="component.group_id" :class="{ 'ndpl-component--half': component.width == 'half' }">
+                            <div class="ndpl-component"
+                                 :id="component.id"
+                                 :group-id="component.group_id"
+                                 :class="{ 'ndpl-component--half': component.width == 'half' }">
                                 <h3 class="ndpl-component__title">{{ component.title }}</h3>
 
                                 <div class="ndpl-component__description" v-html="component.description"></div>

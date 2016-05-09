@@ -122,16 +122,19 @@
             "components": [
                 {
                     "group": "buttons",
+                    "width": "half",
                     "name": "default",
                     "title": "Default"
                 },
                 {
                     "group": "buttons",
+                    "width": "half",
                     "name": "call-to-action",
                     "title": "Call-to-Action"
                 },
                 {
                     "group": "buttons",
+                    "width": "half",
                     "name": "arrow",
                     "title": "Arrow",
                     "dark_example_background": true

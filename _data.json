@@ -19,10 +19,12 @@
         }
     ],
     "theme": {
+        "border_color": "#E0E6ED",
+        "highlight_color": "#F9FAFC",
         "brand_color": "#FEA1AC",
-        "invert_text": true,
-        "background_color": "#F4F4F4",
-        "code_highlight_theme": "solarized-dark"
+        "background_color": "#FFFFFF",
+        "code_highlight_theme": "github",
+        "override_code_highlight_bg": "#F9FAFC"
     },
     "assets": {
         "css": [
@@ -39,20 +41,62 @@
     },
     "groups": [
         {
+            "name": "colour-palette",
+            "title": "Colour Palette",
+            "components": [
+                {
+                    "type": "colors",
+                    "group": "colour-palette",
+                    "name": "primary",
+                    "title": "Primary Brand Colours",
+                    "colors": [
+                        "#7da9f9,#507ed3",
+                        "#f469a7,#c14c80",
+                        "#60ceb8,#3fa18d",
+                        "#f5d13f,#f5a63f",
+                        "#e199e5,#c776cb"
+                    ]
+                },
+                {
+                    "type": "colors",
+                    "group": "colour-palette",
+                    "name": "greys",
+                    "title": "Grey Colours",
+                    "colors": [
+                        "#4c4c4c",
+                        "#7d8284",
+                        "#a6b1b5",
+                        "#e6eaf2",
+                        "#FFFFFF"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "typography",
             "title": "Typography",
             "components": [
                 {
                     "group": "typography",
                     "name": "headings",
-                    "title": "Headings",
-                    "label": null
+                    "title": "Headings"
                 },
                 {
                     "group": "typography",
                     "name": "generic-elements",
-                    "title": "Generic Elements",
-                    "label": null
+                    "title": "Generic Elements"
+                },
+                {
+                    "group": "typography",
+                    "width": "half",
+                    "name": "unordered-list",
+                    "title": "Unordered List"
+                },
+                {
+                    "group": "typography",
+                    "width": "half",
+                    "name": "ordered-list",
+                    "title": "Ordered List"
                 }
             ]
         },
@@ -63,14 +107,12 @@
                 {
                     "group": "branding",
                     "name": "logos",
-                    "title": "Logos",
-                    "label": null
+                    "title": "Logos"
                 },
                 {
                     "group": "branding",
                     "name": "icons",
-                    "title": "Icons",
-                    "label": null
+                    "title": "Icons"
                 }
             ]
         },
@@ -80,21 +122,21 @@
             "components": [
                 {
                     "group": "buttons",
+                    "width": "half",
                     "name": "default",
-                    "title": "Default",
-                    "label": null
+                    "title": "Default"
                 },
                 {
                     "group": "buttons",
+                    "width": "half",
                     "name": "call-to-action",
-                    "title": "Call-to-Action",
-                    "label": ".btn--cta"
+                    "title": "Call-to-Action"
                 },
                 {
                     "group": "buttons",
+                    "width": "half",
                     "name": "arrow",
                     "title": "Arrow",
-                    "label": ".btn--arrow",
                     "dark_example_background": true
                 }
             ]
@@ -106,14 +148,13 @@
                 {
                     "group": "navigation",
                     "name": "primary-full-width",
-                    "title": "Primary: Full Width",
-                    "label": ".nav--full-width"
+                    "title": "Primary: Full Width"
                 },
                 {
                     "group": "navigation",
                     "name": "primary-top-right-positioning",
                     "title": "Primary: Top Right Positioning",
-                    "label": ".nav--top-right"
+                    "min_height": 130
                 }
             ]
         },
@@ -124,14 +165,12 @@
                 {
                     "group": "modules",
                     "name": "other-clients",
-                    "title": "Other Clients",
-                    "label": null
+                    "title": "Other Clients"
                 },
                 {
                     "group": "modules",
                     "name": "team-members",
-                    "title": "Team Members",
-                    "label": null
+                    "title": "Team Members"
                 }
             ]
         }

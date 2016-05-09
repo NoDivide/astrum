@@ -20,7 +20,6 @@ var ndplComponent = Vue.extend({
             return styles;
         },
 
-        // FIXME: Redundant
         toggle_code: function() {
             // If code_show was set to true on page load set it to false
             if(this.component.code_show && this.$root.window_outer_width >= this.$root.breakpoint) {
@@ -61,31 +60,54 @@ var ndplComponent = Vue.extend({
         updateActive: function() {
             var _this = this;
 
-            if(_this.$root.scroll_position >= _this.$el.offsetTop &&
-                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight + 58 &&
-                _this.$root.active_components.indexOf(_this.component) == -1) {
-                if(!_this.$root.scrolling_to) {
+            // If scroll position is great than or equal to component offset top - 60 pixels
+            // and scroll position is less than component offset top plus component height plus 60 pixels
+            // and active component is not this component
+            if(_this.$root.scroll_position >= _this.$el.offsetTop - 60 &&
+                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) { // &&
+                //_this.$root.active_components.indexOf(_this.component) == -1) {
+
+                // If not currently auto scrolling to component
+                // and component is not active
+                if(!_this.$root.scrolling_to &&
+                   !_this.isActive(_this.component)) {
+
+                    // Set this component to active
                     _this.$root.active_components.push(_this.component);
                     _this.$root.open_group = null;
                     _this.$root.updateHash(_this.component.id);
                 }
-            }
+            } else {
 
-            if ((_this.$root.scroll_position < _this.$el.offsetTop ||
-                _this.$root.scroll_position > _this.$el.offsetTop + _this.$el.offsetHeight + 58 ) &&
-                _this.$root.active_components.indexOf(_this.component) >= 0) {
+                // If not currently auto scrolling to component
                 if(!_this.$root.scrolling_to) {
 
+                    // Loop through active components and remove this component
                     for (var i = 0; i < _this.$root.active_components.length; i++) {
                         var component = _this.$root.active_components[i];
-
+                        
                         if (component.id === _this.component.id) {
                             _this.$root.active_components.splice(i, 1);
+                            
                             return;
                         }
                     }
                 }
             }
+        },
+
+        isActive: function(component) {
+            var _this = this;
+
+            for (var i = 0; i < _this.$root.active_components.length; i++) {
+                var c = _this.$root.active_components[i];
+
+                if (component.id === c.id) {
+                    return true;
+                }
+            }
+
+            return false;
         },
 
         shouldInvertText: function(hex) {
@@ -98,8 +120,6 @@ var ndplComponent = Vue.extend({
         shouldApplyBorder: function(hex) {
             var rgb = this.$root.convertHexToRgb(hex),
                 brightness = this.$root.getColorBrightness(rgb);
-
-            console.log(hex+' '+brightness);
             
             return brightness > 240;
         }
@@ -133,14 +153,20 @@ var ndplGroup = Vue.extend({
         updateActive: function() {
             var _this = this;
 
-            if(_this.$root.scroll_position >= _this.$el.offsetTop &&
-                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) {
-                if(!_this.$root.scrolling_to) {
-                    if(_this.$root.active_components.length && _this.$root.active_components[0].group != _this.group.name) {
-                        _this.$root.active_components = [ _this.group.components[0] ];
-                        _this.$root.open_group = null;
-                        _this.$root.updateHash(_this.group.components[0].id);
-                    }
+            // If scroll position is greater than or equal to group offset top minus 60
+            // and scroll position is less than group offset top + group height minus 60
+            if(_this.$root.scroll_position >= _this.$el.offsetTop - 60 &&
+                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight - 60) {
+
+                // If not currently auto scrolling to component
+                // and no components are active
+                if(!_this.$root.scrolling_to &&
+                   !_this.$root.active_components.length) {
+
+                    // Set first component in group to active
+                    _this.$root.active_components = [_this.group.components[0]];
+                    _this.$root.open_group = _this.group;
+                    _this.$root.updateHash(_this.group.components[0].id);
                 }
             }
         }
@@ -215,6 +241,8 @@ new Vue({
         typekit_loaded: false,
         errored: false,
         scroll_position: 0,
+        prev_scroll_position: 0,
+        active_group: null,
         active_components: [],
         open_group: null,
         scrolling_to: false,
@@ -447,8 +475,15 @@ new Vue({
             var _this = this,
                 doc = document.documentElement,
                 top = doc && doc.scrollTop || document.body.scrollTop;
-
+            
+            _this.prev_scroll_position = _this.scroll_position;
             _this.scroll_position = top;
+        },
+
+        getScrollDirection: function() {
+            var _this = this;
+
+            return _this.prev_scroll_position < _this.scroll_position ? 'down' : 'up';
         },
 
         /**
@@ -469,7 +504,7 @@ new Vue({
          */
         scrollTo: function(hash) {
             var _this = this,
-                offset = _this.mobile_view ? 52 : 0;
+                offset = _this.mobile_view ? 52 : 30;
 
             if(!hash) return;
 
