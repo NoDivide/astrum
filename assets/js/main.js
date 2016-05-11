@@ -3,6 +3,13 @@
  */
 var ndplComponent = Vue.extend({
 
+    data: function() {
+        return {
+            loaded: false,
+            hide_sample_code: false
+        }
+    },
+
     props: {
         component: {
             required: true
@@ -11,10 +18,13 @@ var ndplComponent = Vue.extend({
 
     computed: {
         inline_styles: function() {
-            var styles = '';
+            var _this = this,
+                styles = '';
 
-            if(this.component.min_height) {
-                styles += 'min-height:' + this.component.min_height + 'px;';
+            if(_this.loaded) {
+                if(_this.component.sample_min_height) {
+                    styles += 'min-height:' + _this.component.sample_min_height + 'px;';
+                }
             }
 
             return styles;
@@ -50,6 +60,23 @@ var ndplComponent = Vue.extend({
         if(_this.$root.window_outer_width >= _this.$root.breakpoint) {
             _this.component.code_show = true;
         }
+
+        _this.$on('loaded', function() {
+
+            _this.setHideSample(function() {
+                _this.loaded = true;
+            });
+        });
+
+        _this.$on('resizing', function(is_resizing) {
+            _this.loaded = false;
+
+            if(!is_resizing) {
+                _this.setHideSample(function() {
+                    _this.loaded = true;
+                });
+            }
+        });
     },
 
     methods: {
@@ -122,6 +149,36 @@ var ndplComponent = Vue.extend({
                 brightness = this.$root.getColorBrightness(rgb);
             
             return brightness > 240;
+        },
+
+        setHideSample: function(callback) {
+            callback = typeof callback !== 'undefined' ?  callback : function() {};
+            
+            var _this = this;
+
+            _this.hide_sample_code = false;
+
+            setTimeout(function() {
+                if(_this.$el.querySelector('.ndpl-component__code')) {
+                    if (_this.$el.querySelector('.ndpl-component__sample').offsetHeight <= 74 &&
+                        !_this.component.sample_always_show) {
+                        _this.hide_sample_code = true;
+                    }
+
+                    if (!_this.$root.mobile_view &&
+                        _this.component.sample_min_height) {
+                        _this.hide_sample_code = false;
+                    }
+                }
+
+                callback();
+            }, 0);
+        },
+        
+        codeIsVisible: function() {
+            var _this = this;
+
+            return ! _this.hide_sample_code;
         }
     }
 });
@@ -211,6 +268,7 @@ new Vue({
 
     data: {
         intro: null,
+        project_logo: null,
         project_name: null,
         project_url: null,
         copyright_start_year: null,
@@ -218,12 +276,7 @@ new Vue({
         client_url: null,
         creators: {},
         groups: {},
-        theme: {
-            brand_color: '#FEA1AC',
-            background_color: '#F4F4F4',
-            inverted_text: true,
-            code_highlight_theme: 'solarized-dark'
-        },
+        theme: {},
         assets: {
             css: [],
             js: []
@@ -286,6 +339,8 @@ new Vue({
             var _this = this;
 
             _this.scrollTo(window.location.hash);
+
+            _this.$broadcast('loaded');
         }
     },
 
@@ -391,8 +446,10 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
                     _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
+                    _this.$set('groups[' + i + '].components[' + j + '].sample_mobile_hidden', group.components[j].sample_mobile_hidden ? group.components[j].sample_mobile_hidden : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].sample_always_show', group.components[j].sample_always_show ? group.components[j].sample_always_show : false);
                     _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
-                    _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type :'standard');
+                    _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type : 'standard');
 
                     // Add html and description properties to the component object.
                     _this.$set('groups[' + i + '].components[' + j + '].html', '');
@@ -538,6 +595,7 @@ new Vue({
             var _this = this;
 
             _this.resizing = true;
+            _this.$broadcast('resizing', true);
 
             if (new Date() - _this.rtime < _this.delta) {
                 setTimeout(_this.resizeFadeToggle, _this.delta);
@@ -546,6 +604,7 @@ new Vue({
 
                 setTimeout(function() {
                     _this.resizing = false;
+                    _this.$broadcast('resizing', false);
                 }, 1000);
             }
         },

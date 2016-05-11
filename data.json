@@ -1,4 +1,5 @@
 {
+    "project_logo": "http://nodividestudio.com/assets/images/site/logo--white.svg",
     "project_name": "No Divide Studio",
     "project_url": "http://nodividestudio.com",
     "copyright_start_year": "2015",
@@ -154,7 +155,8 @@
                     "group": "navigation",
                     "name": "primary-top-right-positioning",
                     "title": "Primary: Top Right Positioning",
-                    "min_height": 130
+                    "sample_min_height": 130,
+                    "sample_mobile_hidden": true
                 }
             ]
         },

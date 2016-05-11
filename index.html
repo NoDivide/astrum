@@ -53,7 +53,7 @@
     </head>
     <body id="top"
           class="ndpl-body ndpl-c-background"
-          :class="{ 'ndpl-inverted': theme.invert_text}">
+          :class="{ 'ndpl-inverted': theme.invert_text, 'ndpl-desktop': !mobile_view, 'ndpl-mobile': mobile_view }">
 
         <div class="ndpl-loading" :class="{ 'in-progress': ! loaded || resizing }">
             <div class="ndpl-folding-cube">
@@ -67,8 +67,8 @@
             <h3 class="ndpl-loading__title" v-if="resizing && !error_log.length">Realigning pattern library...</h3>
             <h3 class="ndpl-loading__title" v-if="error_log.length">Hold up! We have some errors...</h3>
 
-            <ul class="ndpl-errors" v-if="error_log.length">
-                <li class="ndpl-error" v-for="error in error_log">{{{ error }}}</li>
+            <ul class="ndpl-error" v-if="error_log.length">
+                <li class="ndpl-error__item" v-for="error in error_log">{{{ error }}}</li>
             </ul>
         </div>
 
@@ -91,7 +91,7 @@
             <div class="ndpl-sidebar"
                  :class="{ 'open': open_nav }">
                 <header class="ndpl-sidebar__header">
-                    <img class="ndpl-sidebar__logo" src="http://nodividestudio.com/assets/images/site/logo--white.svg" :alt="project_name"/>
+                    <img class="ndpl-sidebar__logo" :src="project_logo" :alt="project_name" v-if="project_logo"/>
                     <h1 class="ndpl-sidebar__title"><a :href="project_url" target="_blank"><span v-text="project_name"></span></a> <small>Pattern Library</small></h1>
                 </header>
 
@@ -164,21 +164,26 @@
                                     </div>
                                 </template>
                                 <template v-else>
-                                    <div class="ndpl-component__sample"
-                                         :class="{ 'ndpl-component__sample--inverted': component.dark_example_background }"
-                                         :style="inline_styles">
-                                        {{{ component.html }}}
+                                    <div class="ndpl-component__container" v-show="codeIsVisible()">
+                                        <div class="ndpl-component__sample"
+                                             :class="{ 'ndpl-component__sample--inverted': component.dark_example_background }"
+                                             :style="inline_styles">
+                                            {{{ component.html }}}
+                                        </div>
+
+                                        <div class="ndpl-component__code"
+                                             v-show="toggle_code">
+                                            <pre><code class="html" v-text="component.html"></code></pre>
+                                        </div>
+
+                                        <a class="ndpl-component__code-toggle"
+                                           @click.prevent="component.code_show = ! component.code_show"
+                                           v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
                                     </div>
 
-                                    <div class="ndpl-component__code"
-                                         v-show="toggle_code"
-                                         :transition="">
-                                        <pre><code class="html" v-text="component.html"></code></pre>
+                                    <div class="ndpl-component__sample-hidden ndpl-info" v-show="!codeIsVisible()">
+                                        This component is hidden at this resolution.
                                     </div>
-
-                                    <a class="ndpl-component__code-toggle"
-                                       @click.prevent="component.code_show = ! component.code_show"
-                                       v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
                                 </template>
                             </div>
                         </ndpl-component>
