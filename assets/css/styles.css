@@ -777,8 +777,8 @@
 }
 .ndpl-component__code code {
     border-radius: 0 0 6px 6px;
-    font-size: 15px;
-    line-height: 21px;
+    font-size: 12px;
+    line-height: 18px;
     opacity: 0.75;
     overflow-y: scroll;
     padding: 36px 12px;
@@ -809,6 +809,8 @@
         border-radius: 0 0 6px 6px;
     }
     .ndpl-component__code code {
+        font-size: 15px;
+        line-height: 21px;
         padding: 36px;
     }
     .ndpl-component__code-toggle {

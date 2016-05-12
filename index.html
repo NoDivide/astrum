@@ -165,7 +165,7 @@
                                     </div>
                                 </template>
                                 <template v-else>
-                                    <div class="ndpl-component__container" v-show="codeIsVisible()">
+                                    <div class="ndpl-component__container" v-show="isCodeVisible()">
                                         <div class="ndpl-component__sample"
                                              :class="{ 'ndpl-component__sample--inverted': component.options.sample_dark_background }"
                                              :style="inline_styles">
@@ -173,7 +173,7 @@
                                         </div>
 
                                         <div class="ndpl-component__code"
-                                             v-show="toggle_code">
+                                             v-show="component.code_show">
                                             <pre><code class="html" v-text="component.html"></code></pre>
                                         </div>
 
@@ -182,7 +182,7 @@
                                            v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
                                     </div>
 
-                                    <div class="ndpl-component__sample-hidden ndpl-info" v-show="!codeIsVisible()">
+                                    <div class="ndpl-component__sample-hidden ndpl-info" v-show="!isCodeVisible()">
                                         This component is hidden at this resolution.
                                     </div>
                                 </template>

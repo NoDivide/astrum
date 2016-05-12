@@ -21,6 +21,7 @@ var ndplComponent = Vue.extend({
             var _this = this,
                 styles = '';
 
+            // Inline style are only applied after the component has fully loaded
             if(_this.loaded) {
                 if(_this.component.options.sample_min_height) {
                     styles += 'min-height:' + _this.component.options.sample_min_height + 'px;';
@@ -28,39 +29,37 @@ var ndplComponent = Vue.extend({
             }
 
             return styles;
-        },
-
-        toggle_code: function() {
-            // If code_show was set to true on page load set it to false
-            if(this.component.code_show && this.$root.window_outer_width >= this.$root.breakpoint) {
-                this.component.code_show = false;
-            }
-
-            return this.component.code_show || this.$root.window_outer_width >= this.$root.breakpoint;
         }
     },
 
     watch: {
         'component.html': function() {
+
+            // Apply syntax highlighting when component html is loaded
             if(this.component.html.length) {
                 var block = this.$el.querySelector('pre code');
 
                 hljs.highlightBlock(block);
             }
+        },
+        '$root.mobile_view': function(newVal) {
+
+            // Toggle show code base on mobile view
+            this.component.code_show = ! newVal;
         }
     },
 
     ready: function() {
         var _this = this;
 
+        // Monitor scroll and resize events and update navigation active state appropirately
         window.addEventListener('scroll', _this.updateActive);
         window.addEventListener('resize', _this.updateActive);
 
-        // Show code on desktop resolutions
-        if(_this.$root.window_outer_width >= _this.$root.breakpoint) {
-            _this.component.code_show = true;
-        }
+        // Show code base on mobile view
+        _this.component.code_show = ! _this.$root.mobile_view;
 
+        // Listen for loaded event
         _this.$on('loaded', function() {
 
             _this.setHideSample(function() {
@@ -68,6 +67,7 @@ var ndplComponent = Vue.extend({
             });
         });
 
+        // Listen for resizing event
         _this.$on('resizing', function(is_resizing) {
             _this.loaded = false;
 
@@ -82,7 +82,7 @@ var ndplComponent = Vue.extend({
     methods: {
 
         /**
-         * Update component active in navigation
+         * Update component active in navigation.
          */
         updateActive: function() {
             var _this = this;
@@ -123,6 +123,12 @@ var ndplComponent = Vue.extend({
             }
         },
 
+        /**
+         * Is component active in navigation.
+         *
+         * @param component
+         * @returns {boolean}
+         */
         isActive: function(component) {
             var _this = this;
 
@@ -137,6 +143,12 @@ var ndplComponent = Vue.extend({
             return false;
         },
 
+        /**
+         * Should invert text based on hex brightness.
+         *
+         * @param hex
+         * @returns {boolean}
+         */
         shouldInvertText: function(hex) {
             var rgb = this.$root.convertHexToRgb(hex),
                 brightness = this.$root.getColorBrightness(rgb);
@@ -144,6 +156,12 @@ var ndplComponent = Vue.extend({
             return brightness > 210;
         },
 
+        /**
+         * Should apply border based on hex brightness.
+         *
+         * @param hex
+         * @returns {boolean}
+         */
         shouldApplyBorder: function(hex) {
             var rgb = this.$root.convertHexToRgb(hex),
                 brightness = this.$root.getColorBrightness(rgb);
@@ -151,6 +169,12 @@ var ndplComponent = Vue.extend({
             return brightness > 240;
         },
 
+        /**
+         * Set component sample element to be hidden if the sample
+         * itself is hidden in the assets CSS stylesheet.
+         *
+         * @param callback
+         */
         setHideSample: function(callback) {
             callback = typeof callback !== 'undefined' ?  callback : function() {};
             
@@ -174,8 +198,13 @@ var ndplComponent = Vue.extend({
                 callback();
             }, 0);
         },
-        
-        codeIsVisible: function() {
+
+        /**
+         * Is sample code visible.
+         *
+         * @returns {boolean}
+         */
+        isCodeVisible: function() {
             var _this = this;
 
             return ! _this.hide_sample_code;
@@ -408,7 +437,7 @@ new Vue({
                 // Add group components to group
                 for (var j = 0; j < group.components.length; j++) {
 
-                    // Set component navigation variables
+                    // Set component default variables
                     _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
                     _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
@@ -494,7 +523,7 @@ new Vue({
         },
 
         /**
-         * Set scroll position
+         * Set scroll position.
          */
         setScrollPosition: function() {
             var _this = this,
@@ -505,6 +534,11 @@ new Vue({
             _this.scroll_position = top;
         },
 
+        /**
+         * Get scroll direction.
+         *
+         * @returns {string}
+         */
         getScrollDirection: function() {
             var _this = this;
 
@@ -512,7 +546,7 @@ new Vue({
         },
 
         /**
-         * Scroll to element
+         * Scroll to element.
          *
          * @param e
          */
@@ -523,7 +557,7 @@ new Vue({
         },
 
         /**
-         * Scroll to animation
+         * Animate scroll to.
          *
          * @param hash
          */
@@ -545,7 +579,7 @@ new Vue({
         },
 
         /**
-         * Toggle navigation
+         * Toggle navigation.
          */
         toggleNav: function() {
             var _this = this;
@@ -553,12 +587,20 @@ new Vue({
             _this.open_nav = ! _this.open_nav;
         },
 
+        /**
+         * Toggle open groups.
+         *
+         * @param group
+         */
         toggleOpenGroups: function(group) {
             var _this = this;
             
             _this.open_group = _this.open_group == group.id ? null : group.id;
         },
 
+        /**
+         * Toggle container fade on resize.
+         */
         resizeFadeToggle: function() {
             var _this = this;
 
@@ -578,7 +620,7 @@ new Vue({
         },
 
         /**
-         * Convert hex color value to rgb color values
+         * Convert hex color value to rgb color values.
          *
          * @param hex
          * @returns {{r: number, g: number, b: number}}
@@ -599,7 +641,7 @@ new Vue({
         },
 
         /**
-         * Get color brightness value from rgb color values
+         * Get color brightness value from rgb color values.
          *
          * @param rgb
          * @returns {number}
