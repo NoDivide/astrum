@@ -22,8 +22,8 @@ var ndplComponent = Vue.extend({
                 styles = '';
 
             if(_this.loaded) {
-                if(_this.component.sample_min_height) {
-                    styles += 'min-height:' + _this.component.sample_min_height + 'px;';
+                if(_this.component.options.sample_min_height) {
+                    styles += 'min-height:' + _this.component.options.sample_min_height + 'px;';
                 }
             }
 
@@ -161,12 +161,12 @@ var ndplComponent = Vue.extend({
             setTimeout(function() {
                 if(_this.$el.querySelector('.ndpl-component__code')) {
                     if (_this.$el.querySelector('.ndpl-component__sample').offsetHeight <= 74 &&
-                        !_this.component.sample_always_show) {
+                        !_this.component.options.sample_always_show) {
                         _this.hide_sample_code = true;
                     }
 
                     if (!_this.$root.mobile_view &&
-                        _this.component.sample_min_height) {
+                        _this.component.options.sample_min_height) {
                         _this.hide_sample_code = false;
                     }
                 }
@@ -192,40 +192,6 @@ var ndplGroup = Vue.extend({
     props: {
         group: {
             required: true
-        }
-    },
-
-    ready: function() {
-        var _this = this;
-
-        window.addEventListener('scroll', _this.updateActive);
-        window.addEventListener('resize', _this.updateActive);
-    },
-
-    methods: {
-
-        /**
-         * Update group active state in navigation
-         */
-        updateActive: function() {
-            var _this = this;
-
-            // If scroll position is greater than or equal to group offset top minus 60
-            // and scroll position is less than group offset top + group height minus 60
-            if(_this.$root.scroll_position >= _this.$el.offsetTop - 60 &&
-                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight - 60) {
-
-                // If not currently auto scrolling to component
-                // and no components are active
-                if(!_this.$root.scrolling_to &&
-                   !_this.$root.active_components.length) {
-
-                    // Set first component in group to active
-                    _this.$root.active_components = [_this.group.components[0]];
-                    _this.$root.open_group = _this.group;
-                    _this.$root.updateHash(_this.group.components[0].id);
-                }
-            }
         }
     }
 });
@@ -446,8 +412,10 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
                     _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
-                    _this.$set('groups[' + i + '].components[' + j + '].sample_mobile_hidden', group.components[j].sample_mobile_hidden ? group.components[j].sample_mobile_hidden : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].sample_always_show', group.components[j].sample_always_show ? group.components[j].sample_always_show : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].options', group.components[j].options ? group.components[j].options : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].options.sample_always_show', group.components[j].options.sample_always_show ? group.components[j].options.sample_always_show : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].options.sample_mobile_hidden', group.components[j].options.sample_mobile_hidden ? group.components[j].options.sample_mobile_hidden : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].options.sample_dark_background', group.components[j].options.sample_dark_background ? group.components[j].options.sample_dark_background : false);
                     _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
                     _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type : 'standard');
 
@@ -561,7 +529,7 @@ new Vue({
          */
         scrollTo: function(hash) {
             var _this = this,
-                offset = _this.mobile_view ? 52 : 30;
+                offset = _this.mobile_view ? 79 : 30;
 
             if(!hash) return;
 
@@ -587,7 +555,7 @@ new Vue({
 
         toggleOpenGroups: function(group) {
             var _this = this;
-
+            
             _this.open_group = _this.open_group == group.id ? null : group.id;
         },
 

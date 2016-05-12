@@ -74,19 +74,20 @@
 
         <div class="ndpl-container" :class="{ 'loaded': loaded && ! resizing, 'resizing': resizing }">
 
-            <!--<header class="ndpl-header">-->
-                <!--<h1 class="ndpl-sidebar__header__title"><a :href="project_url" target="_blank"><span v-text="project_name"></span></a> <small>Pattern Library</small></h1>-->
+            <header class="ndpl-header">
+                <img class="ndpl-header__logo" :src="project_logo" :alt="project_name" v-if="project_logo"/>
+                <h1 class="ndpl-header__title"><a :href="project_url" target="_blank"><span v-text="project_name" v-if="!project_logo"></span></a> <small>Pattern Library</small></h1>
 
-                <!--<div class="ndpl-nav-handle"-->
-                     <!--:class="{ 'open': open_nav }"-->
-                     <!--@click="toggleNav">-->
-                    <!--<div class="ndpl-nav-handle__container">-->
-                        <!--<span></span>-->
-                        <!--<span></span>-->
-                        <!--<span></span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</header>-->
+                <div class="ndpl-nav-handle"
+                     :class="{ 'open': open_nav }"
+                     @click="toggleNav">
+                    <div class="ndpl-nav-handle__container">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </header>
 
             <div class="ndpl-sidebar"
                  :class="{ 'open': open_nav }">
@@ -100,7 +101,7 @@
                     <ul class="ndpl-nav__items ndpl-c-border">
                         <li class="ndpl-nav__item"
                             v-for="group in groups"
-                            :class="{ 'active': active_components.length > 0 && (group.id == active_components[0].group_id || group.id == open_group) }">
+                            :class="{ 'active': active_components.length > 0 && group.id == active_components[0].group_id || group.id == open_group }">
 
                             <a :href="'#' + group.id"
                                class="ndpl-nav__group ndpl-nsc"
@@ -166,7 +167,7 @@
                                 <template v-else>
                                     <div class="ndpl-component__container" v-show="codeIsVisible()">
                                         <div class="ndpl-component__sample"
-                                             :class="{ 'ndpl-component__sample--inverted': component.dark_example_background }"
+                                             :class="{ 'ndpl-component__sample--inverted': component.options.sample_dark_background }"
                                              :style="inline_styles">
                                             {{{ component.html }}}
                                         </div>
@@ -176,7 +177,7 @@
                                             <pre><code class="html" v-text="component.html"></code></pre>
                                         </div>
 
-                                        <a class="ndpl-component__code-toggle"
+                                        <a class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
                                            @click.prevent="component.code_show = ! component.code_show"
                                            v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
                                     </div>

@@ -1,6 +1,6 @@
 {
     "project_logo": "http://nodividestudio.com/assets/images/site/logo--white.svg",
-    "project_name": "No Divide Studio",
+    "project_name": "No Divide",
     "project_url": "http://nodividestudio.com",
     "copyright_start_year": "2015",
     "client_name": "No Divide Studio Ltd",
@@ -138,7 +138,9 @@
                     "width": "half",
                     "name": "arrow",
                     "title": "Arrow",
-                    "dark_example_background": true
+                    "options": {
+                        "sample_dark_background": true
+                    }
                 }
             ]
         },
@@ -155,8 +157,10 @@
                     "group": "navigation",
                     "name": "primary-top-right-positioning",
                     "title": "Primary: Top Right Positioning",
-                    "sample_min_height": 130,
-                    "sample_mobile_hidden": true
+                    "options": {
+                        "sample_min_height": 130,
+                        "sample_mobile_hidden": true
+                    }
                 }
             ]
         },

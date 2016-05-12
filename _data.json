@@ -1,5 +1,6 @@
 {
-    "project_name": "No Divide Studio",
+    "project_logo": "http://nodividestudio.com/assets/images/site/logo--white.svg",
+    "project_name": "No Divide",
     "project_url": "http://nodividestudio.com",
     "copyright_start_year": "2015",
     "client_name": "No Divide Studio Ltd",
@@ -83,8 +84,8 @@
                 },
                 {
                     "group": "typography",
-                    "name": "generic-elements",
-                    "title": "Generic Elements"
+                    "name": "paragraph",
+                    "title": "Paragraphs"
                 },
                 {
                     "group": "typography",
@@ -154,7 +155,8 @@
                     "group": "navigation",
                     "name": "primary-top-right-positioning",
                     "title": "Primary: Top Right Positioning",
-                    "min_height": 130
+                    "sample_min_height": 130,
+                    "sample_mobile_hidden": true
                 }
             ]
         },
