@@ -18,7 +18,7 @@ if (group_name) {
         existingComponentIndex = utils.getComponentIndex(group_name),
         existingGroupIndex = utils.getGroupIndex(parts[0]);
 
-    if (existingComponentIndex !== false) {
+    if (existingComponentIndex !== undefined) {
         var component = utils.getComponent(group_name);
 
         inquirer.prompt([
@@ -44,6 +44,9 @@ if (group_name) {
                 default: component.title
             },
             {
+                when: function() {
+                    return component.type && component.type !== 'colors';
+                },
                 type: 'list',
                 name: 'width',
                 message: function() {
