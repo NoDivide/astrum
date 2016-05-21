@@ -118,6 +118,27 @@
             ]
         },
         {
+            "name": "test",
+            "title": "Test",
+            "components": [
+                {
+                    "group": "test",
+                    "name": "component3",
+                    "title": "Component 3"
+                },
+                {
+                    "group": "test",
+                    "name": "component",
+                    "title": "Component"
+                },
+                {
+                    "group": "test",
+                    "name": "component2",
+                    "title": "Component 2"
+                }
+            ]
+        },
+        {
             "name": "buttons",
             "title": "Buttons",
             "components": [

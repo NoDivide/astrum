@@ -10,6 +10,10 @@ utils.init();
 program
     .parse(process.argv);
 
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
+
 var group_name = program.args[0];
 if (group_name) {
 
@@ -37,14 +41,9 @@ if (group_name) {
                 validate: function (str) {
                     return str !== '';
                 }
-            },
-            {
-                name: 'label',
-                message: 'Component label (optional):'
             }
         ]).then(function (answers) {
             newComponent.title = answers.title;
-            newComponent.label = answers.label ? answers.label : null;
 
             // If new group prompt for new group details
             if (!utils.groupExists(group_name)) {
