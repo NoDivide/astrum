@@ -625,6 +625,7 @@
  * ----------------------------------------//
  */
 .ndpl-component {
+    clear: both;
     margin-bottom: 60px;
 }
 .ndpl-component__title,
@@ -661,6 +662,7 @@
 @media only screen and (min-width: 60em) {
 
     .ndpl-component--half {
+        clear: none;
         float: left;
         width: 50%;
         vertical-align: top;
