@@ -44,11 +44,6 @@ if (group_name) {
                 default: component.title
             },
             {
-                name: 'label',
-                message: 'Component label (optional):',
-                default: component.label
-            },
-            {
                 type: 'confirm',
                 name: 'change_group',
                 message: function() {
@@ -144,7 +139,6 @@ if (group_name) {
             // Store edited component details
             editedComponent.name  = answers.name;
             editedComponent.title = answers.title;
-            editedComponent.label = answers.label ? answers.label : null;
 
             //// If creating a new group
             if(answers.new_group == 'create_new_group') {
@@ -161,6 +155,9 @@ if (group_name) {
                 // Set edited components group to new group name
                 editedComponent.group = answers.group;
                 editedGroupIndex = answers.group_position;
+
+                // Remove component from original group
+                utils.$data.groups[existingGroupIndex].components.splice(existingComponentIndex, 1);
                 
             // Else set edited components group to existing group name
             } else {
@@ -170,7 +167,7 @@ if (group_name) {
 
             // Check for duplicate data
             if(originalComponent.name != editedComponent.name && utils.componentExists(editedComponent.group + '/' + editedComponent.name)) {
-                console.log(chalk.red('Error: Component with same name already exists in group.'));
+                console.log(chalk.red('Error: A component with same name already exists in the group.'));
                 error = true;
             }
 
