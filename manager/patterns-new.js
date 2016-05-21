@@ -41,9 +41,27 @@ if (group_name) {
                 validate: function (str) {
                     return str !== '';
                 }
+            },
+            {
+                type: 'list',
+                name: 'width',
+                message: function() {
+                    return 'Component width:'
+                },
+                choices: [
+                    {
+                        name: 'Full width',
+                        value: 'full'
+                    },
+                    {
+                        name: 'Half width',
+                        value: 'half'
+                    }
+                ]
             }
         ]).then(function (answers) {
             newComponent.title = answers.title;
+            if(answers.width != 'full') newComponent.width = answers.width;
 
             // If new group prompt for new group details
             if (!utils.groupExists(group_name)) {

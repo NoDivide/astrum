@@ -44,6 +44,24 @@ if (group_name) {
                 default: component.title
             },
             {
+                type: 'list',
+                name: 'width',
+                message: function() {
+                    return 'Component width:'
+                },
+                choices: [
+                    {
+                        name: 'Full width',
+                        value: 'full'
+                    },
+                    {
+                        name: 'Half width',
+                        value: 'half'
+                    }
+                ],
+                default: component.width
+            },
+            {
                 type: 'confirm',
                 name: 'change_group',
                 message: function() {
