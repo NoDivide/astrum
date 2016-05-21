@@ -12,13 +12,17 @@ program
     .option('-g, --group <group_name>', 'delete group')
     .parse(process.argv);
 
+/**
+ * Delete individual component.
+ */
 var group_name = program.args[0];
 if (group_name) {
-    var parts = group_name.split('/'),
-        componentIndex = utils.componentExists(group_name),
-        groupIndex = utils.getGroupIndex(parts[0]);
+    var parts = group_name.split('/');
 
-    if(componentIndex !== false) {
+    if(utils.componentExists(group_name) !== false) {
+        var componentIndex = utils.getComponentIndex(group_name),
+            groupIndex = utils.getGroupIndex(parts[0]);
+
         inquirer.prompt([
             {
                 type: 'confirm',
@@ -98,6 +102,9 @@ if (group_name) {
     }
 }
 
+/**
+ * Delete entire group.
+ */
 if(program.group) {
     var existingGroupIndex = utils.getGroupIndex(program.group);
 
@@ -110,7 +117,7 @@ if(program.group) {
                 name: 'delete',
                 message: function() {
                     console.log();
-                    console.log(chalk.grey('Delete "' + group.name + '" and all it\'s components:'));
+                    console.log(chalk.grey('Delete the "' + group.name + '" group and all it\'s components:'));
                     console.log(chalk.grey('----------------------------------------------------------------'));
                     return chalk.red('Are you sure you want to delete this group?');
                 },
