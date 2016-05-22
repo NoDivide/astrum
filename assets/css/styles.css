@@ -178,6 +178,11 @@
 .ndpl-error code { background-color: #e07070; }
 .ndpl-info code  { background-color: #7098e0; }
 
+.ndpl-error pre,
+.ndpl-info pre {
+    margin-bottom: 0;
+}
+
 /**
  * Folding cube animation
  * Created by Tobias Ahlin

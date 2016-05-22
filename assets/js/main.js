@@ -343,15 +343,19 @@ new Vue({
         all_creators: function() {
             var formattedCreators = '';
 
-            for(var i = 0; i < this.creators.length; i++) {
-                prefix = i === this.creators.length - 1 ? ' & ' : ', ';
-                url = this.creators[i].url;
-                name = this.creators[i].name.replace(' ', '&nbsp;');
+            if(this.creators.length && this.creators[0].name) {
+                for (var i = 0; i < this.creators.length; i++) {
+                    prefix = i === this.creators.length - 1 ? ' & ' : ', ';
+                    url = this.creators[i].url;
+                    name = this.creators[i].name.replace(' ', '&nbsp;');
 
-                formattedCreators += prefix + '<a href="' + url + '" target="_blank">' + name + '</a>';
+                    formattedCreators += prefix + '<a href="' + url + '" target="_blank">' + name + '</a>';
+                }
+
+                return formattedCreators.substring(2);
             }
 
-            return formattedCreators.substring(2);
+            return null;
         }
     },
 

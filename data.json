@@ -24,7 +24,9 @@
         "js": []
     },
     "font_libraries": {
-        "typekit_code": null
+        "typekit_code": null,
+        "typography_web_fonts": null,
+        "google_web_fonts": null
     },
     "groups": []
 }
