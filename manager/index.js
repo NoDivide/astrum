@@ -17,6 +17,3 @@ program
 if (!process.argv.slice(2).length) {
     program.outputHelp();
 }
-
-// init - Initialise pattern library.
-// config - Edit pattern library config.
