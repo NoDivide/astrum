@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-var program = require('commander'),
+var Command = require('commander').Command,
+    program = require('commander'),
     fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
@@ -8,6 +9,8 @@ var program = require('commander'),
 utils.init();
 
 program
+    .command('patterns')
+    .usage('new <group_name/component_name>')
     .option('-t, --type <name>', 'set component type: (standard|colors). Default standard.')
     .parse(process.argv);
 

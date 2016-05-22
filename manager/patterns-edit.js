@@ -8,7 +8,8 @@ var program = require('commander'),
 utils.init();
 
 program
-    .usage('[options] <group_name/component_name>')
+    .command('patterns')
+    .usage('edit <group_name/component_name>')
     .option('-g, --group <group_name>', 'edit group details')
     .parse(process.argv);
 
