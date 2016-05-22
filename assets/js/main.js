@@ -281,13 +281,15 @@ new Vue({
             google_web_fonts: null,
             typography_web_fonts: null
         },
-        error_log: [],
+        log: {
+            error: [],
+            info: []
+        },
         components_count: 0,
         components_loaded_count: 0,
         loaded: false,
         resizing: false,
         typekit_loaded: false,
-        errored: false,
         scroll_position: 0,
         prev_scroll_position: 0,
         active_group: null,
@@ -304,6 +306,18 @@ new Vue({
     },
 
     computed: {
+        project: function() {
+            if(this.project_name && this.project_url) {
+                return '<a href="' + this.project_url + '" target="_blank"><span>' + this.project_name + '</span></a>';
+            }
+
+            if(this.project_name && !this.project_url) {
+                return this.project_name;
+            }
+
+            return null;
+        },
+
         copyright_year: function() {
             var date = new Date();
 
@@ -314,6 +328,18 @@ new Vue({
             return this.copyright_start_year + ' - ' + date.getFullYear();
         },
 
+        client: function() {
+            if(this.client_name && this.client_url) {
+                return '<a href="' + this.client_url + '" target="_blank">' + this.client_name + '</a>';
+            }
+
+            if(this.client_name && !this.client_url) {
+                return this.client_name;
+            }
+
+            return null;
+        },
+
         all_creators: function() {
             var formattedCreators = '';
 
@@ -322,7 +348,7 @@ new Vue({
                 url = this.creators[i].url;
                 name = this.creators[i].name.replace(' ', '&nbsp;');
 
-                formattedCreators += prefix + '<a href="' + url + '" target="_blank" >' + name + '</a>';
+                formattedCreators += prefix + '<a href="' + url + '" target="_blank">' + name + '</a>';
             }
 
             return formattedCreators.substring(2);
@@ -374,10 +400,15 @@ new Vue({
 
             _this.$http.get('/data.json').then(function (response) {
 
-                _this.initData(response.data);
+                _this.initData(response.data, function() {
+                    _this.loadIntro();
 
-                _this.loadIntro();
-                _this.setupGroups();
+                    if(_this.$data.groups.length) {
+                        _this.setupGroups();
+                    } else {
+                        _this.logInfo('You need to add a component to your library before it can be loaded.<br/>You can either do this manually by editing your <code>data.json</code> file,<br/> or you can use the command line helper: <code>patterns new &lt;group/component&gt;</code>');
+                    }
+                });
             });
         },
 
@@ -386,12 +417,16 @@ new Vue({
          *
          * @param data
          */
-        initData: function(data) {
+        initData: function(data, callback) {
+            callback = typeof callback !== 'undefined' ?  callback : function() {};
+
             var _this = this;
 
             for(var key in data) {
                 _this.$set(key, data[key]);
             }
+
+            callback();
         },
 
         /**
@@ -500,26 +535,48 @@ new Vue({
         },
 
         /**
-         * Log errors.
+         * Add to log.
          *
-         * @param error_message
+         * @param message
          * @param data
-         * @param error_type
+         * @param type
          */
-        logError: function(error_message, data, error_type) {
+        addLog: function(message, data, type) {
             var _this = this;
 
-            error_type = typeof error_type !== 'undefined' ? error_type : 'error';
+            type = typeof type !== 'undefined' ? type : 'error';
             data = typeof data !== 'undefined' ? data : null;
 
-            _this.error_log.push(error_message);
-            console[error_type]('[Pattern Library warn]: ' + error_message);
+            _this.log[type].push(message);
+            console[type]('[Pattern Library warn]: ' + message);
 
             if(data) {
-                console[error_type](data);
+                console[type](data);
             }
+        },
 
-            _this.errored = true;
+        /**
+         * Log error helper.
+         *
+         * @param message
+         * @param data
+         */
+        logError: function(message, data) {
+            var _this = this;
+
+            _this.addLog(message, data, 'error');
+        },
+
+        /**
+         * Log info helper.
+         *
+         * @param message
+         * @param data
+         */
+        logInfo: function(message, data) {
+            var _this = this;
+
+            _this.addLog(message, data, 'info');
         },
 
         /**

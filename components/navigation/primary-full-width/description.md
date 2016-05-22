@@ -1,1 +1,0 @@
-This is the primary navigation element that appears on the homepage using the modifier class `.nav--full-width`.

@@ -1,1 +1,0 @@
-For that eye catching clickablility add the `.btn--cta` modifier class.

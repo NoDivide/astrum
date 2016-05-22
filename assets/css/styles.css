@@ -54,14 +54,20 @@
  * Theme colors
  * ----------------------------------------//
  */
-.ndpl-c-background         { background-color: #FFF; }    /* Background color */
-.ndpl-c-border             { border-color: #E0E6ED; }     /* Border color */
-.ndpl-c-highlight          { background-color: #F9FAFC; } /* Highlight background */
-.ndpl-c-brand-c            { color: #FEA1AC; }            /* Brand color */
-.ndpl-c-brand-bg           { background-color: #FEA1AC; } /* Brand background color */
-.ndpl-c-brand-b            { border-color: #FEA1AC; }     /* Brand border color */
-.ndpl-c-brand-a:hover      { color: #FEA1AC; }            /* Brand anchor on hover */
-.ndpl-c-brand-caoh a:hover { color: #FEA1AC; }            /* Brand child anchors on hover */
+.ndpl-c-background               { background-color: #FFF; }    /* Background color */
+.ndpl-c-border                   { border-color: #E0E6ED; }     /* Border color */
+.ndpl-c-highlight                { background-color: #F9FAFC; } /* Highlight background */
+.ndpl-c-brand-c                  { color: #FEA1AC; }            /* Brand color */
+.ndpl-c-brand-bg                 { background-color: #FEA1AC; } /* Brand background color */
+.ndpl-c-brand-b                  { border-color: #FEA1AC; }     /* Brand border color */
+.ndpl-c-brand-a:hover            { color: #FEA1AC; }            /* Brand anchor on hover */
+.ndpl-c-brand-ca a,
+.ndpl-c-brand-ca a[href],
+.ndpl-c-brand-ca a[href]:focus,
+.ndpl-c-brand-ca a:focus,
+.ndpl-c-brand-ca a[href]:active,
+.ndpl-c-brand-ca a:active        { color: #303637; }            /* Brand child anchors */
+.ndpl-c-brand-ca a:hover         { color: #FEA1AC; }            /* Brand child anchors on hover */
 
 /**
  * Helpers
@@ -165,6 +171,12 @@
 .ndpl-info {
     background-color: #7da9f9;
 }
+.ndpl-error code,
+.ndpl-info code {
+    padding: 0 3px;
+}
+.ndpl-error code { background-color: #e07070; }
+.ndpl-info code  { background-color: #7098e0; }
 
 /**
  * Folding cube animation
@@ -281,7 +293,7 @@
 .ndpl-header__logo {
     float: left;
     height: 28px;
-    margin: 0 12px 0 0;
+    margin: 0 6px 0 0;
 }
 .ndpl-header__title {
     color: #303637;
@@ -290,6 +302,9 @@
     line-height: 28px;
     float: left;
     margin: 0;
+}
+.ndpl-header__title a {
+    display: none;
 }
 .ndpl-header__title a,
 .ndpl-header__title a:hover {
@@ -305,6 +320,10 @@
 
     .ndpl-header {
         display: none;
+    }
+
+    .ndpl-header__title a {
+        display: block;
     }
 }
 
@@ -362,7 +381,7 @@
         bottom: 0;
         display: block;
         left: 0;
-        padding: 24px 0;
+        padding: 0;
         position: fixed;
         top: 0;
         width: 264px;
@@ -374,7 +393,7 @@
      */
     .ndpl-sidebar__header {
         display: block;
-        padding: 0 24px 36px;
+        padding: 24px 24px 36px;
     }
     .ndpl-sidebar__title {
         clear: left;
@@ -766,6 +785,7 @@
 .ndpl-component__sample--inverted {
     background-color: #333;
 }
+.ndpl-component__sample-missing,
 .ndpl-component__sample-hidden {
     display: block;
     margin: 0 12px;
@@ -804,6 +824,10 @@
         border: 1px solid #E0E6ED;
         border-radius: 6px 6px 0 0;
         padding: 36px;
+    }
+    .ndpl-component__sample-missing,
+    .ndpl-component__sample-hidden {
+        margin: 0;
     }
     .ndpl-component__code {
         border: 1px solid #E0E6ED;

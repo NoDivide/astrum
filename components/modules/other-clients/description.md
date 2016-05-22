@@ -1,1 +1,0 @@
-A reusable selection of past client logos to be included in various templates as needed.

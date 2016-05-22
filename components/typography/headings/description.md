@@ -1,1 +1,0 @@
-Standard h1 to h6 headings.

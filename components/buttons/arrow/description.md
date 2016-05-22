@@ -1,1 +1,0 @@
-The arrow button, using the `.btn--arrow` modifier class, is placed over an image and is inverted.
