@@ -176,6 +176,10 @@ if (group_name) {
             editedComponent.name = answers.name;
             editedComponent.title = answers.title;
 
+            // Retain original details
+            if(originalComponent.type) editedComponent.type = originalComponent.type;
+            if(originalComponent.colors) editedComponent.colors = originalComponent.colors;
+
             //// If creating a new group
             if (answers.new_group == 'create_new_group') {
                 var newGroup = {};
