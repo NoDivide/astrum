@@ -402,7 +402,7 @@ new Vue({
         loadDataFile: function () {
             var _this = this;
 
-            _this.$http.get('/data.json').then(function (response) {
+            _this.$http.get('./data.json').then(function (response) {
 
                 _this.initData(response.data, function() {
                     _this.loadIntro();
@@ -448,7 +448,7 @@ new Vue({
         loadIntro: function() {
             var _this = this;
 
-            _this.$http.get('/templates/intro.md').then(function(response) {
+            _this.$http.get('./templates/intro.md').then(function(response) {
                 _this.$set('intro', marked(response.data));
             }, function() {
                 _this.logError('Failed to load <strong>intro</strong> template from <code>/templates/intro.md</code>. Is it missing?');
@@ -503,7 +503,7 @@ new Vue({
          */
         loadComponent: function(component) {
             var _this = this,
-                component_path = 'components/' + component.group + '/' + component.name;
+                component_path = './components/' + component.group + '/' + component.name;
 
             // Get and set component markup
             _this.$http.get(component_path + '/markup.html').then(function (response) {
