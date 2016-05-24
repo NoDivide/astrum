@@ -108,6 +108,8 @@
  * ----------------------------------------//
  */
 .ndpl-loading__title {
+    font-weight: 300;
+    margin: 0 24px 24px;
     opacity: 0;
     transition: opacity .5s ease;
 }
@@ -162,6 +164,7 @@
     color: #FFF;
     display: inline-block;
     list-style: none;
+    margin: 0 12px;
     padding: 24px;
     font-size: 14px;
 }
@@ -181,6 +184,14 @@
 .ndpl-error pre,
 .ndpl-info pre {
     margin-bottom: 0;
+}
+
+@media only screen and (min-width: 60em) {
+
+    .ndpl-error,
+    .ndpl-info {
+        margin: 0;
+    }
 }
 
 /**
