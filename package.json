@@ -1,6 +1,6 @@
 {
   "name": "Patterns",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A command-line utility tool for managing Patterns components.",
   "main": "./app/manager/index.js",
   "scripts": {
