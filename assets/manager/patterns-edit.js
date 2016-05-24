@@ -8,10 +8,24 @@ var program = require('commander'),
 utils.init();
 
 program
-    .command('patterns')
-    .usage('edit <group_name/component_name>')
-    .option('-g, --group <group_name>', 'edit group details')
-    .parse(process.argv);
+    .usage('[group_name/component_name]')
+    .description(chalk.yellow('Edit an existing pattern library component or group.'))
+    .option('-g, --group [group_name]', 'edit group details');
+
+/**
+ * Override argv[1] so that usage command is
+ * formatted correctly.
+ */
+process.argv[1] = 'patterns edit';
+
+program.parse(process.argv);
+
+/**
+ * Automatically output help if no parameters are passed.
+ */
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
 
 var group_name = program.args[0];
 if (group_name) {
@@ -25,7 +39,7 @@ if (group_name) {
         inquirer.prompt([
             {
                 name: 'name',
-                message: function() {
+                message: function () {
                     console.log();
                     console.log(chalk.grey('Edit component details:'));
                     console.log(chalk.grey('----------------------------------------------------------------'));
@@ -45,12 +59,12 @@ if (group_name) {
                 default: component.title
             },
             {
-                when: function() {
+                when: function () {
                     return component.type && component.type !== 'colors';
                 },
                 type: 'list',
                 name: 'width',
-                message: function() {
+                message: function () {
                     return 'Component width:'
                 },
                 choices: [
@@ -68,7 +82,7 @@ if (group_name) {
             {
                 type: 'confirm',
                 name: 'change_group',
-                message: function() {
+                message: function () {
                     console.log();
                     console.log(chalk.grey('Manage component group association:'));
                     console.log(chalk.grey('----------------------------------------------------------------'));
@@ -77,7 +91,7 @@ if (group_name) {
                 default: false
             },
             {
-                when: function(response) {
+                when: function (response) {
                     return response.change_group;
                 },
                 type: 'list',
@@ -86,27 +100,27 @@ if (group_name) {
                 choices: utils.getGroupChoices(parts[0])
             },
             {
-                when: function(response) {
-                    return ! response.change_group || response.new_group != 'create_new_group';
+                when: function (response) {
+                    return !response.change_group || response.new_group != 'create_new_group';
                 },
                 type: 'list',
                 name: 'component_position',
-                message: function(response) {
-                    if(! response.change_group) {
+                message: function (response) {
+                    if (!response.change_group) {
                         return 'Change the position for the component in the "' + component.group + '" group:'
                     } else {
                         return 'Select a position for the component in the "' + response.new_group + '" group:'
                     }
                 },
-                choices: function(response) {
-                    if(! response.change_group) {
+                choices: function (response) {
+                    if (!response.change_group) {
                         return utils.getComponentChangePositionChoices(component);
                     } else {
                         return utils.getComponentPositionChoices(response.new_group);
                     }
                 },
-                default: function(response) {
-                    if(! response.change_group) {
+                default: function (response) {
+                    if (!response.change_group) {
                         return utils.getGroupComponentCount(component.group) - 1;
                     }
 
@@ -114,11 +128,11 @@ if (group_name) {
                 }
             },
             {
-                when: function(response) {
+                when: function (response) {
                     return response.change_group && response.new_group == 'create_new_group';
                 },
                 name: 'group',
-                message: function() {
+                message: function () {
                     console.log();
                     console.log(chalk.grey('New group details:'));
                     console.log(chalk.grey('----------------------------------------------------------------'));
@@ -127,7 +141,7 @@ if (group_name) {
                 choices: utils.getGroupChoices(parts[0])
             },
             {
-                when: function(response) {
+                when: function (response) {
                     return response.change_group && response.new_group == 'create_new_group';
                 },
                 name: 'group_title',
@@ -135,7 +149,7 @@ if (group_name) {
                 choices: utils.getGroupChoices()
             },
             {
-                when: function(response) {
+                when: function (response) {
                     return response.change_group && response.new_group == 'create_new_group';
                 },
                 type: 'list',
@@ -144,7 +158,7 @@ if (group_name) {
                 choices: utils.getGroupPositionChoices()
             },
             {
-                when: function(response) {
+                when: function (response) {
                     return response.change_group && utils.getGroupComponentCount(component.group) == 1;
                 },
                 type: 'confirm',
@@ -159,41 +173,41 @@ if (group_name) {
                 error = false;
 
             // Store edited component details
-            editedComponent.name  = answers.name;
+            editedComponent.name = answers.name;
             editedComponent.title = answers.title;
 
             //// If creating a new group
-            if(answers.new_group == 'create_new_group') {
+            if (answers.new_group == 'create_new_group') {
                 var newGroup = {};
-            
+
                 // Store new group details
                 newGroup.name = answers.group;
                 newGroup.title = answers.group_title;
                 newGroup.components = [];
-            
+
                 // Add new group to data
                 utils.$data.groups.splice(answers.group_position, 0, newGroup);
-                
+
                 // Set edited components group to new group name
                 editedComponent.group = answers.group;
                 editedGroupIndex = answers.group_position;
 
                 // Remove component from original group
                 utils.$data.groups[existingGroupIndex].components.splice(existingComponentIndex, 1);
-                
-            // Else set edited components group to existing group name
+
+                // Else set edited components group to existing group name
             } else {
                 editedComponent.group = answers.new_group ? answers.new_group : originalComponent.group;
                 editedGroupIndex = utils.getGroupIndex(editedComponent.group);
             }
 
             // Check for duplicate data
-            if(originalComponent.name != editedComponent.name && utils.componentExists(editedComponent.group + '/' + editedComponent.name)) {
+            if (originalComponent.name != editedComponent.name && utils.componentExists(editedComponent.group + '/' + editedComponent.name)) {
                 console.log(chalk.red('Error: A component with same name already exists in the group.'));
                 error = true;
             }
 
-            if(!error) {
+            if (!error) {
                 // Remove original component in data
                 utils.$data.groups[existingGroupIndex].components.splice(existingComponentIndex, 1);
                 utils.$data.groups[editedGroupIndex].components.splice(answers.component_position, 0, editedComponent);
@@ -232,12 +246,12 @@ if (group_name) {
     }
 }
 
-if(program.group) {
+if (program.group) {
     var existingGroupIndex = utils.getGroupIndex(program.group);
 
-    if(existingGroupIndex !== false) {
+    if (existingGroupIndex !== false) {
         var group = utils.$data.groups[existingGroupIndex];
-        
+
         inquirer.prompt([
             {
                 name: 'name',
@@ -254,7 +268,7 @@ if(program.group) {
             },
             {
                 name: 'title',
-                message: function() {
+                message: function () {
                     return 'Group title:'
                 },
                 validate: function (str) {
@@ -278,18 +292,18 @@ if(program.group) {
             editedGroup.title = answers.title;
             editedGroup.components = [];
 
-            for(var i = 0; i < originalGroup.components.length; i++) {
+            for (var i = 0; i < originalGroup.components.length; i++) {
                 editedGroup.components[i] = originalGroup.components[i];
                 editedGroup.components[i].group = answers.name;
             }
 
             // Check for duplicate data
-            if(originalGroup.name != editedGroup.name && utils.groupExists(editedGroup.name)) {
+            if (originalGroup.name != editedGroup.name && utils.groupExists(editedGroup.name)) {
                 console.log(chalk.red('Error: Group with same name already exists in.'));
                 error = true;
             }
 
-            if(!error) {
+            if (!error) {
                 // Remove original component in data
                 utils.$data.groups.splice(answers.group_position, 0, editedGroup);
 
@@ -305,7 +319,7 @@ if(program.group) {
                         console.log(chalk.grey('----------------------------------------------------------------'));
                         console.log();
 
-                        if(originalGroup.name != editedGroup.name) {
+                        if (originalGroup.name != editedGroup.name) {
                             console.log(chalk.yellow('Group components have been moved to /components/' + editedGroup.name));
                             console.log();
                         }

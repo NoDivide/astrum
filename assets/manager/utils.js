@@ -23,20 +23,24 @@ module.exports = {
         console.log(chalk.grey('----------------------------------------------------------------'));
         console.log();
 
-        for (var i = 0; i < groups.length; i++) {
-            var g = groups[i];
+        if(groups.length) {
+            for (var i = 0; i < groups.length; i++) {
+                var g = groups[i];
 
-            console.log('[%s] %s:', i, chalk.green(g.name));
+                console.log('[%s] %s:', i, chalk.green(g.name));
 
-            var k = 0;
-            for (var j = 0; j < groups[i].components.length; j++) {
-                var c = groups[i].components[j];
+                var k = 0;
+                for (var j = 0; j < groups[i].components.length; j++) {
+                    var c = groups[i].components[j];
 
-                if (c.group === g.name) {
-                    console.log('     %s [%s] %s', String.fromCharCode(0x21B3), k, chalk.yellow(c.name));
-                    k++;
+                    if (c.group === g.name) {
+                        console.log('     %s [%s] %s', String.fromCharCode(0x21B3), k, chalk.yellow(c.name));
+                        k++;
+                    }
                 }
             }
+        } else {
+            console.log('Your pattern library is empty.');
         }
 
         console.log();

@@ -9,15 +9,29 @@ var Command = require('commander').Command,
 utils.init();
 
 program
-    .command('patterns')
-    .usage('new <group_name/component_name>')
-    .option('-t, --type <name>', 'set component type: (standard|colors). Default standard.')
-    .parse(process.argv);
+    .usage('[group_name/component_name]')
+    .description(chalk.yellow('Create a new pattern library component.'))
+    .option('-t, --type [name]', 'set component type: (standard|colors). Default standard.');
 
+/**
+ * Override argv[1] so that usage command is
+ * formatted correctly.
+ */
+process.argv[1] = 'patterns new';
+
+program.parse(process.argv);
+
+
+/**
+* Automatically output help if no parameters are passed.
+*/
 if (!process.argv.slice(2).length) {
     program.outputHelp();
 }
 
+/**
+ * Create new component
+ */
 var group_name = program.args[0];
 if (group_name) {
 
@@ -34,7 +48,7 @@ if (group_name) {
         inquirer.prompt([
             {
                 name: 'title',
-                message: function() {
+                message: function () {
                     console.log();
                     console.log(chalk.grey('New component details:'));
                     console.log(chalk.grey('----------------------------------------------------------------'));
@@ -47,12 +61,12 @@ if (group_name) {
                 }
             },
             {
-                when: function() {
+                when: function () {
                     return program.type && program.type !== 'colors';
                 },
                 type: 'list',
                 name: 'width',
-                message: function() {
+                message: function () {
                     return 'Component width:'
                 },
                 choices: [
@@ -67,11 +81,11 @@ if (group_name) {
                 ]
             }
         ]).then(function (answers) {
-            var typeColor =  program.type && program.type == 'colors';
+            var typeColor = program.type && program.type == 'colors';
 
             newComponent.title = answers.title;
-            if(answers.width != 'full') newComponent.width = answers.width;
-            if(typeColor) {
+            if (answers.width != 'full') newComponent.width = answers.width;
+            if (typeColor) {
                 newComponent.type = 'colors';
                 newComponent.colors = [];
             }
@@ -79,11 +93,11 @@ if (group_name) {
             // If new group prompt for new group details
             if (!utils.groupExists(group_name)) {
                 var newGroup = {};
-                
+
                 inquirer.prompt([
                     {
                         name: 'title',
-                        message: function() {
+                        message: function () {
                             console.log();
                             console.log(chalk.grey('New group details:'));
                             console.log(chalk.grey('----------------------------------------------------------------'));
@@ -107,14 +121,14 @@ if (group_name) {
                     utils.$data.groups.splice(answers.group_position, 0, newGroup);
                     utils.$data.groups[answers.group_position].components = [newComponent];
 
-                    if(utils.createComponentFiles(newComponent)) {
-                        utils.saveData(function() {
+                    if (utils.createComponentFiles(newComponent)) {
+                        utils.saveData(function () {
                             console.log();
                             console.log(chalk.grey('----------------------------------------------------------------'));
                             console.log(chalk.green('\u2713 Pattern library data saved successfully.'));
                             console.log(chalk.grey('----------------------------------------------------------------'));
 
-                            if(typeColor) {
+                            if (typeColor) {
                                 console.log();
                                 console.log(chalk.yellow('Ignore /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                                 console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
@@ -150,7 +164,7 @@ if (group_name) {
                     }
                 });
 
-            // Else prompt to position new component in group
+                // Else prompt to position new component in group
             } else {
 
                 inquirer.prompt([
@@ -165,14 +179,14 @@ if (group_name) {
 
                     utils.$data.groups[groupIndex].components.splice(answers.component_position, 0, newComponent);
 
-                    if(utils.createComponentFiles(newComponent)) {
-                        utils.saveData(function() {
+                    if (utils.createComponentFiles(newComponent)) {
+                        utils.saveData(function () {
                             console.log();
                             console.log(chalk.grey('----------------------------------------------------------------'));
                             console.log(chalk.green('\u2713 Pattern library data saved successfully.'));
                             console.log(chalk.grey('----------------------------------------------------------------'));
 
-                            if(typeColor) {
+                            if (typeColor) {
                                 console.log();
                                 console.log(chalk.yellow('Ignore /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                                 console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
