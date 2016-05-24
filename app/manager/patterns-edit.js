@@ -308,13 +308,14 @@ if (program.group) {
             }
 
             if (!error) {
-                // Remove original component in data
+                // Remove original group in data
+                utils.$data.groups.splice(existingGroupIndex, 1);
+
+                // Add edited group to data
                 utils.$data.groups.splice(answers.group_position, 0, editedGroup);
 
                 // Move component files
                 if (utils.moveGroupFolder(originalGroup, editedGroup)) {
-
-                    utils.$data.groups.splice(existingGroupIndex, 1);
 
                     utils.saveData(function () {
                         console.log();
