@@ -56,9 +56,6 @@ var ndplComponent = Vue.extend({
         window.addEventListener('scroll', _this.updateActive);
         window.addEventListener('resize', _this.updateActive);
 
-        // Show code base on mobile view
-        _this.component.code_show = ! _this.$root.mobile_view;
-
         // Listen for loaded event
         _this.$on('loaded', function() {
 
