@@ -122,7 +122,7 @@ if (group_name) {
 if (program.group) {
     var existingGroupIndex = utils.getGroupIndex(program.group);
 
-    if (existingGroupIndex !== false) {
+    if (existingGroupIndex !== -1) {
         var group = utils.$data.groups[existingGroupIndex];
 
         inquirer.prompt([
