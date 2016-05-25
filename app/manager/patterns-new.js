@@ -62,7 +62,7 @@ if (group_name) {
             },
             {
                 when: function () {
-                    return program.type && program.type !== 'colors';
+                    return !program.type || program.type !== 'colors';
                 },
                 type: 'list',
                 name: 'width',

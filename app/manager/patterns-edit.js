@@ -60,7 +60,7 @@ if (group_name) {
             },
             {
                 when: function () {
-                    return component.type && component.type !== 'colors';
+                    return !component.type || component.type !== 'colors';
                 },
                 type: 'list',
                 name: 'width',
@@ -175,6 +175,7 @@ if (group_name) {
             // Store edited component details
             editedComponent.name = answers.name;
             editedComponent.title = answers.title;
+            if (answers.width != 'full') editedComponent.width = answers.width;
 
             // Retain original details
             if(originalComponent.type) editedComponent.type = originalComponent.type;
