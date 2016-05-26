@@ -20,7 +20,7 @@ var ndplComponent = Vue.extend({
         inline_styles: function() {
             var _this = this,
                 styles = '';
-
+            
             // Inline style are only applied after the component has fully loaded
             if(_this.loaded) {
                 if(_this.component.options.sample_min_height) {
@@ -87,9 +87,8 @@ var ndplComponent = Vue.extend({
             // If scroll position is great than or equal to component offset top - 60 pixels
             // and scroll position is less than component offset top plus component height plus 60 pixels
             // and active component is not this component
-            if(_this.$root.scroll_position >= _this.$el.offsetTop - 60 &&
-                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) { // &&
-                //_this.$root.active_components.indexOf(_this.component) == -1) {
+            if(_this.$root && _this.$root.scroll_position >= _this.$el.offsetTop - 60 &&
+                _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) {
 
                 // If not currently auto scrolling to component
                 // and component is not active
@@ -104,7 +103,7 @@ var ndplComponent = Vue.extend({
             } else {
 
                 // If not currently auto scrolling to component
-                if(!_this.$root.scrolling_to) {
+                if(_this.$root && !_this.$root.scrolling_to) {
 
                     // Loop through active components and remove this component
                     for (var i = 0; i < _this.$root.active_components.length; i++) {
@@ -267,6 +266,7 @@ new Vue({
         client_name: null,
         client_url: null,
         creators: {},
+        content: {},
         groups: {},
         theme: {},
         assets: {
@@ -291,8 +291,11 @@ new Vue({
         prev_scroll_position: 0,
         active_group: null,
         active_components: [],
+        active_page: null,
         open_group: null,
+        show_first_page_on_load: false,
         scrolling_to: false,
+        sidebar_scrolling: false,
         window_outer_width: 0,
         breakpoint: 960,
         mobile_view: false,
@@ -353,6 +356,17 @@ new Vue({
             }
 
             return null;
+        },
+
+        library_inline_styles: function() {
+            var _this = this,
+                styles = '';
+            
+            if(_this.theme.max_width) {
+                styles += 'max-width:' + _this.theme.max_width + 'px;';
+            }
+
+            return styles;
         }
     },
 
@@ -389,6 +403,30 @@ new Vue({
                 setTimeout(_this.resizeFadeToggle, _this.delta);
             }
         });
+
+        /**
+         * Disable body scrolling when mouseover/mouseleave
+         * sidebar to prevent library scroll jumping.
+         */
+        var sidebar = document.querySelector('.ndpl-sidebar');
+        sidebar.addEventListener('mouseover', function(e) {
+            _this.sidebar_scrolling = true;
+        })
+        sidebar.addEventListener('mouseleave', function(e) {
+            _this.sidebar_scrolling = false;
+        });
+
+        /**
+         * Set active page based on hash or show first
+         * page on load variable.
+         */
+        setTimeout(function() {
+            var page = _this.isLoadingPage();
+
+            if(page) {
+                _this.loadPage(page);
+            }
+        }, 0);
     },
 
     methods: {
@@ -400,10 +438,7 @@ new Vue({
             var _this = this;
 
             _this.$http.get('./data.json').then(function (response) {
-
                 _this.initData(response.data, function() {
-                    _this.loadIntro();
-
                     if(_this.$data.groups.length) {
                         _this.setupGroups();
                     } else {
@@ -411,6 +446,28 @@ new Vue({
                     }
                 });
             });
+        },
+
+        /**
+         * Determine if a page should be loaded.
+         */
+        isLoadingPage: function() {
+            var _this = this,
+                hash = location.hash;
+
+            if(_this.content.pages.length) {
+                if(hash) {
+                    for (var i = 0; i < _this.content.pages.length; i++) {
+                        var page = _this.content.pages[i];
+
+                        if (page.name == hash.replace('#', '')) return page;
+                    }
+                } else if(_this.content.show_first_page_on_load) {
+                    return page;
+                }
+            }
+
+            return false;
         },
 
         /**
@@ -437,19 +494,6 @@ new Vue({
          */
         updateHash: function(hash) {
             history.pushState ? history.pushState(null, null, '#' + hash) : location.hash = hash;
-        },
-
-        /**
-         * Load intro Markdown.
-         */
-        loadIntro: function() {
-            var _this = this;
-
-            _this.$http.get('./templates/intro.md').then(function(response) {
-                _this.$set('intro', marked(response.data));
-            }, function() {
-                _this.logError('Failed to load <strong>intro</strong> template from <code>/templates/intro.md</code>. Is it missing?');
-            });
         },
 
         /**
@@ -612,6 +656,7 @@ new Vue({
             var _this = this;
 
             _this.scrollTo(e.target.hash);
+            _this.active_page = null;
         },
 
         /**
@@ -654,6 +699,26 @@ new Vue({
             var _this = this;
             
             _this.open_group = _this.open_group == group.id ? null : group.id;
+            _this.active_page = null;
+        },
+
+        /**
+         * Load content page.
+         * @param page
+         */
+        loadPage: function(page) {
+            var _this = this;
+
+            _this.active_page = page;
+            _this.active_components = [];
+            _this.open_group = null;
+            _this.open_nav = false;
+
+            _this.$http.get(page.file).then(function (response) {
+                _this.$set('active_page.markup', marked(response.data));
+            });
+
+            _this.updateHash(page.name);
         },
 
         /**
