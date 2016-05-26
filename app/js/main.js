@@ -454,8 +454,9 @@ new Vue({
         isLoadingPage: function() {
             var _this = this,
                 hash = location.hash;
-
+            
             if(_this.content.pages.length) {
+
                 if(hash) {
                     for (var i = 0; i < _this.content.pages.length; i++) {
                         var page = _this.content.pages[i];
@@ -463,7 +464,7 @@ new Vue({
                         if (page.name == hash.replace('#', '')) return page;
                     }
                 } else if(_this.content.show_first_page_on_load) {
-                    return page;
+                    return _this.content.pages[0];
                 }
             }
 
