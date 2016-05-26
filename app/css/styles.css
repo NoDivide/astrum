@@ -32,12 +32,12 @@
 
 /* Heading type sizes */
 .ndpl-library__title {
-    font-size: 36px;
+    font-size: 27px;
     font-weight: 400;
     line-height: 36px;
 }
 .ndpl-component__title {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 300;
     line-height: 32px;
 }
@@ -46,29 +46,29 @@
 .ndpl-page,
 .ndpl-intro,
 .ndpl-component__description {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     line-height: 21px;
 }
 
 /* Page sizes */
-.ndpl-page h1 { margin-bottom: 48px; }
+.ndpl-page h1 { margin-bottom: 24px; }
 .ndpl-page h2,
 .ndpl-page h3,
 .ndpl-page h4,
 .ndpl-page h5,
-.ndpl-page h6 { margin: 48px 0 24px; }
+.ndpl-page h6 { margin: 24px 0 12px; }
 .ndpl-page h2:first-child,
 .ndpl-page h3:first-child,
 .ndpl-page h4:first-child,
 .ndpl-page h5:first-child,
 .ndpl-page h6:first-child { margin-top: 0; }
-.ndpl-page h1 { font-size: 36px; font-weight: 400; line-height: 36px; }
-.ndpl-page h2 { font-size: 28px; font-weight: 300; line-height: 36px; }
-.ndpl-page h3 { font-size: 21px; font-weight: 300; line-height: 32px; }
-.ndpl-page h4 { font-size: 18px; font-weight: 300; line-height: 27px; }
-.ndpl-page h5 { font-size: 16px; font-weight: 300; line-height: 24px; }
-.ndpl-page h6 { font-size: 16px; font-weight: 400; line-height: 24px; }
+.ndpl-page h1 { font-size: 26px; font-weight: 400; line-height: 36px; }
+.ndpl-page h2 { font-size: 21px; font-weight: 300; line-height: 36px; }
+.ndpl-page h3 { font-size: 18px; font-weight: 300; line-height: 32px; }
+.ndpl-page h4 { font-size: 16px; font-weight: 300; line-height: 27px; }
+.ndpl-page h5 { font-size: 14px; font-weight: 300; line-height: 24px; }
+.ndpl-page h6 { font-size: 14px; font-weight: 400; line-height: 24px; }
 .ndpl-page code {
     display: inline-block;
     color: #BABEC7;
@@ -86,6 +86,42 @@
 }
 .ndpl-page p {
     margin-bottom: 24px;
+}
+
+@media only screen and (min-width: 60em) {
+
+    .ndpl-page h1 { margin-bottom: 48px; }
+    .ndpl-page h2,
+    .ndpl-page h3,
+    .ndpl-page h4,
+    .ndpl-page h5,
+    .ndpl-page h6 { margin: 48px 0 24px; }
+
+    /* Heading type sizes */
+    .ndpl-library__title {
+        font-size: 36px;
+        line-height: 36px;
+    }
+    .ndpl-component__title {
+        font-size: 21px;
+        line-height: 32px;
+    }
+
+    /* Body type size */
+    .ndpl-page,
+    .ndpl-intro,
+    .ndpl-component__description {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    /* Page sizes */
+    .ndpl-page h1 { font-size: 36px; line-height: 36px; }
+    .ndpl-page h2 { font-size: 28px; line-height: 36px; }
+    .ndpl-page h3 { font-size: 21px; line-height: 32px; }
+    .ndpl-page h4 { font-size: 18px; line-height: 27px; }
+    .ndpl-page h5 { font-size: 16px; line-height: 24px; }
+    .ndpl-page h6 { font-size: 16px; line-height: 24px; }
 }
 
 /**
@@ -690,6 +726,7 @@
 .ndpl-preloaded {
     left: -9999px;
     position: absolute;
+    top: -9999px;
 }
 
 @media only screen and (min-width: 60em) {
@@ -714,7 +751,7 @@
 .ndpl-library__title {
     padding-left: 12px;
     padding-right: 12px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
 
 @media only screen and (min-width: 60em) {
@@ -722,6 +759,7 @@
     .ndpl-library__title {
         padding-left: 0;
         padding-right: 0;
+        margin-bottom: 48px;
     }
 }
 
@@ -742,7 +780,7 @@
     margin-bottom: 12px;
 }
 .ndpl-component__description {
-    margin-bottom: 36px;
+    padding-bottom: 24px;
 }
 .ndpl-component__description code {
     display: inline-block;
@@ -794,6 +832,9 @@
     float: left;
     margin-top: 24px;
     width: 100%;
+}
+.ndpl-component__color-container:first-of-type {
+    margin-top: 0;
 }
 .ndpl-component__color-container:nth-child(even) {
     margin-right: 0;
