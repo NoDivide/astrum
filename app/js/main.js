@@ -74,6 +74,12 @@ var ndplComponent = Vue.extend({
                 });
             }
         });
+        
+        if (_this.component.html) {
+            var block = this.$el.querySelector('pre code');
+
+            hljs.highlightBlock(block);
+        }
     },
 
     methods: {

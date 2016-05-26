@@ -687,6 +687,10 @@
     padding-left: 12px;
     padding-right: 12px;
 }
+.ndpl-preloaded {
+    left: -9999px;
+    position: absolute;
+}
 
 @media only screen and (min-width: 60em) {
     .ndpl-page,

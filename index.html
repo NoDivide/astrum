@@ -181,7 +181,7 @@
 
             <div class="ndpl-content">
                 <div class="ndpl-page ndpl-c-brand-cai" :style="library_inline_styles" v-if="active_page">{{{ active_page.markup }}}</div>
-                <div class="ndpl-library" :style="library_inline_styles" v-if="! active_page">
+                <div class="ndpl-library" :style="library_inline_styles" :class="{ 'ndpl-preloaded': active_page }">
 
                     <ndpl-group v-for="group in groups"
                                 :group="group"
