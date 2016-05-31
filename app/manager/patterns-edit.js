@@ -180,6 +180,7 @@ if (group_name) {
             // Retain original details
             if(originalComponent.type) editedComponent.type = originalComponent.type;
             if(originalComponent.colors) editedComponent.colors = originalComponent.colors;
+            if(originalComponent.options) editedComponent.options = originalComponent.options;
 
             //// If creating a new group
             if (answers.new_group == 'create_new_group') {
