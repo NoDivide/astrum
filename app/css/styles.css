@@ -196,6 +196,7 @@
  * ----------------------------------------//
  */
 .ndpl-loading__title {
+    color: #303637;
     font-weight: 300;
     margin: 0 24px 24px;
     opacity: 0;
