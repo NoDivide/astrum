@@ -23,8 +23,8 @@ program.parse(process.argv);
 
 
 /**
-* Automatically output help if no parameters are passed.
-*/
+ * Automatically output help if no parameters are passed.
+ */
 if (!process.argv.slice(2).length) {
     program.outputHelp();
 }
@@ -172,7 +172,8 @@ if (group_name) {
                         type: 'list',
                         name: 'component_position',
                         message: 'Select component position in the "' + newComponent.group + '" group:',
-                        choices: utils.getComponentPositionChoices(newComponent.group)
+                        choices: utils.getComponentPositionChoices(newComponent.group),
+                        default: utils.getComponentPositionChoices(newComponent.group).length - 1
                     }
                 ]).then(function (answers) {
                     var groupIndex = utils.getGroupIndex(newComponent.group);

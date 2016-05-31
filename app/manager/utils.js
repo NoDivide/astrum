@@ -253,7 +253,7 @@ module.exports = {
 
     groupExists: function(group_name) {
         var parts = group_name.split("/");
-        
+
         return this.getGroupIndex(parts[0]) == -1 ? false : true;
     },
 
@@ -280,7 +280,7 @@ module.exports = {
 
     getGroupChoices: function(exclude_group) {
         exclude_group = typeof exclude_group !== 'undefined' ? exclude_group : null;
-        
+
         var choices = [];
 
         for (var i = 0; i < this.$data.groups.length; i++) {
@@ -339,9 +339,9 @@ module.exports = {
         }
 
         choices.push(new inquirer.Separator());
-        
+
         message = currentPosition == 0 ? 'Keep current first position' : 'Keep current position after ' + chalk.yellow(_this.$data.groups[groupIndex].components[currentPosition - 1].name);
-        
+
         choices.push({
             name: message,
             value: currentPosition
@@ -358,7 +358,7 @@ module.exports = {
             groupIndex = _this.getGroupIndex(group.name),
             first = true,
             passedCurrentPosition = false;
-        
+
         for (var i = 0; i < _this.$data.groups.length; i++) {
             var g = _this.$data.groups[i];
 
@@ -403,11 +403,11 @@ module.exports = {
                 name: 'Position first',
                 value: 0
             }];
-        
+
         for (var i = 0; i < _this.$data.groups[groupIndex].components.length; i++) {
             var c = _this.$data.groups[groupIndex].components[i];
             choices.push({
-                name: 'Position after ' + c.name,
+                name: 'Position after ' + chalk.yellow(c.name),
                 value: i + 1
             });
         }
