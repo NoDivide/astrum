@@ -508,16 +508,12 @@
  * Copyright info
  * ----------------------------------------//
  */
-
 .ndpl-copyright {
     display: block;
-    left: 24px;
-    bottom: 24px;
     font-size: 12px;
     font-weight: 300;
     line-height: 21px;
-    position: absolute;
-    right: 24px;
+    padding: 0 24px 24px;
 }
 .ndpl-copyright p {
     color: #B0B1B3;
