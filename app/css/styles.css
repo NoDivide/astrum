@@ -48,7 +48,7 @@
 .ndpl-component__description {
     font-size: 12px;
     font-weight: 300;
-    line-height: 21px;
+    line-height: 24px;
 }
 
 /* Page sizes */
@@ -74,7 +74,8 @@
     color: #BABEC7;
     border: 1px solid #E1E1E1;
     border-radius: 3px;
-    padding: 3px 6px;
+    line-height: 18px;
+    padding: 0 3px;
 }
 .ndpl-page a,
 .ndpl-page a[href] {
@@ -787,7 +788,8 @@
     color: #BABEC7;
     border: 1px solid #E1E1E1;
     border-radius: 3px;
-    padding: 3px 6px;
+    line-height: 18px;
+    padding: 0 3px;
 }
 
 @media only screen and (min-width: 60em) {
