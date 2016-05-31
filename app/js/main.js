@@ -41,11 +41,6 @@ var ndplComponent = Vue.extend({
 
                 hljs.highlightBlock(block);
             }
-        },
-        '$root.mobile_view': function(newVal) {
-
-            // Toggle show code base on mobile view
-            this.component.code_show = ! newVal;
         }
     },
 
