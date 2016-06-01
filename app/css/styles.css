@@ -21,6 +21,7 @@
 .ndpl-sidebar,
 .ndpl-intro,
 .ndpl-library__title,
+.ndpl-group__description,
 .ndpl-component__title,
 .ndpl-component__description,
 .ndpl-component__label,
@@ -45,6 +46,7 @@
 /* Body type size */
 .ndpl-page,
 .ndpl-intro,
+.ndpl-group__description,
 .ndpl-component__description {
     font-size: 12px;
     font-weight: 300;
@@ -111,6 +113,7 @@
     /* Body type size */
     .ndpl-page,
     .ndpl-intro,
+    .ndpl-group__description,
     .ndpl-component__description {
         font-size: 14px;
         line-height: 21px;
@@ -757,7 +760,24 @@
     .ndpl-library__title {
         padding-left: 0;
         padding-right: 0;
-        margin-bottom: 48px;
+        margin-bottom: 24px;
+    }
+}
+
+/**
+ * Group
+ * ----------------------------------------//
+ */
+.ndpl-group__description {
+    color: #616367;
+    margin-bottom: 48px;
+    padding: 0 12px;
+}
+
+@media only screen and (min-width: 60em) {
+
+    .ndpl-group__description {
+        padding: 0;
     }
 }
 

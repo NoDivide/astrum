@@ -156,6 +156,7 @@ if (group_name) {
                                 console.log();
                             } else {
                                 console.log();
+                                console.log(chalk.yellow('Add your group description to /components/' + newComponent.group + '/description.md (Markdown supported)'));
                                 console.log(chalk.yellow('Add  your component markup to /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                                 console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();

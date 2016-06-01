@@ -192,6 +192,9 @@
 
                         <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
+                        <div class="ndpl-group__description"
+                             v-html="group.description"></div>
+
                         <ndpl-component v-for="component in group.components"
                                         :component="component"
                                         inline-template>

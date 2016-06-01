@@ -519,7 +519,8 @@ new Vue({
                 // Add group components to group
                 for (var j = 0; j < group.components.length; j++) {
 
-                    // Set component default variables
+                    // Set default variables
+                    _this.$set('groups[' + i + '].description', '');
                     _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
                     _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
@@ -534,9 +535,27 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].html', '');
                     _this.$set('groups[' + i + '].components[' + j + '].description', '');
 
+                    _this.loadGroup(_this.groups[i]);
                     _this.loadComponent(_this.groups[i].components[j]);
                 }
             }
+        },
+
+        /**
+         * Load group files.
+         *
+         * @param group
+         */
+        loadGroup: function(group) {
+            var _this = this,
+                group_path = './components/' + group.name;
+
+            // Get and set component description
+            _this.$http.get(group_path + '/description.md').then(function (response) {
+                group.description = marked(response.data);
+            }, function () {
+                _this.logError('Description file for <strong>' + group.name + '</strong> group failed to load from <code>/' + group_path + '/description.md</code>');
+            });
         },
 
         /**

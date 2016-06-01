@@ -97,6 +97,14 @@ module.exports = {
                 return;
             }
 
+            fs.writeFile(group_path + '/description.md', '', function(err) {
+                if (err) {
+                    console.log(chalk.red('Error: ' + err));
+                    error = true;
+                    return;
+                }
+            });
+
             return callback();
         });
     },
