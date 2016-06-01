@@ -284,7 +284,10 @@ new Vue({
             info: []
         },
         components_count: 0,
+        groups_count: 0,
         components_loaded_count: 0,
+        groups_loaded_count: 0,
+        groups_loaded: false,
         loaded: false,
         resizing: false,
         typekit_loaded: false,
@@ -372,6 +375,11 @@ new Vue({
     },
 
     watch: {
+        groups_loaded: function() {
+            var _this = this;
+
+            _this.setupComponents();
+        },
         loaded: function() {
             var _this = this;
 
@@ -509,9 +517,26 @@ new Vue({
                 var group = _this.groups[i];
 
                 // Set group navigation navigation
-                var groupId = 'group-' + group.name;
-                _this.$set('groups[' + i + '].id', groupId);
+                _this.$set('groups[' + i + '].id', 'group-' + group.name);
                 _this.$set('groups[' + i + '].active', false);
+
+                // Set default variables
+                _this.$set('groups[' + i + '].description', '');
+
+                // Count groups
+                _this.groups_count = _this.groups.length;
+
+                // Load group
+                _this.loadGroup(_this.groups[i]);
+            }
+        },
+
+        setupComponents: function() {
+            var _this = this;
+
+            // Loop through the components
+            for (var i = 0; i < _this.groups.length; i++) {
+                var group = _this.groups[i];
 
                 // Count components
                 _this.components_count += group.components.length;
@@ -520,9 +545,8 @@ new Vue({
                 for (var j = 0; j < group.components.length; j++) {
 
                     // Set default variables
-                    _this.$set('groups[' + i + '].description', '');
                     _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
-                    _this.$set('groups[' + i + '].components[' + j + '].group_id', groupId);
+                    _this.$set('groups[' + i + '].components[' + j + '].group_id', 'group-' + group.name);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
                     _this.$set('groups[' + i + '].components[' + j + '].options', group.components[j].options ? group.components[j].options : false);
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_always_show', group.components[j].options.sample_always_show ? group.components[j].options.sample_always_show : false);
@@ -535,7 +559,6 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].html', '');
                     _this.$set('groups[' + i + '].components[' + j + '].description', '');
 
-                    _this.loadGroup(_this.groups[i]);
                     _this.loadComponent(_this.groups[i].components[j]);
                 }
             }
@@ -553,8 +576,9 @@ new Vue({
             // Get and set component description
             _this.$http.get(group_path + '/description.md').then(function (response) {
                 group.description = marked(response.data);
+                _this.areGroupsLoaded();
             }, function () {
-                _this.logError('Description file for <strong>' + group.name + '</strong> group failed to load from <code>/' + group_path + '/description.md</code>');
+                _this.logError('Description file for <strong>' + group.name + '</strong> group failed to load from <code>' + group_path + '/description.md</code>');
             });
         },
 
@@ -572,7 +596,7 @@ new Vue({
                 component.html = response.data;
                 _this.areComponentsLoaded();
             }, function () {
-                _this.logError('HTML file for <strong>' + component.name + '</strong> component failed to load from <code>/' + component_path + '/html.md</code>');
+                _this.logError('HTML file for <strong>' + component.name + '</strong> component failed to load from <code>' + component_path + '/html.md</code>');
             });
 
             // Get and set component description
@@ -580,8 +604,24 @@ new Vue({
                 component.description = marked(response.data);
                 _this.areComponentsLoaded();
             }, function () {
-                _this.logError('Description file for <strong>' + component.name + '</strong> component failed to load from <code>/' + component_path + '/description.md</code>');
+                _this.logError('Description file for <strong>' + component.name + '</strong> component failed to load from <code>' + component_path + '/description.md</code>');
             });
+        },
+
+        /**
+         * Increment groups loaded.
+         */
+        areGroupsLoaded: function() {
+            var _this = this;
+
+            _this.groups_loaded_count += 1;
+
+            if (_this.groups_loaded_count === _this.groups_count) {
+
+                setTimeout(function() {
+                    _this.groups_loaded = true;
+                }, 1000);
+            }
         },
 
         /**
