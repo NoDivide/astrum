@@ -832,6 +832,7 @@
 
     .ndpl-component--half {
         flex-grow: 2;
+        max-width: 50%;
         width: 50%;
     }
 
