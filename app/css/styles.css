@@ -71,7 +71,9 @@
 .ndpl-page h4 { font-size: 16px; font-weight: 300; line-height: 27px; }
 .ndpl-page h5 { font-size: 14px; font-weight: 300; line-height: 24px; }
 .ndpl-page h6 { font-size: 14px; font-weight: 400; line-height: 24px; }
-.ndpl-page code {
+.ndpl-page code,
+.ndpl-component__description code,
+.ndpl-group__description code {
     display: inline-block;
     color: #BABEC7;
     border: 1px solid #E1E1E1;
@@ -799,14 +801,6 @@
 }
 .ndpl-component__description {
     padding-bottom: 24px;
-}
-.ndpl-component__description code {
-    display: inline-block;
-    color: #BABEC7;
-    border: 1px solid #E1E1E1;
-    border-radius: 3px;
-    line-height: 18px;
-    padding: 0 3px;
 }
 
 @media only screen and (min-width: 60em) {
