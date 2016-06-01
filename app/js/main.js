@@ -47,12 +47,12 @@ var ndplComponent = Vue.extend({
     ready: function() {
         var _this = this;
 
-        // Monitor scroll and resize events and update navigation active state appropirately
-        window.addEventListener('scroll', _this.updateActive);
-        window.addEventListener('resize', _this.updateActive);
-
         // Listen for loaded event
         _this.$on('loaded', function() {
+
+            // Monitor scroll and resize events and update navigation active state appropirately
+            window.addEventListener('scroll', _this.updateActive);
+            window.addEventListener('resize', _this.updateActive);
 
             _this.setHideSample(function() {
                 _this.loaded = true;
@@ -503,7 +503,7 @@ new Vue({
          * @param hash
          */
         updateHash: function(hash) {
-            history.pushState && hash !== undefined ? history.pushState(null, null, '#' + hash) : location.hash = hash;
+            history.pushState ? history.pushState(null, null, '#' + hash) : location.hash = hash;
         },
 
         /**
