@@ -27,7 +27,9 @@
 .ndpl-component__label,
 .ndpl-component__code-toggle,
 .ndpl-component__color,
-.ndpl-page {
+.ndpl-page,
+.ndpl-nav__title,
+.ndpl-sidebar__title {
     font-family: 'Open Sans', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 }
 
@@ -516,13 +518,13 @@
  */
 .ndpl-copyright {
     display: block;
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 21px;
     padding: 0 24px 24px;
 }
 .ndpl-copyright p {
     color: #B0B1B3;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 21px;
     margin: 0;
 }
 .ndpl-copyright a {
