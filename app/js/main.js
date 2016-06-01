@@ -20,7 +20,7 @@ var ndplComponent = Vue.extend({
         inline_styles: function() {
             var _this = this,
                 styles = '';
-            
+
             // Inline style are only applied after the component has fully loaded
             if(_this.loaded) {
                 if(_this.component.options.sample_min_height) {
@@ -69,7 +69,7 @@ var ndplComponent = Vue.extend({
                 });
             }
         });
-        
+
         if (_this.component.html) {
             var block = this.$el.querySelector('pre code');
 
@@ -94,7 +94,7 @@ var ndplComponent = Vue.extend({
                 // If not currently auto scrolling to component
                 // and component is not active
                 if(!_this.$root.scrolling_to &&
-                   !_this.isActive(_this.component)) {
+                    !_this.isActive(_this.component)) {
 
                     // Set this component to active
                     _this.$root.active_components.push(_this.component);
@@ -109,10 +109,10 @@ var ndplComponent = Vue.extend({
                     // Loop through active components and remove this component
                     for (var i = 0; i < _this.$root.active_components.length; i++) {
                         var component = _this.$root.active_components[i];
-                        
+
                         if (component.id === _this.component.id) {
                             _this.$root.active_components.splice(i, 1);
-                            
+
                             return;
                         }
                     }
@@ -162,7 +162,7 @@ var ndplComponent = Vue.extend({
         shouldApplyBorder: function(hex) {
             var rgb = this.$root.convertHexToRgb(hex),
                 brightness = this.$root.getColorBrightness(rgb);
-            
+
             return brightness > 240;
         },
 
@@ -174,7 +174,7 @@ var ndplComponent = Vue.extend({
          */
         setHideSample: function(callback) {
             callback = typeof callback !== 'undefined' ?  callback : function() {};
-            
+
             var _this = this;
 
             _this.hide_sample_code = false;
@@ -365,7 +365,7 @@ new Vue({
         library_inline_styles: function() {
             var _this = this,
                 styles = '';
-            
+
             if(_this.theme.max_width) {
                 styles += 'max-width:' + _this.theme.max_width + 'px;';
             }
@@ -463,7 +463,7 @@ new Vue({
         isLoadingPage: function() {
             var _this = this,
                 hash = location.hash;
-            
+
             if(_this.content.pages.length) {
 
                 if(hash) {
@@ -503,7 +503,7 @@ new Vue({
          * @param hash
          */
         updateHash: function(hash) {
-            history.pushState ? history.pushState(null, null, '#' + hash) : location.hash = hash;
+            history.pushState && hash !== undefined ? history.pushState(null, null, '#' + hash) : location.hash = hash;
         },
 
         /**
@@ -545,7 +545,7 @@ new Vue({
                 for (var j = 0; j < group.components.length; j++) {
 
                     // Set default variables
-                    _this.$set('groups[' + i + '].components[' + j + '].id', 'component-' + group.components[j].name);
+                    _this.$set('groups[' + i + '].components[' + j + '].id', 'group-' + group.name + '-component-' + group.components[j].name);
                     _this.$set('groups[' + i + '].components[' + j + '].group_id', 'group-' + group.name);
                     _this.$set('groups[' + i + '].components[' + j + '].active', false);
                     _this.$set('groups[' + i + '].components[' + j + '].options', group.components[j].options ? group.components[j].options : false);
@@ -692,7 +692,7 @@ new Vue({
             var _this = this,
                 doc = document.documentElement,
                 top = doc && doc.scrollTop || document.body.scrollTop;
-            
+
             _this.prev_scroll_position = _this.scroll_position;
             _this.scroll_position = top;
         },
@@ -758,7 +758,7 @@ new Vue({
          */
         toggleOpenGroups: function(group) {
             var _this = this;
-            
+
             _this.open_group = _this.open_group == group.id ? null : group.id;
             _this.active_page = null;
         },
