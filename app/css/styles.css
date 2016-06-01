@@ -819,20 +819,25 @@
  */
 @media only screen and (min-width: 60em) {
 
+    .ndpl-components {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: -36px;
+    }
+
+    .ndpl-component {
+        padding-left: 36px;
+    }
+
     .ndpl-component--half {
-        clear: none;
-        float: left;
+        flex-grow: 2;
         width: 50%;
-        vertical-align: top;
     }
-    .ndpl-component--half:nth-child(1n) {
-        padding-right: 18px;
-    }
-    .ndpl-component--half:nth-child(2n) {
-        padding-left: 18px;
-    }
-    .ndpl-component--half:nth-child(2n + 1) {
-        clear: left;
+
+    .ndpl-component--full {
+        flex-grow: 1;
+        width: 100%;
     }
 }
 
