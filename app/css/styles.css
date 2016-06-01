@@ -829,13 +829,13 @@
         width: 50%;
         vertical-align: top;
     }
-    .ndpl-component--half:nth-child(even) {
+    .ndpl-component--half:nth-child(1n) {
         padding-right: 18px;
     }
-    .ndpl-component--half:nth-child(odd) {
+    .ndpl-component--half:nth-child(2n) {
         padding-left: 18px;
     }
-    .ndpl-component--half:nth-child(2n) {
+    .ndpl-component--half:nth-child(2n + 1) {
         clear: left;
     }
 }
