@@ -17,7 +17,9 @@
         "brand_color": "#FEA1AC",
         "background_color": "#FFFFFF",
         "code_highlight_theme": "github",
-        "override_code_highlight_bg": "#F9FAFC"
+        "override_code_highlight_bg": "#F9FAFC",
+        "sample_dark_background": "#333333",
+        "max-width": null
     },
     "assets": {
         "css": [],
@@ -28,5 +30,6 @@
         "typography_web_fonts": null,
         "google_web_fonts": null
     },
+    "content": null,
     "groups": []
 }
