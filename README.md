@@ -1,3 +1,5 @@
-# Pattern Library
+# Patterns
 
-A really simple framework for building pattern libraries.
+Patterns is a lightweight pattern library designed to be included with any web project.
+ 
+
