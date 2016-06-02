@@ -152,17 +152,21 @@
 .ndpl-c-brand-ca a[href]:focus,
 .ndpl-c-brand-ca a:focus,
 .ndpl-c-brand-ca a[href]:active,
-.ndpl-c-brand-ca a:active        { color: #303637; }            /* Brand child anchors */
+.ndpl-c-brand-ca a:active,
+.ndpl-c-brand-ca a[href]:visited,
+.ndpl-c-brand-ca a:visited        { color: #303637; }            /* Brand child anchors */
 .ndpl-c-brand-ca a[href]:hover,
-.ndpl-c-brand-ca a:hover         { color: #FEA1AC; }            /* Brand child anchors on hover */
+.ndpl-c-brand-ca a:hover          { color: #FEA1AC; }            /* Brand child anchors on hover */
 .ndpl-c-brand-cai a,
 .ndpl-c-brand-cai a[href],
 .ndpl-c-brand-cai a[href]:focus,
 .ndpl-c-brand-cai a:focus,
 .ndpl-c-brand-cai a[href]:active,
-.ndpl-c-brand-cai a:active        { color: #FEA1AC; }            /* Brand child anchors */
+.ndpl-c-brand-cai a:active,
+.ndpl-c-brand-cai a[href]:visited,
+.ndpl-c-brand-cai a:visited        { color: #FEA1AC; }            /* Brand child anchors */
 .ndpl-c-brand-cai a[href]:hover,
-.ndpl-c-brand-cai a:hover         { color: #303637 !important; }            /* Brand child anchors on hover */
+.ndpl-c-brand-cai a:hover          { color: #303637 !important; }            /* Brand child anchors on hover */
 
 /**
  * Helpers

@@ -194,7 +194,7 @@
                         <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
                         <div class="ndpl-group__description"
-                             v-html="group.description"></div>
+                             v-html="group.description ndpl-c-brand-ca"></div>
 
                         <div class="ndpl-components">
                             <ndpl-component v-for="component in group.components"
@@ -208,7 +208,7 @@
 
                                     <h3 class="ndpl-component__title">{{ component.title }}</h3>
 
-                                    <div class="ndpl-component__description"
+                                    <div class="ndpl-component__description ndpl-c-brand-ca"
                                          v-html="component.description"></div>
 
                                     <template v-if="component.type == 'colors'">
