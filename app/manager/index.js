@@ -6,7 +6,7 @@ var program = require('commander'),
     utils = require('./utils');
 
 program
-    .version('1.2.1')
+    .version('1.2.2')
     .usage('[command]')
     .command('new', 'create a new component')
     .command('edit', 'edit a component and/or group')

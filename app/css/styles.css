@@ -496,6 +496,7 @@
         padding: 24px 24px 36px;
     }
     .ndpl-sidebar__title {
+        color: #303637;
         clear: left;
         display: block;
         font-size: 18px;
@@ -540,6 +541,7 @@
  * ----------------------------------------//
  */
 .ndpl-nav__title {
+    color: #303637;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -574,6 +576,7 @@
     list-style: none;
     min-height: 0;
     padding: 0;
+    margin: 0;
 }
 .active .ndpl-nav__child-items {
     display: block;
@@ -729,8 +732,17 @@
     padding-top: 79px;
 }
 .ndpl-page {
+    color: #616367;
     padding-left: 12px;
     padding-right: 12px;
+}
+.ndpl-page h1,
+.ndpl-page h2,
+.ndpl-page h3,
+.ndpl-page h4,
+.ndpl-page h5,
+.ndpl-page h6 {
+    color: #303637;
 }
 .ndpl-preloaded {
     left: -9999px;
@@ -758,6 +770,7 @@
     zoom: 1;
 }
 .ndpl-library__title {
+    color: #303637;
     padding-left: 12px;
     padding-right: 12px;
     margin-bottom: 24px;
