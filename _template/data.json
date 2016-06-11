@@ -30,6 +30,16 @@
         "typography_web_fonts": null,
         "google_web_fonts": null
     },
-    "content": null,
+    "content": {
+        "show_first_page_on_load": true,
+        "title": "Overview",
+        "pages": [
+            {
+                "name": "introduction",
+                "title": "Introduction",
+                "file": "./pages/intro.md"
+            }
+        ]
+    },
     "groups": []
 }

@@ -121,6 +121,8 @@ if (group_name) {
                     utils.$data.groups.splice(answers.group_position, 0, newGroup);
                     utils.$data.groups[answers.group_position].components = [newComponent];
 
+                    console.log(utils.$data);
+                    
                     if (utils.createComponentFiles(newComponent)) {
                         utils.saveData(function () {
                             console.log();
@@ -130,8 +132,8 @@ if (group_name) {
 
                             if (typeColor) {
                                 console.log();
-                                console.log(chalk.yellow('Ignore /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
-                                console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
+                                console.log(chalk.yellow('Ignore ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
+                                console.log(chalk.yellow('Add your component description to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();
                                 console.log(chalk.yellow('Locate this component in your data.json file and add your colors to the "colors"'));
                                 console.log(chalk.yellow('array that has been created for you. Colors must be hex values e.g.:'));
@@ -156,9 +158,9 @@ if (group_name) {
                                 console.log();
                             } else {
                                 console.log();
-                                console.log(chalk.yellow('Add your group description to /components/' + newComponent.group + '/description.md (Markdown supported)'));
-                                console.log(chalk.yellow('Add  your component markup to /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
-                                console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
+                                console.log(chalk.yellow('Add your group description to ' + utils.$config.path + '/components/' + newComponent.group + '/description.md (Markdown supported)'));
+                                console.log(chalk.yellow('Add  your component markup to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
+                                console.log(chalk.yellow('Add your component description to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();
                             }
                         });
@@ -190,8 +192,8 @@ if (group_name) {
 
                             if (typeColor) {
                                 console.log();
-                                console.log(chalk.yellow('Ignore /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
-                                console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
+                                console.log(chalk.yellow('Ignore ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
+                                console.log(chalk.yellow('Add your component description to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();
                                 console.log(chalk.yellow('Locate this component in your data.json file and add your colors to the "colors"'));
                                 console.log(chalk.yellow('array that has been created for you. Colors must be hex values e.g.:'));
@@ -216,8 +218,8 @@ if (group_name) {
                                 console.log();
                             } else {
                                 console.log();
-                                console.log(chalk.yellow('Add  your component markup to /components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
-                                console.log(chalk.yellow('Add your component description to /components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
+                                console.log(chalk.yellow('Add  your component markup to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
+                                console.log(chalk.yellow('Add your component description to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();
                             }
                         });

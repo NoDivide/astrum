@@ -4,12 +4,59 @@ var fs = require('fs-extra'),
 
 module.exports = {
 
+    $config: null,
     $data: null,
 
     init: function() {
         var _this = this;
 
-        _this.$data = _this.getData();
+        // Get config.
+        try {
+            _this.$config = _this.getConfig();
+        } catch (e) {
+            throw(new Error(chalk.red("No patterns-config.json file found in project root.")));
+        }
+
+        // Get data.
+        try {
+            _this.$data = _this.getData();
+        } catch (e) {
+            throw(new Error(chalk.red("No data.json file found in " + _this.$config.path )));
+        }
+    },
+
+    setup: function(path, callback) {
+        var error = false;
+
+        fs.exists(path, function(r) {
+            throw(new Error(chalk.red('Pattern library has already been initialized.')));
+        });
+
+        fs.copy('./_template', path, function (err) {
+            if (err) {
+                console.log(chalk.red('Error: ' + err));
+                error = true;
+            }
+
+            return callback();
+        });
+
+        return ! error;
+    },
+
+    update: function(path, callback) {
+
+        console.log(path);
+        
+        return callback();
+    },
+
+    getConfig: function() {
+        return JSON.parse(fs.readFileSync('../../patterns-config.json'));
+    },
+
+    getData: function() {
+        return JSON.parse(fs.readFileSync('../..' + this.$config.path + '/data.json'));
     },
 
     outputList: function(components, groups) {
@@ -46,14 +93,12 @@ module.exports = {
         console.log();
     },
 
-    getData: function() {
-        return JSON.parse(fs.readFileSync('./data.json'));
-    },
+
 
     saveData: function(callback) {
         var error = false;
 
-        fs.writeFile('data.json', JSON.stringify(this.$data, null, 4), function (err) {
+        fs.writeFile(this.$config.path + '/data.json', JSON.stringify(this.$data, null, 4), function (err) {
             if (err) {
                 console.log(chalk.red('Error: ' + err));
                 error = true;
@@ -110,7 +155,7 @@ module.exports = {
     },
 
     deleteGroupFolder: function(group) {
-        var group_path = 'components/' + group,
+        var group_path = this.$config.path + '/components/' + group,
             error = false;
 
         fs.remove(group_path, function(err) {
@@ -158,7 +203,7 @@ module.exports = {
 
     createComponentFiles: function(component) {
         var _this = this,
-            group_path = 'components/' + component.group,
+            group_path = this.$config.path + '/components/' + component.group,
             component_path = group_path + '/' + component.name,
             error = false;
 
@@ -176,8 +221,8 @@ module.exports = {
     },
 
     moveComponentFiles: function(original_component, edited_component) {
-        var oPath = 'components/' + original_component.group + '/' + original_component.name,
-            dPath = 'components/' + edited_component.group + '/' + edited_component.name,
+        var oPath = this.$config.path + '/components/' + original_component.group + '/' + original_component.name,
+            dPath = this.$config.path + '/components/' + edited_component.group + '/' + edited_component.name,
             error = false;
 
         if(oPath != dPath) {
@@ -193,8 +238,8 @@ module.exports = {
     },
 
     moveGroupFolder: function(original_group, edited_group) {
-        var oPath = 'components/' + original_group.name,
-            dPath = 'components/' + edited_group.name,
+        var oPath = this.$config.path + '/components/' + original_group.name,
+            dPath = this.$config.path + '/components/' + edited_group.name,
             error = false;
 
         if(oPath != dPath) {
@@ -210,7 +255,7 @@ module.exports = {
     },
 
     deleteComponentFiles: function(group_name) {
-        var component_path = 'components/' + group_name,
+        var component_path = this.$config.path + '/components/' + group_name,
             error = false;
 
         fs.remove(component_path, function(err) {

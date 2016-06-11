@@ -238,8 +238,8 @@ if (group_name) {
                         console.log(chalk.green('\u2713 Pattern library data saved successfully.'));
                         console.log(chalk.grey('----------------------------------------------------------------'));
                         console.log();
-                        console.log(chalk.yellow('Edit your component markup in /components/' + editedComponent.group + '/' + editedComponent.name + '/markup.html'));
-                        console.log(chalk.yellow('Edit your component description in /components/' + editedComponent.group + '/' + editedComponent.name + '/description.md (Markdown supported)'));
+                        console.log(chalk.yellow('Edit your component markup in ' + utils.$config.path + '/components/' + editedComponent.group + '/' + editedComponent.name + '/markup.html'));
+                        console.log(chalk.yellow('Edit your component description in ' + utils.$config.path + '/components/' + editedComponent.group + '/' + editedComponent.name + '/description.md (Markdown supported)'));
                         console.log();
                     });
                 }
@@ -327,7 +327,7 @@ if (program.group) {
                         console.log();
 
                         if (originalGroup.name != editedGroup.name) {
-                            console.log(chalk.yellow('Group components have been moved to /components/' + editedGroup.name));
+                            console.log(chalk.yellow('Group components have been moved to ' + utils.$config.path + '/components/' + editedGroup.name));
                             console.log();
                         }
                     });
