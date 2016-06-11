@@ -120,8 +120,6 @@ if (group_name) {
 
                     utils.$data.groups.splice(answers.group_position, 0, newGroup);
                     utils.$data.groups[answers.group_position].components = [newComponent];
-
-                    console.log(utils.$data);
                     
                     if (utils.createComponentFiles(newComponent)) {
                         utils.saveData(function () {

@@ -8,10 +8,6 @@ var Command = require('commander').Command,
 
 utils.init();
 
-
-var pjson = require('../package.json'),
-    djson = require('../../..' + utils.$config.path + '/data.json');
-
 program
     .usage('[path]')
     .description(chalk.yellow('Update an existing pattern library.'));
@@ -36,11 +32,23 @@ if (!process.argv.slice(2).length) {
  */
 var path = program.args[0];
 if(path) {
-    utils.update(path, function () {
+    oldVersion = utils.$data.version;
+    newVersion = utils.$pjson.version;
+
+    if(newVersion !== oldVersion) {
+        utils.update(path, function () {
+            console.log();
+            console.log(chalk.grey('----------------------------------------------------------------'));
+            console.log(chalk.green('\u2713 Pattern library successfully updated from ' + oldVersion + ' to ' + newVersion + '.'));
+            console.log(chalk.grey('----------------------------------------------------------------'));
+            console.log();
+        });
+    } else {
         console.log();
         console.log(chalk.grey('----------------------------------------------------------------'));
-        console.log(chalk.green('\u2713 Pattern library successfully updated from ' + djson.version + ' to ' + pjson.version + '.'));
+        console.log(chalk.yellow('Pattern library is up-to-date.'));
         console.log(chalk.grey('----------------------------------------------------------------'));
         console.log();
-    });
+    }
+
 }

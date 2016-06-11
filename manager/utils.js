@@ -1,11 +1,13 @@
 var fs = require('fs-extra'),
     chalk = require('chalk'),
-    inquirer = require('inquirer');
+    inquirer = require('inquirer'),
+    pjson = require('../package.json');
 
 module.exports = {
 
     $config: null,
     $data: null,
+    $pjson: pjson,
 
     init: function() {
         var _this = this;
@@ -26,10 +28,13 @@ module.exports = {
     },
 
     setup: function(path, callback) {
-        var error = false;
+        var _this = this,
+            error = false;
 
         fs.exists(path, function(r) {
-            throw(new Error(chalk.red('Pattern library has already been initialized.')));
+            if (r) {
+                throw(new Error(chalk.red('Pattern library has already been initialized.')));
+            }
         });
 
         fs.copy('./_template', path, function (err) {
@@ -38,16 +43,36 @@ module.exports = {
                 error = true;
             }
 
+            _this.init();
+            _this.updateVersion(pjson.version);
+
             return callback();
         });
 
         return ! error;
     },
 
-    update: function(path, callback) {
+    updateVersion: function(number) {
+        this.$data.version = number;
 
-        console.log(path);
-        
+        this.saveData(function(){});
+    },
+
+    update: function(path, callback) {
+        var _this = this;
+
+        fs.exists(path, function(r) {
+            if (!r) {
+                throw(new Error(chalk.red('No pattern library found to update.')));
+            }
+        });
+
+        fs.copy('./_template/app', path + '/app');
+        fs.copy('./_template/index.html', path + '/index.html');
+        fs.copy('./_template/LICENSE.txt', path + '/LICENSE.txt');
+
+        _this.updateVersion(pjson.version);
+
         return callback();
     },
 
@@ -56,7 +81,7 @@ module.exports = {
     },
 
     getData: function() {
-        return JSON.parse(fs.readFileSync('../..' + this.$config.path + '/data.json'));
+        return JSON.parse(fs.readFileSync(this.$config.path + '/data.json'));
     },
 
     outputList: function(components, groups) {

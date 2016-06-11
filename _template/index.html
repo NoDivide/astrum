@@ -165,10 +165,9 @@
 
             </nav>
 
-            <div class="ndpl-copyright ndpl-c-brand-ca"
-                 v-if="copyright_start_year && client || all_creators ">
+            <div class="ndpl-copyright ndpl-c-brand-ca">
 
-                <p>
+                <p v-if="copyright_start_year && client || all_creators">
                     <template v-if="copyright_start_year && client">
                         &copy; {{ copyright_year }} {{{ client }}}.
                     </template>
@@ -176,6 +175,8 @@
                         <br/>Pattern library created by {{{ all_creators }}}.
                     </template>
                 </p>
+
+                <p>Patterns v{{ version }}</p>
 
             </div>
         </div>
