@@ -1,10 +1,14 @@
 var fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
+    cwd = require('cwd'),
+    dir = require('global-modules'),
     pjson = require('../package.json');
 
 module.exports = {
 
+    module_path: dir + '/' + pjson.name,
+    $root: cwd(),
     $config: null,
     $data: null,
     $pjson: pjson,
@@ -37,7 +41,7 @@ module.exports = {
             }
         });
 
-        fs.copy('./_template', path, function (err) {
+        fs.copy(module_path + '/_template', path, function (err) {
             if (err) {
                 console.log(chalk.red('Error: ' + err));
                 error = true;
@@ -67,9 +71,9 @@ module.exports = {
             }
         });
 
-        fs.copy('./_template/app', path + '/app');
-        fs.copy('./_template/index.html', path + '/index.html');
-        fs.copy('./_template/LICENSE.txt', path + '/LICENSE.txt');
+        fs.copy(module_path + '/_template/app', path + '/app');
+        fs.copy(module_path + '/_template/index.html', path + '/index.html');
+        fs.copy(module_path + '/_template/LICENSE.txt', path + '/LICENSE.txt');
 
         _this.updateVersion(pjson.version);
 
@@ -77,7 +81,7 @@ module.exports = {
     },
 
     getConfig: function() {
-        return JSON.parse(fs.readFileSync('../../patterns-config.json'));
+        return JSON.parse(fs.readFileSync(this.$root + '/astrum-config.json'));
     },
 
     getData: function() {
