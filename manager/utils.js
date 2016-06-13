@@ -16,7 +16,7 @@ module.exports = {
         try {
             _this.$config = _this.getConfig();
         } catch (e) {
-            throw(new Error(chalk.red("No patterns-config.json file found in project root.")));
+            throw(new Error(chalk.red("No astrum-config.json file found in project root.")));
         }
 
         // Get data.
