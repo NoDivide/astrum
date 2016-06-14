@@ -7,6 +7,7 @@ It's non-opinionated and doesn't expect you to write your markup or code in any 
 An Astrum pattern library comprises of components organised into groups. A component comprises of a rendered sample of a particular element along with a code sample and a (optional) description for the components usage. A group can also have an (optional) description and is used for organisational purposes. You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
 
 ***
+
 ## Table of Contents
 - [Getting Started](#getting-started)
 - [How Astrum Works](#getting-started)
@@ -29,6 +30,7 @@ An Astrum pattern library comprises of components organised into groups. A compo
 - [Updating Astrum](#updating-astrum)
 - [Contributing](#contributing)
 - [License](#license)
+
 ***
 
 ## Getting Started<a href=“#getting-started”></a>
@@ -166,16 +168,16 @@ You can specify as many creators as you need. Astrum will automatically format t
 
 Astrum supports basic theming to help you bring your pattern library inline with you projects branding.
 
-| Key | Default | Description |
-|:- |:- |:- |
-| border_color | #E0E6ED | The border color used throughout the pattern library, e.g. separating the nav items and around the component containers. | 
-| highlight_color | #F9FAFC | The highlight color used throughout the pattern library, .e.g. the background on nav items and the show code sample buttons. |
-| brand_color | #FEA1AC | The primary brand color for your project, used sparing to signify the active nav item as well as and anchors used in your descriptions. |
-| background_color | #FFFFFF | The background color for the whole pattern library. |
-| code_hightlight_theme | github | Astrum uses [highlight.js](https://highlightjs.org) for its code samples. You can use any style you like: [available styles](https://highlightjs.org/static/demo) |
-| override_code_highlight_bg | #F9FAFC | Allows you to override a [highlight.js](https://highlightjs.org) styles background color. |
-| sample_dark_background | #333333 | The color used for dark background component samples. |
-| max-width | null | A maximum width for the components container element. |
+Key | Default | Description
+---|---|---
+border_color | #E0E6ED | The border color used throughout the pattern library, e.g. separating the nav items and around the component containers.
+highlight_color | #F9FAFC | The highlight color used throughout the pattern library, .e.g. the background on nav items and the show code sample buttons.
+brand_color | #FEA1AC | The primary brand color for your project, used sparing to signify the active nav item as well as and anchors used in your descriptions.
+background_color | #FFFFFF | The background color for the whole pattern library.
+code_hightlight_theme | github | Astrum uses [highlight.js](https://highlightjs.org) for its code samples. You can use any style you like: [available styles](https://highlightjs.org/static/demo)
+override_code_highlight_bg | #F9FAFC | Allows you to override a [highlight.js](https://highlightjs.org) styles background color.
+sample_dark_background | #333333 | The color used for dark background component samples.
+max-width | null | A maximum width for the components container element.
 
 #### Assets<a href=“#assets”></a>
 ```
@@ -201,8 +203,7 @@ This is where you specify the CSS and JavaScript for your project, these will be
 ```
 If your project requires a font service you can specify this here. 
 
-##### Note 
-*For TypeKit you only need to specify the unique code for example: https://use.typekit.net/**dxp5bzu**.js*
+**Note:** *For TypeKit you only need to specify the unique code for example: https://use.typekit.net/**dxp5bzu**.js*
 
 #### Content Pages<a href=“#content-pages”></a>
 ```
@@ -220,21 +221,20 @@ If your project requires a font service you can specify this here.
 ```
 Astrum includes an introduction page by default. 
 
-| Key | Default | Description |
-|:- |:- |:- |
-|show_first_page_on_load|true|Display the first page in the `pages` array on load.|
-|title|Overview|The title that appears above the pages navigation in the sidebar.|
+Key | Default | Description
+---|---|---
+show_first_page_on_load|true|Display the first page in the `pages` array on load.
+title|Overview|The title that appears above the pages navigation in the sidebar.
 
 Add your pages to the `pages` array, each item requires:
 
-|Key|Description|
-|:-|:-|
-|name|The page name, should be lowercase with no spaces. This value is used to set the page’s ID.|
-|title|The page title, this appears in the page navigation in the sidebar.|
-|file|Either created `.md` file in the pages directory and enter the relative path to it or specify a full Url to a markdown file, for example a `README.md` file in a Git repository.|
+Key|Description
+---|---
+name|The page name, should be lowercase with no spaces. This value is used to set the page’s ID.
+title|The page title, this appears in the page navigation in the sidebar.
+file|Either created `.md` file in the pages directory and enter the relative path to it or specify a full Url to a markdown file, for example a `README.md` file in a Git repository.
 
-##### Note 
-*If you don’t require any pages in your pattern library simple set the `content` key value to `null`.*
+**Note:** *If you don’t require any pages in your pattern library simple set the `content` key value to `null`.*
 
 ## Adding Components <a href=“#adding-components”></a>
 The simplest way to add a component to your pattern library is by using the Astrum command-line tool which will as you a series of questions on how you want the component to be configured. For example:
@@ -330,11 +330,11 @@ Components can also have special options that alter their behaviour. To use thes
 
 The available options are:
 
-|Key|Value|Description|
-|:-|:-|:-|
-|sample_dark_background|boolean|Set the background of the component sample area to be a dark color.|
-|sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detected the component rendered height. When it’s hidden in your project CSS Astrum shows a message to this effect. If the component is absolutely positioned it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.|
-|sample_mobile_hidden|boolean|Typically used in conjunction with the `sample_min_height` option if a component is meant to be hidden at mobile resolutions set this option to true.|
+Key|Value|Description
+---|---|---
+sample_dark_background|boolean|Set the background of the component sample area to be a dark color.
+sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detected the component rendered height. When it’s hidden in your project CSS Astrum shows a message to this effect. If the component is absolutely positioned it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.
+sample_mobile_hidden|boolean|Typically used in conjunction with the `sample_min_height` option if a component is meant to be hidden at mobile resolutions set this option to true.
 
 ## Editing Components<a href=“#editing-components”></a>
 To edit a component use the `edit` command:
@@ -350,8 +350,7 @@ You can also edit a group using the `—group` option:
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-edit-group.gif)
 
-##### Note
-*If you change a groups name Astrum automatically updates all of the groups components.*
+**Note:** *If you change a groups name Astrum automatically updates all of the groups components.*
 
 ## Listing Components<a href=“#listing-components”></a>
 Do see a list of all of the components in your pattern library you can use the `list` command:
@@ -389,9 +388,9 @@ You will receive feedback that the update is complete.
 ## Contributing<a href=“#contributing”></a>
 Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](CONTRIBUTING.md):
 
-[Bug reports](CONTRIBUTING.md#bugs)
-[Feature requests](CONTRIBUTING.md#features)
-[Pull requests](CONTRIBUTING.md#pull-requests)
+- [Bug reports](CONTRIBUTING.md#bugs)
+- [Feature requests](CONTRIBUTING.md#features)
+- [Pull requests](CONTRIBUTING.md#pull-requests)
 
 
 ## License<a href=“#license”></a>
