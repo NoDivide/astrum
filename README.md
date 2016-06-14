@@ -95,6 +95,7 @@ The `data.json` file is central to how Astrum works and should be relatively sel
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
         "sample_dark_background": "#333333",
+        "show_version": true,
         "max-width": null
     },
     "assets": {
