@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title v-text="project_name ? project_name + ' | Pattern Library' : 'Pattern Library'"></title>
 
+        <!-- Astrum (https://github.com/NoDivide/astrum) -->
+        <meta name="application-name" content="Astrum {{ version }}" />
+
         <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
@@ -176,7 +179,7 @@
                     </template>
                 </p>
 
-                <p>Patterns v{{ version }}</p>
+                <p v-if="theme.show_version">Astrum v{{ version }}</p>
 
             </div>
         </div>
