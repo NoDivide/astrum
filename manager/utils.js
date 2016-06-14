@@ -15,7 +15,7 @@ module.exports = {
 
     init: function() {
         var _this = this;
-
+        
         // Get config.
         try {
             _this.$config = _this.getConfig();
@@ -41,19 +41,21 @@ module.exports = {
             }
         });
 
-        fs.copy(module_path + '/_template', path, function (err) {
-            if (err) {
-                console.log(chalk.red('Error: ' + err));
-                error = true;
-            }
+        _this.saveConfig(path, function() {
+            fs.copy(_this.module_path + '/_template', path, function (err) {
+                if (err) {
+                    console.log(chalk.red('Error: ' + err));
+                    error = true;
+                }
 
-            _this.init();
-            _this.updateVersion(pjson.version);
+                _this.init();
+                _this.updateVersion(pjson.version);
 
-            return callback();
+                return callback();
+            });
+
+            return ! error;
         });
-
-        return ! error;
     },
 
     updateVersion: function(number) {
@@ -71,9 +73,9 @@ module.exports = {
             }
         });
 
-        fs.copy(module_path + '/_template/app', path + '/app');
-        fs.copy(module_path + '/_template/index.html', path + '/index.html');
-        fs.copy(module_path + '/_template/LICENSE.txt', path + '/LICENSE.txt');
+        fs.copy(_this.module_path + '/_template/app', path + '/app');
+        fs.copy(_this.module_path + '/_template/index.html', path + '/index.html');
+        fs.copy(_this.module_path + '/_template/LICENSE.txt', path + '/LICENSE.txt');
 
         _this.updateVersion(pjson.version);
 
@@ -122,7 +124,22 @@ module.exports = {
         console.log();
     },
 
+    saveConfig: function(path, callback) {
+        var error = false;
 
+        fs.writeFile(this.$root + '/astrum-config.json', JSON.stringify({
+            path: path
+        }, null, 4), function (err) {
+            if (err) {
+                console.log(chalk.red('Error: ' + err));
+                error = true;
+            }
+
+            return callback();
+        });
+
+        return ! error;
+    },
 
     saveData: function(callback) {
         var error = false;

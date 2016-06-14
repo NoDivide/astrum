@@ -157,7 +157,7 @@ if (group_name) {
                             } else {
                                 console.log();
                                 console.log(chalk.yellow('Add your group description to ' + utils.$config.path + '/components/' + newComponent.group + '/description.md (Markdown supported)'));
-                                console.log(chalk.yellow('Add  your component markup to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
+                                console.log(chalk.yellow('Add your component markup to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                                 console.log(chalk.yellow('Add your component description to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();
                             }
@@ -216,7 +216,7 @@ if (group_name) {
                                 console.log();
                             } else {
                                 console.log();
-                                console.log(chalk.yellow('Add  your component markup to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
+                                console.log(chalk.yellow('Add your component markup to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/markup.html'));
                                 console.log(chalk.yellow('Add your component description to ' + utils.$config.path + '/components/' + newComponent.group + '/' + newComponent.name + '/description.md (Markdown supported)'));
                                 console.log();
                             }
