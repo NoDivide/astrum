@@ -36,7 +36,7 @@
             .ndpl-c-brand-ca a:hover             { color: {{ theme.brand_color }} !important; }
             .ndpl-c-brand-cai a                  { color: {{ theme.brand_color }} !important; }
         </style>
-        <link rel="stylesheet" :href="'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/' + theme.code_highlight_theme + '.min.css'">
+        <link rel="stylesheet" v-if="theme.code_highlight_theme" :href="'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/' + theme.code_highlight_theme + '.min.css'">
         <style v-if="theme.override_code_highlight_bg">.hljs { background: {{ theme.highlight_color }}} !important; }</style>
         <link rel="stylesheet" href="app/css/styles.css">
 
