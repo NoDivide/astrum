@@ -66,6 +66,7 @@ components               // Your components.
 pages                    // Your pages.
   intro.md               // Example page.
 data.json                // Core data file.
+favicon.png              // Astrums default favicon.
 index.html               // Patterns app index file.
 LICENSE.txt              // MIT licence file. 
 ```
@@ -78,6 +79,7 @@ The `data.json` file is central to how Astrum works and should be relatively sel
 ```
 {
     "project_logo": null,
+    "project_favicon": "favicon.png",
     "project_name": null,
     "project_url": null,
     "copyright_start_year": null,
@@ -131,6 +133,7 @@ Let's break it down in details:
 ```
 {
     "project_logo": "/assets/images/logo.svg",
+    "project_favicon": "../favicon.png",
     "project_name": "My Project",
     "project_url": "http://myproject.com",
     "copyright_start_year": 2015,
