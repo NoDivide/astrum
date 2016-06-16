@@ -92,7 +92,7 @@ The `data.json` file is central to how Astrum works and should be relatively sel
     "theme": {
         "border_color": "#E0E6ED",
         "highlight_color": "#F9FAFC",
-        "brand_color": "#FEA1AC",
+        "brand_color": "#00585C",
         "background_color": "#FFFFFF",
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
@@ -160,7 +160,7 @@ You can specify as many creators as you need. Astrum will automatically format t
     "theme": {
         "border_color": "#E0E6ED",
         "highlight_color": "#F9FAFC",
-        "brand_color": "#FEA1AC",
+        "brand_color": "#00585C",
         "background_color": "#FFFFFF",
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
@@ -176,7 +176,7 @@ Key | Default | Description
 ---|---|---
 border_color | #E0E6ED | The border color used throughout the pattern library, e.g. separating the nav items and around the component containers.
 highlight_color | #F9FAFC | The highlight color used throughout the pattern library, .e.g. the background on nav items and the show code sample buttons.
-brand_color | #FEA1AC | The primary brand color for your project, used sparing to signify the active nav item as well as and anchors used in your descriptions.
+brand_color | #00585C | The primary brand color for your project, used sparing to signify the active nav item as well as and anchors used in your descriptions.
 background_color | #FFFFFF | The background color for the whole pattern library.
 code_hightlight_theme | github | Astrum uses [highlight.js](https://highlightjs.org) for its code samples. You can use any style you like: [available styles](https://highlightjs.org/static/demo)
 override_code_highlight_bg | #F9FAFC | Allows you to override a [highlight.js](https://highlightjs.org) styles background color.
