@@ -261,6 +261,7 @@ new Vue({
     data: {
         intro: null,
         project_logo: null,
+        project_favicon: null,
         project_name: null,
         project_url: null,
         copyright_start_year: null,
