@@ -97,6 +97,7 @@ The `data.json` file is central to how Astrum works and should be relatively sel
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
         "sample_dark_background": "#333333",
+        "show_project_name": true,
         "show_version": true,
         "max-width": null
     },
@@ -165,6 +166,7 @@ You can specify as many creators as you need. Astrum will automatically format t
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
         "sample_dark_background": "#333333",
+        "show_project_name": true,
         "show_version": true,
         "max-width": null
     },
@@ -181,6 +183,7 @@ background_color | #FFFFFF | The background color for the whole pattern library.
 code_hightlight_theme | github | Astrum uses [highlight.js](https://highlightjs.org) for its code samples. You can use any style you like: [available styles](https://highlightjs.org/static/demo)
 override_code_highlight_bg | #F9FAFC | Allows you to override a [highlight.js](https://highlightjs.org) styles background color.
 sample_dark_background | #333333 | The color used for dark background component samples.
+show_project_name | true | Show the project name in the sidebar.
 show_version | true | Show the Astrum version at the bottom of the sidebar.
 max-width | null | A maximum width for the components container element.
 

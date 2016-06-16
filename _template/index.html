@@ -86,7 +86,7 @@
                  v-if="project_logo"/>
 
             <h1 class="ndpl-header__title ndpl-c-brand-ca">
-                {{{ project }}}
+                <span v-if="theme.show_project_name">{{{ project }}}</span>
                 <small>Pattern Library</small>
             </h1>
 
@@ -112,7 +112,7 @@
                      v-if="project_logo"/>
 
                 <h1 class="ndpl-sidebar__title ndpl-c-brand-ca">
-                    {{{ project }}}
+                    <span v-if="theme.show_project_name">{{{ project }}}</span>
                     <small>Pattern Library</small>
                 </h1>
 
