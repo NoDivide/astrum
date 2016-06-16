@@ -756,7 +756,21 @@
     .ndpl-page,
     .ndpl-library {
         margin: 0 auto;
-        padding: 42px 0;
+        padding: 56px 0;
+    }
+    .ndpl-page h1:first-child,
+    .ndpl-page h2:first-child,
+    .ndpl-page h3:first-child,
+    .ndpl-page h4:first-child,
+    .ndpl-page h5:first-child,
+    .ndpl-page h6:first-child,
+    .ndpl-library h1:first-child,
+    .ndpl-library h2:first-child,
+    .ndpl-library h3:first-child,
+    .ndpl-library h4:first-child,
+    .ndpl-library h5:first-child,
+    .ndpl-library h6:first-child {
+        margin-top: 0;
     }
     .ndpl-content {
         padding: 36px 48px 36px 312px;
