@@ -403,6 +403,23 @@ Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestud
 - [Feature requests](CONTRIBUTING.md#features)
 - [Pull requests](CONTRIBUTING.md#pull-requests)
 
+## Browser Support
+- Chrome *(latest 2)*
+- Safari *(latest 2)*
+- Firefox *(latest 2)*
+- Opera *(latest 2)*
+- Edge *(latest 2)*
+- Internet Explorer 10+
+
+This doesn't mean that Astrum cannot be used in older browsers, we’re just aiming to ensure compatibility with the ones mentioned above.
+
+## Acknowledgements
+Astrum wouldn’t work without [Vue.js](http://vuejs.org/) and the work that Evan You is doing there: [support his efforts](http://vuejs.org/support-vuejs/).
+
+The nifty loading animation we use was created by [Tobias Ahlin](http://tobiasahlin.com/spinkit/).
+
+Our command-line tool is built using [Commander](https://www.npmjs.com/package/commander) by TJ Holowaychuk and [Inquirer](https://www.npmjs.com/package/inquirer) by Simon Boudrias.
+
 
 ## License<a href=“#license”></a>
 The code is available under the [MIT license](_template/LICENSE.txt).

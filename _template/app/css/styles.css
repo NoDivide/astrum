@@ -4,6 +4,7 @@
  */
 .ndpl-body {
     background-color: #FFF;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
     margin: 0;
     padding: 0;
 }
@@ -453,7 +454,8 @@
     box-shadow: 1px 0 2px rgba(0,0,0,0.2);
     height: 100%;
     left: -100%;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 103px 0 24px;
     position: fixed;
     right: 0;
@@ -480,11 +482,14 @@
         background-color: #FFF;
         bottom: 0;
         display: block;
-        left: 0;
+        left: -264px;
         padding: 0;
         position: fixed;
         top: 0;
         width: 264px;
+    }
+    .loaded .ndpl-sidebar {
+        left: 0;
     }
 
     /**
@@ -853,9 +858,18 @@
 @media only screen and (min-width: 60em) {
 
     .ndpl-components {
+        display: -ms-flexbox;
+        display: -webkit-flex;
         display: flex;
+
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
         flex-direction: row;
+
+        -ms-flew-wrap: wrap;
+        -webkit-flew-wrap: wrap;
         flex-wrap: wrap;
+
         margin-left: -36px;
     }
 
@@ -864,12 +878,17 @@
     }
 
     .ndpl-component--half {
+        -ms-flex-grow: 2;
+        -webkit-flex-grow: 2;
         flex-grow: 2;
+
         max-width: 50%;
         width: 50%;
     }
 
     .ndpl-component--full {
+        -ms-flex-grow: 1;
+        -webkit-flex-grow: 1;
         flex-grow: 1;
         width: 100%;
     }
@@ -985,7 +1004,9 @@
     font-size: 12px;
     line-height: 18px;
     opacity: 0.75;
-    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
     padding: 36px 12px;
     white-space: pre;
 }
