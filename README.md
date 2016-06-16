@@ -1,5 +1,7 @@
 # Astrum
 
+![](http://nodivide.imgix.net/astrum/header.jpg)
+
 Astrum is a lightweight pattern library designed to be included with any web project.
 
 It's non-opinionated and doesn't expect you to write your markup or code in any particular way.
