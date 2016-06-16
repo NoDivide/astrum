@@ -635,7 +635,12 @@
     position: absolute;
     right: 24px;
     top: 50%;
+    transform: rotate(90deg);
+    transition: transform .25s ease;
     width: 5px;
+}
+.active .ndpl-nav__group:after {
+    transform: rotate(-90deg);
 }
 
 /**
