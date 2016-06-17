@@ -205,6 +205,9 @@
 .ndpl-apply-border {
     border: 1px solid #E0E6ED;
 }
+.ndpl-apply-border + .ndpl-apply-border {
+    border-top: none;
+}
 
 /**
  * Loading
