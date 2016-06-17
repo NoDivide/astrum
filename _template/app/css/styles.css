@@ -8,6 +8,9 @@
     margin: 0;
     padding: 0;
 }
+[class^="ndpl-"], [class*=" ndpl-"] {
+    box-sizing: border-box;
+}
 .ndpl-disable-scrolling {
     overflow: hidden;
 }
