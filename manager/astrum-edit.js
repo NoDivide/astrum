@@ -32,7 +32,7 @@ if (group_name) {
     var parts = group_name.split('/'),
         existingComponentIndex = utils.getComponentIndex(group_name),
         existingGroupIndex = utils.getGroupIndex(parts[0]);
-
+    
     if (existingComponentIndex !== undefined) {
         var component = utils.getComponent(group_name);
 
@@ -201,10 +201,8 @@ if (group_name) {
                 editedComponent.group = answers.group;
                 editedGroupIndex = answers.group_position;
 
-                // Remove component from original group
-                utils.$data.groups[existingGroupIndex].components.splice(existingComponentIndex, 1);
-
-                // Else set edited components group to existing group name
+                // Refresh existing groups index
+                existingGroupIndex = utils.getGroupIndex(originalComponent.group);
             } else {
                 editedComponent.group = answers.new_group ? answers.new_group : originalComponent.group;
                 editedGroupIndex = utils.getGroupIndex(editedComponent.group);
@@ -217,10 +215,11 @@ if (group_name) {
             }
 
             if (!error) {
+                
                 // Remove original component in data
                 utils.$data.groups[existingGroupIndex].components.splice(existingComponentIndex, 1);
                 utils.$data.groups[editedGroupIndex].components.splice(answers.component_position, 0, editedComponent);
-
+                
                 // Move component files
                 if (utils.moveComponentFiles(originalComponent, editedComponent)) {
 

@@ -179,6 +179,8 @@ module.exports = {
     },
 
     createGroupFolder: function(group_path, callback) {
+        var _this = this;
+
         callback = typeof callback !== 'undefined' ? callback : function(){};
 
         fs.mkdir(group_path, function(err) {
@@ -188,15 +190,25 @@ module.exports = {
                 return;
             }
 
-            fs.writeFile(group_path + '/description.md', '', function(err) {
-                if (err) {
-                    console.log(chalk.red('Error: ' + err));
-                    error = true;
-                    return;
-                }
-            });
+            _this.createGroupDescription(group_path);
 
             return callback();
+        });
+    },
+
+    createGroupDescription: function(group_path) {
+        
+        fs.exists(group_path + '/description.md', function(r) {
+            
+            if(!r) {
+                fs.writeFile(group_path + '/description.md', '', function(err) {
+                    if (err) {
+                        console.log(chalk.red('Error: ' + err));
+                        error = true;
+                        return;
+                    }
+                });
+            }
         });
     },
 
@@ -267,16 +279,20 @@ module.exports = {
     },
 
     moveComponentFiles: function(original_component, edited_component) {
-        var oPath = this.$config.path + '/components/' + original_component.group + '/' + original_component.name,
-            dPath = this.$config.path + '/components/' + edited_component.group + '/' + edited_component.name,
+        var _this = this,
+            o_path = this.$config.path + '/components/' + original_component.group + '/' + original_component.name,
+            d_group_path = this.$config.path + '/components/' + edited_component.group,
+            d_path = d_group_path + '/' + edited_component.name,
             error = false;
 
-        if(oPath != dPath) {
-            fs.move(oPath, dPath, function(err) {
+        if(o_path != d_path) {
+            fs.move(o_path, d_path, function(err) {
                 if (err) {
                     console.error(chalk.red('Error: ' + err));
                     error = true;
                 }
+
+                _this.createGroupDescription(d_group_path);
             });
         }
 
