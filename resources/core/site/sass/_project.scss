@@ -13,8 +13,43 @@ $hsu: $half-spacing-unit;
  * ----------------------------------------//
  */
 $use-typography:  true;
-$use-grid:        true;
-$use-island:      true;
-$use-flag:        true;
 $use-nav:         true;
 
+
+/**
+ * Font stacks
+ * ------------------------------//
+ */
+$sans-serif-stack: "aktiv-grotesk", "helvetica", sans-serif;
+
+
+/**
+ * Font stack weights
+ * -----------------------------//
+ * Override with weights provided by the font service.
+ * Some fonts use different wording for different weights
+ * for example "medium" or "book". These are usually instead
+ * of "regular" so seens as we're abstracting the font-stack
+ * usage here it's advised to use the weight names listed here.
+ */
+$sans-serif-weights: ( thin:      200,
+                       light:     300,
+                       regular:   400,
+                       semibold:  500,
+                       bold:      700,
+                       extrabold: 800,
+                       black:     900 );
+
+/**
+ * Typescale
+ * ------------------------------//
+ */
+$tera:    104;
+$giga:    80;
+$mega:    60;
+$alpha:   48;
+$beta:    36;
+$gamma:   23;
+$delta:   18;
+$epsilon: 16;
+$zeta:    16;

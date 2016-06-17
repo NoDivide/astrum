@@ -1,0 +1,9 @@
+/**
+ * Font weights.
+ */
+.light {
+    @include font-stack(light, sans-serif, normal, true);
+}
+.bold {
+    @include font-stack(bold, sans-serif, normal, true);
+}

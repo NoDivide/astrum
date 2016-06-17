@@ -1,0 +1,20 @@
+/**
+ * Logo
+ * ----------------------------------------//
+ */
+.logo {
+    background: transparent url(/assets/images/site/logo.svg) center no-repeat;
+    background-size: 100% auto;
+    height: 54px;
+    text-indent: -9999px;
+    width: 345px;
+
+    &--inverted {
+        background-image: url(/assets/images/site/logo--inverted.svg);
+    }
+
+    &--small {
+        height: 16px;
+        width: 106px;
+    }
+}

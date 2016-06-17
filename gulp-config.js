@@ -35,6 +35,34 @@ var builds = {
         templates: {
             raw: 'resources/views/'
         }
+    },
+
+    astrum: {
+        styles: {
+            raw:  paths.core + '/astrum/sass/',
+            src:  paths.css_dest + '/src/astrum/',
+            dist: paths.css_dest + '/dist/astrum/'
+        },
+
+        scripts: {
+            raw:  paths.core + '/astrum/js/',
+            src:  paths.scripts_dest + '/src/astrum/',
+            dist: paths.scripts_dest + '/dist/astrum/'
+        },
+
+        icons: {
+            raw:    paths.core + '/astrum/icons/',
+            dest:   paths.icons_dest + '/astrum/',
+            styles: paths.core + '/astrum/sass/components/icons/'
+        },
+
+        handlebarsTemplates: {
+            raw: paths.core + '/astrum/js/templates/'
+        },
+
+        templates: {
+            raw: 'resources/views/'
+        }
     }
 };
 
@@ -47,11 +75,20 @@ var vendor = {
             head: [],
             foot: []
         }
+    },
+    astrum: {
+        styles: [
+            paths.vendor + '/normalize.css/normalize.css'
+        ],
+        scripts: {
+            head: [],
+            foot: []
+        }
     }
 };
 
 module.exports = {
-    url: 'http://bp-static.loc',
+    url: 'http://astrum.loc',
     paths: paths,
     builds: builds,
     vendor: vendor

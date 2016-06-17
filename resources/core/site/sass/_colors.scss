@@ -5,19 +5,24 @@
  * Set project brand variables first. These can then be included in the color map.
  * Details of how to use the color map can be found here: https://medium.com/p/clean-colour-management-with-sass-4d5e9bb4f1b2
  */
-$brand-1: #FEA1AC;
-$brand-2: #666666;
-$brand-3: #444444;
+$brand-1: #000000;
+$brand-2: #005E69;
+$brand-2: #15455B;
+$brand-3: #218597;
+$brand-4: #666666;
+$brand-5: #A1CAD5;
+$brand-6: #F3F3F3;
+$brand-7: #FFFFFF;
 
 $colors: (
 
     base: (
-        body:           $brand-2,
-        heading:        $brand-3,
+        body:           $brand-4,
+        heading:        $brand-1,
 
-        anchor:         $brand-1,
-        anchor-hover:   darken($brand-1, 5%),
-        anchor-visited: lighten($brand-1, 5%),
+        anchor:         $brand-3,
+        anchor-hover:   darken($brand-3, 5%),
+        anchor-visited: lighten($brand-3, 5%),
 
         table-border:   #DDD,
         table-stripe:   #F5F5F5,
@@ -41,5 +46,20 @@ $colors: (
         danger-text:    #B94A48,
         danger-bg:      #F2DEDE,
         danger-border:  darken(adjust-hue(#F2DEDE, -10), 5%)
+    ),
+
+    btn: (
+        default-bg: transparent,
+        default-bg-hover: $brand-3,
+        default-border: $brand-3,
+        default-border-hover: $brand-3,
+        default-text: $brand-3,
+        default-text-hover: $brand-7,
+        inverted-bg: transparent,
+        inverted-bg-hover: $brand-3,
+        inverted-border: $brand-3,
+        inverted-border-hover: $brand-3,
+        inverted-text: $brand-7,
+        inverted-text-hover: $brand-7
     )
 );

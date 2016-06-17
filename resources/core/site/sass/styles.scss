@@ -10,9 +10,6 @@
 @import "project";
 @import "colors";
 @import "globals";
-@import "functions";
-@import "mixins";
-@import "helpers";
 
 
 /**
@@ -29,8 +26,17 @@
 
 
 /**
+ * Project helpers
+ */
+@import "functions";
+@import "mixins";
+@import "helpers";
+
+
+/**
  * Base
  */
+@import "base/typography";
 
 
 /**
@@ -41,7 +47,8 @@
 /**
  * Objects
  */
-
+@import "objects/logo";
+@import "objects/button";
 
 /**
  * UI

@@ -1,0 +1,148 @@
+{
+    "project_logo": "../assets/images/site/logo.svg",
+    "project_favicon": "favicon.png",
+    "project_name": "Astrum",
+    "project_url": "http://astrum.nodividestudio.com",
+    "copyright_start_year": 2016,
+    "client_name": "No Divide Studio Ltd",
+    "client_url": "http://nodividestudio.com",
+    "creators": [
+        {
+            "name": "Ryan Taylor",
+            "url": "http://twitter.com/ryanhavoc"
+        },
+        {
+            "name": "Dan Edwards",
+            "url": "http://twitter.com/de"
+        },
+        {
+            "name": "Matt West",
+            "url": "http://twitter.com/mattantwest"
+        }
+    ],
+    "theme": {
+        "border_color": "#E0E6ED",
+        "highlight_color": "#F9FAFC",
+        "brand_color": "#00585C",
+        "background_color": "#FFFFFF",
+        "code_highlight_theme": "github",
+        "override_code_highlight_bg": "#F9FAFC",
+        "sample_dark_background": "#013643",
+        "show_project_name": false,
+        "show_version": true,
+        "max_width": 1200
+    },
+    "assets": {
+        "css": [
+            "../assets/css/dist/site/all.css",
+            "../assets/css/dist/astrum/all.css"
+        ],
+        "js": []
+    },
+    "font_libraries": {
+        "typekit_code": "prk5aou",
+        "typography_web_fonts": null,
+        "google_web_fonts": null
+    },
+    "content": {
+        "show_first_page_on_load": false,
+        "title": "Overview",
+        "pages": [
+            {
+                "name": "introduction",
+                "title": "Introduction",
+                "file": "./pages/intro.md"
+            }
+        ]
+    },
+    "groups": [
+        {
+            "name": "branding",
+            "title": "Branding",
+            "components": [
+                {
+                    "group": "branding",
+                    "name": "color-scheme",
+                    "title": "Colour Scheme",
+                    "type": "colors",
+                    "colors": [
+                        "#000000",
+                        "#005E69",
+                        "#15455B",
+                        "#218597",
+                        "#666666",
+                        "#A1CAD5",
+                        "#F3F3F3",
+                        "#FFFFFF"
+                    ]
+                },
+                {
+                    "group": "branding",
+                    "name": "logo",
+                    "title": "Logo",
+                    "width": "half"
+                },
+                {
+                    "group": "branding",
+                    "name": "inverted-logo",
+                    "title": "Inverted Logo",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "typography",
+            "title": "Typography",
+            "components": [
+                {
+                    "group": "typography",
+                    "name": "light",
+                    "title": "Light",
+                    "width": "half"
+                },
+                {
+                    "group": "typography",
+                    "name": "bold",
+                    "title": "Bold",
+                    "width": "half"
+                }
+            ]
+        },
+        {
+            "name": "buttons",
+            "title": "Buttons",
+            "components": [
+                {
+                    "group": "buttons",
+                    "name": "default",
+                    "title": "Default Button",
+                    "width": "half"
+                },
+                {
+                    "group": "buttons",
+                    "name": "inverted",
+                    "title": "Inverted Button",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "navigation",
+            "title": "Navigation",
+            "components": [
+                {
+                    "group": "navigation",
+                    "name": "primary",
+                    "title": "Primary Navigation"
+                }
+            ]
+        }
+    ],
+    "version": "1.4.2"
+}

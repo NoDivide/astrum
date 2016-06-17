@@ -1,0 +1,11 @@
+/**
+ * Astrum Pattern Library Override Styles
+ * ----------------------------------------//
+ */
+.logo {
+    margin-bottom: 26px;
+    
+    + .logo {
+        margin-bottom: 0;
+    }
+}

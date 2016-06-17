@@ -1,0 +1,53 @@
+/**
+ * Buttons
+ * ----------------------------------------//
+ */
+.btn {
+    @extend .light;
+
+    background-color: color(btn, default-bg);
+    border: 1px solid color(btn, default-border);
+    border-radius: 4px;
+    color: color(btn, default-text);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 16px;
+    padding: $hsu $bsu * 1.125;
+    text-decoration: none;
+    transition: all .25s ease;
+
+    &:active,
+    &:focus,
+    &:visited {
+        color: color(btn, default-text);
+    }
+
+    &:hover {
+        background-color: color(btn, default-bg-hover);
+        border: 1px solid color(btn, default-border-hover);
+        color: color(btn, default-text-hover);
+    }
+
+    /**
+     * Inverted modifier.
+     * ----------------------------------------//
+     */
+    &--inverted {
+        background-color: color(btn, inverted-bg);
+        border: 1px solid color(btn, inverted-border);
+        color: color(btn, inverted-text);
+
+        &:active,
+        &:focus,
+        &:visited {
+            color: color(btn, inverted-text);
+        }
+
+        &:hover {
+            background-color: color(btn, inverted-bg-hover);
+            border: 1px solid color(btn, inverted-border-hover);
+            color: color(btn, inverted-text-hover);
+        }
+    }
+}
