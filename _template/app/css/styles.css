@@ -990,6 +990,11 @@
     padding: 36px 12px;
     position: relative;
 }
+.ndpl-component__sample:after {
+    display: block;
+    clear: both;
+    content: "";
+}
 .ndpl-component__sample--inverted {
     background-color: #333;
 }
