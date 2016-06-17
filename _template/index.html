@@ -201,7 +201,8 @@
                         <h2 class="ndpl-library__title">{{ group.title }}</h2>
 
                         <div class="ndpl-group__description ndpl-c-brand-ca"
-                             v-html="group.description"></div>
+                             v-html="group.description"
+                             v-if="group.description"></div>
 
                         <div class="ndpl-components">
                             <ndpl-component v-for="component in group.components"
