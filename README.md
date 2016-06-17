@@ -6,7 +6,9 @@ Astrum is a lightweight pattern library designed to be included with any web pro
 
 It's non-opinionated and doesn't expect you to write your markup or code in any particular way.
 
-An Astrum pattern library comprises of components organised into groups. A component comprises of a rendered sample of a particular element along with a code sample and a (optional) description for the components usage. A group can also have an (optional) description and is used for organisational purposes. You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
+An Astrum pattern library comprises of components organised into groups. Each component has a `markup.html` and `description.md` file used to 
+
+for  A component comprises of a rendered sample of a particular element along with a code sample and a (optional) description for the components usage. A group can also have an (optional) description and is used for organisational purposes. You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
 
 ***
 
@@ -194,11 +196,11 @@ max-width | null | A maximum width for the components container element.
 ```
     "assets": {
         "css": [
-	          "../assets/css/styles.css"
-		    ],
+            "../assets/css/styles.css"
+        ],
         "js": [
-        	    "../assets/js/vendor.js",
-        	    "../assets/js/main.js"
+            "../assets/js/vendor.js",
+            "../assets/js/main.js"
         ]
     },
 ```
