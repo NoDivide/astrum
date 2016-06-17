@@ -138,6 +138,9 @@ if (group_name) {
                     console.log(chalk.grey('----------------------------------------------------------------'));
                     return 'Group name:';
                 },
+                validate: function (str) {
+                    return utils.validateSlug(str);
+                },
                 choices: utils.getGroupChoices(parts[0])
             },
             {
