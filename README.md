@@ -173,7 +173,7 @@ You can specify as many creators as you need. Astrum will automatically format t
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max-width": null
+        "max_width": null
     },
 ```
 
@@ -190,7 +190,7 @@ override_code_highlight_bg | #F9FAFC | Allows you to override a [highlight.js](h
 sample_dark_background | #333333 | The color used for dark background component samples.
 show_project_name | true | Show the project name in the sidebar.
 show_version | true | Show the Astrum version at the bottom of the sidebar.
-max-width | null | A maximum width for the components container element.
+max_width | null | A maximum width for the components container element.
 
 #### Assets<a href=“#assets”></a>
 ```

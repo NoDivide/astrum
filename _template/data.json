@@ -22,7 +22,7 @@
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max-width": null
+        "max_width": null
     },
     "assets": {
         "css": [],
