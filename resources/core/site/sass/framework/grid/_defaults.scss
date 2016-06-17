@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    $GRID COMPONENT DEFAULTS
+\*------------------------------------*/
+// Parameters
+$grid-gutter:    54 !default;
+$grid-max-width: 100% !default;
+
+
+// Classes
+$grid-width-class-prefix: "col" !default; //e.g. .col-one-width
+$grid-row-class:          "grid-row" !default;
+$grid-col-class:          "grid-col" !default;
+$grid-container-class:    "grid-container" !default;
+
+
+// Breakpoints
+$grid-fixed:                   false !default;
+$grid-breakpoint-class-prefix: "bp" !default;
+$grid-breakpoints-list:        1, 2, 3 !default;
+$grid-breakpoint-widths:       30em, 48em, 60em !default;

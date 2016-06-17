@@ -1,0 +1,181 @@
+/*------------------------------------*\
+    $TYPOGRAPHY COMPONENT
+\*------------------------------------*/
+/**
+ * Default font stacks
+ * ------------------------------//
+ */
+$sans-serif-stack:  "Helvetica", sans-serif !default;
+$serif-stack:       "Georgia", serif !default;
+$slab-serif-stack:  null !default;
+$script-stack:      null !default;
+$blackletter-stack: null !default;
+$mono-stack:        null !default;
+$hand-stack:        null !default;
+$decorative-stack:  null !default;
+
+
+/**
+ * Font stack weights
+ * -----------------------------//
+ * Override with weights provided by the font service.
+ * Some fonts use different wording for different weights
+ * for example "medium" or "book". These are usually instead
+ * of "regular" so seens as we're abstracting the font-stack
+ * usage here it's advised to use the weight names listed here.
+ */
+$sans-serif-weights: ( thin:      100,
+                       light:     300,
+                       regular:   400,
+                       semibold:  600,
+                       bold:      700,
+                       extrabold: 800,
+                       black:     900 ) !default;
+$serif-weights:      ( thin:      100,
+                       light:     300,
+                       regular:   400,
+                       semibold:  600,
+                       bold:      700,
+                       extrabold: 800,
+                       black:     900 ) !default;
+$slab-serif-weights:   null !default;
+$script-weights:       null !default;
+$blackletter-weights:  null !default;
+$mono-weights:         null !default;
+$hand-weights:         null !default;
+$decorative-weights:   null !default;
+
+
+/**
+ * Once you specified your font-stacks and weights
+ * add them to these map variables
+ */
+$stack-map:   (sans-serif: $sans-serif-stack, serif: $serif-stack) !default;
+$weights-map: (sans-serif: $sans-serif-weights, serif: $serif-weights) !default;
+$spacing-map: (sans-serif: 0, serif: 0) !default;
+
+
+
+/**
+ * Font faces
+ * ------------------------------//
+ * If you're including fonts via @font-face
+ * declare their weights and font files in a list against
+ * their corresponding type face e.g.:
+
+ $sans-serif-faces: "regular", "StRyde-Regular",
+                    "medium", "StRyde-Medium",
+                    "bold", "StRyde-Bold";
+
+ * Usage:
+
+ @include font-face("medium", "sans-serif");
+
+ */
+$sans-serif-faces: null !default;
+$serif-face:       null !default;
+$slab-serif-face:  null !default;
+$script-face:      null !default;
+$blackletter-face: null !default;
+$mono-face:        null !default;
+$hand-face:        null !default;
+$decorative-face:  null !default;
+
+
+/**
+ * Base font-family
+ * ------------------------------//
+ */
+$base-font-family: sans-serif !default;
+$base-font-weight: regular    !default;
+$base-font-style:  normal     !default; // or italic
+$custom-font-family: null     !default; // Custom font-face stack, if set will be added to the $font-family
+
+
+/**
+ * Base sizing
+ * ------------------------------//
+ */
+$line-height:      1.65                      !default;
+$font-size:        100                       !default; // Percentage value ((16 / 16) * 100 = 100)
+$font-base:        16 * ($font-size / 100)   !default; // Converts our percentage to a pixel value
+$measure:          $font-base * $line-height !default;
+
+
+/**
+ * Small print
+ * ------------------------------//
+ */
+$small-print-size: 65% !default;
+
+
+/**
+ * Typescale
+ * ------------------------------//
+ */
+$tera:    104 !default; // 104 = 16 × 6.5
+$giga:    80  !default; // 80 = 16 × 5
+$mega:    64  !default; // 64 = 16 × 4
+$alpha:   53  !default; // 53 = 16 × 3.3333
+$beta:    42  !default; // 42 = 16 × 2.6667
+$gamma:   32  !default; // 32 = 16 × 2
+$delta:   21  !default; // 21 = 16 × 1.3333
+$epsilon: 18  !default; // 18 = 16 × 1.1667
+$zeta:    16  !default; // 16 = 16 × 1
+
+
+/**
+ * Typescale unit
+ */
+$type-scale-unit-value: rem !default;
+
+
+/**
+ * Paragraphs
+ * ------------------------------//
+ */
+$indent-val: 1.5em !default;
+
+
+/**
+ * Paragraph Styling Boolean
+ * -----------------------------//
+ * 'false' - no vertical whitespace between subsequent paragraphs.
+ * 'true' - vertical whitespace between subsequent paragraphs.
+ */
+$paragraph-vertical-whitespace: true !default;
+
+
+/**
+ * Smallcaps
+ * ------------------------------//
+ */
+$small-caps-color:  gray !default;
+$small-caps-weight: 600  !default;
+
+
+/**
+ * Dropcaps
+ * ------------------------------//
+ */
+$dropcap-float-position: left        !default;
+$dropcap-font-size:      4em         !default;
+$dropcap-font-family:    inherit     !default;
+$dropcap-txt-indent:     0           !default;
+$dropcap-margin:         0           !default;
+$dropcap-padding:        0 0.3em 0 0 !default;
+$dropcap-color:          inherit     !default;
+$dropcap-line-height:    1           !default;
+$dropcap-bg:             transparent !default;
+
+
+/**
+ * Quotes
+ * ------------------------------//
+ */
+$cite-display:    block   !default;
+$cite-text-align: right   !default;
+$cite-font-size:  inherit !default;
+
+$pull-quote-fontsize: 4rem !default;
+$pull-quote-opacity:  0.5  !default;

@@ -1,0 +1,45 @@
+@import "defaults";
+@import "mixins";
+
+@if $use-grid == true {
+
+
+/*------------------------------------*\
+    $GRID
+\*------------------------------------*/
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/**
+ * We're using a heavily modified version of Matt Berridge's 
+ * Proportional Grid (http://builtbyboon.com/blog/proportional-grids).
+ * 
+ * This grid system (including it's breakpoints) can be controlled through 
+ * variables in _project.scss. Copy the defaults in _defaults.scss as a 
+ * starting point.
+ */
+@include grids-init($grid-width-class-prefix);
+
+
+
+/**
+ * Generate breakpoint grid styles
+ */
+@if $grid-fixed == false {
+    
+    @for $i from 1 through length($grid-breakpoints-list) {
+        
+        @media only screen and (min-width: nth($grid-breakpoint-widths, $i)) {
+
+            @include grid-setup($grid-breakpoint-class-prefix + nth($grid-breakpoints-list, $i) + "-" + $grid-width-class-prefix);
+            
+        }
+
+    }
+
+}
+
+} //Endif

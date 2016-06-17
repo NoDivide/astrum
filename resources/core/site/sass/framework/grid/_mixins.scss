@@ -1,0 +1,236 @@
+/*------------------------------------*\
+    $GRID MIXINS
+\*------------------------------------*/
+/**
+ * Set Gutter
+ * -------------------------------------//
+ */
+@mixin set-gutter($scale, $base: $font-base, $value: rem) {
+
+    @if $value == rem {
+        margin-left: -$scale#{px};
+        margin-left: #{"-"}context-calc($scale, $base, $value);
+
+        .#{$grid-col-class} {
+            padding-left: $scale#{px};
+            padding-left: context-calc($scale, $base, $value); 
+        }
+    }
+
+}
+
+@mixin set-to-gutter($property, $scale: $grid-gutter, $base: $font-base, $value: rem) {
+
+    #{$property}: $scale#{px};
+    #{$property}: context-calc($scale, $base, $value);
+    
+}
+
+
+/**
+ * Grid Config
+ * -------------------------------------//
+ */
+@mixin grid-config {
+    
+    .#{$grid-container-class} {
+        @include set-to-gutter(padding-left, $grid-gutter / 2);
+        @include set-to-gutter(padding-right, $grid-gutter / 2);
+
+        margin: 0 auto;
+        max-width: $grid-max-width;
+
+        @include media-query(1) {
+            @include set-to-gutter(padding-left, $grid-gutter);
+            @include set-to-gutter(padding-right, $grid-gutter);
+        }
+    }
+
+    .#{$grid-row-class} {
+        @extend .cf;
+        @include set-gutter($grid-gutter / 2);
+
+        position: relative;
+
+        @include media-query(1) {
+            @include set-gutter($grid-gutter);
+        }
+    }
+
+        .#{$grid-col-class} {
+            float: left;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+    
+    .large-gutter { @include set-gutter($grid-gutter * 2); }
+
+    .half-gutter { @include set-gutter($grid-gutter / 2); }
+
+    .no-gutter { @include set-gutter(0); }
+
+    .reset-gutter { @include set-gutter($grid-gutter); }
+
+    // Reset for list grids
+    ul.#{$grid-row-class},
+    ol.#{$grid-row-class} {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    li.#{$grid-col-class} {
+        margin-left: 0;
+        margin-bottom: 0; 
+    }
+}   
+
+
+
+/**
+ * Grid Setup
+ * -------------------------------------//
+ * Set the proportions you want to use $namespace relates to the class prefix 
+ * e.g. bp2-col to target breakpoint 2
+ */
+@mixin grid-setup($namespace) {
+
+    .#{$namespace}-full,
+    .#{$namespace}-set-full .#{$grid-col-class} {
+        width: 100%; 
+    }
+    .#{$namespace}-one-half,
+    .#{$namespace}-set-one-half .#{$grid-col-class} {
+        width: 50%; 
+    }
+    .#{$namespace}-one-third,
+    .#{$namespace}-set-one-third .#{$grid-col-class} {
+        width: 33.333%; 
+    }
+    .#{$namespace}-one-quarter,
+    .#{$namespace}-set-one-quarter .#{$grid-col-class} {
+        width: 25%; 
+    }
+    .#{$namespace}-two-thirds {
+        width: 66.666%; 
+    }
+    .#{$namespace}-three-quarters {
+        width: 75%; 
+    }
+    .#{$namespace}-centered {
+        float: none;
+        margin: 0 auto;
+    }
+}
+
+
+
+/**
+ * Grid Init
+ * -------------------------------------//
+ * Include grids-init to set up your grids with your base class
+ * i.e. @include grids-init("col");
+ */
+@mixin grids-init($class) {
+    
+  @include grid-config;
+  @include grid-setup($class);
+
+}
+
+
+
+/**
+ * Grid Include
+ * -------------------------------------//
+ * Include grids-include with your class for each breakpoint
+ * e.g. @include respond-min(30em) { @include grid-include("bp1-col"); }
+ */
+@mixin grid-include($class) {
+    
+  @include grid-setup($class);
+
+}
+
+
+
+/**
+ * Account for no border-box in IE8/7/6
+ */
+@mixin grid-config-oldie {
+
+  .lt-ie9 {
+    .#{$grid-row-class} {
+      margin-left: 0; 
+      overflow: auto;
+  }
+
+    .#{$grid-col-class} {
+      padding: 0;
+      margin-left: 5%;
+
+        &:first-child {
+          margin-left: 0; 
+        }     
+    }
+
+  }
+    
+}
+
+/**
+ * Amend widths slightly for IE8/7/6
+ */
+@mixin grid-setup-oldie($namespace) {
+
+  .lt-ie9 {
+    .#{$namespace}-full,
+    .#{$namespace}-set-full .#{$grid-col-class} {
+      width: 99.95%; }
+    .#{$namespace}-one-half,
+    .#{$namespace}-set-one-half .#{$grid-col-class} {
+      width: 47.45%; }
+    .#{$namespace}-one-third,
+    .#{$namespace}-set-one-third .#{$grid-col-class} {
+      width: 29.55%; }
+    .#{$namespace}-two-thirds {
+      width: 64.95%; }
+    .#{$namespace}-one-quarter,
+    .#{$namespace}-set-one-quarter .#{$grid-col-class} {
+      width: 19.95%; }
+    .#{$namespace}-three-quarters {
+      width: 74.95%; }
+  }
+    
+}
+
+
+
+/**
+ * Media Query
+ * -------------------------------------//
+ */
+@mixin media-query($bp) {
+    
+    @if unitless($bp) {
+        @media only screen and (min-width: nth($grid-breakpoint-widths, $bp)) { @content; }
+
+        @if $support-old-ie {
+            .lt-ie9 & {
+                @content;
+            }
+        }
+    }
+
+    @else {
+        @media only screen and (min-width: $bp) { @content; }
+
+        @if $support-old-ie {
+            .lt-ie9 & {
+                @content;
+            }
+        }
+    }
+}

@@ -1,0 +1,347 @@
+/**
+ * Font stack mixin
+ * -----------------------------//
+ * This mixin abstracts out font family, style and weight declarations
+ * so you can use font types (serif, sans-serif etc) instead of font
+ * names e.g.
+
+ @include font-stack(); //Use default values
+
+ @include font-stack("bold", "serif", "normal")
+
+ * Becomes:
+
+ font-family: "Verdana", sans-serif;
+ font-style: normal;
+ font-weight: 400;
+
+ font-family: "Georgia", serif;
+ font-style: normal;
+ font-weight: 700;
+
+ * The mixin is setup to only apply styles that differ from the base
+ * styles. To override this behaviour there's a force option we
+ * can be set to true.
+ *
+ * Credit: http://nodivide.us/ - Ryan Taylor
+ */
+@mixin font-stack($weight: $base-font-weight, $type: $base-font-family, $style: $base-font-style, $force: null) {
+
+    /**
+     * Force apply font-family, font-style, font-weight
+     */
+    @if $force {
+        font-family: map-get($stack-map, $type);
+        font-style: $style;
+        font-weight: map-get(map-get($weights-map, $type), $weight);
+    }
+
+    @else {
+    /**
+     * Selectively apply font-family, font-style and font-weights that differ from
+     * the base settings
+     */
+
+        @if ($type != $base-font-family) {
+            font-family: map-get($stack-map, $type);
+        }
+
+        @if ($style != $base-font-style) {
+            font-style: $style;
+        }
+
+        @if ($weight != $base-font-weight) {
+            font-weight: map-get(map-get($weights-map, $type), $weight);
+        }
+    }
+
+    letter-spacing: map-get($spacing-map, $type);
+}
+
+
+
+
+/**
+ * Wordwrap placeholder classes
+ * -------------------------------------//
+ * normal: Indicates that lines may only break at normal word break points.
+ * break-word : Indicates that normally unbreakable words may be broken at
+ * arbitrary points if there are no otherwise acceptable break points in the line.
+ */
+%breakword {
+	word-wrap: break-word;
+}
+
+%normal-wrap {
+	word-wrap: normal;
+}
+
+%inherit-wrap {
+	word-wrap: auto;
+}
+
+
+
+
+/**
+ * Measure Margin
+ * -------------------------------------//
+ * Divide 1 unit of measure by given font-size & return a relative em value
+ */
+@function measure-margin($scale, $measure, $value) {
+	$pixelValue: $measure/$scale;
+	$remValue: $pixelValue * $font-base;
+
+	@if $value == rem {
+		@return $pixelValue#{$value};
+	} @else if $value == em {
+		@return ($remValue/$scale)#{$value};
+	} @else {
+		@return $remValue#{$value};
+	}
+}
+
+
+
+
+/**
+ * Type-Scale
+ * -------------------------------------//
+ */
+@mixin type-scale($scale, $base: $font-base, $value: '#{$type-scale-unit-value}', $measure: "") {
+	@if $value == rem {
+		font-size: $scale#{px};
+		font-size: context-calc($scale, $base, $value);
+	} @else if $value == em {
+		font-size: context-calc($scale, $base, $value);
+	} @else {
+		font-size: $scale#{px};
+	}
+
+	@if $measure != "" {
+		@if $value == rem {
+			margin-bottom: measure-margin($scale, $measure, $value: px);
+			margin-bottom: measure-margin($scale, $measure, $value);
+		} @else if $value == em {
+			margin-bottom: measure-margin($scale, $measure, $value: em);
+		} @else {
+			margin-bottom: measure-margin($scale, $measure, $value);
+		}
+	}
+}
+
+
+
+/**
+ * Hyphens
+ * -------------------------------------//
+ * http://trentwalton.com/2011/09/07/css-hyphenation
+ */
+@mixin css-hyphens($val) {
+	// Accepted values: [ none | manual | auto ]
+	-webkit-hyphens: $val; // Safari 5.1 thru 6, iOS 4.2 thru 6
+	-moz-hyphens: $val; // Firefox 16 thru 20
+	-ms-hyphens: $val; // IE10
+	-o-hyphens: $val; // PRESTO...haha LOL
+	hyphens: $val; // W3C standard
+}
+
+
+
+/**
+ * Smallcaps
+ * -------------------------------------//
+ * http://blog.hypsometry.com/articles/true-small-capitals-with-font-face
+ * ISSUE #1 : https://github.com/typeplate/typeplate.github.com/issues/1
+ */
+@mixin smallcaps($color, $font-weight) {
+	// depends on the font family.
+	// some font-families don't support small caps
+	// or don't provide them with their web font.
+	font-variant: small-caps;
+	font-weight: $font-weight;
+	text-transform: lowercase;
+	color: $color;
+}
+
+
+
+/**
+ * Dropcaps
+ * -------------------------------------//
+ */
+@mixin dropcap($dropcap-float-position, $dropcap-font-size, $dropcap-font-family, $dropcap-txt-indent, $dropcap-margin, $dropcap-padding, $dropcap-color, $dropcap-line-height, $dropcap-bg) {
+	&:first-letter {
+		float: $dropcap-float-position;
+		margin: $dropcap-margin;
+		padding: $dropcap-padding;
+		font-size: $dropcap-font-size;
+		font-family: $dropcap-font-family;
+		line-height: $dropcap-line-height;
+		text-indent: $dropcap-txt-indent;
+		background: $dropcap-bg;
+		color: $dropcap-color;
+	}
+}
+
+
+
+/*
+ * Codeblocks
+ * -------------------------------------//
+ */
+@mixin white-space($wrap-space) {
+	@if $wrap-space == 'pre-wrap' {
+		white-space: #{-moz-}$wrap-space; // Firefox 1.0-2.0
+		white-space: $wrap-space;       // current browsers
+	} @else {
+		white-space: $wrap-space;
+	}
+}
+
+
+
+/**
+ * Blockquote
+ * -------------------------------------//
+ * Use our pre-defined markup and add a class
+ * to your custom blockquote element.
+ * For example:
+ *
+ * .blockquote { @include blockquote("-"); }
+ *
+ * "-" is your citation flourish. For example:
+ *
+ * I always say important things because I'm so smart
+ *                           - Super Important Person
+ */
+@mixin cite-style($display, $text-align, $font-size) {
+	display: $display;
+	font-size: $font-size;
+	text-align: $text-align;
+}
+
+%cite {
+	@include cite-style($cite-display, $cite-text-align, $cite-font-size);
+}
+
+@mixin blockquote($citation-flourish) {
+	p {
+		&:last-of-type {
+			margin-bottom: -#{$line-height/2}em;
+		}
+	}
+	+ figcaption {
+		@extend %cite;
+		&:before {
+			content: $citation-flourish;
+		}
+	}
+}
+
+
+
+/**
+ * Pull-Quotes
+ * -------------------------------------//
+ */
+$pull-quote-color: color(base, pull-quote);
+@mixin pull-quotes($pull-quote-fontsize, $pull-quote-opacity, $pull-quote-color) {
+	position: relative;
+	padding: context-calc($pull-quote-fontsize, $pull-quote-fontsize, em);
+
+	:first-child,
+	:last-child {
+		position: relative;
+	}
+
+	:first-child:before,
+	:last-child:after {
+		height: context-calc($pull-quote-fontsize, $pull-quote-fontsize, em);
+		opacity: $pull-quote-opacity;
+		position: absolute;
+		font-size: $pull-quote-fontsize;
+		color: color(base, pull-quote);
+		text-indent: 0;
+		width: 0.5em;
+	}
+	:first-child {
+		text-indent: 1em;
+
+		&:before {
+			content: '“';
+			top:  -0.5em;
+			left: -0.1em;
+		}
+	}
+	:last-child {
+
+		&:after {
+			content: '”';
+			bottom: -0.1em;
+		}
+	}
+}
+
+
+
+/**
+ * Definition-Lists
+ * -------------------------------------//
+ * lining
+ * http://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css
+ *
+ * dictionary-style
+ * http://lea.verou.me/2012/02/flexible-multiline-definition-lists-with-2-lines-of-css
+ */
+@mixin definition-list-style($style) {
+	// lining style
+	@if $style == lining {
+		dt,
+		dd {
+			display: inline;
+			margin: 0;
+		}
+		dt,
+		dd {
+			& + dt {
+				&:before {
+					content: "\A";
+					white-space: pre;
+				}
+			}
+		}
+		dd {
+			& + dd {
+				&:before {
+					content: ", ";
+				}
+			}
+			&:before {
+					content: ": ";
+					margin-left: -0.2rem; //removes extra space between the dt and the colon
+			}
+		}
+	}
+
+	// dictionary-style
+	@if $style == dictionary-style {
+		dt {
+			display: inline;
+			counter-reset: definitions;
+			& + dt {
+				&:before {
+					content: ", ";
+					margin-left: -0.2rem; // removes extra space between the dt and the comma
+				}
+			}
+		}
+		dd {
+			display: block;
+			counter-increment: definitions;
+			&:before {
+				content: counter(definitions, decimal) ". ";
+			}
+		}
+	}
+}

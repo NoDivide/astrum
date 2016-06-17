@@ -1,0 +1,28 @@
+/**
+ * Context Calculator
+ * -------------------------------------//
+ * Divide a given font-size by base font-size & return a relative value
+ */
+@function context-calc($scale, $base, $value) {
+    @return ($scale/$base)#{$value};
+}
+
+
+/**
+ * Color
+ * -------------------------------------//
+ * Clean helper for handling the color maps
+ */
+@function color($el, $color, $map: $colors) {
+    @return map-get(map-get($map, $el), $color);
+}
+
+
+/**
+ * Globals
+ * -------------------------------------//
+ * Clean helper for handling the global map
+ */
+@function global($prop, $map: $globals) {
+    @return map-get($map, $prop);
+}

@@ -1,0 +1,184 @@
+@if $use-nav == true {
+
+/*------------------------------------*\
+    $NAV
+\*------------------------------------*/
+/**
+ * When used on an `ol` or `ul`, this class throws the list into horizontal mode
+ * e.g.:
+ *
+    <nav class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+ *
+ */
+.nav {
+    @extend .cf;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        > li {
+
+            &,
+            > a {
+                display: inline-block;
+                *display: inline;
+                zoom: 1;
+            }
+        }
+    }
+}
+
+
+/**
+ * `.nav--stacked` extends `.nav` and throws the list into vertical mode, e.g.:
+ *
+    <nav class="nav nav--stacked">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+ *
+ */
+.nav--stacked{
+    
+    ul {
+
+        > li {
+            display: list-item;
+
+            > a {
+                display: block;
+            }
+        }
+    }
+}
+
+
+/**
+ * `.nav--banner` extends `.nav` and centres the list, e.g.:
+ *
+    <nav class="nav nav--banner">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+ *
+ */
+.nav--banner {
+    text-align: center;
+}
+
+
+/**
+ * Give nav links a big, blocky hit area. Extends `.nav`, e.g.:
+ *
+    <nav class="nav nav--block">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+ *
+ */
+.nav--block {
+    line-height: 1;
+    /**
+     * Remove whitespace caused by `inline-block`.
+     */
+    word-spacing: -0.43em;
+    white-space: nowrap;
+    
+    ul {
+
+        > li {
+            letter-spacing: normal;
+            word-spacing: normal;
+
+            > a {
+                padding: $half-spacing-unit;
+            }
+        }
+    }
+}
+
+
+/**
+ * Force a nav to occupy 100% of the available width of its parent. Extends
+ * `.nav`, e.g.:
+ *
+    <nav class="nav nav--fit">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+ *
+ * Thanks to @pimpl for this idea!
+ */
+.nav--fit {
+    
+    ul {
+        display: table;
+        width: 100%;
+
+        > li{
+            display: table-cell;
+
+            > a {
+                display: block;
+            }
+        }
+    }
+}
+
+
+/**
+ * Make a list of keywords. Extends `.nav`, e.g.:
+ *
+    <nav class="nav nav--keywords">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+ *
+ */
+.nav--keywords{
+    
+    ul {
+
+        > li {
+
+            &:after {
+                content: "\002C" "\00A0";
+            }
+
+            &:last-child:after {
+                display: none;
+            }
+        }
+    }
+}
+
+}//endif

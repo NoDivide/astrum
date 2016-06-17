@@ -1,0 +1,67 @@
+/*------------------------------------*\
+    $FRAMEWORK
+\*------------------------------------*/
+/**
+ * Consistent spacing units
+ * ------------------------------//
+ */
+$base-spacing-unit: 26px !default;
+$half-spacing-unit: $base-spacing-unit / 2 !default;
+
+/**
+ * Enable old IE support for components
+ * ------------------------------//
+ */
+$support-old-ie: false !default;
+
+/**
+ * Enable components
+ * ------------------------------//
+ */
+$use-flag:              false !default;
+$use-grid:              false !default;
+$use-icons:             false !default;
+$use-icons-fallback:    false !default;
+$use-island:            false !default;
+$use-nav:               false !default;
+$use-typography:        false !default;
+
+/**
+ * Colors
+ * ----------------------------------------//
+ */
+/**
+ * Set project brand variables first. These can then be included in the color map.
+ * Details of how to use the color map can be found here: https://medium.com/p/clean-colour-management-with-sass-4d5e9bb4f1b2
+ */
+$brand-1: #FEA1AC;
+$brand-2: #666666;
+$brand-3: #444444;
+
+$colors: (
+    base: (
+        body:           $brand-2,
+        heading:        $brand-3,
+        anchor:         $brand-1,
+        anchor-hover:   darken($brand-1, 5%),
+        anchor-visited: lighten($brand-1, 5%),
+        table-border:   #DDD,
+        table-stripe:   #F5F5F5,
+        pull-quote:     $brand-1
+    ),
+
+    state: (
+        success-text:   #468847,
+        success-bg:     #DFF0D8,
+        success-border: darken(adjust-hue(#DFF0D8, -10), 5%),
+        info-text:      #3A87AD,
+        info-bg:        #D9EDF7,
+        info-border:    darken(adjust-hue(#D9EDF7, -10), 7%),
+        warning-text:   #C09853,
+        warning-bg:     #FCF8E3,
+        warning-border: darken(adjust-hue(#FCF8E3, -10), 5%),
+        danger-text:    #B94A48,
+        danger-bg:      #F2DEDE,
+        danger-border:  darken(adjust-hue(#F2DEDE, -10), 5%)
+    )
+) !default;

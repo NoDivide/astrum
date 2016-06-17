@@ -1,0 +1,31 @@
+@import "defaults";
+@import "mixins";
+
+@if $support-old-ie == true and $use-grid == true {
+
+/**
+ * IE9 of less
+ * -------------------------------------//
+ */
+.lt-ie9 {
+	@for $i from 1 through length($grid-breakpoints-list) {
+	        
+		@include grid-setup("bp#{$i}-col");
+
+	}
+}
+
+/**
+ * IE7 or less
+ * -------------------------------------//
+ */
+@include grid-config-oldie();
+@include grid-setup-oldie("col");
+
+@for $i from 1 through length($grid-breakpoints-list) {
+	        
+	@include grid-setup-oldie("bp#{$i}-col");
+
+}
+
+} //Endif

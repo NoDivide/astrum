@@ -1,0 +1,22 @@
+@import "defaults";
+@import "mixins";
+
+@if $use-icons == true {
+
+/*------------------------------------*\
+    $ICONS
+\*------------------------------------*/
+    .icon {
+        display: inline-block;
+        fill: currentcolor;
+        height: 1em;
+        width: 1em;
+    }
+    
+    .icon--large {
+        height: 5em;
+        width: 5em;
+    }
+}
+
+@import "fallback";

@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+!.gitkeep
+
+composer.phar
+composer.lock
+
+node_modules
+.sass-cache
+.vagrant
+.idea

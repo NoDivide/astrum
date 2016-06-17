@@ -1,0 +1,405 @@
+@import "defaults";
+@import "mixins";
+
+@if $use-typography == true {
+/*------------------------------------*\
+    $TYPOGRAPHY
+\*------------------------------------*/
+/**
+ * We're using a modified version of Typeplate (http://typeplate.com)
+ *
+ * Typography can be controlled through variables in _project.scss. Copy 
+ * the defaults in _defaults.scss as a starting point.
+ */
+html {
+	@if $custom-font-family {
+		font-family: $custom-font-family, $base-font-family;
+	} @else {
+		font-family: $base-font-family;
+	}
+	font-weight: $base-font-weight;
+	font-size: #{$font-size}#{"%"};
+	line-height: #{$line-height};
+
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	color: color(base, body);
+}
+
+small {
+	font-size: $small-print-size;
+}
+
+html,
+input,
+textarea,
+button {
+    @include font-stack($base-font-weight, $base-font-family, $base-font-style, true);
+}
+
+
+/**
+ * Headings
+ * -------------------------------------//
+ * Extend included classes on any element of your
+ * choosing for adjusting type based on the scale
+ * provided.
+ * Special Props to Harry Roberts for this trick.
+ * 
+ * For example:
+ * 
+ * <h6 class="giga">Awesome Headline</h6>
+ * <p class="tera">a story about a dude</p>
+ * 
+ * Our Type Scale is as follows with px fallbacks
+ * for IE 6-8 as they do not understand REM units.
+ * 
+ * 18, 21, 24, 36, 48, 60, 72, 90, 117
+ */
+%hN {
+	text-rendering: optimizeLegibility; // Voodoo to enable ligatures and kerning
+	line-height: 1; // This fixes huge spaces when a heading wraps onto two lines
+	margin-top: 0;
+}
+
+
+/**
+ * Multi-dimensional array, where:
+ * the first value is the name of the class
+ * and the second value is the variable for the size
+ */
+$sizes: tera $tera, giga $giga, mega $mega, alpha $alpha, beta $beta, gamma $gamma, delta $delta, epsilon $epsilon, zeta $zeta;
+
+
+/**
+ * Sass loop to associate h1-h6 tags with their appropriate greek
+ * heading based on a modular scale.
+ * for each size in the scale, create a class
+ */
+@each $size in $sizes {
+	.#{nth($size, 1)} {
+		@include type-scale(nth($size, 2), $font-base, '#{$type-scale-unit-value}', $measure);
+	}
+}
+
+
+/**
+ * Associate h1-h6 tags with their appropriate greek heading
+ */
+h1 {
+	@extend .alpha;
+	@extend %hN;
+}
+
+h2 {
+	@extend .beta;
+	@extend %hN;
+}
+
+h3 {
+	@extend .gamma;
+	@extend %hN;
+}
+
+h4 {
+	@extend .delta;
+	@extend %hN;
+}
+
+h5 {
+	@extend .epsilon;
+	@extend %hN;
+}
+
+h6 {
+	@extend .zeta;
+	@extend %hN;
+}
+
+
+/**
+ * Set heading color
+ */
+h1, h2, h3, h4, h5, h6 {
+	@include css-hyphens(none);
+
+	color: color(base, heading)
+}
+
+
+/**
+ * Paragraphs
+ * -------------------------------------//
+ */
+p {
+	margin: auto auto $indent-val;
+
+	// Conditonal Check For Paragraph Styling
+	@if $paragraph-vertical-whitespace == false {
+		& + p {
+			//siblings indentation
+			text-indent: $indent-val;
+			margin-top: -$indent-val;
+		}
+	}
+}
+
+
+// Combats our sibling paragraphs syling and indentation
+p + .drop-cap {
+	text-indent: 0;
+	margin-top: 0;
+}
+
+
+// Dropcaps
+.drop-cap {
+	@include dropcap($dropcap-float-position, $dropcap-font-size, $dropcap-font-family, $dropcap-txt-indent, $dropcap-margin, $dropcap-padding, $dropcap-color, $dropcap-line-height, $dropcap-bg);
+}
+
+
+/**
+ * Anchors
+ * -------------------------------------//
+ */
+a {
+	color: color(base, anchor);
+
+	&[href]:hover,
+	&[href]:focus {
+		color: color(base, anchor-hover);
+	}
+	&:visited {
+		color: color(base, anchor-visited);
+	}
+}
+
+
+/**
+ * Avoid Hyphenation
+ * -------------------------------------//
+ * http://meyerweb.com/eric/thoughts/2012/12/17/where-to-avoid-css-hyphenation
+ */
+abbr,
+acronym,
+blockquote,
+code,
+dir,
+kbd,
+listing,
+plaintext,
+q,
+samp,
+tt,
+var,
+xmp {
+	@include css-hyphens(none);
+}
+
+
+/**
+ * Smallcaps
+ * -------------------------------------//
+ * Abbreviations Markup
+ *
+	<abbr title="hyper text markup language">HMTL</abbr>
+ *
+ * Extend this object into your markup.
+ */
+abbr {
+	@include smallcaps($small-caps-color, $small-caps-weight);
+	&[title]:hover {
+		cursor: help;
+	}
+}
+
+
+/**
+ * Codeblocks
+ * -------------------------------------//
+ */
+pre code {
+	@extend %normal-wrap;
+	@include white-space(pre-wrap);
+}
+
+pre {
+	@include white-space(pre);
+}
+
+code {
+	@include white-space(pre);
+	font-family: monospace;
+}
+
+
+
+// Show line numbers for codeblocks
+/*
+	<ol class="line-numbers">
+		<li><code>h1 {</code></li>
+		<li><code>  background: red;</code></li>
+		<li><code>  color: blue;</code></li>
+		<li><code>  padding: 1em;</code></li>
+		<li><code>  margin: 3em;</code></li>
+		<li><code>  border: 2px solid black;</code></li>
+		<li><code>}</code></li>
+	</ol>
+ */
+.line-numbers {
+	font-family: monospace;
+	margin: 0 0 0 2em;
+	padding: 0;
+}
+
+
+/**
+ * Figures
+ */
+figure {
+
+	img {
+		margin: 0;
+	}
+}
+figcaption {
+	font-style: italic;
+
+	strong {
+		font-style: normal;
+	}
+}
+
+
+/**
+ * Images
+ */
+img {
+	max-width: 100%;
+}
+img,
+img[align=left] {
+	margin: 0 $base-spacing-unit $half-spacing-unit 0;
+}
+img[align=middle] {
+	display: block;
+	margin: 0 auto $base-spacing-unit;
+}
+img[align=right] {
+	margin: 0 0 $half-spacing-unit $base-spacing-unit;
+}
+
+
+/**
+ * Quotes
+ */
+.blockquote {
+	@include blockquote("~");
+
+	p {
+		font-style: italic;
+	}
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+}
+.pull-quote {
+	@include pull-quotes($pull-quote-fontsize, $pull-quote-opacity, color(base, pull-quote));
+	
+	p {
+		font-style: italic;
+	}
+}
+
+
+/**
+ * Definition lists
+ * -------------------------------------//
+/**
+ * Lining Definition Style Markup
+ *
+	<dl class="lining">
+		<dt><b></b></dt>
+		<dd></dd>
+	</dl>
+ *
+ * Extend this object into your markup.
+ */
+.dl--lining-style {
+	@include definition-list-style(lining);
+}
+
+/**
+ * Dictionary Definition Style Markup
+ *
+	<dl class="dictionary-style">
+		<dt><b></b></dt>
+			<dd></dd>
+	</dl>
+ *
+ * Extend this object into your markup.
+ */
+.dl--dictionary-style {
+	@include definition-list-style(dictionary-style);
+}
+
+
+/**
+ * Tables
+ */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: $base-spacing-unit;
+}
+
+table th, table td {
+	padding: $half-spacing-unit;
+	text-align: left;
+}
+
+table td {
+	vertical-align: top;
+	border-top: solid 1px color(base, table-border);
+}
+
+table th {
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+
+/**
+ * Condensed table
+ */
+.table--condensed th, .table--condensed td {
+	padding: $half-spacing-unit / 2;
+}
+
+
+/**
+ * Bordered table
+ */
+.table--bordered {
+	border-collapse: separate;
+	border: solid 1px color(base, table-border);
+}
+
+.table--bordered th + th,
+.table--bordered th + td,
+.table--bordered td + td {
+	border-left: solid 1px color(base, table-border);
+}
+
+
+/**
+ * Stripped table
+ */
+.table--stripped tbody tr:nth-child(odd) td,
+.table--stripped tbody tr:nth-child(odd) th {
+	background: color(base, table-stripe);
+}
+
+} //Endif

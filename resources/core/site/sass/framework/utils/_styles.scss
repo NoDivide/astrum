@@ -1,0 +1,42 @@
+@import "functions";
+@import "mixins";
+
+/*------------------------------------*\
+    $UTILS
+\*------------------------------------*/
+/**
+ * Clearfix
+ */
+.cf {
+    &:after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+}
+
+
+/**
+ * JS
+ */
+.js-hidden {
+    display: none;
+}
+.js-toggle {
+    cursor: pointer;
+}
+
+
+/**
+ * Screen-readers only
+ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}

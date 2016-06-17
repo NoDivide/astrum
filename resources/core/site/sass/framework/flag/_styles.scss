@@ -1,0 +1,31 @@
+@if $use-flag == true {
+
+/*------------------------------------*\
+    $FLAG
+\*------------------------------------*/
+/**
+ * A simply flag component to allow you to vertically
+ * align content.
+ *
+   <header class="flag">
+      
+       <div class="flag__item">
+           ... Some image ...
+       </div>
+       <div class="flag__item">
+           ... Some content ...
+       </div>
+
+   </header>
+ */
+.flag {
+    display: table;
+    width: 100%;
+}
+
+    .flag__item {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+} //Endif
