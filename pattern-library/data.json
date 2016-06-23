@@ -129,6 +129,15 @@
                     "options": {
                         "sample_dark_background": true
                     }
+                },
+                {
+                    "group": "buttons",
+                    "name": "play",
+                    "title": "Play Button",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
                 }
             ]
         },

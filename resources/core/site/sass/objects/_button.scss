@@ -63,20 +63,34 @@
         padding: 0;
         border: 0;
         box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-
+        text-align: center;
         transition: all 200ms ease;
 
         background: -moz-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
         background: -webkit-linear-gradient(top, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0.05) 100%);
         background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0.05) 100%);
 
-        &:hover,
+        &:active,
         &:focus,
-        &:active {
+        &:visited {
+            color: color(btn, inverted-text);
+        }
+
+        &:hover,
+        &:visited:hover {
+            color: color(btn, inverted-text-hover);
             border: 0;
             background: -moz-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 100%);
             background: -webkit-linear-gradient(top, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.15) 100%);
             background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.15) 100%);
+        }
+
+        .icon {
+            font-size: 18px;
+            line-height: 18px;
+            position: relative;
+            top: $bsu;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
     }
 }
