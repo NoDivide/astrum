@@ -12,7 +12,8 @@
         <title>Astrum - A lightweight pattern library for any project</title>
       	<meta name="description" content="" />
 
-        <link rel="stylesheet" href="/assets/css/dist/site/all.css">
+        <link rel="stylesheet" href="/assets/css/src/site/vendor.css">
+        <link rel="stylesheet" href="/assets/css/src/site/styles.css">
 
         <script>
             document.documentElement.className = document.documentElement.className.replace("no-js","js");
@@ -33,10 +34,10 @@
     </head>
     <body>
 
-        <header>
+        <header class="site-header">
 
-            <nav class="nav nav--primary">
-                <ul clas="nav__items">
+            <nav class="nav nav--primary nav--inverted">
+                <ul class="nav__items">
                     <li class="nav__item"><a class="nav__link" href="#what-is-it">What is it?</a></li>
                     <li class="nav__item"><a class="nav__link" href="https://github.com/NoDivide/astrum">Documentation</a></li>
                     <li class="nav__item"><a class="nav__link" href="https://www.npmjs.com/package/astrum">View NPM package</a></li>
@@ -45,6 +46,15 @@
                 </ul>
             </nav>
 
+            <section class="intro">
+                <h2 class="intro__title logo logo--inverted logo--flare">Astrum</h2>
+                <div class="intro__body">
+                    <p>A lightweight pattern library for any web project</p>
+                </div>
+                <div class="intro__actions">
+                    <a href="#" class="btn btn--play"><span class="icon icon--play"></span></a>
+                </div>
+            </section>
 
         </header>
 

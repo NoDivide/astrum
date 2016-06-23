@@ -8,9 +8,26 @@
     height: 54px;
     text-indent: -9999px;
     width: 345px;
+    position: relative;
 
     &--inverted {
         background-image: url(/assets/images/site/logo--inverted.svg);
+    }
+
+    &--flare {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 170%;
+            height: 100%;
+
+            background-image: url(http://nd-bin.imgix.net/astrum/logo-blur.png?q=100);
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-position: 100% 0;
+        }
     }
 
     &--small {

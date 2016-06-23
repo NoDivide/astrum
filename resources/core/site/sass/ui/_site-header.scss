@@ -1,0 +1,24 @@
+.site-header {
+    height: 100vh;
+    min-height: 800px;
+    text-align: center;
+    position: relative;
+    color: color(site-header, text);
+
+    background-color: rgba(0,25,35,1);
+    background-image: url(http://nd-bin.imgix.net/astrum/header-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .nav--primary {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}

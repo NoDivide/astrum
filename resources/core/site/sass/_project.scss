@@ -20,7 +20,8 @@ $use-nav:         true;
  * Font stacks
  * ------------------------------//
  */
-$sans-serif-stack: "aktiv-grotesk", "helvetica", sans-serif;
+$sans-serif-stack: "source-sans-pro", "helvetica", sans-serif;
+$mono-stack: "fira-mono", sans-serif;
 
 
 /**
@@ -32,13 +33,10 @@ $sans-serif-stack: "aktiv-grotesk", "helvetica", sans-serif;
  * of "regular" so seens as we're abstracting the font-stack
  * usage here it's advised to use the weight names listed here.
  */
-$sans-serif-weights: ( thin:      200,
-                       light:     300,
-                       regular:   400,
-                       semibold:  500,
-                       bold:      700,
-                       extrabold: 800,
-                       black:     900 );
+$sans-serif-weights: ( regular:   400,
+                       semibold:  600,
+                       bold:      700 );
+$mono-weights: (       regular: 400 );
 
 /**
  * Typescale

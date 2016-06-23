@@ -1,0 +1,12 @@
+.intro {
+
+    &__title {
+        margin: 0 auto $hsu * 1.7;
+    }
+
+    &__body {
+        @extend .small-text;
+
+        opacity: .2;
+    }
+}

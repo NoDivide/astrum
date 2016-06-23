@@ -13,6 +13,7 @@ $brand-4: #666666;
 $brand-5: #A1CAD5;
 $brand-6: #F3F3F3;
 $brand-7: #FFFFFF;
+$brand-8: #003544;
 
 $colors: (
 
@@ -61,5 +62,20 @@ $colors: (
         inverted-border-hover: $brand-3,
         inverted-text: $brand-7,
         inverted-text-hover: $brand-7
+    ),
+
+    nav: (
+        link: $brand-1,
+        link-hover: $brand-1,
+        border: $brand-3,
+
+        link-inverted: rgba($brand-7, 0.7),
+        link-hover-inverted: $brand-7,
+        border-inverted: $brand-7
+    ),
+
+    site-header: (
+        text: $brand-7,
+        bg: $brand-8
     )
 );

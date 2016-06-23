@@ -4,6 +4,17 @@
 .light {
     @include font-stack(light, sans-serif, normal, true);
 }
+.semibold {
+    @include font-stack(semibold, sans-serif, normal, true);
+}
 .bold {
     @include font-stack(bold, sans-serif, normal, true);
+}
+
+
+/**
+ * Font sizes.
+ */
+.small-text {
+    @include type-scale(13);
 }
