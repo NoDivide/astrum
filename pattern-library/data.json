@@ -149,6 +149,11 @@
                     "group": "navigation",
                     "name": "primary",
                     "title": "Primary Navigation"
+                },
+                {
+                    "group": "navigation",
+                    "name": "footer",
+                    "title": "Footer Navigation"
                 }
             ]
         }
