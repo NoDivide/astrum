@@ -1,0 +1,31 @@
+.browser {
+    margin-left: 440px + $bsu;
+    border-radius: global(border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: color(browser, bg);
+
+
+    &__header {
+        background-color: color(browser, header-bg);
+        padding: $hsu $bsu $hsu $hsu * 1.25;
+        border-radius: global(border-radius) global(border-radius) 0 0;
+    }
+
+    &__button {
+        background-color: color(browser, button);
+
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        float: left;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    &__bar {
+        background-color: color(browser, bar);
+        height: 20px;
+        border-radius: 5px;
+        margin-left: 70px;
+    }
+}

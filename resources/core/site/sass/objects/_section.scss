@@ -1,0 +1,46 @@
+.section {
+
+
+    &__title {
+        @extend .large-text, .semibold;
+
+        margin-bottom: $bsu;
+
+        &:after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: color(base, heading);
+            margin-top: $hsu;
+        }
+    }
+
+    &__body {
+        @extend .cf;
+    }
+
+
+    &--text-block {
+        margin: 100px auto 0;
+        max-width: 970px;
+    }
+
+    &--centered {
+
+        .section__title {
+            text-align: center;
+
+            &:after {
+                margin: $hsu auto 0;
+            }
+        }
+    }
+
+    &--tabs {
+
+        .section__body {
+            padding: $bsu * 2;
+        }
+    }
+}

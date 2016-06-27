@@ -1,0 +1,76 @@
+.tab {
+    @extend .cf;
+
+    opacity: 0.4;
+    transition: opacity 200ms ease;
+
+    &__icon {
+        float: left;
+        width: 76px;
+        height: 52px;
+        border-radius: 40px;
+        border: 1px solid transparent;
+        text-align: center;
+        padding-top: 24px;
+        margin-top: 8px;
+        background-color: transparent;
+        transition: all 200ms ease;
+
+        .icon {
+            font-size: 28px;
+            line-height: 28px;
+        }
+
+        .tab--one & {
+            border-color: color(tab, border-one);
+            color: color(tab, border-one);
+        }
+
+        .tab--two & {
+            border-color: color(tab, border-two);
+            color: color(tab, border-two);
+
+            .icon {
+                position: relative;
+                left: 2px;
+            }
+        }
+
+        .tab--three & {
+            border-color: color(tab, border-three);
+            color: color(tab, border-three);
+        }
+    }
+
+    &__title,
+    &__body {
+        margin-left: 76px;
+        padding-left: $bsu * 1.2;
+    }
+
+    &__title {
+        @extend .medium-text, .semibold;
+    }
+
+    &__body {
+        @extend .regular-text, .regular;
+        margin-bottom: 0;
+        color: color(tab, body);
+        line-height: 1.4;
+    }
+
+    &:hover,
+    &:focus,
+    .active & {
+        opacity: 1;
+
+        .tab__icon {
+            background-color: currentColor;
+        }
+
+        .icon {
+            color: color(tab, icon-hover);
+        }
+    }
+
+}

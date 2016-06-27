@@ -21,3 +21,12 @@
 .small-text {
     @include type-scale(13);
 }
+.regular-text {
+    @include type-scale(16);
+}
+.medium-text {
+    @include type-scale(18);
+}
+.large-text {
+    @include type-scale(21);
+}

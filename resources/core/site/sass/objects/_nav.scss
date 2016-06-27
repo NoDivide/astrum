@@ -83,4 +83,29 @@
             }
         }
     }
+
+    &--tabs {
+        float: left;
+
+        .nav__items {
+            width: 440px;
+            float: left;
+            margin: 0;
+        }
+
+        .nav__item {
+            display: block;
+
+            border-bottom: 1px solid color(tab, border);
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            .nav__link {
+                border-bottom: 0;
+                padding: $bsu 0;
+            }
+        }
+    }
 }

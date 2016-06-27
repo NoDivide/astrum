@@ -15,14 +15,19 @@ $brand-6: #F3F3F3;
 $brand-7: #FFFFFF;
 $brand-8: #003544;
 $brand-9: #616367;
+$brand-10: #121212;
+$brand-11: #C8D1D5;
+$brand-12: #86C5DF;
+$brand-13: #F469A7;
+$brand-14: #62ABBE;
 
 $colors: (
 
     base: (
-        body:           $brand-4,
+        body:           $brand-9,
         heading:        $brand-1,
 
-        bg:             $brand-1,
+        bg:             $brand-10,
 
         anchor:         $brand-3,
         anchor-hover:   darken($brand-3, 5%),
@@ -87,5 +92,21 @@ $colors: (
 
     site-footer: (
         text: $brand-9
+    ),
+
+    tab: (
+        border: $brand-6,
+        border-one: $brand-14,
+        border-two: $brand-12,
+        border-three: $brand-13,
+        body: $brand-9,
+        icon-hover: $brand-7
+    ),
+
+    browser: (
+        header-bg: $brand-7,
+        bg: $brand-11,
+        bar: $brand-6,
+        button: $brand-6
     )
 );

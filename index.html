@@ -32,7 +32,7 @@
         <link rel="shortcut icon" type="image/png" href="/assets/favicon.png" />
 
     </head>
-    <body>
+    <body data-app="homepage">
 
         <div class="site-container">
 
@@ -59,6 +59,95 @@
                 </section>
 
             </header>
+
+
+            <section class="section  section--text-block">
+
+                <h2 class="section__title">What is it?</h2>
+
+                <div class="section__body">
+                    <p>Astrum is a lightweight pattern library designed to be included with any web project.</p>
+                    <p>It's non-opinionated and doesn't expect you to write your markup or code in any particular way.</p>
+                    <p>An Astrum pattern library comprises of components organised into groups. A component comprises of a rendered sample of a particular element along with a code sample and a (optional) description for the components usage. A group can also have an (optional) description and is used for organisational purposes. You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.</p>
+                    <p>
+                        <a href="/pattern-library/" class="btn">View a demo</a>
+                    </p>
+                </div>
+
+            </section>
+
+
+            <div class="divider">
+                <img src="/assets/images/site/divider.png" alt="page divider" class="divider__image">
+            </div>
+
+
+            <section class="section  section--centered  section--tabs">
+
+                <h2 class="section__title">What use Astrum?</h2>
+
+                <div class="section__body">
+
+                    <nav class="nav nav--tabs">
+                        <ul class="nav__items">
+                            <li class="nav__item active">
+                                <a href="#tab-theme" class="nav__link  tab  tab--one" v-show-tab="theme">
+                                    <div class="tab__icon">
+                                        <span class="icon icon--theme"></span>
+                                    </div>
+                                    <h3 class="tab__title">Theme to match your brand</h3>
+                                    <p class="tab__body">
+                                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav__item">
+                                <a href="#tab-responsive" class="nav__link  tab  tab--two" v-show-tab="responsive">
+                                    <div class="tab__icon">
+                                        <span class="icon icon--responsive"></span>
+                                    </div>
+                                    <h3 class="tab__title">Responsive with intelligent messaging</h3>
+                                    <p class="tab__body">
+                                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav__item">
+                                <a href="#tab-feedback" class="nav__link  tab  tab--three" v-show-tab="feedback">
+                                    <div class="tab__icon">
+                                        <span class="icon icon--helpers"></span>
+                                    </div>
+                                    <h3 class="tab__title">Guided feedback</h3>
+                                    <p class="tab__body">
+                                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+                    <div class="browser">
+                        <div class="browser__header">
+                            <div class="browser__button"></div>
+                            <div class="browser__button"></div>
+                            <div class="browser__button"></div>
+
+                            <div class="browser__bar"></div>
+                        </div>
+                        <div class="browser__body">
+                            <div id="tab-theme" class="tab-pane active">Theme Tab</div>
+                            <div id="tab-responsive" class="tab-pane">Responsive Tab</div>
+                            <div id="tab-feedback" class="tab-pane">Guided Feedback Tab</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
 
 
             <footer class="site-footer">
@@ -95,6 +184,6 @@
 
         </div>
 
-        <script src="/assets/js/dist/site/all.js"></script>
+        <script src="/assets/js/src/site/main.js"></script>
     </body>
 </html>

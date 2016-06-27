@@ -53,6 +53,10 @@
 @import "objects/button";
 @import "objects/intro";
 @import "objects/nav";
+@import "objects/section";
+@import "objects/divider";
+@import "objects/tab";
+@import "objects/tab-pane";
 
 /**
  * UI
@@ -60,3 +64,4 @@
 @import "ui/site-container";
 @import "ui/site-header";
 @import "ui/site-footer";
+@import "ui/browser";
