@@ -138,6 +138,12 @@
                     "options": {
                         "sample_dark_background": true
                     }
+                },
+                {
+                    "group": "buttons",
+                    "name": "reveal",
+                    "title": "Reveal Button",
+                    "width": "half"
                 }
             ]
         },
