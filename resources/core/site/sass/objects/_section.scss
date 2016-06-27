@@ -86,4 +86,62 @@
             margin: 0 auto;
         }
     }
+
+    &--split {
+        @extend .cf;
+
+        display: flex;
+
+        background-color: color(section, split-bg);
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjMiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+        background-image: -moz-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+        background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
+
+        .icon {
+            color: color(section, split-icon);
+            font-size: 30px;
+            line-height: 30px;
+        }
+
+        .section__title {
+            @extend .medium-text;
+
+            color: color(section, split-text);
+            margin-top: $bsu * .9;
+
+            &:after {
+                background-color: color(section, split-text);
+            }
+        }
+
+        .section__body {
+            color: color(section, split-text);
+
+            p {
+                opacity: 0.5;
+            }
+        }
+
+        .section__col {
+            @extend .cf;
+
+            width: 50%;
+
+            &:first-child {
+                background-color: rgba(33, 133, 151, 0.1);
+
+                .section__body {
+                    float: right;
+                }
+            }
+        }
+
+        .section__body {
+            @extend .regular-text;
+            width: 430px;
+            max-width: 100%;
+            padding: $bsu * 2.5 $bsu * 2 $bsu * 3.5 $bsu;
+        }
+    }
 }
