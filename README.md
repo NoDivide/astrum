@@ -392,9 +392,9 @@ Firstly update the Astrum package:
 
 `npm update -g astrum`
 
-Then update your Astrum instance e.g.:
+Navigate to the route of your project and then update your Astrum instance e.g.:
 
-`astrum update ./public/patterns`
+`astrum update`
 
 You will receive feedback that the update is complete.
 

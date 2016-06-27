@@ -64,18 +64,18 @@ module.exports = {
         this.saveData(function(){});
     },
 
-    update: function(path, callback) {
+    update: function(callback) {
         var _this = this;
 
-        fs.exists(path, function(r) {
+        fs.exists(_this.$config.path, function(r) {
             if (!r) {
                 throw(new Error(chalk.red('No pattern library found to update.')));
             }
         });
 
-        fs.copy(_this.module_path + '/_template/app', path + '/app');
-        fs.copy(_this.module_path + '/_template/index.html', path + '/index.html');
-        fs.copy(_this.module_path + '/_template/LICENSE.txt', path + '/LICENSE.txt');
+        fs.copy(_this.module_path + '/_template/app', _this.$config.path + '/app');
+        fs.copy(_this.module_path + '/_template/index.html', _this.$config.path + '/index.html');
+        fs.copy(_this.module_path + '/_template/LICENSE.txt', _this.$config.path + '/LICENSE.txt');
 
         _this.updateVersion(pjson.version);
 
