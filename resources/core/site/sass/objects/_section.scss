@@ -98,12 +98,6 @@
         background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
         background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%);
 
-        .icon {
-            color: color(section, split-icon);
-            font-size: 30px;
-            line-height: 30px;
-        }
-
         .section__title {
             @extend .medium-text;
 
@@ -117,6 +111,12 @@
 
         .section__body {
             color: color(section, split-text);
+
+            > .icon {
+                color: color(section, split-icon);
+                font-size: 30px;
+                line-height: 30px;
+            }
 
             p {
                 opacity: 0.5;
