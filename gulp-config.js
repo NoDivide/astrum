@@ -1,5 +1,5 @@
 var paths = {
-    root:          '',
+    root:          '.',
     assets_dest:   'assets',
     css_dest:      'assets/css',
     scripts_dest:  'assets/js',

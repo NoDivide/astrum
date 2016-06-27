@@ -1,0 +1,28 @@
+.site-footer {
+    @extend .cf;
+
+    &__legal,
+    &__nav {
+        float: left;
+        padding: $bsu 0;
+    }
+
+    &__legal {
+        @extend .small-text;
+        color: color(site-footer, text);
+
+        padding-left: $bsu * 2;
+        padding-right: $bsu * 1.5;
+
+        p {
+            line-height: 2;
+            margin: 0;
+        }
+    }
+
+    &__logo {
+        float: right;
+        padding-right: $bsu * 2;
+        margin-top: $hsu;
+    }
+}

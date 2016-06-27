@@ -36,6 +36,7 @@
 /**
  * Base
  */
+@import "base/page";
 @import "base/typography";
 
 
@@ -56,4 +57,6 @@
 /**
  * UI
  */
+@import "ui/site-container";
 @import "ui/site-header";
+@import "ui/site-footer";

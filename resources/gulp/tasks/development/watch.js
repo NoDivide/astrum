@@ -9,7 +9,7 @@ gulp.task('watch', function() {
 
     // Watch .scss files
     gulp.watch([
-        config.builds[build].styles.raw + '/**/*.scss'],
+        config.builds[build].styles.raw + '**/*.scss'],
         function(cb) {
             runSequence('compile-sass-into-styles-file');
         });

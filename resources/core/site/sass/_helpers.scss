@@ -4,6 +4,9 @@
 .light {
     @include font-stack(light, sans-serif, normal, true);
 }
+.regular {
+    @include font-stack(regular, sans-serif, normal, true);
+}
 .semibold {
     @include font-stack(semibold, sans-serif, normal, true);
 }

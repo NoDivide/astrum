@@ -56,4 +56,31 @@
             }
         }
     }
+
+    &--footer {
+
+        .nav__item {
+            margin: 0 $hsu 0 0;
+        }
+
+        .nav__link {
+            @extend .regular;
+
+            padding: 0;
+            border-bottom: 1px solid transparent;
+
+            color: color(nav, link-footer);
+
+            &:visited {
+                color: color(nav, link-footer);
+            }
+
+            .nav__item--active &,
+            &:hover,
+            &:focus {
+                color: color(nav, link-footer);
+                border-color: color(nav, border-footer);
+            }
+        }
+    }
 }

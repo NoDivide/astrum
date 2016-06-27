@@ -14,12 +14,15 @@ $brand-5: #A1CAD5;
 $brand-6: #F3F3F3;
 $brand-7: #FFFFFF;
 $brand-8: #003544;
+$brand-9: #616367;
 
 $colors: (
 
     base: (
         body:           $brand-4,
         heading:        $brand-1,
+
+        bg:             $brand-1,
 
         anchor:         $brand-3,
         anchor-hover:   darken($brand-3, 5%),
@@ -71,11 +74,18 @@ $colors: (
 
         link-inverted: rgba($brand-7, 0.7),
         link-hover-inverted: $brand-7,
-        border-inverted: $brand-7
+        border-inverted: $brand-7,
+
+        link-footer: $brand-3,
+        border-footer: rgba($brand-3, 0.4)
     ),
 
     site-header: (
         text: $brand-7,
         bg: $brand-8
+    ),
+
+    site-footer: (
+        text: $brand-9
     )
 );

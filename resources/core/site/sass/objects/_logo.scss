@@ -34,4 +34,16 @@
         height: 16px;
         width: 106px;
     }
+
+    &--no-divide {
+        background-image: url(http://nd-bin.imgix.net/no-divide/logo.svg);
+        background-color: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        display: block;
+        height: 50px;
+        text-indent: -9999px;
+        width: 72px;
+    }
 }
