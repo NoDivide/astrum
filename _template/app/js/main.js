@@ -409,7 +409,7 @@ new Vue({
 
             _this.rtime = new Date();
 
-            if (_this.timeout === false) {
+            if (_this.timeout === false && !_this.mobile_view) {
                 _this.timeout = true;
                 setTimeout(_this.resizeFadeToggle, _this.delta);
             }
