@@ -3,13 +3,19 @@
 
     opacity: 0.4;
     transition: opacity 200ms ease;
+    border-bottom: 1px solid color(tab, border);
+
+    &:last-child {
+        border-bottom: 0;
+    }
 
     &__icon {
         float: left;
         width: 76px;
         height: 52px;
         border-radius: 40px;
-        border: 1px solid transparent;
+        border: 1px solid color(tab, border-one);
+        color: color(tab, border-one);
         text-align: center;
         padding-top: 24px;
         margin-top: 8px;
@@ -59,18 +65,59 @@
         line-height: 1.4;
     }
 
+
+    &--small {
+
+        border-bottom: 0;
+
+        &.nav__item .nav__link {
+            padding: $hsu * .8 0;
+        }
+
+        .tab__icon {
+            @extend .regular-text;
+            width: 40px;
+            height: 40px;
+            padding-top: 0;
+            line-height: 40px;
+            vertical-align: middle;
+            text-indent: -3px;
+        }
+
+        .tab__title {
+            margin-top: $bsu * .75;
+            margin-left: 40px;
+            padding-left: $hsu;
+        }
+    }
+
+
     &:hover,
-    &:focus,
-    .active & {
+    &:focus {
+        opacity: 1;
+    }
+
+
+    &.active {
         opacity: 1;
 
         .tab__icon {
-            background-color: currentColor;
-        }
-
-        .icon {
+            background-color: color(tab, border-one);
             color: color(tab, icon-hover);
         }
+
+        &.tab--one .tab__icon {
+            background-color: color(tab, border-one);
+        }
+
+        &.tab--two .tab__icon {
+            background-color: color(tab, border-two);
+        }
+
+        &.tab--three .tab__icon {
+            background-color: color(tab, border-three);
+        }
+
     }
 
 }

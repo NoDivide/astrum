@@ -90,8 +90,8 @@
 
                     <nav class="nav nav--tabs">
                         <ul class="nav__items">
-                            <li class="nav__item active">
-                                <a href="#tab-theme" class="nav__link  tab  tab--one" v-show-tab="theme">
+                            <li class="nav__item  tab  tab--one  active">
+                                <a href="#tab-theme" class="nav__link" v-show-tab="theme">
                                     <div class="tab__icon">
                                         <span class="icon icon--theme"></span>
                                     </div>
@@ -102,8 +102,8 @@
                                 </a>
                             </li>
 
-                            <li class="nav__item">
-                                <a href="#tab-responsive" class="nav__link  tab  tab--two" v-show-tab="responsive">
+                            <li class="nav__item  tab  tab--two">
+                                <a href="#tab-responsive" class="nav__link" v-show-tab="responsive">
                                     <div class="tab__icon">
                                         <span class="icon icon--responsive"></span>
                                     </div>
@@ -114,8 +114,8 @@
                                 </a>
                             </li>
 
-                            <li class="nav__item">
-                                <a href="#tab-feedback" class="nav__link  tab  tab--three" v-show-tab="feedback">
+                            <li class="nav__item  tab  tab--three">
+                                <a href="#tab-feedback" class="nav__link" v-show-tab="feedback">
                                     <div class="tab__icon">
                                         <span class="icon icon--helpers"></span>
                                     </div>
@@ -148,6 +148,63 @@
 
             </section>
 
+
+            <section class="section  section--centered  section--highlighted  section--terminal">
+
+                <header class="section__header">
+                    <div class="section__icon">
+                        <span class="icon  icon--command"></span>
+                    </div>
+
+                    <h2 class="section__title">Works perfectly with command line</h2>
+                    <p>
+                        Some text here just about using command line with Astrum and why that is awesome.
+                    </p>
+                </header>
+
+                <div class="section__body">
+
+                    <nav class="nav nav--tabs">
+                        <ul class="nav__items">
+                            <li class="nav__item tab  tab--small active">
+                                <a href="#tab-install" class="nav__link" v-show-tab="install">
+                                    <div class="tab__icon">.01</div>
+                                    <h3 class="tab__title">Single-command install</h3>
+                                </a>
+                            </li>
+
+                            <li class="nav__item  tab  tab--small">
+                                <a href="#tab-manage" class="nav__link" v-show-tab="manage">
+                                    <div class="tab__icon">.02</div>
+                                    <h3 class="tab__title">Manage components</h3>
+                                </a>
+                            </li>
+
+                            <li class="nav__item  tab  tab--small">
+                                <a href="#tab-update" class="nav__link" v-show-tab="update">
+                                    <div class="tab__icon">.03</div>
+                                    <h3 class="tab__title">Keep up-to-date</h3>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="terminal">
+                        <div class="terminal__header">
+                            <div class="terminal__button"></div>
+                            <div class="terminal__button"></div>
+                            <div class="terminal__button"></div>
+                        </div>
+                        <div class="terminal__body">
+                            <div id="tab-install" class="tab-pane active"><pre>$ npm install -g astrum</pre></div>
+                            <div id="tab-manage" class="tab-pane"><pre>$ astrum new button/default</pre></div>
+                            <div id="tab-update" class="tab-pane"><pre>$ astrum update ./</pre></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
 
 
             <footer class="site-footer">

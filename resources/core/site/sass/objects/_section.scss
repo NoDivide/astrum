@@ -1,5 +1,21 @@
 .section {
 
+    &__icon {
+        color: color(section, icon);
+
+        display: inline-block;
+        width: 76px;
+        height: 52px;
+        border-radius: 40px;
+        border: 1px solid color(section, icon);
+        padding-top: 24px;
+        margin-bottom: $bsu * 1.5;
+
+        .icon {
+            font-size: 26px;
+            line-height: 26px;
+        }
+    }
 
     &__title {
         @extend .large-text, .semibold;
@@ -13,13 +29,17 @@
             height: 2px;
             background: color(base, heading);
             margin-top: $hsu;
+            position: relative;
         }
+    }
+
+    &__header {
+        margin-bottom: $bsu * 2;
     }
 
     &__body {
         @extend .cf;
     }
-
 
     &--text-block {
         margin: 100px auto 0;
@@ -27,6 +47,10 @@
     }
 
     &--centered {
+
+        .section__header {
+            text-align: center;
+        }
 
         .section__title {
             text-align: center;
@@ -38,9 +62,28 @@
     }
 
     &--tabs {
+        margin-top: -60px;
 
         .section__body {
             padding: $bsu * 2;
+        }
+    }
+
+    &--highlighted {
+        background-color: color(section, highlighted-bg);
+        border-top: 1px solid color(section, highlighted-border);
+        padding: $bsu * 2.5 0 $bsu * 3.5;
+    }
+
+    &--terminal {
+
+        .nav--tabs {
+            float: right;
+        }
+
+        .section__body {
+            max-width: 970px;
+            margin: 0 auto;
         }
     }
 }

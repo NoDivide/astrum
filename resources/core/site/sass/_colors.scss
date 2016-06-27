@@ -20,6 +20,11 @@ $brand-11: #C8D1D5;
 $brand-12: #86C5DF;
 $brand-13: #F469A7;
 $brand-14: #62ABBE;
+$brand-15: #F9F9F9;
+$brand-16: #E0E0E0;
+$brand-17: #404F57;
+$brand-18: #2A383F;
+$brand-19: #667279;
 
 $colors: (
 
@@ -94,11 +99,17 @@ $colors: (
         text: $brand-9
     ),
 
+    section: (
+        icon: $brand-12,
+        highlighted-bg: $brand-15,
+        highlighted-border: $brand-16
+    ),
+
     tab: (
         border: $brand-6,
         border-one: $brand-14,
-        border-two: $brand-12,
-        border-three: $brand-13,
+        border-two: $brand-13,
+        border-three: $brand-12,
         body: $brand-9,
         icon-hover: $brand-7
     ),
@@ -108,5 +119,12 @@ $colors: (
         bg: $brand-11,
         bar: $brand-6,
         button: $brand-6
+    ),
+
+    terminal: (
+        header-bg: $brand-17,
+        bg: $brand-18,
+        button: $brand-19,
+        text: $brand-7
     )
 );

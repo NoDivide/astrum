@@ -91,16 +91,15 @@
             width: 440px;
             float: left;
             margin: 0;
+
+            .section--terminal & {
+                width: 340px;
+                margin-top: $bsu;
+            }
         }
 
         .nav__item {
             display: block;
-
-            border-bottom: 1px solid color(tab, border);
-
-            &:last-child {
-                border-bottom: 0;
-            }
 
             .nav__link {
                 border-bottom: 0;
