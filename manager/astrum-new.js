@@ -17,7 +17,7 @@ program
  * Override argv[1] so that usage command is
  * formatted correctly.
  */
-process.argv[1] = 'patterns new';
+process.argv[1] = 'astrum new';
 
 program.parse(process.argv);
 
@@ -79,12 +79,31 @@ if (group_name) {
                         value: 'half'
                     }
                 ]
+            },
+            {
+                when: function () {
+                    return !program.type || program.type !== 'colors';
+                },
+                type: 'confirm',
+                name: 'sample_dark_background',
+                message: function () {
+                    console.log();
+                    console.log(chalk.grey('Component options:'));
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    return 'Apply a dark background to the code sample?'
+                },
+                default: false
             }
         ]).then(function (answers) {
             var typeColor = program.type && program.type == 'colors';
 
             newComponent.title = answers.title;
             if (answers.width != 'full') newComponent.width = answers.width;
+            if (answers.sample_dark_background) {
+                newComponent.options = {};
+                newComponent.options.sample_dark_background = answers.sample_dark_background;
+            }
+            
             if (typeColor) {
                 newComponent.type = 'colors';
                 newComponent.colors = [];

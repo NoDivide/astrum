@@ -15,7 +15,7 @@ program
  * Override argv[1] so that usage command is
  * formatted correctly.
  */
-process.argv[1] = 'patterns delete';
+process.argv[1] = 'astrum delete';
 
 program.parse(process.argv);
 

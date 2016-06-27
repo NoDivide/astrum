@@ -16,7 +16,7 @@ program
  * Override argv[1] so that usage command is
  * formatted correctly.
  */
-process.argv[1] = 'patterns edit';
+process.argv[1] = 'astrum edit';
 
 program.parse(process.argv);
 
@@ -78,6 +78,27 @@ if (group_name) {
                     }
                 ],
                 default: component.width
+            },
+            {
+                when: function () {
+                    return !program.type || program.type !== 'colors';
+                },
+                type: 'confirm',
+                name: 'sample_dark_background',
+                message: function () {
+                    console.log();
+                    console.log(chalk.grey('Component options:'));
+                    console.log(chalk.grey('----------------------------------------------------------------'));
+                    return 'Apply a dark background to the code sample?'
+                },
+                default: function() {
+                    if(component.hasOwnProperty('options') &&
+                       component.options.hasOwnProperty('sample_dark_background')) {
+                        return component.options.sample_dark_background;
+                    }
+
+                    return false;
+                }
             },
             {
                 type: 'confirm',
@@ -184,6 +205,20 @@ if (group_name) {
             if(originalComponent.type) editedComponent.type = originalComponent.type;
             if(originalComponent.colors) editedComponent.colors = originalComponent.colors;
             if(originalComponent.options) editedComponent.options = originalComponent.options;
+
+            // Apply new options
+            if(!answers.sample_dark_background &&
+               editedComponent.hasOwnProperty('options') &&
+                editedComponent.options.hasOwnProperty('sample_dark_background')) {
+                delete editedComponent.options.sample_dark_background;
+            }
+
+            if (answers.sample_dark_background) {
+                if(!editedComponent.hasOwnProperty('options')) {
+                    editedComponent.options = {};
+                }
+                editedComponent.options.sample_dark_background = true;
+            }
 
             //// If creating a new group
             if (answers.new_group == 'create_new_group') {
