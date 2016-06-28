@@ -1,20 +1,23 @@
 var _ = require('underscore');
 
 module.exports = {
+    params: ['container'],
+
     bind: function() {
         /**
          * Tab pane IDs are prefixed with `tab-` to prevent the browser
          * from jumping to that section of the page when the page loads.
          */
         var _this = this,
+            container = document.getElementById(this.params.container) ? document.getElementById(this.params.container) : document,
             hash = window.location.hash ? window.location.hash.replace('#', '') : null,
             identifier = this.expression,
-            tab = document.querySelector('#tab-' + identifier),
+            tab = container.querySelector('#tab-' + identifier),
             navItem = document.querySelector('.nav__link[href="#tab-' + identifier + '"]').parentElement;
 
         if (hash && hash === identifier) {
             _this.show(tab, navItem);
-        } else if (hash && document.querySelector('#tab-' + hash)) {
+        } else if (hash && container.querySelector('#tab-' + hash)) {
             _this.hide(tab, navItem);
         }
 
@@ -26,7 +29,7 @@ module.exports = {
 
             if (hash === identifier && navItem && tab) {
                 _this.show(tab, navItem);
-            } else if (document.querySelector('#tab-' + hash)) {
+            } else if (container.querySelector('#tab-' + hash)) {
                 _this.hide(tab, navItem);
             }
         });
