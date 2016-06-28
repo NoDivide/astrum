@@ -1,0 +1,1 @@
+Utilises the mixin @include font-stack(semibold, sans-serif);. The helper class for this weight is .semibold.

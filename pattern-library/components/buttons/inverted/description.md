@@ -1,0 +1,1 @@
+The inverted version of the default button to be used on darker backgrounds.

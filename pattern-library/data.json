@@ -104,8 +104,14 @@
             "components": [
                 {
                     "group": "typography",
-                    "name": "light",
-                    "title": "Light",
+                    "name": "regular",
+                    "title": "Regular",
+                    "width": "half"
+                },
+                {
+                    "group": "typography",
+                    "name": "semibold",
+                    "title": "Semibold",
                     "width": "half"
                 },
                 {
@@ -181,5 +187,5 @@
             ]
         }
     ],
-    "version": "1.5.3"
+    "version": "1.5.5"
 }

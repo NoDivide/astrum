@@ -448,7 +448,7 @@ new Vue({
         loadDataFile: function () {
             var _this = this;
 
-            _this.$http.get('./data.json').then(function (response) {
+            _this.$http.get('./data.json' + '?cb=' + new Date()).then(function (response) {
                 _this.initData(response.data, function() {
                     if(_this.$data.groups.length) {
                         _this.setupGroups();
@@ -577,7 +577,7 @@ new Vue({
                 group_path = './components/' + group.name;
 
             // Get and set component description
-            _this.$http.get(group_path + '/description.md').then(function (response) {
+            _this.$http.get(group_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
                 group.description = marked(response.data);
                 _this.areGroupsLoaded();
             }, function () {
@@ -595,7 +595,7 @@ new Vue({
                 component_path = './components/' + component.group + '/' + component.name;
 
             // Get and set component markup
-            _this.$http.get(component_path + '/markup.html').then(function (response) {
+            _this.$http.get(component_path + '/markup.html' + '?cb=' + new Date()).then(function (response) {
                 component.html = response.data;
                 _this.areComponentsLoaded();
             }, function () {
@@ -603,7 +603,7 @@ new Vue({
             });
 
             // Get and set component description
-            _this.$http.get(component_path + '/description.md').then(function (response) {
+            _this.$http.get(component_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
                 component.description = marked(response.data);
                 _this.areComponentsLoaded();
             }, function () {

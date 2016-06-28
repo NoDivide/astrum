@@ -926,7 +926,7 @@
 .ndpl-component__color {
     float: left;
     line-height: 1;
-    padding: 48px 0;
+    padding: 24px 0;
     text-align: center;
     width: 50%;
 }
@@ -975,6 +975,7 @@
         margin-top: 0;
     }
     .ndpl-component__color {
+        padding: 48px 0;
         width: 100%;
     }
     .ndpl-component__color:first-of-type {
