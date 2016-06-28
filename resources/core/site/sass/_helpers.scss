@@ -13,7 +13,6 @@
 .bold {
     @include font-stack(bold, sans-serif, normal, true);
 }
-
 .mono {
     @include font-stack(regular, mono, normal, true);
 }

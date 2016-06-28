@@ -38,6 +38,15 @@
 
         &:last-of-type .nav__link {
             border: none;
+
+            @include media-query(2) {
+                border-bottom: 2px solid transparent;
+
+                &:hover,
+                &:focus {
+                    border-color: color(nav, border);
+                }
+            }
         }
     }
 
@@ -123,13 +132,20 @@
                 border-color: color(nav, border-inverted);
             }
         }
+
+        @include media-query(2) {
+            .nav__item:last-of-type .nav__link:hover,
+            .nav__item:last-of-type .nav__link:focus {
+                border-color: color(nav, border-inverted);
+            }
+        }
     }
 
     &--footer {
 
         .nav__item {
             margin: 0 $hsu 0 0;
-            
+
             &:last-of-type {
                 margin-right: 0;
             }
@@ -151,6 +167,14 @@
             &:hover,
             &:focus {
                 color: color(nav, link-footer);
+                border-color: color(nav, border-footer);
+            }
+        }
+
+        @include media-query(2) {
+            .nav__item:last-of-type .nav__link:hover,
+            .nav__item:last-of-type .nav__link:focus {
+                border-bottom-width: 1px;
                 border-color: color(nav, border-footer);
             }
         }
@@ -223,13 +247,8 @@
             padding: 0 $bsu * 2;
         }
 
-        .nav__item {
-
-        }
-
         .nav__link {
             color: color(nav, link);
-            border-bottom-width: 3px;
             padding: $hsu 0;
 
             &:visited {
@@ -240,6 +259,13 @@
             &:hover,
             &:focus {
                 color: color(nav, link-hover);
+                border-color: color(nav, border);
+            }
+        }
+
+        @include media-query(2) {
+            &.nav--inverted .nav__item:last-of-type .nav__link:hover,
+            &.nav--inverted .nav__item:last-of-type .nav__link:focus {
                 border-color: color(nav, border);
             }
         }

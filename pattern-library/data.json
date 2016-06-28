@@ -62,11 +62,6 @@
             "components": [
                 {
                     "group": "branding",
-                    "name": "icons",
-                    "title": "Icons"
-                },
-                {
-                    "group": "branding",
                     "name": "color-scheme",
                     "title": "Colour Scheme",
                     "type": "colors",
@@ -95,6 +90,11 @@
                     "options": {
                         "sample_dark_background": true
                     }
+                },
+                {
+                    "group": "branding",
+                    "name": "icons",
+                    "title": "Icons"
                 }
             ]
         },
@@ -118,6 +118,24 @@
                     "group": "typography",
                     "name": "bold",
                     "title": "Bold",
+                    "width": "half"
+                },
+                {
+                    "group": "typography",
+                    "name": "regular",
+                    "title": "Regular",
+                    "width": "half"
+                },
+                {
+                    "group": "typography",
+                    "name": "semibold",
+                    "title": "Semibold",
+                    "width": "half"
+                },
+                {
+                    "group": "typography",
+                    "name": "mono",
+                    "title": "Mono",
                     "width": "half"
                 }
             ]
@@ -165,12 +183,35 @@
                 {
                     "group": "navigation",
                     "name": "primary",
-                    "title": "Primary Navigation"
+                    "title": "Primary Navigation",
+                    "options": {
+                        "sample_min_height": 100
+                    }
+                },
+                {
+                    "group": "navigation",
+                    "name": "inverted",
+                    "title": "Inverted Navigation",
+                    "options": {
+                        "sample_dark_background": true
+                    }
                 },
                 {
                     "group": "navigation",
                     "name": "footer",
                     "title": "Footer Navigation"
+                },
+                {
+                    "group": "navigation",
+                    "name": "tab",
+                    "title": "Tab",
+                    "width": "half"
+                },
+                {
+                    "group": "navigation",
+                    "name": "small-tab",
+                    "title": "Small Tab",
+                    "width": "half"
                 }
             ]
         },
