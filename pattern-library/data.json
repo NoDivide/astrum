@@ -213,9 +213,9 @@
                     "group": "tabs"
                 },
                 {
-                    "group": "tabs",
                     "name": "tab-panes",
-                    "title": "Tab Panes"
+                    "title": "Example",
+                    "group": "tabs"
                 }
             ]
         },
