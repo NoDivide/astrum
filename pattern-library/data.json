@@ -154,8 +154,14 @@
                 },
                 {
                     "group": "buttons",
-                    "name": "play",
-                    "title": "Play Button",
+                    "name": "reveal",
+                    "title": "Reveal Button",
+                    "width": "half"
+                },
+                {
+                    "group": "buttons",
+                    "name": "primary",
+                    "title": "Primary Button",
                     "width": "half",
                     "options": {
                         "sample_dark_background": true
@@ -163,9 +169,12 @@
                 },
                 {
                     "group": "buttons",
-                    "name": "reveal",
-                    "title": "Reveal Button",
-                    "width": "half"
+                    "name": "icon",
+                    "title": "Icon Button",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
                 }
             ]
         },
