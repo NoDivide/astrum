@@ -93,6 +93,15 @@
                 },
                 {
                     "group": "branding",
+                    "name": "flare-logo",
+                    "title": "Logo (with flare)",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
+                },
+                {
+                    "group": "branding",
                     "name": "icons",
                     "title": "Icons"
                 }
