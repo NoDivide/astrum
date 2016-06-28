@@ -194,6 +194,18 @@
                     "group": "navigation",
                     "name": "footer",
                     "title": "Footer Navigation"
+                },
+                {
+                    "group": "navigation",
+                    "name": "tab",
+                    "title": "Tab",
+                    "width": "half"
+                },
+                {
+                    "group": "navigation",
+                    "name": "small-tab",
+                    "title": "Small Tab",
+                    "width": "half"
                 }
             ]
         },
