@@ -148,17 +148,9 @@
     }
 
     &--tabs {
-        float: left;
 
         .nav__items {
-            width: 440px;
-            float: left;
-            margin: 0;
-
-            .section--terminal & {
-                width: 340px;
-                margin-top: $bsu;
-            }
+            margin: 0 0 $bsu * 2;
         }
 
         .nav__item {
@@ -167,6 +159,21 @@
             .nav__link {
                 border-bottom: 0;
                 padding: $bsu 0;
+            }
+        }
+
+        @include media-query(3) {
+            float: left;
+
+            .nav__items {
+                width: 440px;
+                float: left;
+                margin: 0;
+
+                .section--terminal & {
+                    width: 340px;
+                    margin-top: $bsu;
+                }
             }
         }
     }

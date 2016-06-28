@@ -1,5 +1,4 @@
 .browser {
-    margin-left: 440px + $bsu;
     border-radius: global(border-radius);
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     background-color: color(browser, bg);
@@ -36,5 +35,9 @@
 
     &__body {
         @extend .cf;
+    }
+
+    @include media-query(3) {
+        margin-left: 440px + $bsu;
     }
 }

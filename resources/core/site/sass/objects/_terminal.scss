@@ -1,7 +1,7 @@
 .terminal {
     border-radius: global(border-radius);
     background-color: color(terminal, bg);
-    margin-right: 300px;
+    margin: 0 $hsu;
 
     &__header {
         background-color: color(terminal, header-bg);
@@ -29,5 +29,9 @@
         pre {
             margin: 0;
         }
+    }
+
+    @include media-query(3) {
+        margin: 0 300px 0 0;
     }
 }

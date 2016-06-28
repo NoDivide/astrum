@@ -3,9 +3,12 @@
  * ----------------------------------------//
  */
 .screenshots {
-    margin-left: 440px + $bsu;
-
     img {
         width: 100%;
+        margin: 0;
+    }
+
+    @include media-query(3) {
+        margin-left: 440px + $bsu;
     }
 }

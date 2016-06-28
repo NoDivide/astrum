@@ -34,8 +34,12 @@
     }
 
     &__header {
-        margin: 0 auto $bsu * 2;
-        max-width: 50%;
+        margin: 0 $bsu $bsu * 2;
+
+        @include media-query(3) {
+            max-width: 50%;
+            margin: 0 auto $bsu * 2;
+        }
     }
 
     &__body {
@@ -70,12 +74,15 @@
     &--tabs {
 
         .section__body {
-            padding: $bsu * 2;
+            padding: $hsu;
         }
-
 
         @include media-query(2) {
             margin-top: -60px;
+
+            .section__body {
+                padding: $bsu * 2;
+            }
         }
     }
 
@@ -87,17 +94,19 @@
 
     &--terminal {
 
-        .nav--tabs {
-            float: right;
-
-            .nav__items {
-                width: 280px;
-            }
-        }
-
         .section__body {
             max-width: 1020px;
             margin: 0 auto;
+        }
+
+        @include media-query(3) {
+            .nav--tabs {
+                float: right;
+
+                .nav__items {
+                    width: 280px;
+                }
+            }
         }
     }
 
