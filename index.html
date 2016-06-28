@@ -84,14 +84,14 @@
 
             <section class="section  section--centered  section--tabs">
 
-                <h2 class="section__title">What use Astrum?</h2>
+                <h2 class="section__title">Why use Astrum?</h2>
 
                 <div class="section__body">
 
                     <nav class="nav nav--tabs">
                         <ul class="nav__items">
                             <li class="nav__item  tab  tab--one  active">
-                                <a href="#tab-theme" class="nav__link" v-show-tab="theme">
+                                <a href="#tab-theme" class="nav__link" v-show-tab="theme" container="browser-tabs">
                                     <div class="tab__icon">
                                         <span class="icon icon--theme"></span>
                                     </div>
@@ -103,7 +103,7 @@
                             </li>
 
                             <li class="nav__item  tab  tab--two">
-                                <a href="#tab-responsive" class="nav__link" v-show-tab="responsive">
+                                <a href="#tab-responsive" class="nav__link" v-show-tab="responsive" container="browser-tabs">
                                     <div class="tab__icon">
                                         <span class="icon icon--responsive"></span>
                                     </div>
@@ -115,7 +115,7 @@
                             </li>
 
                             <li class="nav__item  tab  tab--three">
-                                <a href="#tab-feedback" class="nav__link" v-show-tab="feedback">
+                                <a href="#tab-feedback" class="nav__link" v-show-tab="feedback" container="browser-tabs">
                                     <div class="tab__icon">
                                         <span class="icon icon--helpers"></span>
                                     </div>
@@ -129,7 +129,7 @@
                     </nav>
 
 
-                    <div class="browser">
+                    <div id="browser-tabs" class="browser">
                         <div class="browser__header">
                             <div class="browser__button"></div>
                             <div class="browser__button"></div>
@@ -142,10 +142,10 @@
                                 <img src="http://nd-bin.imgix.net/astrum/themed-screenshot.jpg" alt=" "/>
                             </div>
                             <div id="tab-responsive" class="tab-pane">
-                                
+
                             </div>
                             <div id="tab-feedback" class="tab-pane">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -172,21 +172,21 @@
                     <nav class="nav nav--tabs">
                         <ul class="nav__items">
                             <li class="nav__item tab  tab--small active">
-                                <a href="#tab-install" class="nav__link" v-show-tab="install">
+                                <a href="#tab-install" class="nav__link" v-show-tab="install" container="terminal-tabs">
                                     <div class="tab__icon">.01</div>
                                     <h3 class="tab__title">Single-command install</h3>
                                 </a>
                             </li>
 
                             <li class="nav__item  tab  tab--small">
-                                <a href="#tab-manage" class="nav__link" v-show-tab="manage">
+                                <a href="#tab-manage" class="nav__link" v-show-tab="manage" container="terminal-tabs">
                                     <div class="tab__icon">.02</div>
                                     <h3 class="tab__title">Manage components</h3>
                                 </a>
                             </li>
 
                             <li class="nav__item  tab  tab--small">
-                                <a href="#tab-update" class="nav__link" v-show-tab="update">
+                                <a href="#tab-update" class="nav__link" v-show-tab="update" container="terminal-tabs">
                                     <div class="tab__icon">.03</div>
                                     <h3 class="tab__title">Keep up-to-date</h3>
                                 </a>
@@ -194,7 +194,7 @@
                         </ul>
                     </nav>
 
-                    <div class="terminal">
+                    <div class="terminal" id="terminal-tabs">
                         <div class="terminal__header">
                             <div class="terminal__button"></div>
                             <div class="terminal__button"></div>
