@@ -105,6 +105,11 @@
         }
 
         @include media-query(3) {
+
+            .terminal {
+                margin: 0 300px 0 0;
+            }
+            
             .nav--tabs {
                 float: right;
 

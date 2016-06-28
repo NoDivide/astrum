@@ -167,6 +167,18 @@
                     "title": "Footer Navigation"
                 }
             ]
+        },
+        {
+            "name": "misc",
+            "title": "Miscellaneous",
+            "components": [
+                {
+                    "group": "misc",
+                    "name": "terminal",
+                    "title": "Terminal",
+                    "width": "half"
+                }
+            ]
         }
     ],
     "version": "1.5.3"
