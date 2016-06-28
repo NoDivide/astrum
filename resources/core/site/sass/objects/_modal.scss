@@ -36,6 +36,11 @@
 
         iframe {
             float: left;
+            max-height: 300px;
+
+            @include media-query(2) {
+                max-height: none;
+            }
         }
 
         p:last-child {
