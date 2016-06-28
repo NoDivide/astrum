@@ -17,6 +17,10 @@
         display: inline-block;
     }
 
+    &--limit {
+        max-width: 420px;
+    }
+
     /**
      * Chalk colors.
      */

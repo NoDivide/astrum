@@ -1,7 +1,7 @@
 .tab {
     @extend .cf;
 
-    opacity: 0.4;
+    opacity: 1;
     transition: opacity 200ms ease;
     border-bottom: 1px solid color(tab, border);
 
@@ -120,4 +120,10 @@
 
     }
 
+    /**
+     * Media query adjustments
+     */
+    @include media-query(3) {
+        opacity: 0.4;
+    }
 }

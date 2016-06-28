@@ -129,6 +129,10 @@
 
         .nav__item {
             margin: 0 $hsu 0 0;
+            
+            &:last-of-type {
+                margin-right: 0;
+            }
         }
 
         .nav__link {

@@ -3,12 +3,15 @@
  * ----------------------------------------//
  */
 .screenshots {
+    display: none;
+
     img {
         width: 100%;
         margin: 0;
     }
 
     @include media-query(3) {
+        display: block;
         margin-left: 440px + $bsu;
     }
 }

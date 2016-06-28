@@ -1,0 +1,20 @@
+/**
+ * Tab UI Styles.
+ * ----------------------------------------//
+ */
+.tab {
+
+    .nav__link {
+        cursor: default;
+    }
+
+    /**
+     * Media query adjustments
+     */
+    @include media-query(3) {
+
+        .nav__link {
+            cursor: pointer;
+        }
+    }
+}
