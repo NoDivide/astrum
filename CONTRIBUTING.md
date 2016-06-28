@@ -1,6 +1,6 @@
 # Contributing to Astrum
 
-Our aim to make Astrum as versatile as possible and if you’d like to contribute to the project please take a moment to review this document.
+Our aim is to make Astrum as versatile as possible and if you’d like to contribute to the project please take a moment to review this document.
 
 ## Using the issue tracker
 
@@ -9,7 +9,7 @@ The [issue tracker](https://github.com/nodivide/astrum/issues) is our preferred 
 <a name="bugs"></a>
 ## Bug reports
 
-*When create a bug issue please apply the red “bug” label.*
+*When creating a bug issue please apply the red “bug” label.*
 
 A bug is a reproducible issue that is caused by the code in the repository. 
 
@@ -23,7 +23,7 @@ Guidelines for bug reports:
 
 3. **Isolate the problem** &mdash; ideally create a [reduced test case](https://css-tricks.com/reduced-test-cases/) and a live example.
 
-Please try to be as detailed as possible in your report in particular what steps will reproduce the issue and what browser(s) and OS are you experience it on? Screenshots are also useful. All these details will help us resolve any potential bugs more quickly.
+Please try to be as detailed as possible in your report, in particular what steps will reproduce the issue and what browser(s) and OS you are experience it on? Screenshots are also useful. All these details will help us resolve any potential bugs more quickly.
 
 <a name="features"></a>
 ## Feature requests
