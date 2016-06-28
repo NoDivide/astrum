@@ -1,6 +1,6 @@
 {
   "name": "@nodivide/astrum",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/index.js",
   "scripts": {

@@ -42,7 +42,7 @@ if(path) {
         console.log(chalk.yellow('$ astrum new [group_name/component_name]'));
         console.log();
         console.log(chalk.yellow('To customise your pattern library locate your data.json file'));
-        console.log(chalk.yellow('in ' + path + ' and add you project details.'));
+        console.log(chalk.yellow('in ' + path + ' and add your project details.'));
         console.log();
     });
 }
