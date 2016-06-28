@@ -85,6 +85,10 @@
         @include media-query(2) {
             margin-top: -60px;
 
+            .nav--tabs {
+                margin-top: $bsu * 2;
+            }
+
             .section__body {
                 padding: $bsu * 2;
             }
@@ -109,7 +113,7 @@
             .terminal {
                 margin: 0 300px 0 0;
             }
-            
+
             .nav--tabs {
                 float: right;
 
