@@ -1,1 +1,1 @@
-The footer navigation is styles using the `.nav--footer` modifier.
+The footer navigation object uses the `.nav--footer` modifier.

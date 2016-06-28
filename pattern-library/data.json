@@ -115,8 +115,14 @@
             "components": [
                 {
                     "group": "typography",
-                    "name": "light",
-                    "title": "Light",
+                    "name": "regular",
+                    "title": "Regular",
+                    "width": "half"
+                },
+                {
+                    "group": "typography",
+                    "name": "semibold",
+                    "title": "Semibold",
                     "width": "half"
                 },
                 {
@@ -135,12 +141,6 @@
                     "group": "typography",
                     "name": "semibold",
                     "title": "Semibold",
-                    "width": "half"
-                },
-                {
-                    "group": "typography",
-                    "name": "mono",
-                    "title": "Mono",
                     "width": "half"
                 }
             ]
@@ -232,17 +232,26 @@
             ]
         },
         {
-            "name": "misc",
-            "title": "Miscellaneous",
+            "name": "terminal",
+            "title": "Terminal",
             "components": [
                 {
-                    "group": "misc",
-                    "name": "terminal",
-                    "title": "Terminal",
-                    "width": "half"
+                    "group": "terminal",
+                    "name": "mono",
+                    "title": "Mono",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
+                },
+                {
+                    "name": "example",
+                    "title": "Example",
+                    "width": "half",
+                    "group": "terminal"
                 }
             ]
         }
     ],
-    "version": "1.5.3"
+    "version": "1.5.5"
 }

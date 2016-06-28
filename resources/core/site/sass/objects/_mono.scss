@@ -5,6 +5,7 @@
 .mono {
     @extend .mono, .extra-small-text;
 
+    color: color(chalk, white);
     display: block;
     min-height: 1em;
     margin: 0;
