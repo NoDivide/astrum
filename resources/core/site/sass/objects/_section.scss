@@ -47,12 +47,12 @@
     }
 
     &--text-block {
-        margin: $bsu auto 0;
+        margin: 0 auto;
         max-width: 970px;
-        padding: $bsu;
+        padding: $bsu * 2 $bsu $bsu;
 
         @include media-query(2) {
-            margin: 100px auto 0;
+            padding-top: 100px;
         }
     }
 
