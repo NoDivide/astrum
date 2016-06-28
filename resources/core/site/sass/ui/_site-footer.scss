@@ -3,16 +3,14 @@
 
     &__legal,
     &__nav {
-        float: left;
-        padding: $bsu 0;
+        padding: $bsu 0 0;
     }
 
     &__legal {
         @extend .small-text;
         color: color(site-footer, text);
-
-        padding-left: $bsu * 2;
-        padding-right: $bsu * 1.5;
+        text-align: center;
+        padding: $bsu $bsu 0;
 
         p {
             line-height: 2;
@@ -20,9 +18,33 @@
         }
     }
 
+    &__nav {
+        text-align: center;
+    }
+
     &__logo {
-        float: right;
-        padding-right: $bsu * 2;
-        margin-top: $hsu;
+        margin-top: $bsu;
+        padding-bottom: $hsu;
+        text-align: center;
+    }
+
+    @include media-query(3) {
+
+        .site-footer__legal,
+        .site-footer__nav {
+            float: left;
+            text-align: left;
+        }
+
+        .site-footer__legal {
+            padding: $bsu $bsu * 1.5 $bsu $bsu * 2;
+        }
+
+        .site-footer__logo {
+            float: right;
+            margin-top: $hsu;
+            padding-right: $bsu * 2;
+            padding-bottom: 0;
+        }
     }
 }
