@@ -1,8 +1,10 @@
 .intro {
     margin-top: 60px;
+    padding: 0 $bsu;
 
     &__title {
         margin: 0 auto $hsu * 1.7;
+        max-width: 100%;
     }
 
     &__body {

@@ -13,6 +13,7 @@ Vue.component('astrum-modal', require('./components/modal/component.js'));
 Vue.directive('show-tab', require('./directives/show-tab.js'));
 Vue.directive('show-modal', require('./directives/show-modal.js'));
 Vue.directive('sticky', require('./directives/sticky.js'));
+Vue.directive('toggle', require('./directives/toggle.js'));
 
 /**
  * Apps

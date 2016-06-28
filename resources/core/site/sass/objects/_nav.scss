@@ -1,5 +1,33 @@
 .nav {
 
+    &__toggle {
+        padding: $hsu * 1.4 0;
+        text-decoration: none;
+        display: block;
+        text-transform: uppercase;
+
+        &:visited {
+            color: color(nav, link-inverted);
+        }
+
+        .nav__item--active &,
+        &:hover,
+        &:focus {
+            color: color(nav, link-hover-inverted);
+            border-color: color(nav, border-inverted);
+        }
+
+        .icon {
+            font-size: 12px;
+            line-height: 12px;
+            margin-right: $hsu * .8;
+        }
+
+        @include media-query(2) {
+            display: none;
+        }
+    }
+
     &__items {
 
     }
@@ -32,18 +60,49 @@
     }
 
     &--primary {
-        margin-top: $bsu;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
 
         .nav__items {
+            display: none;
             margin: 0 auto;
             width: 100%;
             max-width: 960px;
+        }
 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .nav__item {
+            display: block;
+            text-align: left;
+        }
+
+        .nav__link {
+            display: block;
+        }
+
+        &.open {
+            background: rgba(0,0,0,0.85);
+            z-index: 15;
+            padding-bottom: $hsu;
+
+            .nav__items {
+                display: block;
+            }
+        }
+
+        @include media-query(2) {
+            margin-top: $bsu;
+
+            .nav__items {
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav__item {
+                display: inline-block;
+                text-align: center;
+            }
         }
     }
 
@@ -121,7 +180,6 @@
     &--fixed {
         @extend .cf;
 
-        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -129,6 +187,10 @@
         background: color(nav, fixed-bg);
         z-index: 10;
         box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+        @include media-query(3) {
+            position: fixed;
+        }
 
         .logo {
             display: inline-block;

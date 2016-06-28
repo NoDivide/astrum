@@ -38,8 +38,10 @@
 
             <header class="site-header">
 
-                <nav class="nav nav--primary nav--inverted" v-sticky="nav--fixed" anchor=".site-header">
+                <nav class="nav nav--primary nav--inverted" v-sticky="nav--fixed" anchor=".site-header" id="primary-nav">
                     <div class="logo  logo--small">Astrum</div>
+
+                    <a href="#" class="nav__toggle" v-toggle="primary-nav"><span class="icon icon--menu"></span>Menu</a>
 
                     <ul class="nav__items">
                         <li class="nav__item"><a class="nav__link" href="#what-is-it">What is it?</a></li>

@@ -25,6 +25,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--menu:before {
+    content: "\e909";
+}
 .icon--close:before {
     content: "\e908";
 }

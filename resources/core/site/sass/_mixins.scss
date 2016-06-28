@@ -1,0 +1,26 @@
+/**
+ * Media Query
+ * -------------------------------------//
+ */
+@mixin media-query($bp) {
+
+    @if unitless($bp) {
+        @media only screen and (min-width: nth($grid-breakpoint-widths, $bp)) { @content; }
+
+        @if $support-old-ie {
+            .lt-ie9 & {
+                @content;
+            }
+        }
+    }
+
+    @else {
+        @media only screen and (min-width: $bp) { @content; }
+
+        @if $support-old-ie {
+            .lt-ie9 & {
+                @content;
+            }
+        }
+    }
+}

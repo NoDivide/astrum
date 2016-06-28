@@ -43,8 +43,13 @@
     }
 
     &--text-block {
-        margin: 100px auto 0;
+        margin: $bsu auto 0;
         max-width: 970px;
+        padding: $bsu;
+
+        @include media-query(2) {
+            margin: 100px auto 0;
+        }
     }
 
     &--centered {
@@ -63,10 +68,14 @@
     }
 
     &--tabs {
-        margin-top: -60px;
 
         .section__body {
             padding: $bsu * 2;
+        }
+
+
+        @include media-query(2) {
+            margin-top: -60px;
         }
     }
 
