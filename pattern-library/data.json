@@ -251,6 +251,20 @@
                     "group": "terminal"
                 }
             ]
+        },
+        {
+            "name": "misc",
+            "title": "Miscellaneous",
+            "components": [
+                {
+                    "group": "misc",
+                    "name": "modal",
+                    "title": "Modal",
+                    "options": {
+                        "sample_min_height": 800
+                    }
+                }
+            ]
         }
     ],
     "version": "1.5.5"
