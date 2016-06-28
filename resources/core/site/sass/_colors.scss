@@ -78,6 +78,13 @@ $colors: (
         inverted-text-hover: $brand-7
     ),
 
+    modal: (
+        overlay: $brand-1,
+        content: $brand-7,
+        inverted-close: $brand-7,
+        close: $brand-7
+    ),
+
     nav: (
         link: $brand-1,
         link-hover: $brand-1,
