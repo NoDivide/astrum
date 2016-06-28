@@ -21,15 +21,7 @@
         <script src="https://use.typekit.net/prk5aou.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
-        <link rel="icon" sizes="192x192" href="/assets/touch-icons/touch-icon-192x192.png">
-        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/touch-icons/apple-touch-icon-180x180-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/touch-icons/apple-touch-icon-152x152-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/touch-icons/apple-touch-icon-120x120-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/touch-icons/apple-touch-icon-76x76-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/touch-icons/apple-touch-icon-57x57-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/assets/touch-icons/apple-touch-icon-precomposed.png">
         <link rel="shortcut icon" type="image/png" href="/assets/favicon.png" />
-
     </head>
     <body data-app="homepage">
 
@@ -86,165 +78,164 @@
 
 
             <section class="section  section--centered  section--tabs">
+                <div class="section__row">
+                    <h2 class="section__title">Why use Astrum?</h2>
 
-                <h2 class="section__title">Why use Astrum?</h2>
+                    <div class="section__body">
 
-                <div class="section__body">
+                        <nav class="nav nav--tabs">
+                            <ul class="nav__items">
+                                <li class="nav__item  tab  tab--one  active">
+                                    <a href="#tab-theme" class="nav__link" v-show-tab="theme" container="browser-tabs">
+                                        <div class="tab__icon">
+                                            <span class="icon icon--theme"></span>
+                                        </div>
+                                        <h3 class="tab__title">Theme to match your brand</h3>
+                                        <p class="tab__body">
+                                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
+                                        </p>
+                                    </a>
+                                </li>
 
-                    <nav class="nav nav--tabs">
-                        <ul class="nav__items">
-                            <li class="nav__item  tab  tab--one  active">
-                                <a href="#tab-theme" class="nav__link" v-show-tab="theme" container="browser-tabs">
-                                    <div class="tab__icon">
-                                        <span class="icon icon--theme"></span>
-                                    </div>
-                                    <h3 class="tab__title">Theme to match your brand</h3>
-                                    <p class="tab__body">
-                                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
-                                    </p>
-                                </a>
-                            </li>
+                                <li class="nav__item  tab  tab--two">
+                                    <a href="#tab-responsive" class="nav__link" v-show-tab="responsive" container="browser-tabs">
+                                        <div class="tab__icon">
+                                            <span class="icon icon--responsive"></span>
+                                        </div>
+                                        <h3 class="tab__title">Responsive with intelligent messaging</h3>
+                                        <p class="tab__body">
+                                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
+                                        </p>
+                                    </a>
+                                </li>
 
-                            <li class="nav__item  tab  tab--two">
-                                <a href="#tab-responsive" class="nav__link" v-show-tab="responsive" container="browser-tabs">
-                                    <div class="tab__icon">
-                                        <span class="icon icon--responsive"></span>
-                                    </div>
-                                    <h3 class="tab__title">Responsive with intelligent messaging</h3>
-                                    <p class="tab__body">
-                                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
-                                    </p>
-                                </a>
-                            </li>
+                                <li class="nav__item  tab  tab--three">
+                                    <a href="#tab-feedback" class="nav__link" v-show-tab="feedback" container="browser-tabs">
+                                        <div class="tab__icon">
+                                            <span class="icon icon--helpers"></span>
+                                        </div>
+                                        <h3 class="tab__title">Guided feedback</h3>
+                                        <p class="tab__body">
+                                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
 
-                            <li class="nav__item  tab  tab--three">
-                                <a href="#tab-feedback" class="nav__link" v-show-tab="feedback" container="browser-tabs">
-                                    <div class="tab__icon">
-                                        <span class="icon icon--helpers"></span>
-                                    </div>
-                                    <h3 class="tab__title">Guided feedback</h3>
-                                    <p class="tab__body">
-                                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae urna lorem, porta sed congue ut.
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div class="screenshots" id="browser-tabs">
-                        <div id="tab-theme" class="tab-pane active">
-                            <img src="http://nd-bin.imgix.net/astrum/branded-screenshot.jpg?q=50&dpr=2" alt=" "/>
-                        </div>
-                        <div id="tab-responsive" class="tab-pane">
-                            <img src="http://nd-bin.imgix.net/astrum/responsive-screenshot.jpg?q=50&dpr=2" alt=" "/>
-                        </div>
-                        <div id="tab-feedback" class="tab-pane">
-                            <img src="http://nd-bin.imgix.net/astrum/guided-feedback-screenshot.jpg?q=50&dpr=2" alt=" "/>
+                        <div class="screenshots" id="browser-tabs">
+                            <div id="tab-theme" class="tab-pane active">
+                                <img src="http://nd-bin.imgix.net/astrum/branded-screenshot.jpg?q=50&dpr=2" alt=" "/>
+                            </div>
+                            <div id="tab-responsive" class="tab-pane">
+                                <img src="http://nd-bin.imgix.net/astrum/responsive-screenshot.jpg?q=50&dpr=2" alt=" "/>
+                            </div>
+                            <div id="tab-feedback" class="tab-pane">
+                                <img src="http://nd-bin.imgix.net/astrum/guided-feedback-screenshot.jpg?q=50&dpr=2" alt=" "/>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </section>
 
 
             <section class="section  section--centered  section--highlighted  section--terminal">
-
-                <header class="section__header">
-                    <div class="section__icon">
-                        <span class="icon  icon--command"></span>
-                    </div>
-                    <h2 class="section__title">Intuitive management from the command-line.</h2>
-                    <p>
-                        Astrum comes bundled with a command-line tool that allows you to easily manage components and groups through intuitive feedbank and prompts.
-                    </p>
-                </header>
-
-                <div class="section__body">
-
-                    <nav class="nav nav--tabs">
-                        <ul class="nav__items">
-                            <li class="nav__item tab  tab--small active">
-                                <a href="#tab-install" class="nav__link" v-show-tab="install" container="terminal-tabs">
-                                    <div class="tab__icon">.01</div>
-                                    <h3 class="tab__title">Single-command install</h3>
-                                </a>
-                            </li>
-
-                            <li class="nav__item  tab  tab--small">
-                                <a href="#tab-manage" class="nav__link" v-show-tab="manage" container="terminal-tabs">
-                                    <div class="tab__icon">.02</div>
-                                    <h3 class="tab__title">Manage components</h3>
-                                </a>
-                            </li>
-
-                            <li class="nav__item  tab  tab--small">
-                                <a href="#tab-update" class="nav__link" v-show-tab="update" container="terminal-tabs">
-                                    <div class="tab__icon">.03</div>
-                                    <h3 class="tab__title">Keep up-to-date</h3>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div class="terminal" id="terminal-tabs">
-                        <div class="terminal__header">
-                            <div class="terminal__button"></div>
-                            <div class="terminal__button"></div>
-                            <div class="terminal__button"></div>
+                <div class="section__row">
+                    <header class="section__header">
+                        <div class="section__icon">
+                            <span class="icon  icon--command"></span>
                         </div>
-                        <div class="terminal__body">
-                            <div id="tab-install" class="tab-pane active">
-                                <span class="mono">$ npm install -g astrum</span>
-                                <span class="mono">$ cd project-folder</span>
-                                <span class="mono">$ astrum init ./public/library</span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono mono--green">&#10003; Pattern library initialized successfully.</span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--no-wrap mono--yellow">To get started add your first component using:</span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--no-wrap mono--yellow">$ astrum new [group_name/component_name]</span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--limit mono--yellow">To customise your pattern library locate your data.json file in ./public/library/ and add your project details.</span>
-                                <span class="mono"></span>
+                        <h2 class="section__title">Intuitive management from the command-line.</h2>
+                        <p>
+                            Astrum comes bundled with a command-line tool that allows you to easily manage components and groups through intuitive feedbank and prompts.
+                        </p>
+                    </header>
+
+                    <div class="section__body">
+
+                        <nav class="nav nav--tabs">
+                            <ul class="nav__items">
+                                <li class="nav__item tab  tab--small active">
+                                    <a href="#tab-install" class="nav__link" v-show-tab="install" container="terminal-tabs">
+                                        <div class="tab__icon">.01</div>
+                                        <h3 class="tab__title">Single-command install</h3>
+                                    </a>
+                                </li>
+
+                                <li class="nav__item  tab  tab--small">
+                                    <a href="#tab-manage" class="nav__link" v-show-tab="manage" container="terminal-tabs">
+                                        <div class="tab__icon">.02</div>
+                                        <h3 class="tab__title">Manage components</h3>
+                                    </a>
+                                </li>
+
+                                <li class="nav__item  tab  tab--small">
+                                    <a href="#tab-update" class="nav__link" v-show-tab="update" container="terminal-tabs">
+                                        <div class="tab__icon">.03</div>
+                                        <h3 class="tab__title">Keep up-to-date</h3>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="terminal" id="terminal-tabs">
+                            <div class="terminal__header">
+                                <div class="terminal__button"></div>
+                                <div class="terminal__button"></div>
+                                <div class="terminal__button"></div>
                             </div>
-                            <div id="tab-manage" class="tab-pane">
-                                <span class="mono">$ astrum new btns/default</span>
-                                <span class="mono"> </span>
-                                <span class="mono chalk-grey">New component details:</span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono mono--grey">Component group: btns</span>
-                                <span class="mono mono--grey">Component name: default</span>
-                                <span class="mono">? Component title: <span class="mono mono--inline mono--blue">Default</span></span>
-                                <span class="mono">? Component width: <span class="mono mono--inline mono--blue">Full width</span></span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--grey">Component options:</span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono">? Apply a dark background to the code sample? <span class="mono mono--inline mono--blue">No</span></span>
-                                <span class="mono">? Select component position in the "btns" group: <span class="mono mono--inline mono--blue">Position first</span></span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono mono--green">&#10003; Pattern library data saved successfully.</span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--yellow">Add your component markup to ./library/components/btns/default/markup.html</span>
-                                <span class="mono mono--yellow">Add your component description to ./library/components/btns/default/description.md</span>
-                                <span class="mono"> </span>
-                            </div>
-                            <div id="tab-update" class="tab-pane">
-                                <span class="mono">$ astrum update</span>
-                                <span class="mono"> </span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono mono--green">&#10003; Pattern library successfully updated from 1.4.5 to 1.5.2.</span>
-                                <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
-                                <span class="mono"> </span>
+                            <div class="terminal__body">
+                                <div id="tab-install" class="tab-pane active">
+                                    <span class="mono">$ npm install -g astrum</span>
+                                    <span class="mono">$ cd project-folder</span>
+                                    <span class="mono">$ astrum init ./public/library</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono mono--green">&#10003; Pattern library initialized successfully.</span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--no-wrap mono--yellow">To get started add your first component using:</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--no-wrap mono--yellow">$ astrum new [group_name/component_name]</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--limit mono--yellow">To customise your pattern library locate your data.json file in ./public/library/ and add your project details.</span>
+                                    <span class="mono"></span>
+                                </div>
+                                <div id="tab-manage" class="tab-pane">
+                                    <span class="mono">$ astrum new btns/default</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono chalk-grey">New component details:</span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono mono--grey">Component group: btns</span>
+                                    <span class="mono mono--grey">Component name: default</span>
+                                    <span class="mono">? Component title: <span class="mono mono--inline mono--blue">Default</span></span>
+                                    <span class="mono">? Component width: <span class="mono mono--inline mono--blue">Full width</span></span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--grey">Component options:</span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono">? Apply a dark background to the code sample? <span class="mono mono--inline mono--blue">No</span></span>
+                                    <span class="mono">? Select component position in the "btns" group: <span class="mono mono--inline mono--blue">Position first</span></span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono mono--green">&#10003; Pattern library data saved successfully.</span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--yellow">Add your component markup to ./library/components/btns/default/markup.html</span>
+                                    <span class="mono mono--yellow">Add your component description to ./library/components/btns/default/description.md</span>
+                                    <span class="mono"> </span>
+                                </div>
+                                <div id="tab-update" class="tab-pane">
+                                    <span class="mono">$ astrum update</span>
+                                    <span class="mono"> </span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono mono--green">&#10003; Pattern library successfully updated from 1.4.5 to 1.5.2.</span>
+                                    <span class="mono mono--no-wrap mono--grey">----------------------------------------------------------------</span>
+                                    <span class="mono"> </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </section>
 
 
@@ -276,35 +267,36 @@
 
 
             <footer class="site-footer">
+                <div class="section__row">
 
-                <div class="site-footer__legal">
-                    <p>© Copyright 2015 - 2016 No Divide Studio Ltd</p>
+                    <div class="site-footer__legal">
+                        <p>&copy; Copyright 2015 - 2016 No Divide Studio Ltd</p>
+                    </div>
+
+                    <nav class="nav nav--footer  site-footer__nav">
+                        <ul class="nav__items">
+                            <li class="nav__item">
+                                <a href="http://nodividestudio.com/our-work" target="_blank" class="nav__link">Our Work</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="http://nodividestudio.com/what-we-do" target="_blank" class="nav__link">What We Do</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="http://nodividestudio.com/who-we-are" target="_blank" class="nav__link">Who We Are</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="http://nodividestudio.com/our-journal" target="_blank" class="nav__link">Our Journal</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="http://nodividestudio.com/get-in-touch" target="_blank" class="nav__link">Get in Touch</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="site-footer__logo">
+                        <a href="http://nodividestudio.com" target="_blank" class="logo logo--no-divide"></a>
+                    </div>
                 </div>
-
-                <nav class="nav nav--footer  site-footer__nav">
-                    <ul class="nav__items">
-                        <li class="nav__item">
-                            <a href="http://nodividestudio.com/our-work" target="_blank" class="nav__link">Our Work</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="http://nodividestudio.com/what-we-do" target="_blank" class="nav__link">What We Do</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="http://nodividestudio.com/who-we-are" target="_blank" class="nav__link">Who We Are</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="http://nodividestudio.com/our-journal" target="_blank" class="nav__link">Our Journal</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="http://nodividestudio.com/get-in-touch" target="_blank" class="nav__link">Get in Touch</a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div class="site-footer__logo">
-                    <a href="http://nodividestudio.com" target="_blank" class="logo logo--no-divide"></a>
-                </div>
-
             </footer>
 
         </div>
