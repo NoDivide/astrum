@@ -4,6 +4,11 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     background-color: color(browser, bg);
 
+    img {
+        float: left;
+        border-radius: 0 0 6px;
+        margin: 0;
+    }
 
     &__header {
         background-color: color(browser, header-bg);
@@ -27,5 +32,9 @@
         height: 20px;
         border-radius: 5px;
         margin-left: 70px;
+    }
+
+    &__body {
+        @extend .cf;
     }
 }

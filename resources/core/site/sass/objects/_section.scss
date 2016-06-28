@@ -34,7 +34,8 @@
     }
 
     &__header {
-        margin-bottom: $bsu * 2;
+        margin: 0 auto $bsu * 2;
+        max-width: 50%;
     }
 
     &__body {
@@ -79,10 +80,14 @@
 
         .nav--tabs {
             float: right;
+
+            .nav__items {
+                width: 280px;
+            }
         }
 
         .section__body {
-            max-width: 970px;
+            max-width: 1020px;
             margin: 0 auto;
         }
     }

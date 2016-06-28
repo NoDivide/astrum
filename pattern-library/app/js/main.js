@@ -409,7 +409,7 @@ new Vue({
 
             _this.rtime = new Date();
 
-            if (_this.timeout === false) {
+            if (_this.timeout === false && !_this.mobile_view) {
                 _this.timeout = true;
                 setTimeout(_this.resizeFadeToggle, _this.delta);
             }
@@ -453,7 +453,7 @@ new Vue({
                     if(_this.$data.groups.length) {
                         _this.setupGroups();
                     } else {
-                        _this.logInfo('You need to add a component to your library before it can be loaded.<br/>You can either do this manually by editing your <code>data.json</code> file,<br/> or you can use the command line helper: <code>patterns new [group_name/component_name]</code>');
+                        _this.logInfo('You need to add a component to your library before it can be loaded.<br/>You can either do this manually by editing your <code>data.json</code> file,<br/> or you can use the command line helper: <code>astrum new [group_name/component_name]</code>');
                     }
                 });
             });

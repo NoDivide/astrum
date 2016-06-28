@@ -26,3 +26,11 @@ p {
 a:visited:hover {
     color: color(base, anchor-hover);
 }
+
+/**
+ * Pre
+ */
+pre,
+pre code {
+    @extend .mono, .small-text;
+}

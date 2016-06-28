@@ -14,10 +14,16 @@
     @include font-stack(bold, sans-serif, normal, true);
 }
 
+.mono {
+    @include font-stack(regular, mono, normal, true);
+}
 
 /**
  * Font sizes.
  */
+.extra-small-text {
+    @include type-scale(11);
+}
 .small-text {
     @include type-scale(13);
 }
@@ -30,3 +36,12 @@
 .large-text {
     @include type-scale(21);
 }
+
+
+/**
+ * Chalk colors.
+ */
+.chalk-grey   { color: color(chalk, grey); }
+.chalk-green  { color: color(chalk, green); }
+.chalk-yellow { color: color(chalk, yellow); }
+.chalk-blue { color: color(chalk, blue); }

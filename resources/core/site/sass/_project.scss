@@ -21,7 +21,7 @@ $use-nav:         true;
  * ------------------------------//
  */
 $sans-serif-stack: "source-sans-pro", "helvetica", sans-serif;
-$mono-stack: "fira-mono", sans-serif;
+$mono-stack: "fira-mono", monospace;
 
 
 /**
@@ -36,7 +36,16 @@ $mono-stack: "fira-mono", sans-serif;
 $sans-serif-weights: ( regular:   400,
                        semibold:  600,
                        bold:      700 );
-$mono-weights: (       regular: 400 );
+$mono-weights: ( regular: 400 );
+
+
+/**
+ * Once you specified your font-stacks and weights
+ * add them to these map variables
+ */
+$stack-map:   (sans-serif: $sans-serif-stack, mono: $mono-stack);
+$weights-map: (sans-serif: $sans-serif-weights, mono: $mono-weights);
+$spacing-map: (sans-serif: 0, mono: 0);
 
 /**
  * Typescale

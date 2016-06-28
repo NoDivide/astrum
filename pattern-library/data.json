@@ -62,6 +62,11 @@
             "components": [
                 {
                     "group": "branding",
+                    "name": "icons",
+                    "title": "Icons"
+                },
+                {
+                    "group": "branding",
                     "name": "color-scheme",
                     "title": "Colour Scheme",
                     "type": "colors",
@@ -164,5 +169,5 @@
             ]
         }
     ],
-    "version": "1.4.2"
+    "version": "1.5.3"
 }
