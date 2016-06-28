@@ -16,4 +16,21 @@
     &__actions {
         margin-top: $bsu * 1.8;
     }
+
+    &__social {
+        list-style: none;
+        margin: 0;
+        padding: $bsu * 3 0 0;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            margin: 13px;
+            text-align: center;
+
+            img {
+                margin: 0;
+            }
+        }
+    }
 }

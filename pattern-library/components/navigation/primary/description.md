@@ -1,0 +1,1 @@
+The primary navigation object uses the `.nav--primary` modifier class.

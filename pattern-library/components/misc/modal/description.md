@@ -1,0 +1,1 @@
+The modal element is used to show the Astrum introduction video. Modals can be applied to any kind of element using the custom [Vue.js](http://vuejs.org) directive `v-show-modal`.

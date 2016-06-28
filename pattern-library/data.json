@@ -47,7 +47,7 @@
         "google_web_fonts": null
     },
     "content": {
-        "show_first_page_on_load": false,
+        "show_first_page_on_load": true,
         "title": "Overview",
         "pages": [
             {
@@ -176,10 +176,7 @@
                 {
                     "group": "navigation",
                     "name": "primary",
-                    "title": "Primary Navigation",
-                    "options": {
-                        "sample_min_height": 100
-                    }
+                    "title": "Primary Navigation"
                 },
                 {
                     "group": "navigation",

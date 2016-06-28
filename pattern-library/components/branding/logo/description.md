@@ -1,0 +1,1 @@
+The default logo used on the fixed navigation bar.

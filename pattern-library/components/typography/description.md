@@ -1,0 +1,1 @@
+The project uses the [Source Sans Pro](https://typekit.com/fonts/source-sans-pro) typeface served by [TypeKit](https://typekit.com).

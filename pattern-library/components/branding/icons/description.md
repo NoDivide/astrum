@@ -1,0 +1,1 @@
+The icon set is an icon font.
