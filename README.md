@@ -7,7 +7,7 @@ Astrum is a lightweight pattern library designed to be included with any web pro
 It's non-opinionated and doesn't expect you to write your markup or code in any particular way.
 
 An Astrum pattern library comprises of components organised into groups. Each component has a `markup.html` and `description.md` file which are
-used to render an example of the component along with a code sample. A group can also have an description and is used for organisational purposes. 
+used to render an example of the component along with a code sample. A group can also have an description and is used for organisational purposes.
 You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
 
 ***
@@ -16,7 +16,7 @@ You also have the option to add pages of content, for example an introduction pa
 - [Getting Started](#getting-started)
 - [How Astrum Works](#getting-started)
 	- [Folder Structure](#folder-structure)
-	- [The data.json File](#the-data-file)
+	- [The data.json File](#the-datajson-file)
 		- [Project Details](#project-details)
 		- [Creators](#creators)
 		- [Theming](#theming)
@@ -70,7 +70,7 @@ pages                    // Your pages.
 data.json                // Core data file.
 favicon.png              // Astrums default favicon.
 index.html               // Patterns app index file.
-LICENSE.txt              // MIT licence file. 
+LICENSE.txt              // MIT licence file.
 ```
 
 Each group has it’s own folder under `components` and each component has it’s own sub-folder under it’s parent group.
@@ -214,7 +214,7 @@ This is where you specify the CSS and JavaScript for your project, these will be
         "google_web_fonts": null
     },
 ```
-If your project requires a font service you can specify this here. 
+If your project requires a font service you can specify this here.
 
 **Note:** *For TypeKit you only need to specify the unique code for example: https://use.typekit.net/**dxp5bzu**.js*
 
@@ -232,7 +232,7 @@ If your project requires a font service you can specify this here.
         ]
     },
 ```
-Astrum includes an introduction page by default. 
+Astrum includes an introduction page by default.
 
 Key | Default | Description
 ---|---|---
@@ -249,7 +249,7 @@ file|Either created `.md` file in the pages directory and enter the relative pat
 
 **Note:** *If you don’t require any pages in your pattern library simple set the `content` key value to `null`.*
 
-## Adding Components <a href=“#adding-components”></a>
+## Adding Components<a href=“#adding-components”></a>
 The simplest way to add a component to your pattern library is by using the Astrum command-line tool which will as you a series of questions on how you want the component to be configured. For example:
 
 `astrum new navigation/primary`
