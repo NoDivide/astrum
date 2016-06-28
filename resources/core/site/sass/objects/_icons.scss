@@ -25,6 +25,15 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--helpers:before {
+    content: "\e903";
+}
+.icon--responsive:before {
+    content: "\e905";
+}
+.icon--theme:before {
+    content: "\e906";
+}
 .icon--menu:before {
     content: "\e909";
 }
@@ -40,17 +49,8 @@
 .icon--help:before {
     content: "\e902";
 }
-.icon--helpers:before {
-    content: "\e903";
-}
 .icon--play:before {
     content: "\e904";
-}
-.icon--responsive:before {
-    content: "\e905";
-}
-.icon--theme:before {
-    content: "\e906";
 }
 .icon--command:before {
     content: "\e907";
