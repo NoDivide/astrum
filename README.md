@@ -10,7 +10,7 @@ An Astrum pattern library comprises of components organised into groups. Each co
 used to render an example of the component along with a code sample. A group can also have an description and is used for organisational purposes.
 You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
 
-[View a demo](http://astrum/pattern-library/)
+[View a demo](http://astrum.nodividestudio.com/pattern-library/)
 
 ***
 
