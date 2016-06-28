@@ -6,7 +6,8 @@ Our aim to make Astrum as versatile as possible and if you’d like to contribut
 
 The [issue tracker](https://github.com/nodivide/astrum/issues) is our preferred channel for [bug reports](#bugs), [features requests](#features) and submitting [pull requests](#pull-requests).
 
-## Bug reports<a name="bugs"></a>
+<a name="bugs"></a>
+## Bug reports
 
 *When create a bug issue please apply the red “bug” label.*
 
@@ -24,7 +25,8 @@ Guidelines for bug reports:
 
 Please try to be as detailed as possible in your report in particular what steps will reproduce the issue and what browser(s) and OS are you experience it on? Screenshots are also useful. All these details will help us resolve any potential bugs more quickly.
 
-## Feature requests<a name="features"></a>
+<a name="features"></a>
+## Feature requests
 
 *When creating a feature request please apply the green “feature request” label.*
 
@@ -34,7 +36,8 @@ Example use cases and scenarios for why the new feature is being requested are a
 
 Thanks for taking the time and endeavouring to help make Astrum better.
 
-## Pull requests<a name="pull-requests"></a>
+<a name="pull-requests"></a>
+## Pull requests
 
 Pull requests are a great help. Please ensure they remain focused in scope and commit messages conform to these [git message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
