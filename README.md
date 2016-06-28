@@ -7,7 +7,7 @@ Astrum is a lightweight pattern library designed to be included with any web pro
 It's non-opinionated and doesn't expect you to write your markup or code in any particular way.
 
 An Astrum pattern library comprises of components organised into groups. Each component has a `markup.html` and `description.md` file which are
-used to render an example of the component along with a code sample. A group can also have an description and is used for organisational purposes. 
+used to render an example of the component along with a code sample. A group can also have a description and is used for organisational purposes. 
 You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
 
 ***
@@ -53,7 +53,7 @@ Finally add your first component e.g.:
 Your pattern library should now be up and running though granted it will look a little sparse at this stage.
 
 ## How Astrum Works<a href=“#how-astrum-works”></a>
-Astrum is a single page, [Vue.js](https://vuejs.org) powered, app. As mentioned previously, it comprises of components organised into groups and loads it's all important data from a core `data.json` file.
+Astrum is a single page, [Vue.js](https://vuejs.org) powered, app. As mentioned previously, it comprises of components organised into groups and loads its all important data from a core `data.json` file.
 
 ### Folder Structure<a href=“#folder-structure”></a>
 
@@ -73,7 +73,7 @@ index.html               // Patterns app index file.
 LICENSE.txt              // MIT licence file. 
 ```
 
-Each group has it’s own folder under `components` and each component has it’s own sub-folder under it’s parent group.
+Each group has its own folder under `components` and each component has its own sub-folder under its parent group.
 
 ### The data.json File<a href=“#the-data-file”></a>
 The `data.json` file is central to how Astrum works and should be relatively self explanatory upon opening it. By default it looks like this:
@@ -143,7 +143,7 @@ Let's break it down in details:
     "client_url": "http://bestclient.com",
 ```
 
-The more information you add to your `data.json` file the more customised the Astrum UI becomes for example if you specify a `project_logo` (this can be a relative path or a full URL) the logo will appear at the top of the sidebar and/or if you specify a `client_name` along with a `copyright_start_year`, copyright information will be automatically generated. This will appear at the bottom of the sidebar.
+The more information you add to your `data.json` file, the more customised the Astrum UI becomes. For example, if you specify a `project_logo` (this can be a relative path or a full URL), the logo will appear at the top of the sidebar and/or if you specify a `client_name` along with a `copyright_start_year`, copyright information will be automatically generated. This will appear at the bottom of the sidebar.
 
 #### Creators<a href=“#creators”></a>
 ```
@@ -177,7 +177,7 @@ You can specify as many creators as you need. Astrum will automatically format t
     },
 ```
 
-Astrum supports basic theming to help you bring your pattern library inline with you projects branding.
+Astrum supports basic theming to help you bring your pattern library in line with your projects branding.
 
 Key | Default | Description
 ---|---|---
@@ -250,7 +250,7 @@ file|Either created `.md` file in the pages directory and enter the relative pat
 **Note:** *If you don’t require any pages in your pattern library simple set the `content` key value to `null`.*
 
 ## Adding Components <a href=“#adding-components”></a>
-The simplest way to add a component to your pattern library is by using the Astrum command-line tool which will as you a series of questions on how you want the component to be configured. For example:
+The simplest way to add a component to your pattern library is by using the Astrum command-line tool which will ask you a series of questions on how you want the component to be configured. For example:
 
 `astrum new navigation/primary`
 
@@ -274,16 +274,16 @@ This result of this in your `data.json` file would be:
     ],
 ```
 
-The necessary files required for the new component are created for you automatically so now you can add your markup and a component description ready to be display in your pattern library.
+The necessary files required for the new component are created for you automatically so now you can add your markup and a component description ready to be displayed in your pattern library.
 
 ### Component Types<a href=“#component-types”></a>
-Astrum currently supports two component types. The default component and a **colors** type. The **colors** type let’s you include a color palette in your pattern library and to include it you use the `—type` option:
+Astrum currently supports two component types. The default component and a **colors** type. The **colors** type lets you include a color palette in your pattern library and to include it you use the `—type` option:
 
 `astrum new branding/color-palette —type colors`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-new-colors.gif)
 
-This result of this in your `data.json` file would be:
+The result of this in your `data.json` file would be:
 
 ```
     "groups": [
@@ -346,7 +346,7 @@ The available options are:
 Key|Value|Description
 ---|---|---
 sample_dark_background|boolean|Set the background of the component sample area to be a dark color.
-sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detected the component rendered height. When it’s hidden in your project CSS Astrum shows a message to this effect. If the component is absolutely positioned it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.
+sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detecting the components rendered height. When it’s hidden in your project CSS, Astrum shows a message to this effect. If the component is absolutely positioned, it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.
 sample_mobile_hidden|boolean|Typically used in conjunction with the `sample_min_height` option if a component is meant to be hidden at mobile resolutions set this option to true.
 
 ## Editing Components<a href=“#editing-components”></a>
@@ -363,10 +363,10 @@ You can also edit a group using the `—group` option:
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-edit-group.gif)
 
-**Note:** *If you change a groups name Astrum automatically updates all of the groups components.*
+**Note:** *If you change a groups name, Astrum automatically updates all of the groups components.*
 
 ## Listing Components<a href=“#listing-components”></a>
-Do see a list of all of the components in your pattern library you can use the `list` command:
+To see a list of all of the components in your pattern library, you can use the `list` command:
 
 `astrum list`
 
@@ -381,7 +381,7 @@ To delete a component use the `delete` command:
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-delete.gif)
 
 ## Deleting Groups<a href=“#deleteing-groups”></a>
-You can also delete an entire group along with all it’s components using the `—group` option:
+You can also delete an entire group along with all its components using the `—group` option:
 
 `astrum delete —group navigation`
 
@@ -413,7 +413,7 @@ Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestud
 - Edge *(latest 2)*
 - Internet Explorer 10+
 
-This doesn't mean that Astrum cannot be used in older browsers, we’re just aiming to ensure compatibility with the ones mentioned above.
+This doesn't mean that Astrum cannot be used in older browsers, we’re just aiming to ensure compatibility with those mentioned above.
 
 ## Acknowledgements
 Astrum wouldn’t work without [Vue.js](http://vuejs.org/) and the work that Evan You is doing there: [support his efforts](http://vuejs.org/support-vuejs/).
