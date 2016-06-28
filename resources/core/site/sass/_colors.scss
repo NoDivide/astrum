@@ -25,6 +25,7 @@ $brand-16: #E0E0E0;
 $brand-17: #404F57;
 $brand-18: #2A383F;
 $brand-19: #667279;
+$brand-20: #F3F5F6;
 
 $colors: (
 
@@ -118,15 +119,15 @@ $colors: (
     ),
 
     browser: (
-        header-bg: $brand-7,
+        header-bg: $brand-20,
         bg: $brand-11,
-        bar: $brand-6,
-        button: $brand-6
+        bar: $brand-7,
+        button: $brand-7
     ),
 
     terminal: (
         header-bg: $brand-17,
-        bg: $brand-18,
+        bg: $brand-7,
         button: $brand-19,
         text: $brand-7
     ),
