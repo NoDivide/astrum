@@ -1,0 +1,14 @@
+<div class="modal__container"
+     :class="{ 'open': is_open, 'force-open': forceShow, 'modal__container--inverted': inverted }">
+
+    <div class="modal__close"
+          @click="closeModal">
+         <span class="icon icon--close"></span>
+    </div>
+
+    <div :id="identifier"
+         class="modal">
+        <slot></slot>
+    </div>
+    <div class="modal__overlay"></div>
+</div>
