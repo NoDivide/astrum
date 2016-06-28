@@ -14,7 +14,11 @@
     }
 
     &__actions {
-        margin-top: $bsu * 1.8;
+        margin-top: $bsu * 2.5;
+
+        a {
+            margin: 0 $hsu $hsu;
+        }
     }
 
     &__social {

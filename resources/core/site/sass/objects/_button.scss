@@ -137,4 +137,48 @@
             }
         }
     }
+
+
+    /**
+     * Primary button
+     */
+    &--primary {
+        background-color: color(btn, primary-bg);
+        border: 1px solid color(btn, primary-border);
+        color: color(btn, primary-text);
+
+        &:active,
+        &:focus,
+        &:visited,
+        &[href]:active,
+        &[href]:focus,
+        &[href]:visited {
+            background-color: color(btn, primary-bg);
+            border: 1px solid color(btn, primary-border);
+            color: color(btn, primary-text);
+        }
+
+        &:hover,
+        &:visited:hover {
+            background-color: color(btn, primary-bg-hover);
+            border: 1px solid color(btn, primary-border-hover);
+            color: color(btn, primary-text-hover);
+        }
+    }
+
+
+    /**
+     * Icon button
+     */
+    &--icon {
+        padding-left: $bsu * 1.125 + 16px + $hsu;
+        position: relative;
+
+        .icon {
+            left: $bsu;
+            margin-top: -8px;
+            position: absolute;
+            top: 50%;
+        }
+    }
 }

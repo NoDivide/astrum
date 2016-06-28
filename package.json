@@ -35,6 +35,7 @@
   "dependencies": {
     "normalize.css": "^3.0.3",
     "underscore": "^1.8.3",
-    "vue": "^1.0.25"
+    "vue": "^1.0.25",
+    "vue-resource": "^0.9.1"
   }
 }

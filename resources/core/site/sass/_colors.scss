@@ -75,7 +75,13 @@ $colors: (
         inverted-border: $brand-3,
         inverted-border-hover: $brand-3,
         inverted-text: $brand-7,
-        inverted-text-hover: $brand-7
+        inverted-text-hover: $brand-7,
+        primary-bg: $brand-3,
+        primary-bg-hover: $brand-7,
+        primary-border: $brand-3,
+        primary-border-hover: $brand-7,
+        primary-text: $brand-7,
+        primary-text-hover: $brand-2,
     ),
 
     modal: (
