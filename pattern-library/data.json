@@ -130,18 +130,6 @@
                     "name": "bold",
                     "title": "Bold",
                     "width": "half"
-                },
-                {
-                    "group": "typography",
-                    "name": "regular",
-                    "title": "Regular",
-                    "width": "half"
-                },
-                {
-                    "group": "typography",
-                    "name": "semibold",
-                    "title": "Semibold",
-                    "width": "half"
                 }
             ]
         },
@@ -249,6 +237,20 @@
                     "title": "Example",
                     "width": "half",
                     "group": "terminal"
+                }
+            ]
+        },
+        {
+            "name": "misc",
+            "title": "Miscellaneous",
+            "components": [
+                {
+                    "group": "misc",
+                    "name": "modal",
+                    "title": "Modal",
+                    "options": {
+                        "sample_min_height": 800
+                    }
                 }
             ]
         }
