@@ -167,8 +167,8 @@ p + .drop-cap {
 a {
 	color: color(base, anchor);
 
-	&[href]:hover,
-	&[href]:focus {
+	&:hover,
+	&:focus {
 		color: color(base, anchor-hover);
 	}
 	&:visited {

@@ -1,0 +1,27 @@
+/**
+ * Mono Object.
+ * ----------------------------------------//
+ */
+.mono {
+    @extend .mono, .extra-small-text;
+
+    display: block;
+    min-height: 1em;
+    margin: 0;
+
+    &--no-wrap {
+        white-space: nowrap;
+    }
+
+    &--inline {
+        display: inline-block;
+    }
+
+    /**
+     * Chalk colors.
+     */
+    &--grey   { color: color(chalk, grey); }
+    &--green  { color: color(chalk, green); }
+    &--yellow { color: color(chalk, yellow); }
+    &--blue   { color: color(chalk, blue); }
+}

@@ -22,16 +22,21 @@
     }
 
     &__body {
-        padding: $bsu;
         color: color(terminal, text);
+        margin: $bsu;
         min-height: 190px;
-
-        pre {
-            margin: 0;
-        }
+        overflow: hidden;
+        padding-bottom: $bsu;
     }
 
     @include media-query(3) {
         margin: 0 300px 0 0;
+
+        &__body {
+
+            span {
+                @include type-scale(11);
+            }
+        }
     }
 }

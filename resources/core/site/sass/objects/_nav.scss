@@ -1,16 +1,17 @@
 .nav {
 
     &__toggle {
+        color: color(nav, link-inverted);
         padding: $hsu * 1.4 0;
         text-decoration: none;
         display: block;
         text-transform: uppercase;
 
-        &:visited {
+        &:visited,
+        &[href]:visited {
             color: color(nav, link-inverted);
         }
 
-        .nav__item--active &,
         &:hover,
         &:focus {
             color: color(nav, link-hover-inverted);
@@ -34,6 +35,10 @@
 
     &__item {
         margin: 0 $hsu * 1.4;
+
+        &:last-of-type .nav__link {
+            border: none;
+        }
     }
 
     &__link {
@@ -45,7 +50,7 @@
         text-decoration: none;
 
         color: color(nav, link);
-        transition: color 200ms ease;
+        transition: all .25s ease;
 
         &:visited {
             color: color(nav, link);

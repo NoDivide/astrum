@@ -36,12 +36,3 @@
 .large-text {
     @include type-scale(21);
 }
-
-
-/**
- * Chalk colors.
- */
-.chalk-grey   { color: color(chalk, grey); }
-.chalk-green  { color: color(chalk, green); }
-.chalk-yellow { color: color(chalk, yellow); }
-.chalk-blue { color: color(chalk, blue); }
