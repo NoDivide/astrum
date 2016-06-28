@@ -88,7 +88,9 @@ $colors: (
         border-inverted: $brand-7,
 
         link-footer: $brand-3,
-        border-footer: rgba($brand-3, 0.4)
+        border-footer: rgba($brand-3, 0.4),
+
+        fixed-bg: $brand-7
     ),
 
     site-header: (

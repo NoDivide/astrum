@@ -38,7 +38,9 @@
 
             <header class="site-header">
 
-                <nav class="nav nav--primary nav--inverted">
+                <nav class="nav nav--primary nav--inverted" v-sticky="nav--fixed" anchor=".site-header">
+                    <div class="logo  logo--small">Astrum</div>
+
                     <ul class="nav__items">
                         <li class="nav__item"><a class="nav__link" href="#what-is-it">What is it?</a></li>
                         <li class="nav__item"><a class="nav__link" href="https://github.com/NoDivide/astrum">Documentation</a></li>
@@ -61,7 +63,7 @@
             </header>
 
 
-            <section class="section  section--text-block">
+            <section class="section  section--text-block" id="what-is-it">
 
                 <h2 class="section__title">What is it?</h2>
 

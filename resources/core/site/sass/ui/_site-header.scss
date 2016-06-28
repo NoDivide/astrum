@@ -15,10 +15,6 @@
     flex-direction: column;
     justify-content: center;
 
-    .nav--primary {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-    }
+    position: relative;
+    z-index: 9;
 }
