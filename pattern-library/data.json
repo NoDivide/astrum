@@ -37,7 +37,9 @@
             "../assets/css/dist/site/all.css",
             "../assets/css/dist/astrum/all.css"
         ],
-        "js": []
+        "js": [
+            "../assets/js/dist/astrum/all.js"
+        ]
     },
     "font_libraries": {
         "typekit_code": "prk5aou",
@@ -86,6 +88,15 @@
                     "group": "branding",
                     "name": "inverted-logo",
                     "title": "Inverted Logo",
+                    "width": "half",
+                    "options": {
+                        "sample_dark_background": true
+                    }
+                },
+                {
+                    "group": "branding",
+                    "name": "flare-logo",
+                    "title": "Logo (with flare)",
                     "width": "half",
                     "options": {
                         "sample_dark_background": true
@@ -194,18 +205,29 @@
                     "group": "navigation",
                     "name": "footer",
                     "title": "Footer Navigation"
-                },
+                }
+            ]
+        },
+        {
+            "name": "tabs",
+            "title": "Tabs",
+            "components": [
                 {
-                    "group": "navigation",
                     "name": "tab",
                     "title": "Tab",
-                    "width": "half"
+                    "width": "half",
+                    "group": "tabs"
                 },
                 {
-                    "group": "navigation",
                     "name": "small-tab",
                     "title": "Small Tab",
-                    "width": "half"
+                    "width": "half",
+                    "group": "tabs"
+                },
+                {
+                    "group": "tabs",
+                    "name": "tab-panes",
+                    "title": "Tab Panes"
                 }
             ]
         },
