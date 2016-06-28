@@ -7,7 +7,7 @@ Astrum is a lightweight pattern library designed to be included with any web pro
 It's non-opinionated and doesn't expect you to write your markup or code in any particular way.
 
 An Astrum pattern library comprises of components organised into groups. Each component has a `markup.html` and `description.md` file which are
-used to render an example of the component along with a code sample. A group can also have a description and is used for organisational purposes. 
+used to render an example of the component along with a code sample. A group can also have an description and is used for organisational purposes.
 You also have the option to add pages of content, for example an introduction page and/or coding guidelines specific to your project.
 
 ***
@@ -16,7 +16,7 @@ You also have the option to add pages of content, for example an introduction pa
 - [Getting Started](#getting-started)
 - [How Astrum Works](#getting-started)
 	- [Folder Structure](#folder-structure)
-	- [The data.json File](#the-data-file)
+	- [The data.json File](#the-datajson-file)
 		- [Project Details](#project-details)
 		- [Creators](#creators)
 		- [Theming](#theming)
@@ -33,11 +33,14 @@ You also have the option to add pages of content, for example an introduction pa
 - [Deleting Groups](#deleting-groups)
 - [Updating Astrum](#updating-astrum)
 - [Contributing](#contributing)
+- [Browser Support](#browser-support)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 ***
 
-## Getting Started<a href=“#getting-started”></a>
+<a href=“#getting-started”></a>
+## Getting Started
 Firstly globally install Astrum:
 
 `npm install -g astrum`
@@ -52,10 +55,12 @@ Finally add your first component e.g.:
 
 Your pattern library should now be up and running though granted it will look a little sparse at this stage.
 
-## How Astrum Works<a href=“#how-astrum-works”></a>
+<a href=“#how-astrum-works”></a>
+## How Astrum Works
 Astrum is a single page, [Vue.js](https://vuejs.org) powered, app. As mentioned previously, it comprises of components organised into groups and loads its all important data from a core `data.json` file.
 
-### Folder Structure<a href=“#folder-structure”></a>
+<a href=“#folder-structure”></a>
+### Folder Structure
 
 ```
 app                      // Patterns CSS and JavaScript.
@@ -70,12 +75,13 @@ pages                    // Your pages.
 data.json                // Core data file.
 favicon.png              // Astrums default favicon.
 index.html               // Patterns app index file.
-LICENSE.txt              // MIT licence file. 
+LICENSE.txt              // MIT licence file.
 ```
 
 Each group has its own folder under `components` and each component has its own sub-folder under its parent group.
 
-### The data.json File<a href=“#the-data-file”></a>
+<a href=“#the-data-file”></a>
+### The data.json File
 The `data.json` file is central to how Astrum works and should be relatively self explanatory upon opening it. By default it looks like this:
 
 ```
@@ -131,7 +137,8 @@ The `data.json` file is central to how Astrum works and should be relatively sel
 
 Let's break it down in details:
 
-#### Project Details<a href=“#project-details”></a>
+<a href=“#project-details”></a>
+#### Project Details
 ```
 {
     "project_logo": "/assets/images/logo.svg",
@@ -145,7 +152,8 @@ Let's break it down in details:
 
 The more information you add to your `data.json` file, the more customised the Astrum UI becomes. For example, if you specify a `project_logo` (this can be a relative path or a full URL), the logo will appear at the top of the sidebar and/or if you specify a `client_name` along with a `copyright_start_year`, copyright information will be automatically generated. This will appear at the bottom of the sidebar.
 
-#### Creators<a href=“#creators”></a>
+<a href=“#creators”></a>
+#### Creators
 ```
     "creators": [
         {
@@ -161,7 +169,8 @@ The more information you add to your `data.json` file, the more customised the A
 
 You can specify as many creators as you need. Astrum will automatically format these into a "created by" line that appears at the bottom of the sidebar.
 
-#### Theming<a href=“#theming”></a>
+<a href=“#theming”></a>
+#### Theming
 ```
     "theme": {
         "border_color": "#E0E6ED",
@@ -192,7 +201,8 @@ show_project_name | true | Show the project name in the sidebar.
 show_version | true | Show the Astrum version at the bottom of the sidebar.
 max_width | null | A maximum width for the components container element.
 
-#### Assets<a href=“#assets”></a>
+<a href=“#assets”></a>
+#### Assets
 ```
     "assets": {
         "css": [
@@ -206,7 +216,8 @@ max_width | null | A maximum width for the components container element.
 ```
 This is where you specify the CSS and JavaScript for your project, these will be included in your pattern library to render your components.
 
-#### Font Libraries<a href=“#font-libraries”></a>
+<a href=“#font-libraries”></a>
+#### Font Libraries
 ```
     "font_libraries": {
         "typekit_code": null,
@@ -214,11 +225,12 @@ This is where you specify the CSS and JavaScript for your project, these will be
         "google_web_fonts": null
     },
 ```
-If your project requires a font service you can specify this here. 
+If your project requires a font service you can specify this here.
 
 **Note:** *For TypeKit you only need to specify the unique code for example: https://use.typekit.net/**dxp5bzu**.js*
 
-#### Content Pages<a href=“#content-pages”></a>
+<a href=“#content-pages”></a>
+#### Content Pages
 ```
     "content": {
         "show_first_page_on_load": true,
@@ -232,7 +244,7 @@ If your project requires a font service you can specify this here.
         ]
     },
 ```
-Astrum includes an introduction page by default. 
+Astrum includes an introduction page by default.
 
 Key | Default | Description
 ---|---|---
@@ -249,7 +261,8 @@ file|Either created `.md` file in the pages directory and enter the relative pat
 
 **Note:** *If you don’t require any pages in your pattern library simple set the `content` key value to `null`.*
 
-## Adding Components <a href=“#adding-components”></a>
+<a href=“#adding-components”></a>
+## Adding Components
 The simplest way to add a component to your pattern library is by using the Astrum command-line tool which will ask you a series of questions on how you want the component to be configured. For example:
 
 `astrum new navigation/primary`
@@ -276,7 +289,8 @@ This result of this in your `data.json` file would be:
 
 The necessary files required for the new component are created for you automatically so now you can add your markup and a component description ready to be displayed in your pattern library.
 
-### Component Types<a href=“#component-types”></a>
+<a href=“#component-types”></a>
+### Component Types
 Astrum currently supports two component types. The default component and a **colors** type. The **colors** type lets you include a color palette in your pattern library and to include it you use the `—type` option:
 
 `astrum new branding/color-palette —type colors`
@@ -327,7 +341,8 @@ You can also add complimentary colors by comma separating the values e.g.:
 ]
 ```
 
-### Special Options<a href=“#special-options”></a>
+<a href=“#special-options”></a>
+### Special Options
 Components can also have special options that alter their behaviour. To use these add an `options` key to the component, for example:
 
 ```
@@ -349,14 +364,16 @@ sample_dark_background|boolean|Set the background of the component sample area t
 sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detecting the components rendered height. When it’s hidden in your project CSS, Astrum shows a message to this effect. If the component is absolutely positioned, it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.
 sample_mobile_hidden|boolean|Typically used in conjunction with the `sample_min_height` option if a component is meant to be hidden at mobile resolutions set this option to true.
 
-## Editing Components<a href=“#editing-components”></a>
+<a href=“#editing-components”></a>
+## Editing Components
 To edit a component use the `edit` command:
 
 `astrum edit branding/primary-palette`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-edit.gif)
 
-## Editing Groups<a href=“#editing-groups”></a>
+<a href=“#editing-groups”></a>
+## Editing Groups
 You can also edit a group using the `—group` option:
 
 `astrum edit —group branding`
@@ -365,29 +382,32 @@ You can also edit a group using the `—group` option:
 
 **Note:** *If you change a groups name, Astrum automatically updates all of the groups components.*
 
-## Listing Components<a href=“#listing-components”></a>
+<a href=“#listing-components”></a>
+## Listing Components
 To see a list of all of the components in your pattern library, you can use the `list` command:
 
 `astrum list`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-list.gif)
 
-
-## Deleting Components<a href=“#deleting-components”></a>
+<a href=“#deleting-components”></a>
+## Deleting Components
 To delete a component use the `delete` command:
 
 `astrum delete navigation/utility`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-delete.gif)
 
-## Deleting Groups<a href=“#deleteing-groups”></a>
+<a href=“#deleteing-groups”></a>
+## Deleting Groups
 You can also delete an entire group along with all its components using the `—group` option:
 
 `astrum delete —group navigation`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-delete-group.gif)
 
-## Updating Astrum<a href=“#updating-astrum”></a>
+<a href=“#updating-astrum”></a>
+## Updating Astrum
 Firstly update the Astrum package:
 
 `npm update -g astrum`
@@ -398,13 +418,15 @@ Navigate to the route of your project and then update your Astrum instance e.g.:
 
 You will receive feedback that the update is complete.
 
-## Contributing<a href=“#contributing”></a>
+<a href=“#contributing”></a>
+## Contributing
 Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](CONTRIBUTING.md):
 
 - [Bug reports](CONTRIBUTING.md#bugs)
 - [Feature requests](CONTRIBUTING.md#features)
 - [Pull requests](CONTRIBUTING.md#pull-requests)
 
+<a href=“#browser-support”></a>
 ## Browser Support
 - Chrome *(latest 2)*
 - Safari *(latest 2)*
@@ -415,6 +437,7 @@ Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestud
 
 This doesn't mean that Astrum cannot be used in older browsers, we’re just aiming to ensure compatibility with those mentioned above.
 
+<a href=“#acknowledgements”></a>
 ## Acknowledgements
 Astrum wouldn’t work without [Vue.js](http://vuejs.org/) and the work that Evan You is doing there: [support his efforts](http://vuejs.org/support-vuejs/).
 
@@ -422,6 +445,6 @@ The nifty loading animation we use was created by [Tobias Ahlin](http://tobiasah
 
 Our command-line tool is built using [Commander](https://www.npmjs.com/package/commander) by TJ Holowaychuk and [Inquirer](https://www.npmjs.com/package/inquirer) by Simon Boudrias.
 
-
-## License<a href=“#license”></a>
+<a href=“#license”></a>
+## License
 The code is available under the [MIT license](_template/LICENSE.txt).
