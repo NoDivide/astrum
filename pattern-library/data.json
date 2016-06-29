@@ -23,7 +23,7 @@
     "theme": {
         "border_color": "#E0E6ED",
         "highlight_color": "#F9FAFC",
-        "brand_color": "#00585C",
+        "brand_color": "#3C7189",
         "background_color": "#FFFFFF",
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
@@ -68,14 +68,10 @@
                     "title": "Colour Scheme",
                     "type": "colors",
                     "colors": [
-                        "#000000",
-                        "#005E69",
-                        "#15455B",
-                        "#218597",
-                        "#666666",
-                        "#A1CAD5",
-                        "#F3F3F3",
-                        "#FFFFFF"
+                        "#000000,#666666",
+                        "#15455B,#3C7189",
+                        "#218597,#A1CAD5",
+                        "#F3F3F3,#FFFFFF"
                     ]
                 },
                 {
