@@ -8,9 +8,9 @@
     }
 
     &__body {
-        @extend .small-text;
+        @extend .medium-text;
 
-        opacity: .2;
+        opacity: .5;
     }
 
     &__actions {
