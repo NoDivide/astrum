@@ -1,8 +1,8 @@
 {
   "name": "astrum",
-  "version": "1.5.9",
+  "version": "1.5.10",
   "description": "A lightweight pattern library designed to be included with any web project.",
-  "main": "./manager/index.js",
+  "main": "./manager/astrum.js",
   "scripts": {
     "test": "snyk test"
   },
@@ -19,7 +19,7 @@
   "author": "Ryan Taylor <ryan@nodividestudio.com> (http://nodividestudio.com)",
   "license": "MIT",
   "bin": {
-    "astrum": "./manager/index.js"
+    "astrum": "./manager/astrum.js"
   },
   "bugs": {
     "url": "https://github.com/NoDivide/astrum/issues"
@@ -28,10 +28,12 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
-    "fs-extra": "^0.28.0",
-    "inquirer": "^1.0.2",
     "cwd": "^0.10.0",
-    "global-modules": "^0.2.2"
+    "fs-extra": "^0.28.0",
+    "global-modules": "^0.2.2",
+    "inquirer": "^1.0.2",
+    "is-windows": "^0.2.0",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "snyk": "^1.14.3"

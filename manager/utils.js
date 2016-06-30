@@ -1,21 +1,22 @@
 var fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
-    cwd = require('cwd'),
     dir = require('global-modules'),
+    mkdirp = require('mkdirp'),
+    isWindows = require('is-windows'),
     pjson = require('../package.json');
 
 module.exports = {
 
     module_path: dir + '/' + pjson.name,
-    $root: cwd(),
+    $root: process.cwd(),
     $config: null,
     $data: null,
     $pjson: pjson,
 
     init: function() {
         var _this = this;
-        
+
         // Get config.
         try {
             _this.$config = _this.getConfig();
@@ -42,16 +43,23 @@ module.exports = {
         });
 
         _this.saveConfig(path, function() {
-            fs.copy(_this.module_path + '/_template', path, function (err) {
+            mkdirp(path, function (err) {
                 if (err) {
-                    console.log(chalk.red('Error: ' + err));
+                    console.error(chalk.red('Error: ' + err));
                     error = true;
                 }
 
-                _this.init();
-                _this.updateVersion(pjson.version);
+                fs.copy(_this.pathify(_this.module_path + '/_template'), path, function (err) {
+                    if (err) {
+                        console.log(chalk.red('Error: ' + err));
+                        error = true;
+                    }
 
-                return callback();
+                    _this.init();
+                    _this.updateVersion(pjson.version);
+
+                    return callback();
+                });
             });
 
             return ! error;
@@ -73,9 +81,9 @@ module.exports = {
             }
         });
 
-        fs.copy(_this.module_path + '/_template/app', _this.$config.path + '/app');
-        fs.copy(_this.module_path + '/_template/index.html', _this.$config.path + '/index.html');
-        fs.copy(_this.module_path + '/_template/LICENSE.txt', _this.$config.path + '/LICENSE.txt');
+        fs.copy(_this.pathify(_this.module_path + '/_template/app'), _this.$config.path + '/app');
+        fs.copy(_this.pathify(_this.module_path + '/_template/index.html'), _this.$config.path + '/index.html');
+        fs.copy(_this.pathify(_this.module_path + '/_template/LICENSE.txt'), _this.$config.path + '/LICENSE.txt');
 
         _this.updateVersion(pjson.version);
 
@@ -83,11 +91,15 @@ module.exports = {
     },
 
     getConfig: function() {
-        return JSON.parse(fs.readFileSync(this.$root + '/astrum-config.json'));
+        var _this = this;
+        
+        return JSON.parse(fs.readFileSync(_this.pathify(_this.$root + '/astrum-config.json')));
     },
 
     getData: function() {
-        return JSON.parse(fs.readFileSync(this.$config.path + '/data.json'));
+        var _this = this;
+
+        return JSON.parse(fs.readFileSync(_this.pathify(_this.$config.path + '/data.json')));
     },
 
     outputList: function(components, groups) {
@@ -125,9 +137,10 @@ module.exports = {
     },
 
     saveConfig: function(path, callback) {
-        var error = false;
+        var _this = this,
+            error = false;
 
-        fs.writeFile(this.$root + '/astrum-config.json', JSON.stringify({
+        fs.writeFile(_this.pathify(this.$root + '/astrum-config.json'), JSON.stringify({
             path: path
         }, null, 4), function (err) {
             if (err) {
@@ -142,9 +155,10 @@ module.exports = {
     },
 
     saveData: function(callback) {
-        var error = false;
+        var _this = this,
+            error = false;
 
-        fs.writeFile(this.$config.path + '/data.json', JSON.stringify(this.$data, null, 4), function (err) {
+        fs.writeFile(_this.pathify(_this.$config.path + '/data.json'), JSON.stringify(_this.$data, null, 4), function (err) {
             if (err) {
                 console.log(chalk.red('Error: ' + err));
                 error = true;
@@ -197,11 +211,12 @@ module.exports = {
     },
 
     createGroupDescription: function(group_path) {
-        
-        fs.exists(group_path + '/description.md', function(r) {
-            
+        var _this = this;
+
+        fs.exists(_this.pathify(group_path + '/description.md'), function(r) {
+
             if(!r) {
-                fs.writeFile(group_path + '/description.md', '', function(err) {
+                fs.writeFile(_this.pathify(group_path + '/description.md'), '', function(err) {
                     if (err) {
                         console.log(chalk.red('Error: ' + err));
                         error = true;
@@ -213,10 +228,11 @@ module.exports = {
     },
 
     deleteGroupFolder: function(group) {
-        var group_path = this.$config.path + '/components/' + group,
+        var _this = this,
+            group_path = this.$config.path + '/components/' + group,
             error = false;
 
-        fs.remove(group_path, function(err) {
+        fs.remove(_this.pathify(group_path), function(err) {
             if (err) {
                 console.log(chalk.red('Error: ' + err));
                 error = true;
@@ -228,23 +244,25 @@ module.exports = {
 
     createComponentFolder: function(component_path, callback) {
         callback = typeof callback !== 'undefined' ? callback : function(){};
-        var error = false;
 
-        fs.mkdir(component_path, function(err) {
+        var _this = this,
+            error = false;
+
+        fs.mkdir(_this.pathify(component_path), function(err) {
             if (err) {
                 console.log(chalk.red('Error: ' + err));
                 error = true;
                 return;
             }
 
-            fs.writeFile(component_path + '/markup.html', '', function(err) {
+            fs.writeFile(_this.pathify(component_path + '/markup.html'), '', function(err) {
                 if (err) {
                     console.log(chalk.red('Error: ' + err));
                     error = true;
                     return;
                 }
 
-                fs.writeFile(component_path + '/description.md', '', function(err) {
+                fs.writeFile(_this.pathify(component_path + '/description.md'), '', function(err) {
                     if (err) {
                         console.log(chalk.red('Error: ' + err));
                         error = true;
@@ -265,7 +283,7 @@ module.exports = {
             component_path = group_path + '/' + component.name,
             error = false;
 
-        fs.exists(group_path, function(r) {
+        fs.exists(_this.pathify(group_path), function(r) {
             if(r) {
                 _this.createComponentFolder(component_path);
             } else {
@@ -286,7 +304,7 @@ module.exports = {
             error = false;
 
         if(o_path != d_path) {
-            fs.move(o_path, d_path, function(err) {
+            fs.move(_this.pathify(o_path), _this.pathify(d_path), function(err) {
                 if (err) {
                     console.error(chalk.red('Error: ' + err));
                     error = true;
@@ -300,12 +318,13 @@ module.exports = {
     },
 
     moveGroupFolder: function(original_group, edited_group) {
-        var oPath = this.$config.path + '/components/' + original_group.name,
+        var _this = this,
+            oPath = this.$config.path + '/components/' + original_group.name,
             dPath = this.$config.path + '/components/' + edited_group.name,
             error = false;
 
         if(oPath != dPath) {
-            fs.move(oPath, dPath, function(err) {
+            fs.move(_this.pathify(oPath), _this.pathify(dPath), function(err) {
                 if (err) {
                     console.error(chalk.red('Error: ' + err));
                     error = true;
@@ -317,10 +336,11 @@ module.exports = {
     },
 
     deleteComponentFiles: function(group_name) {
-        var component_path = this.$config.path + '/components/' + group_name,
+        var _this = this,
+            component_path = this.$config.path + '/components/' + group_name,
             error = false;
 
-        fs.remove(component_path, function(err) {
+        fs.remove(_this.pathify(component_path), function(err) {
             if (err) {
                 console.log(chalk.red('Error: ' + err));
                 error = true;
@@ -563,5 +583,13 @@ module.exports = {
 
     validateString: function(string) {
         return string != '';
+    },
+
+    pathify: function(path) {
+        if(isWindows()) {
+            return path.replace(/(\/)/g, "\\");
+        }
+
+        return path;
     }
 };
