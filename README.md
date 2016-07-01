@@ -59,7 +59,7 @@ Your pattern library should now be up and running though granted it will look a 
 
 <a href=“#how-astrum-works”></a>
 ## How Astrum Works
-Astrum is a single page, [Vue.js](https://vuejs.org) powered, app. As mentioned previously, it comprises of components organised into groups and loads its all important data from a core `data.json` file.
+Astrum is a single page, [Vue.js](https://vuejs.org) powered, app. As mentioned previously, it comprises of components organised into groups and loads all its important data from a core `data.json` file.
 
 <a href=“#folder-structure”></a>
 ### Folder Structure
