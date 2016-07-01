@@ -103,7 +103,7 @@ if (group_name) {
                 newComponent.options = {};
                 newComponent.options.sample_dark_background = answers.sample_dark_background;
             }
-            
+
             if (typeColor) {
                 newComponent.type = 'colors';
                 newComponent.colors = [];
@@ -139,7 +139,7 @@ if (group_name) {
 
                     utils.$data.groups.splice(answers.group_position, 0, newGroup);
                     utils.$data.groups[answers.group_position].components = [newComponent];
-                    
+
                     if (utils.createComponentFiles(newComponent)) {
                         utils.saveData(function () {
                             console.log();
@@ -216,20 +216,20 @@ if (group_name) {
                                 console.log(chalk.yellow('array that has been created for you. Colors must be hex values e.g.:'));
                                 console.log();
                                 console.log(chalk.yellow('"colors": ['));
-                                console.log(chalk.yellow('    "#4c4c4c"'));
-                                console.log(chalk.yellow('    "#7d8284"'));
-                                console.log(chalk.yellow('    "#a6b1b5"'));
-                                console.log(chalk.yellow('    "#e6eaf2"'));
+                                console.log(chalk.yellow('    "#4c4c4c",'));
+                                console.log(chalk.yellow('    "#7d8284",'));
+                                console.log(chalk.yellow('    "#a6b1b5",'));
+                                console.log(chalk.yellow('    "#e6eaf2",'));
                                 console.log(chalk.yellow('    "#FFFFFF"'));
                                 console.log(chalk.yellow(']'));
                                 console.log();
                                 console.log(chalk.yellow('You can also add complimentary colors by comma separating the values e.g.:'));
                                 console.log();
                                 console.log(chalk.yellow('"colors": ['));
-                                console.log(chalk.yellow('    "#7da9f9,#507ed3"'));
-                                console.log(chalk.yellow('    "#f469a7,#c14c80"'));
-                                console.log(chalk.yellow('    "#60ceb8,#3fa18d"'));
-                                console.log(chalk.yellow('    "#f5d13f,#f5a63f"'));
+                                console.log(chalk.yellow('    "#7da9f9,#507ed3",'));
+                                console.log(chalk.yellow('    "#f469a7,#c14c80",'));
+                                console.log(chalk.yellow('    "#60ceb8,#3fa18d",'));
+                                console.log(chalk.yellow('    "#f5d13f,#f5a63f",'));
                                 console.log(chalk.yellow('    "#e199e5,#c776cb"'));
                                 console.log(chalk.yellow(']'));
                                 console.log();
