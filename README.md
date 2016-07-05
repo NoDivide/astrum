@@ -422,11 +422,11 @@ You will receive feedback that the update is complete.
 
 <a href=“#contributing”></a>
 ## Contributing
-Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](CONTRIBUTING.md):
+Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](.github/CONTRIBUTING.md):
 
-- [Bug reports](CONTRIBUTING.md#bugs)
-- [Feature requests](CONTRIBUTING.md#features)
-- [Pull requests](CONTRIBUTING.md#pull-requests)
+- [Bug reports](.github/CONTRIBUTING.md#bugs)
+- [Feature requests](.github/CONTRIBUTING.md#features)
+- [Pull requests](.github/CONTRIBUTING.md#pull-requests)
 
 <a href=“#browser-support”></a>
 ## Browser Support
