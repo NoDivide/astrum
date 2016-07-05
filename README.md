@@ -431,6 +431,10 @@ Then to use it:
 
 `docker run -it --rm -v /path-to-your-application:/app you/astrum init ./public/pattern-library`
 
+*Hint* You can always set an alias to make it more compact:
+
+`alias astrum="docker run -it --rm -v $PWD:/app test/astrum"`
+
 As you can see, you don't need to specify the `astrum` binary, as is configured
 to be the entrypoint of docker container.
 
@@ -440,6 +444,8 @@ You can use Docker also to run the generated applications, using a webserver
 like nginx:
 
 `docker run -d -v /path-to-your-application/public/pattern-library:/usr/share/nginx/html:ro -p 8080:80 nginx:latest`
+
+
 
 Then you can access it on: `http://localhost:8080`
 
