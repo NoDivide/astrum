@@ -34,6 +34,7 @@ You also have the option to add pages of content, for example an introduction pa
 - [Deleting Components](#deleting-components)
 - [Deleting Groups](#deleting-groups)
 - [Updating Astrum](#updating-astrum)
+- [Docker](#docker)
 - [Contributing](#contributing)
 - [Browser Support](#browser-support)
 - [Acknowledgements](#acknowledgements)
@@ -419,6 +420,22 @@ Navigate to the route of your project and then update your Astrum instance e.g.:
 `astrum update`
 
 You will receive feedback that the update is complete.
+
+<a href=“#docker”></a>
+
+To build the docker image:
+
+`docker build -t you/astrum .`
+
+Then to use it:
+
+`docker run -it --rm -v /path-to-your-application:/data test/astrum init ./public/pattern-library`
+
+As you can see, you don't need to specify the `astrum` binary, as is configured
+to be the entrypoint of docker container.
+
+It is important to mount the local volumes to `/data` as is the base working dir.
+
 
 <a href=“#contributing”></a>
 ## Contributing
