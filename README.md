@@ -429,7 +429,7 @@ To build the docker image:
 
 Then to use it:
 
-`docker run -it --rm -v /path-to-your-application:/data test/astrum init ./public/pattern-library`
+`docker run -it --rm -v /path-to-your-application:/data you/astrum init ./public/pattern-library`
 
 As you can see, you don't need to specify the `astrum` binary, as is configured
 to be the entrypoint of docker container.
