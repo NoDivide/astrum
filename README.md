@@ -429,12 +429,12 @@ To build the docker image:
 
 Then to use it:
 
-`docker run -it --rm -v /path-to-your-application:/data you/astrum init ./public/pattern-library`
+`docker run -it --rm -v /path-to-your-application:/app you/astrum init ./public/pattern-library`
 
 As you can see, you don't need to specify the `astrum` binary, as is configured
 to be the entrypoint of docker container.
 
-It is important to mount the local volumes to `/data` as is the base working dir.
+It is important to mount the local volumes to `/app` as is the base working dir.
 
 You can use Docker also to run the generated applications, using a webserver
 like nginx:
