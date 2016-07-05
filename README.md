@@ -436,6 +436,13 @@ to be the entrypoint of docker container.
 
 It is important to mount the local volumes to `/data` as is the base working dir.
 
+You can use Docker also to run the generated applications, using a webserver
+like nginx:
+
+`docker run -d -v /path-to-your-application/public/pattern-library:/usr/share/nginx/html:ro -p 8080:80 nginx:latest`
+
+Then you can access it on: `http://localhost:8080`
+
 
 <a href=“#contributing”></a>
 ## Contributing
