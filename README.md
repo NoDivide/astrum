@@ -293,9 +293,9 @@ The necessary files required for the new component are created for you automatic
 
 <a href=“#component-types”></a>
 ### Component Types
-Astrum currently supports two component types. The default component and a **colors** type. The **colors** type lets you include a color palette in your pattern library and to include it you use the `—type` option:
+Astrum currently supports two component types. The default component and a **colors** type. The **colors** type lets you include a color palette in your pattern library and to include it you use the `--type` option:
 
-`astrum new branding/color-palette —type colors`
+`astrum new branding/color-palette —-type colors`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-new-colors.gif)
 
@@ -377,9 +377,9 @@ To edit a component use the `edit` command:
 
 <a href=“#editing-groups”></a>
 ## Editing Groups
-You can also edit a group using the `—group` option:
+You can also edit a group using the `—-group` option:
 
-`astrum edit —group branding`
+`astrum edit —-group branding`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-edit-group.gif)
 
@@ -403,9 +403,9 @@ To delete a component use the `delete` command:
 
 <a href=“#deleteing-groups”></a>
 ## Deleting Groups
-You can also delete an entire group along with all its components using the `—group` option:
+You can also delete an entire group along with all its components using the `—-group` option:
 
-`astrum delete —group navigation`
+`astrum delete -—group navigation`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-delete-group.gif)
 
