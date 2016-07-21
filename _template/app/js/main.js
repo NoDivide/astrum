@@ -26,6 +26,9 @@ var ndplComponent = Vue.extend({
                 if(_this.component.options.sample_min_height) {
                     styles += 'min-height:' + _this.component.options.sample_min_height + 'px;';
                 }
+                if(_this.component.options.sample_background_color) {
+                    styles += 'background-color:' + _this.component.options.sample_background_color + ' !important;';
+                }
             }
 
             return styles;
