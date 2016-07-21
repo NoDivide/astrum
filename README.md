@@ -421,6 +421,8 @@ Navigate to the route of your project and then update your Astrum instance e.g.:
 
 You will receive feedback that the update is complete.
 
+There is also a `--force` option that you can use to force an update in the event that your Astrum instance is already on the current version. This is if you need to restore your Astrum instance core files.
+
 <a href=“#contributing”></a>
 ## Contributing
 Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](CONTRIBUTING.md):
