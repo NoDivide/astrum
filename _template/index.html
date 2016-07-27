@@ -239,7 +239,7 @@
                                         </div>
                                         <ul v-else class="ndpl-component__sample-missing ndpl-info">
                                             <li class="ndpl-info__item">Locate this component in your <code>data.json</code> file and add your colors to the "colors" array that has been created for you e.g.:</li>
-                                            <li><pre>"colors": ["#4c4c4c","#7d8284","#a6b1b5","#e6eaf2","#FFFFFF"]</pre></li>
+                                            <li><pre class="ndpl-pre">"colors": ["#4c4c4c","#7d8284","#a6b1b5","#e6eaf2","#FFFFFF"]</pre></li>
                                         </ul>
                                     </template>
                                     <template v-else>
@@ -256,7 +256,7 @@
                                             <template v-if="component.html">
                                                 <div class="ndpl-component__code ndpl-c-border"
                                                      v-show="component.code_show">
-                                                    <pre><code class="html" v-text="component.html"></code></pre>
+                                                    <pre class="ndpl-pre"><code class="ndpl-code html" v-text="component.html"></code></pre>
                                                 </div>
                                                 <a class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
                                                    @click.prevent="component.code_show = ! component.code_show"
