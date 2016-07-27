@@ -184,14 +184,28 @@ var ndplComponent = Vue.extend({
 
             setTimeout(function() {
                 if(_this.$el.querySelector('.ndpl-component__code')) {
+
+                    /**
+                     * Auto-detect hidden sample.
+                     */
                     if (_this.$el.querySelector('.ndpl-component__sample').offsetHeight <= 74 &&
-                        !_this.component.options.sample_always_show) {
+                        !_this.component.options.disabled_auto_sample_hiding) {
                         _this.hide_sample_code = true;
                     }
 
-                    if (!_this.$root.mobile_view &&
-                        _this.component.options.sample_min_height) {
-                        _this.hide_sample_code = false;
+                    /**
+                     * If manually specifying when to show nad hide samples.
+                     */
+                    if (_this.component.options.disabled_auto_sample_hiding &&
+                        _this.component.options.disabled_auto_sample_hiding.hasOwnProperty('show_on_mobile') &&
+                        _this.component.options.disabled_auto_sample_hiding.hasOwnProperty('show_on_desktop')) {
+
+
+                        if(_this.$root.mobile_view) {
+                            _this.hide_sample_code = !_this.component.options.disabled_auto_sample_hiding.show_on_mobile;
+                        } else {
+                            _this.hide_sample_code = !_this.component.options.disabled_auto_sample_hiding.show_on_desktop;
+                        }
                     }
                 }
 
