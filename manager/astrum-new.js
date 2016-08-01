@@ -93,6 +93,17 @@ if (group_name) {
                     return 'Apply a dark background to the code sample?'
                 },
                 default: false
+            },
+            {
+                when: function () {
+                    return !program.type || program.type !== 'colors';
+                },
+                type: 'confirm',
+                name: 'hide_code_sample',
+                message: function () {
+                    return 'Hide code sample?'
+                },
+                default: false
             }
         ]).then(function (answers) {
             var typeColor = program.type && program.type == 'colors';
@@ -102,6 +113,10 @@ if (group_name) {
             if (answers.sample_dark_background) {
                 newComponent.options = {};
                 newComponent.options.sample_dark_background = answers.sample_dark_background;
+            }
+            if (answers.hide_code_sample) {
+                newComponent.options = {};
+                newComponent.options.hide_code_sample = answers.hide_code_sample;
             }
 
             if (typeColor) {

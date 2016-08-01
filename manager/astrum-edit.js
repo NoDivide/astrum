@@ -32,7 +32,7 @@ if (group_name) {
     var parts = group_name.split('/'),
         existingComponentIndex = utils.getComponentIndex(group_name),
         existingGroupIndex = utils.getGroupIndex(parts[0]);
-    
+
     if (existingComponentIndex !== undefined) {
         var component = utils.getComponent(group_name);
 
@@ -95,6 +95,24 @@ if (group_name) {
                     if(component.hasOwnProperty('options') &&
                        component.options.hasOwnProperty('sample_dark_background')) {
                         return component.options.sample_dark_background;
+                    }
+
+                    return false;
+                }
+            },
+            {
+                when: function () {
+                    return !program.type || program.type !== 'colors';
+                },
+                type: 'confirm',
+                name: 'hide_code_sample',
+                message: function () {
+                    return 'Hide code sample?'
+                },
+                default: function() {
+                    if(component.hasOwnProperty('options') &&
+                       component.options.hasOwnProperty('hide_code_sample')) {
+                        return component.options.hide_code_sample;
                     }
 
                     return false;
@@ -220,6 +238,19 @@ if (group_name) {
                 editedComponent.options.sample_dark_background = true;
             }
 
+            if(!answers.hide_code_sample &&
+               editedComponent.hasOwnProperty('options') &&
+                editedComponent.options.hasOwnProperty('hide_code_sample')) {
+                delete editedComponent.options.hide_code_sample;
+            }
+
+            if (answers.hide_code_sample) {
+                if(!editedComponent.hasOwnProperty('options')) {
+                    editedComponent.options = {};
+                }
+                editedComponent.options.hide_code_sample = true;
+            }
+
             //// If creating a new group
             if (answers.new_group == 'create_new_group') {
                 var newGroup = {};
@@ -250,11 +281,10 @@ if (group_name) {
             }
 
             if (!error) {
-                
                 // Remove original component in data
                 utils.$data.groups[existingGroupIndex].components.splice(existingComponentIndex, 1);
                 utils.$data.groups[editedGroupIndex].components.splice(answers.component_position, 0, editedComponent);
-                
+
                 // Move component files
                 if (utils.moveComponentFiles(originalComponent, editedComponent)) {
 
