@@ -29,7 +29,7 @@ var ndplComponent = Vue.extend({
                 if(_this.component.options.sample_background_color) {
                     styles += 'background-color:' + _this.component.options.sample_background_color + ' !important;';
                 }
-                if(_this.component.options.hide_code_sample) {
+                if(_this.component.options.disable_code_sample) {
                     this.$el.querySelector('.ndpl-component__code-toggle').style.display = 'none';
                 }
             }
@@ -572,7 +572,7 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_always_show', group.components[j].options.sample_always_show ? group.components[j].options.sample_always_show : false);
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_mobile_hidden', group.components[j].options.sample_mobile_hidden ? group.components[j].options.sample_mobile_hidden : false);
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_dark_background', group.components[j].options.sample_dark_background ? group.components[j].options.sample_dark_background : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].options.hide_code_sample', group.components[j].options.hide_code_sample ? group.components[j].options.hide_code_sample : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].options.disable_code_sample', group.components[j].options.disable_code_sample ? group.components[j].options.disable_code_sample : false);
                     _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
                     _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type : 'standard');
                     _this.$set('groups[' + i + '].components[' + j + '].width', group.components[j].width ? group.components[j].width : 'full');

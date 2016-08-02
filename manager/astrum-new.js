@@ -99,9 +99,9 @@ if (group_name) {
                     return !program.type || program.type !== 'colors';
                 },
                 type: 'confirm',
-                name: 'hide_code_sample',
+                name: 'disable_code_sample',
                 message: function () {
-                    return 'Hide code sample?'
+                    return 'Disable code sample?'
                 },
                 default: false
             }
@@ -114,9 +114,9 @@ if (group_name) {
                 newComponent.options = {};
                 newComponent.options.sample_dark_background = answers.sample_dark_background;
             }
-            if (answers.hide_code_sample) {
+            if (answers.disable_code_sample) {
                 newComponent.options = {};
-                newComponent.options.hide_code_sample = answers.hide_code_sample;
+                newComponent.options.disable_code_sample = answers.disable_code_sample;
             }
 
             if (typeColor) {
