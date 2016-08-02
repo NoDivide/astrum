@@ -260,8 +260,6 @@ var ndplScript = Vue.extend({
          * Loads TypeKit.
          */
         loadTypekit: function() {
-            var _this = this;
-
             try {
                 Typekit.load({
                     async: true
