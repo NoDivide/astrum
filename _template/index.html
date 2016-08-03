@@ -247,7 +247,10 @@
                                              v-show="isCodeVisible()">
 
                                             <div class="ndpl-component__sample ndpl-c-border"
-                                                 :class="{ 'ndpl-component__sample--inverted': component.options.sample_dark_background }"
+                                                 :class="{
+                                                    'ndpl-component__sample--inverted': component.options.sample_dark_background,
+                                                    'ndpl-component__sample--disabled-code': component.options.disable_code_sample
+                                                 }"
                                                  :style="inline_styles"
                                                  v-if="component.html">
                                                 {{{ component.html }}}
@@ -258,7 +261,8 @@
                                                      v-show="component.code_show">
                                                     <pre class="ndpl-pre"><code class="ndpl-code html" v-text="component.html"></code></pre>
                                                 </div>
-                                                <a class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
+                                                <a v-if="!component.options.disable_code_sample"
+                                                   class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
                                                    @click.prevent="component.code_show = ! component.code_show"
                                                    v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
                                             </template>

@@ -29,9 +29,6 @@ var ndplComponent = Vue.extend({
                 if(_this.component.options.sample_background_color) {
                     styles += 'background-color:' + _this.component.options.sample_background_color + ' !important;';
                 }
-                if(_this.component.options.disable_code_sample) {
-                    this.$el.querySelector('.ndpl-component__code-toggle').style.display = 'none';
-                }
             }
 
             return styles;
