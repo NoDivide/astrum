@@ -795,7 +795,7 @@ new Vue({
             _this.open_group = null;
             _this.open_nav = false;
 
-            _this.$http.get(page.file).then(function (response) {
+            _this.$http.get(page.file + '?cb=' + new Date()).then(function (response) {
                 _this.$set('active_page.markup', marked(response.data));
             });
 

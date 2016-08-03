@@ -1,6 +1,6 @@
 {
   "name": "astrum",
-  "version": "1.5.16",
+  "version": "1.5.17",
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
