@@ -768,6 +768,13 @@
     top: -9999px;
 }
 
+@media only screen and (min-width: 35em) {
+    .ndpl-page {
+        max-width: 580px;
+        margin: 0 auto;
+    }
+}
+
 @media only screen and (min-width: 60em) {
     .ndpl-page,
     .ndpl-library {
