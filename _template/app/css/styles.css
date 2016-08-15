@@ -1053,6 +1053,9 @@
         border-radius: 6px 6px 0 0;
         padding: 36px;
     }
+    .ndpl-component__sample--disabled-code {
+        border-radius: 6px;
+    }
     .ndpl-component__sample-missing,
     .ndpl-component__sample-hidden {
         margin: 0;
