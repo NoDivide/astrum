@@ -137,7 +137,9 @@
             }
         }
     }
-
+    &--reveal-wide {
+        min-width: 196px !important;
+    }
 
     /**
      * Primary button
