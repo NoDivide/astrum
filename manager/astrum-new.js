@@ -110,12 +110,14 @@ if (group_name) {
 
             newComponent.title = answers.title;
             if (answers.width != 'full') newComponent.width = answers.width;
+
             if (answers.sample_dark_background) {
-                newComponent.options = {};
+                if(!newComponent.hasOwnProperty('options')) { newComponent.options = {} };
                 newComponent.options.sample_dark_background = answers.sample_dark_background;
             }
+
             if (answers.disable_code_sample) {
-                newComponent.options = {};
+                if(!newComponent.hasOwnProperty('options')) { newComponent.options = {} };
                 newComponent.options.disable_code_sample = answers.disable_code_sample;
             }
 

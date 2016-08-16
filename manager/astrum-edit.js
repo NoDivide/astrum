@@ -232,9 +232,7 @@ if (group_name) {
             }
 
             if (answers.sample_dark_background) {
-                if(!editedComponent.hasOwnProperty('options')) {
-                    editedComponent.options = {};
-                }
+                if(!editedComponent.hasOwnProperty('options')) { editedComponent.options = {}; }
                 editedComponent.options.sample_dark_background = true;
             }
 
@@ -245,9 +243,7 @@ if (group_name) {
             }
 
             if (answers.disable_code_sample) {
-                if(!editedComponent.hasOwnProperty('options')) {
-                    editedComponent.options = {};
-                }
+                if(!editedComponent.hasOwnProperty('options')) { editedComponent.options = {}; }
                 editedComponent.options.disable_code_sample = true;
             }
 
