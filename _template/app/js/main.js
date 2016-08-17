@@ -320,9 +320,6 @@ new Vue({
         breakpoint: 960,
         mobile_view: false,
         open_nav: false,
-        rtime: new Date(1, 1, 2000, 12,00,00),
-        timeout: false,
-        delta: 200,
         version: null
     },
 
@@ -421,13 +418,6 @@ new Vue({
             _this.setScrollPosition();
 
             _this.mobile_view = _this.window_outer_width >= _this.breakpoint ? false : true;
-
-            _this.rtime = new Date();
-
-            if (_this.timeout === false && !_this.mobile_view) {
-                _this.timeout = true;
-                setTimeout(_this.resizeFadeToggle, _this.delta);
-            }
         });
 
         /**
@@ -799,27 +789,6 @@ new Vue({
             });
 
             _this.updateHash(page.name);
-        },
-
-        /**
-         * Toggle container fade on resize.
-         */
-        resizeFadeToggle: function() {
-            var _this = this;
-
-            _this.resizing = true;
-            _this.$broadcast('resizing', true);
-
-            if (new Date() - _this.rtime < _this.delta) {
-                setTimeout(_this.resizeFadeToggle, _this.delta);
-            } else {
-                _this.timeout = false;
-
-                setTimeout(function() {
-                    _this.resizing = false;
-                    _this.$broadcast('resizing', false);
-                }, 1000);
-            }
         },
 
         /**

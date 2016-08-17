@@ -466,9 +466,11 @@
     position: fixed;
     right: 0;
     top: 0;
-    transition: left .5s ease;
     width: 100%;
     z-index: 9997;
+}
+.ndpl-mobile .ndpl-sidebar {
+    transition: left .5s ease;
 }
 .ndpl-sidebar.open {
     left: 0;
