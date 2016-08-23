@@ -13,7 +13,7 @@
         <link rel="shortcut icon" type="image/png" :href="project_favicon" />
 
         <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
         <script>
             WebFont.load({
@@ -239,7 +239,7 @@
                                         </div>
                                         <ul v-else class="ndpl-component__sample-missing ndpl-info">
                                             <li class="ndpl-info__item">Locate this component in your <code>data.json</code> file and add your colors to the "colors" array that has been created for you e.g.:</li>
-                                            <li><pre>"colors": ["#4c4c4c","#7d8284","#a6b1b5","#e6eaf2","#FFFFFF"]</pre></li>
+                                            <li><pre class="ndpl-pre">"colors": ["#4c4c4c","#7d8284","#a6b1b5","#e6eaf2","#FFFFFF"]</pre></li>
                                         </ul>
                                     </template>
                                     <template v-else>
@@ -247,7 +247,10 @@
                                              v-show="isCodeVisible()">
 
                                             <div class="ndpl-component__sample ndpl-c-border"
-                                                 :class="{ 'ndpl-component__sample--inverted': component.options.sample_dark_background }"
+                                                 :class="{
+                                                    'ndpl-component__sample--inverted': component.options.sample_dark_background,
+                                                    'ndpl-component__sample--disabled-code': component.options.disable_code_sample
+                                                 }"
                                                  :style="inline_styles"
                                                  v-if="component.html">
                                                 {{{ component.html }}}
@@ -256,9 +259,10 @@
                                             <template v-if="component.html">
                                                 <div class="ndpl-component__code ndpl-c-border"
                                                      v-show="component.code_show">
-                                                    <pre><code class="html" v-text="component.html"></code></pre>
+                                                    <pre class="ndpl-pre"><code class="ndpl-code html" v-text="component.html"></code></pre>
                                                 </div>
-                                                <a class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
+                                                <a v-if="!component.options.disable_code_sample"
+                                                   class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
                                                    @click.prevent="component.code_show = ! component.code_show"
                                                    v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
                                             </template>
