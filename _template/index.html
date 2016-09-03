@@ -118,14 +118,17 @@
 
                 <h1 class="ndpl-sidebar__title ndpl-c-brand-ca">
                     <span v-if="theme.show_project_name">{{{ project }}}</span>
-                    <small>Pattern Library</small>
+                    <small v-if="theme.titles.library_title"
+                           v-text="theme.titles.library_title"></small>
                 </h1>
 
             </header>
 
             <nav class="ndpl-nav">
                 <template v-if="content">
-                    <h2 class="ndpl-nav__title">Overview</h2>
+                    <h2 class="ndpl-nav__title"
+                        v-if="theme.titles.pages_title"
+                        v-text="theme.titles.pages_title"></h2>
 
                     <ul class="ndpl-nav__items ndpl-c-border ndpl-c-highlight-ca ndpl-c-brand-bl-ca">
                         <li class="ndpl-nav__item" v-for="page in content.pages">
@@ -141,7 +144,9 @@
                 <h2 class="ndpl-nav__title">
                     <a class="ndpl-nsc"
                        href="#top"
-                       @click.prevent="scrollToHref">Components</a>
+                       @click.prevent="scrollToHref"
+                       v-if="theme.titles.components_title"
+                       v-text="theme.titles.components_title"></a>
                 </h2>
 
                 <ul class="ndpl-nav__items ndpl-c-border">

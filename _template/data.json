@@ -22,7 +22,12 @@
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max_width": null
+        "max_width": null,
+        "titles": {
+            "library_title": "Pattern Library",
+            "pages_title": "Overview",
+            "components_title": "Components"
+        }
     },
     "assets": {
         "css": [],
