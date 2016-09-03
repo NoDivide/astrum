@@ -184,7 +184,12 @@ You can specify as many creators as you need. Astrum will automatically format t
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max_width": null
+        "max_width": null,
+        "titles": {
+            "library_title": "Pattern Library",
+            "pages_title": "Overview",
+            "components_title": "Components"
+        }
     },
 ```
 
@@ -202,6 +207,7 @@ sample_dark_background | #333333 | The color used for dark background component 
 show_project_name | true | Show the project name in the sidebar.
 show_version | true | Show the Astrum version at the bottom of the sidebar.
 max_width | null | A maximum width for the components container element.
+titles | object | Customise titles that appear on the sidebar. Set a title to null if you'd prefer for it not to be shown at all.
 
 <a href=“#assets”></a>
 #### Assets
