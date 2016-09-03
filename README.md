@@ -111,7 +111,12 @@ The `data.json` file is central to how Astrum works and should be relatively sel
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max-width": null
+        "max-width": null,
+        "titles": {
+            "library_title": "Pattern Library",
+            "pages_title": "Overview",
+            "components_title": "Components"
+        }
     },
     "assets": {
         "css": [],
