@@ -37,12 +37,11 @@ var ndplComponent = Vue.extend({
 
     watch: {
         'component.html': function() {
+            var _this = this;
 
             // Apply syntax highlighting when component html is loaded
             if(this.component.html.length) {
-                var block = this.$el.querySelector('pre code');
-
-                hljs.highlightBlock(block);
+                _this.$root.applySyntaxHighlighting(_this.$el);
             }
         }
     },
@@ -74,9 +73,7 @@ var ndplComponent = Vue.extend({
         });
 
         if (_this.component.html) {
-            var block = this.$el.querySelector('pre code');
-
-            hljs.highlightBlock(block);
+            _this.$root.applySyntaxHighlighting(_this.$el);
         }
     },
 
@@ -448,6 +445,25 @@ new Vue({
     methods: {
 
         /**
+         * Apply syntax highlighting to pre code elements
+         * within passed element.
+         *
+         * @param el
+         */
+        applySyntaxHighlighting: function(el) {
+
+            setTimeout(function() {
+                var blocks = el.querySelectorAll('pre code');
+
+                for(var i = 0; i < blocks.length; i++) {
+                    var block = blocks[i];
+
+                    hljs.highlightBlock(block);
+                }
+            }, 0);
+        },
+
+        /**
          * Reads the data.json file.
          */
         loadDataFile: function () {
@@ -786,6 +802,8 @@ new Vue({
 
             _this.$http.get(page.file + '?cb=' + new Date()).then(function (response) {
                 _this.$set('active_page.markup', marked(response.data));
+
+                _this.applySyntaxHighlighting(document);
             });
 
             _this.updateHash(page.name);
