@@ -1026,7 +1026,13 @@
 .ndpl-component__code .ndpl-pre {
     margin: 0;
 }
+
+/* We apply the same code styling to page, description and component elements. */
+.ndpl-page pre code,
+.ndpl-component__description pre code,
 .ndpl-component__code .ndpl-code {
+    box-sizing: border-box;
+    color: #616367;
     font-size: 12px;
     line-height: 18px;
     opacity: 0.75;
@@ -1035,7 +1041,13 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
     padding: 36px 12px;
     white-space: pre;
+    width: 100%;
 }
+.ndpl-page pre code,
+.ndpl-component__description pre code {
+    padding: 12px;
+}
+
 .ndpl-component__code-toggle {
     border-bottom: 1px solid transparent;
     color: #B0B1B3;
@@ -1066,10 +1078,16 @@
         border: 1px solid #E0E6ED;
         border-top: none;
     }
+    .ndpl-page pre code,
+    .ndpl-component__description pre code,
     .ndpl-component__code .ndpl-code {
         font-size: 15px;
         line-height: 21px;
         padding: 36px;
+    }
+    .ndpl-page pre code,
+    .ndpl-component__description pre code {
+        padding: 12px;
     }
     .ndpl-component__code-toggle {
         border-left: 1px solid transparent;

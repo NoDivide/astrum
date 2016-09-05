@@ -30,7 +30,12 @@
         "sample_dark_background": "#013643",
         "show_project_name": false,
         "show_version": true,
-        "max_width": 1200
+        "max_width": 1200,
+        "titles": {
+            "library_title": "Pattern Library",
+            "pages_title": "Overview",
+            "components_title": "Components"
+        }
     },
     "assets": {
         "css": [
@@ -257,5 +262,5 @@
             ]
         }
     ],
-    "version": "1.6.3"
+    "version": "1.8.0"
 }
