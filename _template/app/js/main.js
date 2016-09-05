@@ -394,7 +394,15 @@ new Vue({
         loaded: function() {
             var _this = this;
 
-            _this.scrollTo(window.location.hash);
+            var interval = setInterval(function() {
+                if(document.readyState === 'complete') {
+                    clearInterval(interval);
+
+                    console.log("Completely Ready");
+
+                    _this.scrollTo(window.location.hash);
+                }
+            }, 100);
 
             _this.$broadcast('loaded');
         }
@@ -758,12 +766,14 @@ new Vue({
 
             _this.scrolling_to = true;
 
-            smoothScroll.animateScroll(hash, null, {
-                offset: offset,
-                callback: function() {
-                    _this.scrolling_to = false;
-                    _this.open_nav = false;
-                }
+            imagesLoaded(document.querySelector('.ndpl-container'), function() {
+                smoothScroll.animateScroll(hash, null, {
+                    offset: offset,
+                    callback: function() {
+                        _this.scrolling_to = false;
+                        _this.open_nav = false;
+                    }
+                });
             });
         },
 
