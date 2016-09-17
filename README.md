@@ -377,7 +377,7 @@ Key|Value|Description
 sample_dark_background|boolean|Set the background of the component sample area to be a dark color.
 sample_background_color|string|Override sample background color. This option take precident over the dark background color.
 sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detecting the components rendered height. When it’s hidden in your project CSS, Astrum shows a message to this effect. If the component is absolutely positioned, it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.
-disable_auto_sample_hiding|object|Astrum automatically detects if you've hidden a component at mobile or desktop resolutions in your stylesheets. You can disable this feature using this option. Add `show_on_mobile` and `show_on_desktop` keys to the object with boolean values to set how the component should behave.
+disabled_auto_sample_hiding|object|Astrum automatically detects if you've hidden a component at mobile or desktop resolutions in your stylesheets. You can disable this feature using this option. Add `show_on_mobile` and `show_on_desktop` keys to the object with boolean values to set how the component should behave.
 disable_code_sample|boolean|Don't display the component code sample.
 
 <a href=“#editing-components”></a>
