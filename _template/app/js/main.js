@@ -487,7 +487,7 @@ new Vue({
             var _this = this,
                 hash = location.hash;
 
-            if(_this.content.page !== undefined && _this.content.pages.length) {
+            if(_this.content.pages !== undefined && _this.content.pages.length) {
 
                 if(hash) {
                     for (var i = 0; i < _this.content.pages.length; i++) {
