@@ -40,6 +40,7 @@
             .ndpl-c-brand-a:hover                { color: {{ theme.brand_color }} !important; }
             .ndpl-c-brand-ca a:hover             { color: {{ theme.brand_color }} !important; }
             .ndpl-c-brand-cai a                  { color: {{ theme.brand_color }} !important; }
+            .ndpl-page pre code, .ndpl-component__description pre code, .ndpl-component__code .ndpl-code { overflow-x: {{ theme.code_overflow }} !important; overflow-y: {{ theme.code_overflow }} !important; }
         </style>
         <link rel="stylesheet" v-if="theme.code_highlight_theme" :href="'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/' + theme.code_highlight_theme + '.min.css'">
         <style v-if="theme.override_code_highlight_bg">.hljs { background: {{ theme.highlight_color }}} !important; }</style>

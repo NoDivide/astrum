@@ -1036,8 +1036,8 @@
     font-size: 12px;
     line-height: 18px;
     opacity: 0.75;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     padding: 36px 12px;
     white-space: pre;

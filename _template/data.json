@@ -19,6 +19,7 @@
         "background_color": "#FFFFFF",
         "code_highlight_theme": "github",
         "override_code_highlight_bg": "#F9FAFC",
+        "code_overflow": "auto",
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
