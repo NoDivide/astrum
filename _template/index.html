@@ -91,7 +91,8 @@
 
             <h1 class="ndpl-header__title ndpl-c-brand-ca">
                 <span v-if="theme.show_project_name">{{{ project }}}</span>
-                <small>Pattern Library</small>
+                <small v-if="theme.titles.library_title"
+                       v-text="theme.titles.library_title"></small>
             </h1>
 
             <div class="ndpl-nav-handle"
