@@ -21,19 +21,18 @@ var ndplComponent = Vue.extend({
             var _this = this,
                 styles = '';
 
-            // Inline style are only applied after the component has fully loaded
+            // These inline style are only applied after the component has fully loaded
             if(_this.loaded) {
                 if(_this.component.options.sample_min_height) {
                     styles += 'min-height:' + _this.component.options.sample_min_height + 'px;';
                 }
-                if(_this.component.options.sample_overflow_hidden) {
-                    styles += 'overflow: hidden;';
-                }
-                if(_this.component.options.sample_background_color) {
-                    styles += 'background-color:' + _this.component.options.sample_background_color + ' !important;';
-                }
-                
-                console.log("Got here");
+            }
+
+            if(_this.component.options.sample_overflow_hidden) {
+                styles += 'overflow: hidden;';
+            }
+            if(_this.component.options.sample_background_color) {
+                styles += 'background-color:' + _this.component.options.sample_background_color + ' !important;';
             }
 
             return styles;
@@ -70,7 +69,7 @@ var ndplComponent = Vue.extend({
         _this.$on('resizing', function(is_resizing) {
             _this.loaded = false;
 
-            if(!is_resizing) {
+            if(! is_resizing) {
                 _this.setHideSample(function() {
                     _this.loaded = true;
                 });
@@ -322,6 +321,9 @@ new Vue({
         breakpoint: 960,
         mobile_view: false,
         open_nav: false,
+        rtime: new Date(1, 1, 2000, 12,00,00),
+        timeout: false,
+        delta: 200,
         version: null
     },
 
@@ -420,6 +422,13 @@ new Vue({
             _this.setScrollPosition();
 
             _this.mobile_view = _this.window_outer_width >= _this.breakpoint ? false : true;
+
+            _this.rtime = new Date();
+
+            if (_this.timeout === false && !_this.mobile_view) {
+                _this.timeout = true;
+                setTimeout(_this.trackResizing, _this.delta);
+            }
         });
 
         /**
@@ -812,6 +821,27 @@ new Vue({
             });
 
             _this.updateHash(page.name);
+        },
+
+        /**
+         * Track resizing and broadcast resizing events.
+      */
+        trackResizing: function() {
+            var _this = this;
+
+            _this.resizing = true;
+            _this.$broadcast('resizing', true);
+
+            if (new Date() - _this.rtime < _this.delta) {
+                setTimeout(_this.trackResizing, _this.delta);
+            } else {
+                _this.timeout = false;
+
+                setTimeout(function() {
+                    _this.resizing = false;
+                    _this.$broadcast('resizing', false);
+                }, 1000);
+            }
         },
 
         /**

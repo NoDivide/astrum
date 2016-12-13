@@ -59,7 +59,7 @@
           class="ndpl-body ndpl-c-background"
           :class="{ 'ndpl-inverted': theme.invert_text, 'ndpl-desktop': !mobile_view, 'ndpl-mobile': mobile_view, 'ndpl-disable-scrolling': sidebar_scrolling }">
 
-    <div class="ndpl-loading" :class="{ 'in-progress': ! loaded || resizing }">
+    <div class="ndpl-loading" :class="{ 'in-progress': ! loaded }">
         <div class="ndpl-folding-cube" v-if="!log.error.length && !log.info.length">
             <div class="ndpl-cube1 ndpl-cube"></div>
             <div class="ndpl-cube2 ndpl-cube"></div>
@@ -68,7 +68,6 @@
         </div>
 
         <h3 class="ndpl-loading__title" v-if="! loaded && !log.error.length && !log.info.length">Building pattern library...</h3>
-        <h3 class="ndpl-loading__title" v-if="resizing && !log.error.length && !log.info.length">Realigning pattern library...</h3>
         <h3 class="ndpl-loading__title" v-if="log.error.length">Hold up! We have some errors...</h3>
         <h3 class="ndpl-loading__title" v-if="log.info.length && !log.error.length">Looks like you have some setup to do...</h3>
 
@@ -81,7 +80,7 @@
     </div>
 
     <div class="ndpl-container"
-         :class="{ 'loaded': loaded && ! resizing, 'resizing': resizing }">
+         :class="{ 'loaded': loaded }">
 
         <header class="ndpl-header">
 
