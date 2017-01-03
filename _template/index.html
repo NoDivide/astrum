@@ -4,13 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
 
-        <title v-text="project_name ? project_name + ' | Pattern Library' : 'Pattern Library'"></title>
-
-        <!-- Astrum (https://github.com/NoDivide/astrum) -->
-        <meta name="application-name" content="Astrum {{ version }}" />
-
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/png" :href="project_favicon" />
+        <title></title>
 
         <!-- Pattern Library Stylesheets: DO NOT CHANGE -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel='stylesheet' type='text/css'>
@@ -22,287 +16,246 @@
                 }
             });
         </script>
-        <style>
-            /* Targeted theme styles */
-            .ndpl-folding-cube .ndpl-cube:before { background-color: {{ theme.brand_color }} !important; }
-            .ndpl-component__sample--inverted    { background-color: {{ theme.sample_dark_background }} !important }
-            .ndpl-c-background                   { background-color: {{ theme.background_color }} !important; }
-            .ndpl-c-border                       { border-color: {{ theme.border_color }} !important; }
-            .ndpl-c-border-b                     { border-bottom-color: {{ theme.border_color }} !important; }
-            .ndpl-c-highlight                    { background-color: {{ theme.highlight_color }} !important; }
-            .ndpl-c-highlight-ca a.active,
-            .ndpl-c-highlight-ca a:hover         { background-color: {{ theme.highlight_color }} !important; }
-            .ndpl-c-brand-c                      { color: {{ theme.brand_color }} !important; }
-            .ndpl-c-brand-bg                     { background-color: {{ theme.brand_color }} !important; }
-            .ndpl-c-brand-b                      { border-color: {{ theme.brand_color }} !important; }
-            .ndpl-c-brand-bl-ca a.active,
-            .ndpl-c-brand-bl-ca a:hover          { border-left-color: {{ theme.brand_color }} !important; }
-            .ndpl-c-brand-a:hover                { color: {{ theme.brand_color }} !important; }
-            .ndpl-c-brand-ca a:hover             { color: {{ theme.brand_color }} !important; }
-            .ndpl-c-brand-cai a                  { color: {{ theme.brand_color }} !important; }
-        </style>
-        <link rel="stylesheet" v-if="theme.code_highlight_theme" :href="'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/' + theme.code_highlight_theme + '.min.css'">
-        <style v-if="theme.override_code_highlight_bg">.hljs { background: {{ theme.highlight_color }}} !important; }</style>
+
         <link rel="stylesheet" href="app/css/styles.min.css">
-
-        <!-- Font Libraries -->
-        <link rel="stylesheet" v-if="font_libraries.google_web_fonts" :href="font_libraries.google_web_fonts">
-        <link rel="stylesheet" v-if="font_libraries.typography_web_fonts" :href="font_libraries.typography_web_fonts">
-        <ndpl-script :script="'https://use.typekit.net/' + font_libraries.typekit_code + '.js'" v-if="font_libraries.typekit_code" inline-template>
-            <script :src="script" @load="loadTypekit"></script>
-        </ndpl-script>
-
-        <!-- Custom stylesheets are loaded from the assets.css array in data.json -->
-        <link rel="stylesheet" v-for="css in assets.css" :href="css">
     </head>
-    <body id="top"
-          class="ndpl-body ndpl-c-background"
-          :class="{ 'ndpl-inverted': theme.invert_text, 'ndpl-desktop': !mobile_view, 'ndpl-mobile': mobile_view, 'ndpl-disable-scrolling': sidebar_scrolling }">
+    <body>
 
-    <div class="ndpl-loading" :class="{ 'in-progress': ! loaded }">
-        <div class="ndpl-folding-cube" v-if="!log.error.length && !log.info.length">
-            <div class="ndpl-cube1 ndpl-cube"></div>
-            <div class="ndpl-cube2 ndpl-cube"></div>
-            <div class="ndpl-cube4 ndpl-cube"></div>
-            <div class="ndpl-cube3 ndpl-cube"></div>
-        </div>
+        <div data-app="astrum"
+             id="top"
+             class="ndpl-body ndpl-c-background"
+             :class="{ 'ndpl-inverted': theme.invert_text, 'ndpl-desktop': !mobile_view, 'ndpl-mobile': mobile_view, 'ndpl-disable-scrolling': sidebar_scrolling }">
 
-        <h3 class="ndpl-loading__title" v-if="! loaded && !log.error.length && !log.info.length">Building pattern library...</h3>
-        <h3 class="ndpl-loading__title" v-if="log.error.length">Hold up! We have some errors...</h3>
-        <h3 class="ndpl-loading__title" v-if="log.info.length && !log.error.length">Looks like you have some setup to do...</h3>
-
-        <ul class="ndpl-error" v-if="log.error.length">
-            <li class="ndpl-error__item" v-for="error in log.error">{{{ error }}}</li>
-        </ul>
-        <ul class="ndpl-info" v-if="log.info.length && !log.error.length">
-            <li class="ndpl-info__item" v-for="info in log.info">{{{ info }}}</li>
-        </ul>
-    </div>
-
-    <div class="ndpl-container"
-         :class="{ 'loaded': loaded }">
-
-        <header class="ndpl-header">
-
-            <img class="ndpl-header__logo"
-                 :src="project_logo"
-                 :alt="project_name"
-                 v-if="project_logo"/>
-
-            <h1 class="ndpl-header__title ndpl-c-brand-ca">
-                <span v-if="theme.show_project_name">{{{ project }}}</span>
-                <small v-if="theme.titles.library_title"
-                       v-text="theme.titles.library_title"></small>
-            </h1>
-
-            <div class="ndpl-nav-handle"
-                 :class="{ 'open': open_nav }"
-                 @click="toggleNav">
-                <div class="ndpl-nav-handle__container">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <div class="ndpl-loading" :class="{ 'in-progress': ! loaded }">
+                <div class="ndpl-folding-cube" v-if="!log.error.length && !log.info.length">
+                    <div class="ndpl-cube1 ndpl-cube"></div>
+                    <div class="ndpl-cube2 ndpl-cube"></div>
+                    <div class="ndpl-cube4 ndpl-cube"></div>
+                    <div class="ndpl-cube3 ndpl-cube"></div>
                 </div>
-            </div>
-        </header>
 
-        <div class="ndpl-sidebar"
-             :class="{ 'open': open_nav }">
+                <h3 class="ndpl-loading__title" v-if="! loaded && !log.error.length && !log.info.length">Building pattern library...</h3>
+                <h3 class="ndpl-loading__title" v-if="log.error.length">Hold up! We have some errors...</h3>
+                <h3 class="ndpl-loading__title" v-if="log.info.length && !log.error.length">Looks like you have some setup to do...</h3>
 
-            <header class="ndpl-sidebar__header">
-
-                <img class="ndpl-sidebar__logo"
-                     :src="project_logo"
-                     :alt="project_name"
-                     v-if="project_logo"/>
-
-                <h1 class="ndpl-sidebar__title ndpl-c-brand-ca">
-                    <span v-if="theme.show_project_name">{{{ project }}}</span>
-                    <small v-if="theme.titles.library_title"
-                           v-text="theme.titles.library_title"></small>
-                </h1>
-
-            </header>
-
-            <nav class="ndpl-nav">
-                <template v-if="content">
-                    <h2 class="ndpl-nav__title"
-                        v-if="theme.titles.pages_title"
-                        v-text="theme.titles.pages_title"></h2>
-
-                    <ul class="ndpl-nav__items ndpl-c-border ndpl-c-highlight-ca ndpl-c-brand-bl-ca">
-                        <li class="ndpl-nav__item" v-for="page in content.pages">
-                            <a class="ndpl-nav__page ndpl-nsc ndpl-c-border-b"
-                               :class="{ 'active': active_page && active_page.title === page.title }"
-                               v-text="page.title"
-                               @click.prevent="loadPage(page)">
-                            </a>
-                        </li>
-                    </ul>
-                </template>
-
-                <h2 class="ndpl-nav__title">
-                    <a class="ndpl-nsc"
-                       href="#top"
-                       @click.prevent="scrollToHref"
-                       v-if="theme.titles.components_title"
-                       v-text="theme.titles.components_title"></a>
-                </h2>
-
-                <ul class="ndpl-nav__items ndpl-c-border">
-                    <li class="ndpl-nav__item"
-                        v-for="group in groups"
-                        :class="{ 'active': active_components.length > 0 && group.id == active_components[0].group_id || group.id == open_group }">
-
-                        <a :href="'#' + group.id"
-                           class="ndpl-nav__group ndpl-nsc ndpl-c-border-b"
-                           v-text="group.title"
-                           @click.prevent="toggleOpenGroups(group)">
-                        </a>
-
-                        <ul class="ndpl-nav__child-items ndpl-c-highlight"
-                            v-if="group.components.length">
-
-                            <li class="ndpl-nav__child-item ndpl-c-border-b ndpl-c-brand-bl-ca"
-                                v-for="component in group.components">
-                                <a :href="'#' + component.id"
-                                   class="ndpl-nav__component ndpl-nsc"
-                                   :class="{ 'active': active_components.indexOf(component) >= 0 }"
-                                   v-text="component.title"
-                                   @click.prevent="scrollToHref">
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                <ul class="ndpl-error" v-if="log.error.length">
+                    <li class="ndpl-error__item" v-for="error in log.error" v-html="error"></li>
                 </ul>
-
-            </nav>
-
-            <div class="ndpl-copyright ndpl-c-brand-ca">
-
-                <p v-if="copyright_start_year && client || all_creators">
-                    <template v-if="copyright_start_year && client">
-                        &copy; {{ copyright_year }} {{{ client }}}.
-                    </template>
-                    <template v-if="all_creators">
-                        <br/>Pattern library created by {{{ all_creators }}}.
-                    </template>
-                </p>
-
-                <p v-if="theme.show_version">Astrum v{{ version }}</p>
-
+                <ul class="ndpl-info" v-if="log.info.length && !log.error.length">
+                    <li class="ndpl-info__item" v-for="info in log.info" v-html="info"></li>
+                </ul>
             </div>
-        </div>
 
-        <div class="ndpl-content" data-app="astrum">
-            <div class="ndpl-page ndpl-c-brand-cai" :style="library_inline_styles" v-if="active_page">{{{ active_page.markup }}}</div>
-            <div class="ndpl-library" :style="library_inline_styles" :class="{ 'ndpl-preloaded': active_page }">
+            <div class="ndpl-container"
+                 :class="{ 'loaded': loaded }">
 
-                <ndpl-group v-for="group in groups"
-                            :group="group"
-                            inline-template>
+                <header class="ndpl-header">
 
-                    <div class="ndpl-library__group"
-                         :id="group.id">
+                    <img class="ndpl-header__logo"
+                         :src="project_logo"
+                         :alt="project_name"
+                         v-if="project_logo"/>
 
-                        <h2 class="ndpl-library__title">{{ group.title }}</h2>
+                    <h1 class="ndpl-header__title ndpl-c-brand-ca">
+                        <span v-if="theme.show_project_name" v-html="project"></span>
+                    </h1>
 
-                        <div class="ndpl-group__description ndpl-c-brand-ca"
-                             v-html="group.description"
-                             v-if="group.description"></div>
-
-                        <div class="ndpl-components">
-                            <ndpl-component v-for="component in group.components"
-                                            :component="component"
-                                            inline-template>
-
-                                <div class="ndpl-component"
-                                     :id="component.id"
-                                     :group-id="component.group_id"
-                                     :class="'ndpl-component--' + component.width">
-
-                                    <h3 class="ndpl-component__title">{{ component.title }}</h3>
-
-                                    <div class="ndpl-component__description ndpl-c-brand-ca"
-                                         v-html="component.description"></div>
-
-                                    <template v-if="component.type == 'colors'">
-                                        <div v-if="component.colors.length" class="ndpl-component__colors ndpl-cf">
-
-                                            <div class="ndpl-component__color-container"
-                                                 v-for="color in component.colors">
-
-                                                <div class="ndpl-component__color"
-                                                     v-for="item in color.split(',')"
-                                                     :class="{ 'ndpl-apply-border ndpl-c-border': shouldApplyBorder(item), }"
-                                                     :style="'background-color:' + item">
-                                                    <div :class="{ 'ndpl-dark-text': shouldInvertText(item) }">{{ item }}</div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <ul v-else class="ndpl-component__sample-missing ndpl-info">
-                                            <li class="ndpl-info__item">Locate this component in your <code>data.json</code> file and add your colors to the "colors" array that has been created for you e.g.:</li>
-                                            <li><pre class="ndpl-pre">"colors": ["#4c4c4c","#7d8284","#a6b1b5","#e6eaf2","#FFFFFF"]</pre></li>
-                                        </ul>
-                                    </template>
-                                    <template v-else>
-                                        <div class="ndpl-component__container"
-                                             v-show="isCodeVisible()">
-
-                                            <div class="ndpl-component__sample ndpl-c-border"
-                                                 :class="{
-                                                    'ndpl-component__sample--inverted': component.options.sample_dark_background,
-                                                    'ndpl-component__sample--disabled-code': component.options.disable_code_sample
-                                                 }"
-                                                 :style="inline_styles"
-                                                 v-if="component.html">
-                                                {{{ component.html }}}
-                                            </div>
-
-                                            <template v-if="component.html">
-                                                <div class="ndpl-component__code ndpl-c-border"
-                                                     v-show="component.code_show">
-                                                    <pre class="ndpl-pre"><code class="ndpl-code html" v-text="component.html"></code></pre>
-                                                </div>
-                                                <a v-if="!component.options.disable_code_sample"
-                                                   class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
-                                                   @click.prevent="component.code_show = ! component.code_show"
-                                                   v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
-                                            </template>
-                                            <ul v-else class="ndpl-component__sample-missing ndpl-info">
-                                                <li class="ndpl-info__item">Add your component markup to <code>/components/{{ component.group }}/{{ component.name }}/markup.html</code></li>
-                                            </ul>
-
-                                        </div>
-
-                                        <div class="ndpl-component__sample-hidden ndpl-info"
-                                             v-show="!isCodeVisible()">
-                                            This component is hidden at this resolution.
-                                        </div>
-                                    </template>
-                                </div>
-                            </ndpl-component>
+                    <div class="ndpl-nav-handle"
+                         :class="{ 'open': open_nav }"
+                         @click="toggleNav">
+                        <div class="ndpl-nav-handle__container">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                     </div>
-                </ndpl-group>
+                </header>
+
+                <div class="ndpl-sidebar"
+                     :class="{ 'open': open_nav }">
+
+                    <header class="ndpl-sidebar__header">
+
+                        <img class="ndpl-sidebar__logo"
+                             :src="project_logo"
+                             :alt="project_name"
+                             v-if="project_logo"/>
+
+                        <h1 class="ndpl-sidebar__title ndpl-c-brand-ca">
+                            <span v-if="theme.show_project_name" v-html="project"></span>
+                            <small v-if="theme.titles.library_title"
+                                   v-text="theme.titles.library_title"></small>
+                        </h1>
+
+                    </header>
+
+                    <nav class="ndpl-nav">
+                        <template v-if="content">
+                            <h2 class="ndpl-nav__title"
+                                v-if="theme.titles.pages_title"
+                                v-text="theme.titles.pages_title"></h2>
+
+                            <ul class="ndpl-nav__items ndpl-c-border ndpl-c-highlight-ca ndpl-c-brand-bl-ca">
+                                <li class="ndpl-nav__item" v-for="page in content.pages">
+                                    <a class="ndpl-nav__page ndpl-nsc ndpl-c-border-b"
+                                       :class="{ 'active': active_page && active_page.title === page.title }"
+                                       v-text="page.title"
+                                       @click.prevent="loadPage(page)">
+                                    </a>
+                                </li>
+                            </ul>
+                        </template>
+
+                        <h2 class="ndpl-nav__title">
+                            <a class="ndpl-nsc"
+                               href="#top"
+                               @click.prevent="scrollToHref"
+                               v-if="theme.titles.components_title"
+                               v-text="theme.titles.components_title"></a>
+                        </h2>
+
+                        <ul class="ndpl-nav__items ndpl-c-border">
+                            <li class="ndpl-nav__item"
+                                v-for="group in groups"
+                                :class="{ 'active': active_components.length > 0 && group.id == active_components[0].group_id || group.id == open_group }">
+
+                                <a :href="'#' + group.id"
+                                   class="ndpl-nav__group ndpl-nsc ndpl-c-border-b"
+                                   v-text="group.title"
+                                   @click.prevent="toggleOpenGroups(group)">
+                                </a>
+
+                                <ul class="ndpl-nav__child-items ndpl-c-highlight"
+                                    v-if="group.components.length">
+
+                                    <li class="ndpl-nav__child-item ndpl-c-border-b ndpl-c-brand-bl-ca"
+                                        v-for="component in group.components">
+                                        <a :href="'#' + component.id"
+                                           class="ndpl-nav__component ndpl-nsc"
+                                           :class="{ 'active': active_components.indexOf(component) >= 0 }"
+                                           v-text="component.title"
+                                           @click.prevent="scrollToHref">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </nav>
+
+                    <div class="ndpl-copyright ndpl-c-brand-ca">
+
+                        <p v-if="copyright" v-html="copyright"></p>
+
+                        <p v-if="theme.show_version">Astrum v{{ version }}</p>
+
+                    </div>
+                </div>
+
+                <div class="ndpl-content" data-app="content">
+                    <div class="ndpl-page ndpl-c-brand-cai" :style="library_inline_styles" v-if="active_page" v-html="active_page.markup"></div>
+                    <div class="ndpl-library" :style="library_inline_styles" :class="{ 'ndpl-preloaded': active_page }">
+
+                        <ndpl-group v-for="group in groups"
+                                    :group="group"
+                                    inline-template>
+
+                            <div class="ndpl-library__group"
+                                 :id="group.id">
+
+                                <h2 class="ndpl-library__title">{{ group.title }}</h2>
+
+                                <div class="ndpl-group__description ndpl-c-brand-ca"
+                                     v-html="group.description"
+                                     v-if="group.description"></div>
+
+                                <div class="ndpl-components">
+                                    <ndpl-component v-for="component in group.components"
+                                                    :component="component"
+                                                    inline-template>
+
+                                        <div class="ndpl-component"
+                                             :id="component.id"
+                                             :group-id="component.group_id"
+                                             :class="'ndpl-component--' + component.width">
+
+                                            <h3 class="ndpl-component__title">{{ component.title }}</h3>
+
+                                            <div class="ndpl-component__description ndpl-c-brand-ca"
+                                                 v-html="component.description"></div>
+
+                                            <template v-if="component.type == 'colors'">
+                                                <div v-if="component.colors.length" class="ndpl-component__colors ndpl-cf">
+
+                                                    <div class="ndpl-component__color-container"
+                                                         v-for="color in component.colors">
+
+                                                        <div class="ndpl-component__color"
+                                                             v-for="item in color.split(',')"
+                                                             :class="{ 'ndpl-apply-border ndpl-c-border': shouldApplyBorder(item), }"
+                                                             :style="'background-color:' + item">
+                                                            <div :class="{ 'ndpl-dark-text': shouldInvertText(item) }">{{ item }}</div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <ul v-else class="ndpl-component__sample-missing ndpl-info">
+                                                    <li class="ndpl-info__item">Locate this component in your <code>data.json</code> file and add your colors to the "colors" array that has been created for you e.g.:</li>
+                                                    <li><pre class="ndpl-pre">"colors": ["#4c4c4c","#7d8284","#a6b1b5","#e6eaf2","#FFFFFF"]</pre></li>
+                                                </ul>
+                                            </template>
+                                            <template v-else>
+                                                <div class="ndpl-component__container"
+                                                     v-show="isCodeVisible()">
+
+                                                    <div class="ndpl-component__sample ndpl-c-border"
+                                                         :class="{
+                                                            'ndpl-component__sample--inverted': component.options.sample_dark_background,
+                                                            'ndpl-component__sample--disabled-code': component.options.disable_code_sample
+                                                         }"
+                                                         :style="inline_styles"
+                                                         v-if="component.html"
+                                                         v-html="component.html">
+                                                    </div>
+
+                                                    <template v-if="component.html">
+                                                        <div class="ndpl-component__code ndpl-c-border"
+                                                             v-show="component.code_show">
+                                                            <pre class="ndpl-pre"><code class="ndpl-code html" v-text="component.html"></code></pre>
+                                                        </div>
+                                                        <a v-if="!component.options.disable_code_sample"
+                                                           class="ndpl-component__code-toggle ndpl-c-highlight ndpl-c-border"
+                                                           @click.prevent="component.code_show = ! component.code_show"
+                                                           v-text="component.code_show ? 'Hide code sample' : 'Show code sample'"></a>
+                                                    </template>
+                                                    <ul v-else class="ndpl-component__sample-missing ndpl-info">
+                                                        <li class="ndpl-info__item">Add your component markup to <code>/components/{{ component.group }}/{{ component.name }}/markup.html</code></li>
+                                                    </ul>
+
+                                                </div>
+
+                                                <div class="ndpl-component__sample-hidden ndpl-info"
+                                                     v-show="!isCodeVisible()">
+                                                    This component is hidden at this resolution.
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </ndpl-component>
+                                </div>
+                            </div>
+                        </ndpl-group>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <ndpl-script v-for="script in assets.js"
-                 :script="script"
-                 v-if="loaded"
-                 inline-template>
-        <script :src="script"></script>
-    </ndpl-script>
+        <script src="app/js/vendor/vue/2.1.8/vue.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.js"></script>
+        <script src="app/js/vendor/highlight.js/9.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.0.0/js/smooth-scroll.min.js"></script>
+        <script src="app/js/main.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.8.0/vue-resource.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/10.0.0/js/smooth-scroll.min.js"></script>
-    <script src="app/js/main.min.js"></script>
     </body>
 </html>

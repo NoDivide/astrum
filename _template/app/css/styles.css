@@ -1081,8 +1081,6 @@
     .ndpl-page pre code,
     .ndpl-component__description pre code,
     .ndpl-component__code .ndpl-code {
-        font-size: 15px;
-        line-height: 21px;
         padding: 36px;
     }
     .ndpl-page pre code,

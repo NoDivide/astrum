@@ -50,11 +50,11 @@ var ndplComponent = Vue.extend({
         }
     },
 
-    ready: function() {
+    mounted: function() {
         var _this = this;
 
         // Listen for loaded event
-        _this.$on('loaded', function() {
+        Astrum.$on('loaded', function() {
 
             // Monitor scroll and resize events and update navigation active state appropirately
             window.addEventListener('scroll', _this.updateActive);
@@ -66,7 +66,7 @@ var ndplComponent = Vue.extend({
         });
 
         // Listen for resizing event
-        _this.$on('resizing', function(is_resizing) {
+        Astrum.$on('resizing', function(is_resizing) {
             _this.loaded = false;
 
             if(! is_resizing) {
@@ -242,37 +242,10 @@ var ndplGroup = Vue.extend({
 Vue.component('ndpl-group', ndplGroup);
 
 /**
- * Script component
- */
-var ndplScript = Vue.extend({
-
-    props: {
-        script: {
-            required: true
-        }
-    },
-
-    methods: {
-
-        /**
-         * Loads TypeKit.
-         */
-        loadTypekit: function() {
-            try {
-                Typekit.load({
-                    async: true
-                });
-            } catch(e) {};
-        }
-    }
-});
-Vue.component('ndpl-script', ndplScript);
-
-/**
  * Vue instance
  */
-new Vue({
-    el: 'html',
+var Astrum = new Vue({
+    el: '[data-app=astrum]',
 
     data: {
         intro: null,
@@ -286,7 +259,23 @@ new Vue({
         creators: {},
         content: {},
         groups: {},
-        theme: {},
+        theme: {
+            border_color: null,
+            highlight_color: null,
+            brand_color: null,
+            background_color: null,
+            code_highlight_theme: null,
+            override_code_highlight_bg: null,
+            sample_dark_background: null,
+            show_project_name: null,
+            show_version: null,
+            max_width: null,
+            titles: {
+                library_title: null,
+                pages_title: null,
+                components_title: null
+            }
+        },
         assets: {
             css: [],
             js: []
@@ -324,6 +313,7 @@ new Vue({
         rtime: new Date(1, 1, 2000, 12,00,00),
         timeout: false,
         delta: 200,
+        return_load_time: true,
         version: null
     },
 
@@ -340,30 +330,26 @@ new Vue({
             return null;
         },
 
-        copyright_year: function() {
-            var date = new Date();
+        copyright: function() {
+            var date = new Date(),
+                copyright_year = '',
+                client = '',
+                formattedCreators = '',
+                creators = '';
 
             if(date.getFullYear() == this.copyright_start_year) {
-                return this.copyright_start_year;
+                copyright_year = this.copyright_start_year;
+            }
+            if(date.getFullYear() > this.copyright_start_year) {
+                copyright_year = this.copyright_start_year + ' - ' + date.getFullYear();
             }
 
-            return this.copyright_start_year + ' - ' + date.getFullYear();
-        },
-
-        client: function() {
             if(this.client_name && this.client_url) {
-                return '<a href="' + this.client_url + '" target="_blank">' + this.client_name + '</a>';
+                client = '<a href="' + this.client_url + '" target="_blank">' + this.client_name + '</a>';
             }
-
             if(this.client_name && !this.client_url) {
-                return this.client_name;
+                client = this.client_name;
             }
-
-            return null;
-        },
-
-        all_creators: function() {
-            var formattedCreators = '';
 
             if(this.creators.length && this.creators[0].name) {
                 for (var i = 0; i < this.creators.length; i++) {
@@ -373,11 +359,12 @@ new Vue({
 
                     formattedCreators += prefix + '<a href="' + url + '" target="_blank">' + name + '</a>';
                 }
-
-                return formattedCreators.substring(2);
+            }
+            if(formattedCreators) {
+                creators = '<br/>Pattern library created by ' + formattedCreators.substring(2) + '.';
             }
 
-            return null;
+            return '&copy; ' + copyright_year + ' ' + client + creators;
         },
 
         library_inline_styles: function() {
@@ -401,14 +388,20 @@ new Vue({
         loaded: function() {
             var _this = this;
 
-            _this.scrollTo(window.location.hash);
+            if (_this.loaded === true) {
+                _this.scrollTo(window.location.hash);
 
-            _this.$broadcast('loaded');
+                _this.injectProjectScripts();
+
+                Astrum.$emit('loaded');
+            }
         }
     },
 
-    ready: function() {
+    mounted: function() {
         var _this = this;
+
+        if (_this.return_load_time) console.time('Astrum loaded in');
 
         _this.loadDataFile();
 
@@ -458,6 +451,150 @@ new Vue({
 
     methods: {
 
+        injectProjectStyles: function() {
+            var _this = this,
+                head = document.getElementsByTagName('head').item(0);
+
+            for (var i = 0; i < _this.assets.css.length; i++) {
+                var link = document.createElement('link');
+
+                link.rel = 'stylesheet';
+                link.href = _this.assets.css[i];
+
+                head.appendChild(link);
+            }
+        },
+
+        injectThemeStyles: function() {
+            var _this = this,
+                head = document.getElementsByTagName('head').item(0),
+                style;
+
+            // Inject inline styles for Astrum theme override.
+            style = document.createElement('style');
+
+            style.type = 'text/css';
+            style.appendChild(document.createTextNode(
+                '/* Targeted theme styles */' +
+                '.ndpl-folding-cube .ndpl-cube:before { background-color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-component__sample--inverted    { background-color: ' + _this.theme.sample_dark_background + ' !important }' +
+                '.ndpl-c-background                   { background-color: ' + _this.theme.background_color + ' !important; }' +
+                '.ndpl-c-border                       { border-color: ' + _this.theme.border_color + ' !important; }' +
+                '.ndpl-c-border-b                     { border-bottom-color: ' + _this.theme.border_color + ' !important; }' +
+                '.ndpl-c-highlight                    { background-color: ' + _this.theme.highlight_color + ' !important; }' +
+                '.ndpl-c-highlight-ca a.active,' +
+                '.ndpl-c-highlight-ca a:hover         { background-color: ' + _this.theme.highlight_color + ' !important; }' +
+                '.ndpl-c-brand-c                      { color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-c-brand-bg                     { background-color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-c-brand-b                      { border-color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-c-brand-bl-ca a.active,' +
+                '.ndpl-c-brand-bl-ca a:hover          { border-left-color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-c-brand-a:hover                { color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-c-brand-ca a:hover             { color: ' + _this.theme.brand_color + ' !important; }' +
+                '.ndpl-c-brand-cai a                  { color: ' + _this.theme.brand_color + ' !important; }'
+            ));
+
+            head.appendChild(style);
+
+            // Inject highlight.js theme stylesheet.
+            var link = document.createElement('link');
+
+            link.rel = 'stylesheet';
+            link.href = 'app/js/vendor/highlight.js/9.9.0/styles/' + _this.theme.code_highlight_theme + '.min.css';
+
+            head.appendChild(link);
+
+            // We have the option to override a highlight.js themes background.
+            if (_this.theme.override_code_highlight_bg) {
+                style = document.createElement('style');
+
+                style.type = 'text/css';
+                style.appendChild(document.createTextNode('.hljs { background:' + _this.theme.highlight_color + ' !important; }'));
+
+                head.appendChild(style);
+            }
+        },
+
+        injectFontLibraries: function() {
+            var _this = this,
+                head = document.getElementsByTagName('head').item(0),
+                link,
+                script;
+
+            // Inject Google web fonts.
+            if (_this.font_libraries.google_web_fonts) {
+                link = document.createElement('link');
+
+                link.rel = 'stylesheet';
+                link.href = _this.font_libraries.google_web_fonts;
+
+                head.appendChild(link);
+            }
+
+            // Inject Typography web fonts.
+            if (_this.font_libraries.typography_web_fonts) {
+                link = document.createElement('link');
+
+                link.rel = 'stylesheet';
+                link.href = _this.font_libraries.typography_web_fonts;
+
+                head.appendChild(link);
+            }
+
+            // Inject TypeKit web fonts.
+            if (_this.font_libraries.typekit_code) {
+                script = document.createElement('script');
+
+                script.src = 'https://use.typekit.net/' + _this.font_libraries.typekit_code + '.js';
+
+                head.appendChild(script);
+
+                try {
+                    Typekit.load({
+                        async: true
+                    });
+                } catch(e) {};
+            }
+        },
+
+        injectProjectScripts: function() {
+            var _this = this,
+                body = document.getElementsByTagName('body')[0];
+
+            for (var i = 0; i < _this.assets.js.length; i++) {
+                var script = document.createElement('script');
+
+                script.src = _this.assets.js[i];
+
+                body.appendChild(script);
+            }
+        },
+
+        injectMeta: function() {
+            var _this = this,
+                head = document.getElementsByTagName('head').item(0);
+
+            // Set page title.
+            var title = _this.project_name ? _this.project_name + ' | Pattern Library' : 'Pattern Library';
+            document.title = title;
+
+            // Set application-name meta.
+            var meta = document.createElement("meta");
+
+            meta.name = 'application-name';
+            meta.content = 'Astrum ' + _this.version;
+
+            head.appendChild(meta);
+
+            // Set favicon.
+            link = document.createElement('link');
+
+            link.rel = 'shortcut icon';
+            link.href = _this.project_favicon;
+
+            head.appendChild(link);
+        },
+
         /**
          * Apply syntax highlighting to pre code elements
          * within passed element.
@@ -485,6 +622,11 @@ new Vue({
 
             _this.$http.get('./data.json' + '?cb=' + new Date()).then(function (response) {
                 _this.initData(response.data, function() {
+                    _this.injectThemeStyles();
+                    _this.injectProjectStyles();
+                    _this.injectFontLibraries();
+                    _this.injectMeta();
+
                     if(_this.$data.groups.length) {
                         _this.setupGroups();
                     } else {
@@ -528,7 +670,7 @@ new Vue({
             var _this = this;
 
             for(var key in data) {
-                _this.$set(key, data[key]);
+                Vue.set(_this, key, data[key]);
             }
 
             callback();
@@ -554,23 +696,23 @@ new Vue({
                 var group = _this.groups[i];
 
                 // Set group navigation navigation
-                _this.$set('groups[' + i + '].id', 'group-' + group.name);
-                _this.$set('groups[' + i + '].active', false);
+                Vue.set(group, 'id', 'group-' + group.name);
+                Vue.set(group, 'active', false);
 
                 // Set default variables
-                _this.$set('groups[' + i + '].description', '');
+                Vue.set(group, 'description', '');
 
                 // Count groups
                 _this.groups_count = _this.groups.length;
 
                 // Load group
-                _this.loadGroup(_this.groups[i]);
+                _this.loadGroup(group);
             }
         },
 
         setupComponents: function() {
             var _this = this;
-
+            
             // Loop through the components
             for (var i = 0; i < _this.groups.length; i++) {
                 var group = _this.groups[i];
@@ -580,25 +722,25 @@ new Vue({
 
                 // Add group components to group
                 for (var j = 0; j < group.components.length; j++) {
-
+                    
                     // Set default variables
-                    _this.$set('groups[' + i + '].components[' + j + '].id', 'group-' + group.name + '-component-' + group.components[j].name);
-                    _this.$set('groups[' + i + '].components[' + j + '].group_id', 'group-' + group.name);
-                    _this.$set('groups[' + i + '].components[' + j + '].active', false);
-                    _this.$set('groups[' + i + '].components[' + j + '].options', group.components[j].options ? group.components[j].options : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].options.sample_always_show', group.components[j].options.sample_always_show ? group.components[j].options.sample_always_show : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].options.sample_mobile_hidden', group.components[j].options.sample_mobile_hidden ? group.components[j].options.sample_mobile_hidden : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].options.sample_dark_background', group.components[j].options.sample_dark_background ? group.components[j].options.sample_dark_background : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].options.disable_code_sample', group.components[j].options.disable_code_sample ? group.components[j].options.disable_code_sample : false);
-                    _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
-                    _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type : 'standard');
-                    _this.$set('groups[' + i + '].components[' + j + '].width', group.components[j].width ? group.components[j].width : 'full');
+                    Vue.set(group.components[j], 'id', 'group-' + group.name + '-component-' + group.components[j].name);
+                    Vue.set(group.components[j], 'group_id', 'group-' + group.name);
+                    Vue.set(group.components[j], 'active', false);
+                    Vue.set(group.components[j], 'options', group.components[j].options ? group.components[j].options : {});
+                    Vue.set(group.components[j], 'options.sample_always_show', group.components[j].options.sample_always_show ? group.components[j].options.sample_always_show : false);
+                    Vue.set(group.components[j], 'options.sample_mobile_hidden', group.components[j].options.sample_mobile_hidden ? group.components[j].options.sample_mobile_hidden : false);
+                    Vue.set(group.components[j], 'options.sample_dark_background', group.components[j].options.sample_dark_background ? group.components[j].options.sample_dark_background : false);
+                    Vue.set(group.components[j], 'options.disable_code_sample', group.components[j].options.disable_code_sample ? group.components[j].options.disable_code_sample : false);
+                    Vue.set(group.components[j], 'code_show', false);
+                    Vue.set(group.components[j], 'type', group.components[j].type ? group.components[j].type : 'standard');
+                    Vue.set(group.components[j], 'width', group.components[j].width ? group.components[j].width : 'full');
 
                     // Add html and description properties to the component object.
-                    _this.$set('groups[' + i + '].components[' + j + '].html', '');
-                    _this.$set('groups[' + i + '].components[' + j + '].description', '');
+                    Vue.set(group.components[j], 'html', '');
+                    Vue.set(group.components[j], 'description', '');
 
-                    _this.loadComponent(_this.groups[i].components[j]);
+                    _this.loadComponent(group.components[j]);
                 }
             }
         },
@@ -613,8 +755,8 @@ new Vue({
                 group_path = './components/' + group.name;
 
             // Get and set component description
-            _this.$http.get(group_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
-                group.description = marked(response.data);
+            Astrum.$http.get(group_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
+                if (typeof response.data === 'string') group.description = marked(response.data);
                 _this.areGroupsLoaded();
             }, function () {
                 _this.logError('Description file for <strong>' + group.name + '</strong> group failed to load from <code>' + group_path + '/description.md</code>');
@@ -640,7 +782,7 @@ new Vue({
 
             // Get and set component description
             _this.$http.get(component_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
-                component.description = marked(response.data);
+                if (typeof response.data === 'string') component.description = marked(response.data);
                 _this.areComponentsLoaded();
             }, function () {
                 _this.logError('Description file for <strong>' + component.name + '</strong> component failed to load from <code>' + component_path + '/description.md</code>');
@@ -675,6 +817,8 @@ new Vue({
 
                 setTimeout(function() {
                     _this.loaded = true;
+
+                    if (_this.return_load_time) console.timeEnd('Astrum loaded in');
                 }, 2000);
             }
         },
@@ -813,10 +957,10 @@ new Vue({
             _this.active_components = [];
             _this.open_group = null;
             _this.open_nav = false;
-
+            
             _this.$http.get(page.file + '?cb=' + new Date()).then(function (response) {
-                _this.$set('active_page.markup', marked(response.data));
-
+                Vue.set(_this.active_page, 'markup', marked(response.data));
+                
                 _this.applySyntaxHighlighting(document);
             });
 
@@ -830,7 +974,7 @@ new Vue({
             var _this = this;
 
             _this.resizing = true;
-            _this.$broadcast('resizing', true);
+            Astrum.$emit('resizing', true);
 
             if (new Date() - _this.rtime < _this.delta) {
                 setTimeout(_this.trackResizing, _this.delta);
@@ -839,7 +983,7 @@ new Vue({
 
                 setTimeout(function() {
                     _this.resizing = false;
-                    _this.$broadcast('resizing', false);
+                    Astrum.$emit('resizing', false);
                 }, 1000);
             }
         },
