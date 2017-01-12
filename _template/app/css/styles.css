@@ -481,7 +481,7 @@
 .ndpl-sidebar__logo {
     float: left;
     margin: 0 0 24px 0;
-    height: 50px;
+    max-height: 50px;
 }
 
 @media only screen and (min-width: 60em) {
