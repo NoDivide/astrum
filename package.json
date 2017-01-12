@@ -1,6 +1,6 @@
 {
   "name": "astrum",
-  "version": "1.9.3",
+  "version": "2.0.0-rc.0",
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
@@ -36,6 +36,14 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "snyk": "^1.14.3"
+    "highlightjs": "^9.8.0",
+    "marked": "^0.3.6",
+    "postcss": "^5.2.10",
+    "postcss-prefix-selector": "^1.5.0",
+    "smooth-scroll": "github:cferdinandi/smooth-scroll",
+    "snyk": "^1.14.3",
+    "vue": "^2.1.8",
+    "vue-resource": "^1.0.3",
+    "webpack": "^2.2.0-rc.4"
   }
 }

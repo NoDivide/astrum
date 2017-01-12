@@ -1,3 +1,13 @@
+const Vue = require('vue/dist/vue');
+const hljs = require('highlightjs');
+const marked = require('marked');
+const smoothScroll = require('smooth-scroll');
+const postcss = require('postcss');
+const prefixer = require('postcss-prefix-selector');
+
+Vue.use(require('vue-resource'));
+
+
 /**
  * Component component
  */
@@ -22,7 +32,7 @@ var ndplComponent = Vue.extend({
                 styles = '';
 
             // These inline style are only applied after the component has fully loaded
-            if(_this.loaded) {
+            if(_this.components_loaded) {
                 if(_this.component.options.sample_min_height) {
                     styles += 'min-height:' + _this.component.options.sample_min_height + 'px;';
                 }
@@ -54,24 +64,24 @@ var ndplComponent = Vue.extend({
         var _this = this;
 
         // Listen for loaded event
-        Astrum.$on('loaded', function() {
+        Astrum.$on('components_loaded', function() {
 
             // Monitor scroll and resize events and update navigation active state appropirately
             window.addEventListener('scroll', _this.updateActive);
             window.addEventListener('resize', _this.updateActive);
 
             _this.setHideSample(function() {
-                _this.loaded = true;
+                _this.components_loaded = true;
             });
         });
 
         // Listen for resizing event
         Astrum.$on('resizing', function(is_resizing) {
-            _this.loaded = false;
+            _this.components_loaded = false;
 
             if(! is_resizing) {
                 _this.setHideSample(function() {
-                    _this.loaded = true;
+                    _this.components_loaded = true;
                 });
             }
         });
@@ -88,13 +98,13 @@ var ndplComponent = Vue.extend({
          */
         updateActive: function() {
             var _this = this;
-
+            
             // If scroll position is great than or equal to component offset top - 60 pixels
             // and scroll position is less than component offset top plus component height plus 60 pixels
             // and active component is not this component
             if(_this.$root && _this.$root.scroll_position >= _this.$el.offsetTop - 60 &&
                 _this.$root.scroll_position < _this.$el.offsetTop + _this.$el.offsetHeight) {
-
+                
                 // If not currently auto scrolling to component
                 // and component is not active
                 if(!_this.$root.scrolling_to &&
@@ -291,10 +301,14 @@ var Astrum = new Vue({
         },
         components_count: 0,
         groups_count: 0,
+        stylesheets_count: 0,
         components_loaded_count: 0,
         groups_loaded_count: 0,
+        stylesheets_loaded_count: 0,
         groups_loaded: false,
-        loaded: false,
+        components_loaded: false,
+        stylesheets_loaded: false,
+        styles: null,
         resizing: false,
         typekit_loaded: false,
         scroll_position: 0,
@@ -313,7 +327,7 @@ var Astrum = new Vue({
         rtime: new Date(1, 1, 2000, 12,00,00),
         timeout: false,
         delta: 200,
-        return_load_time: true,
+        return_load_time: false,
         version: null
     },
 
@@ -376,6 +390,12 @@ var Astrum = new Vue({
             }
 
             return styles;
+        },
+
+        loaded: function() {
+            var _this = this;
+
+            return _this.components_loaded && _this.stylesheets_loaded;
         }
     },
 
@@ -385,15 +405,38 @@ var Astrum = new Vue({
 
             _this.setupComponents();
         },
-        loaded: function() {
+
+        components_loaded: function() {
             var _this = this;
 
-            if (_this.loaded === true) {
+            if (_this.components_loaded === true) {
                 _this.scrollTo(window.location.hash);
 
                 _this.injectProjectScripts();
 
-                Astrum.$emit('loaded');
+                Astrum.$emit('components_loaded');
+            }
+        },
+
+        stylesheets_loaded: function() {
+            var _this = this;
+
+            if (_this.stylesheets_loaded === true) {
+                var head = document.getElementsByTagName('head').item(0),
+                    style,
+                    output;
+
+                output = postcss().use(prefixer({
+                    prefix: '.ndpl-component__sample'
+                })).process(_this.styles).css;
+
+                // Inject inline styles for Astrum theme override.
+                style = document.createElement('style');
+
+                style.type = 'text/css';
+                style.appendChild(document.createTextNode(output));
+
+                head.appendChild(style);
             }
         }
     },
@@ -451,20 +494,37 @@ var Astrum = new Vue({
 
     methods: {
 
+        /**
+         * Inject project styles into head.
+         */
         injectProjectStyles: function() {
-            var _this = this,
-                head = document.getElementsByTagName('head').item(0);
+            var _this = this;
+
+            // If there are no stylesheets we mark them as loaded.
+            if (! _this.assets.css.length) {
+                _this.stylesheets_loaded = true;
+                return;
+            }
+
+            _this.styles = '';
+            _this.stylesheets_count = _this.assets.css.length;
 
             for (var i = 0; i < _this.assets.css.length; i++) {
-                var link = document.createElement('link');
+                var stylesheet = _this.assets.css[i];
 
-                link.rel = 'stylesheet';
-                link.href = _this.assets.css[i];
-
-                head.appendChild(link);
+                // Get and set concatenate css.
+                _this.$http.get(stylesheet + '?cb=' + new Date()).then(function (response) {
+                    _this.styles += response.data;
+                    _this.areStylesheetsLoaded();
+                }, function (response) {
+                    _this.logError('Stylesheet failed to load from <code>' + response.url.split('?')[0] + '</code>');
+                });
             }
         },
 
+        /**
+         * Inject theme styles into head.
+         */
         injectThemeStyles: function() {
             var _this = this,
                 head = document.getElementsByTagName('head').item(0),
@@ -515,6 +575,9 @@ var Astrum = new Vue({
             }
         },
 
+        /**
+         * Inject font libraries into head.
+         */
         injectFontLibraries: function() {
             var _this = this,
                 head = document.getElementsByTagName('head').item(0),
@@ -557,6 +620,9 @@ var Astrum = new Vue({
             }
         },
 
+        /**
+         * Inject project scripts into body.
+         */
         injectProjectScripts: function() {
             var _this = this,
                 body = document.getElementsByTagName('body')[0];
@@ -570,6 +636,9 @@ var Astrum = new Vue({
             }
         },
 
+        /**
+         * Inject meta tags into head.
+         */
         injectMeta: function() {
             var _this = this,
                 head = document.getElementsByTagName('head').item(0);
@@ -710,6 +779,9 @@ var Astrum = new Vue({
             }
         },
 
+        /**
+         * Setup components.
+         */
         setupComponents: function() {
             var _this = this;
             
@@ -777,7 +849,7 @@ var Astrum = new Vue({
                 component.html = response.data;
                 _this.areComponentsLoaded();
             }, function () {
-                _this.logError('HTML file for <strong>' + component.name + '</strong> component failed to load from <code>' + component_path + '/html.md</code>');
+                    _this.logError('HTML file for <strong>' + component.name + '</strong> component failed to load from <code>' + component_path + '/html.md</code>');
             });
 
             // Get and set component description
@@ -816,9 +888,25 @@ var Astrum = new Vue({
             if (_this.components_loaded_count === _this.components_count * 2) {
 
                 setTimeout(function() {
-                    _this.loaded = true;
+                    _this.components_loaded = true;
 
                     if (_this.return_load_time) console.timeEnd('Astrum loaded in');
+                }, 2000);
+            }
+        },
+
+        /**
+         * Increment stylesheets loaded.
+         */
+        areStylesheetsLoaded: function() {
+            var _this = this;
+
+            _this.stylesheets_loaded_count += 1;
+
+            if (_this.stylesheets_loaded_count === _this.stylesheets_count) {
+
+                setTimeout(function() {
+                    _this.stylesheets_loaded = true;
                 }, 2000);
             }
         },
@@ -913,10 +1001,9 @@ var Astrum = new Vue({
                 offset = _this.mobile_view ? 79 : 30;
 
             if(!hash) return;
-
             _this.scrolling_to = true;
 
-            smoothScroll.animateScroll(hash, null, {
+            smoothScroll.animateScroll(document.querySelector(hash), null, {
                 offset: offset,
                 callback: function() {
                     _this.scrolling_to = false;
