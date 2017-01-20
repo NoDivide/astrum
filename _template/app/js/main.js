@@ -423,7 +423,7 @@ var Astrum = new Vue({
         stylesheets_loaded: function() {
             var _this = this;
 
-            if (_this.stylesheets_loaded === true) {
+            if (_this.stylesheets_loaded === true && _this.stylesheets_count !== 0) {
                 var head = document.getElementsByTagName('head').item(0),
                     style,
                     output;
