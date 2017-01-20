@@ -215,8 +215,11 @@
                                                             'ndpl-component__sample--disabled-code': component.options.disable_code_sample
                                                          }"
                                                          :style="inline_styles"
-                                                         v-if="component.html"
-                                                         v-html="component.html">
+                                                         v-if="component.html">
+                                                        <div class="html">
+                                                            <div class="body" v-html="component.html">
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <template v-if="component.html">

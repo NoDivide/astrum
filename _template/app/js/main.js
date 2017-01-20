@@ -431,7 +431,17 @@ var Astrum = new Vue({
                     output;
 
                 output = postcss().use(prefixer({
-                    prefix: '.ndpl-component__sample'
+                    prefix: '.ndpl-component__sample',
+
+                    transform: function (prefix, selector, prefixedSelector) {
+                        if (selector === 'html') {
+                            return prefix + ' .html';
+                        } else if (selector === 'body') {
+                            return prefix + ' .body';
+                        } else {
+                            return prefixedSelector;
+                        }
+                    }
                 })).process(_this.styles).css;
 
                 // Inject inline styles for Astrum theme override.
