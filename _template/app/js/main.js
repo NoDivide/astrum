@@ -353,21 +353,21 @@ var Astrum = new Vue({
                 url = '',
                 name = '';
 
-            if(date.getFullYear() == this.copyright_start_year) {
+            if (this.copyright_start_year && date.getFullYear() == this.copyright_start_year) {
                 copyright_year = this.copyright_start_year;
             }
-            if(date.getFullYear() > this.copyright_start_year) {
+            if (this.copyright_start_year && date.getFullYear() > this.copyright_start_year) {
                 copyright_year = this.copyright_start_year + ' - ' + date.getFullYear();
             }
 
-            if(this.client_name && this.client_url) {
+            if (this.client_name && this.client_url) {
                 client = '<a href="' + this.client_url + '" target="_blank">' + this.client_name + '</a>';
             }
-            if(this.client_name && !this.client_url) {
+            if (this.client_name && ! this.client_url) {
                 client = this.client_name;
             }
 
-            if(this.creators.length && this.creators[0].name) {
+            if (this.creators.length && this.creators[0].name) {
                 for (var i = 0; i < this.creators.length; i++) {
                     prefix = i === this.creators.length - 1 ? ' & ' : ', ';
                     url = this.creators[i].url;
@@ -376,9 +376,11 @@ var Astrum = new Vue({
                     formattedCreators += prefix + '<a href="' + url + '" target="_blank">' + name + '</a>';
                 }
             }
-            if(formattedCreators) {
+            if (formattedCreators) {
                 creators = '<br/>Pattern library created by ' + formattedCreators.substring(2) + '.';
             }
+
+            if (! copyright_year || ! client) return null;
 
             return '&copy; ' + copyright_year + ' ' + client + creators;
         },
