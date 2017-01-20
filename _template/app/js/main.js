@@ -848,7 +848,7 @@ var Astrum = new Vue({
 
             // Get and set component markup
             _this.$http.get(component_path + '/markup.html' + '?cb=' + new Date()).then(function (response) {
-                component.html = response.data;
+                component.html = typeof response.data === 'string' ? response.data : '';
                 _this.areComponentsLoaded();
             }, function () {
                     _this.logError('HTML file for <strong>' + component.name + '</strong> component failed to load from <code>' + component_path + '/html.md</code>');
