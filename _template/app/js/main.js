@@ -349,7 +349,9 @@ var Astrum = new Vue({
                 copyright_year = '',
                 client = '',
                 formattedCreators = '',
-                creators = '';
+                creators = '',
+                url = '',
+                name = '';
 
             if(date.getFullYear() == this.copyright_start_year) {
                 copyright_year = this.copyright_start_year;
@@ -560,7 +562,7 @@ var Astrum = new Vue({
             var link = document.createElement('link');
 
             link.rel = 'stylesheet';
-            link.href = 'app/js/vendor/highlight.js/9.9.0/styles/' + _this.theme.code_highlight_theme + '.min.css';
+            link.href = 'assets/highlightjs/styles/' + _this.theme.code_highlight_theme + '.css';
 
             head.appendChild(link);
 

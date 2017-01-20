@@ -206,7 +206,7 @@ border_color | #E0E6ED | The border color used throughout the pattern library, e
 highlight_color | #F9FAFC | The highlight color used throughout the pattern library, .e.g. the background on nav items and the show code sample buttons.
 brand_color | #00585C | The primary brand color for your project, used sparing to signify the active nav item as well as and anchors used in your descriptions.
 background_color | #FFFFFF | The background color for the whole pattern library.
-code_hightlight_theme | github | Astrum uses [highlight.js](https://highlightjs.org) for its code samples. You can use any style you like: [available styles](https://highlightjs.org/static/demo)
+code_hightlight_theme | github | Astrum uses [highlight.js](https://highlightjs.org) for its code samples. It includes the `github` theme by default. To change the theme download the stylesheet from the: [available styles](https://highlightjs.org/static/demo) and add it to your `assets/highlightjs/styles` folder, changing this property to match the stylesheet name.
 override_code_highlight_bg | #F9FAFC | Allows you to override a [highlight.js](https://highlightjs.org) styles background color.
 sample_dark_background | #333333 | The color used for dark background component samples.
 show_project_name | true | Show the project name in the sidebar.

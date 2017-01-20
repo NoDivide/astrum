@@ -102,6 +102,16 @@ module.exports = {
             _this.saveData(function() {});
         }
 
+        /**
+         * Version 2.0.0 introduced a local stylesheet for
+         * the highlight.js plugin stored in an assets folder.
+         * If this doesn't exist in an existing instance we
+         * need to copy it across.
+         */
+        if (! fs.exists(_this.$config.path + '/assets')) {
+            fs.copy(_this.pathify(_this.module_path + '/_template/assets'), _this.$config.path + '/assets');
+        }
+
         return callback();
     },
 
