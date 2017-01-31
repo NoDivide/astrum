@@ -1006,6 +1006,11 @@
     padding: 36px 12px;
     position: relative;
 }
+.ndpl-component__sample .html, .ndpl-component__sample .body {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+}
 .ndpl-component__sample:after {
     display: block;
     clear: both;
