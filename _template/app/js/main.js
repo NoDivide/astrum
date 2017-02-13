@@ -300,7 +300,9 @@ new Vue({
             error: [],
             info: []
         },
-        components_folder: "components",
+        settings: {
+            components_folder: "components",
+        },
         components_count: 0,
         groups_count: 0,
         components_loaded_count: 0,
@@ -611,7 +613,7 @@ new Vue({
          */
         loadGroup: function(group) {
             var _this = this,
-                group_path = './' + this.components_folder + '/' + group.name;
+                group_path = './' + _this.settings.components_folder + '/' + group.name;
 
             // Get and set component description
             _this.$http.get(group_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
@@ -629,7 +631,7 @@ new Vue({
          */
         loadComponent: function(component) {
             var _this = this,
-                component_path = './' + this.components_folder + '/' + component.group + '/' + component.name;
+                component_path = './' + _this.settings.components_folder + '/' + component.group + '/' + component.name;
 
             // Get and set component markup
             _this.$http.get(component_path + '/markup.html' + '?cb=' + new Date()).then(function (response) {
