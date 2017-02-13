@@ -300,6 +300,7 @@ new Vue({
             error: [],
             info: []
         },
+        components_folder: "components",
         components_count: 0,
         groups_count: 0,
         components_loaded_count: 0,
@@ -610,7 +611,7 @@ new Vue({
          */
         loadGroup: function(group) {
             var _this = this,
-                group_path = './components/' + group.name;
+                group_path = './' + this.components_folder + '/' + group.name;
 
             // Get and set component description
             _this.$http.get(group_path + '/description.md' + '?cb=' + new Date()).then(function (response) {
