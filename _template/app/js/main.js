@@ -629,7 +629,7 @@ new Vue({
          */
         loadComponent: function(component) {
             var _this = this,
-                component_path = './components/' + component.group + '/' + component.name;
+                component_path = './' + this.components_folder + '/' + component.group + '/' + component.name;
 
             // Get and set component markup
             _this.$http.get(component_path + '/markup.html' + '?cb=' + new Date()).then(function (response) {
