@@ -3,8 +3,11 @@ var program = require('commander'),
     fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
+    updater = require('update-notifier'),
     utils = require('./utils'),
     pjson = require('../package.json');
+
+updater({pkg: pjson}).notify();
 
 program
     .version(pjson.version)
