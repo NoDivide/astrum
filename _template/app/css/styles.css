@@ -886,8 +886,8 @@
         -webkit-flex-direction: row;
         flex-direction: row;
 
-        -ms-flew-wrap: wrap;
-        -webkit-flew-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
 
         margin-left: -36px;
