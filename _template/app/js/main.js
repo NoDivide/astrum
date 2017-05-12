@@ -154,6 +154,7 @@ var ndplComponent = Vue.extend({
             var rgb = this.$root.convertHexToRgb(hex),
                 brightness = this.$root.getColorBrightness(rgb);
 
+	        console.log("shouldInvertText::", rgb, hex);
             return brightness > 210;
         },
 
@@ -851,6 +852,10 @@ new Vue({
          * @returns {{r: number, g: number, b: number}}
          */
         convertHexToRgb: function(hex) {
+	        // Expand color names "black" and "white"
+	        if (hex === "black") hex = "#000";
+	        else if (hex === "white") hex = "#fff"
+
             // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
             var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
             hex = hex.replace(shorthandRegex, function(m, r, g, b) {
