@@ -93,15 +93,32 @@ if (group_name) {
                     return 'Apply a dark background to the code sample?'
                 },
                 default: false
+            },
+            {
+                when: function () {
+                    return !program.type || program.type !== 'colors';
+                },
+                type: 'confirm',
+                name: 'disable_code_sample',
+                message: function () {
+                    return 'Disable code sample?'
+                },
+                default: false
             }
         ]).then(function (answers) {
             var typeColor = program.type && program.type == 'colors';
 
             newComponent.title = answers.title;
             if (answers.width != 'full') newComponent.width = answers.width;
+
             if (answers.sample_dark_background) {
-                newComponent.options = {};
+                if(!newComponent.hasOwnProperty('options')) { newComponent.options = {} };
                 newComponent.options.sample_dark_background = answers.sample_dark_background;
+            }
+
+            if (answers.disable_code_sample) {
+                if(!newComponent.hasOwnProperty('options')) { newComponent.options = {} };
+                newComponent.options.disable_code_sample = answers.disable_code_sample;
             }
 
             if (typeColor) {

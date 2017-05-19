@@ -288,8 +288,8 @@
 .ndpl-error code { background-color: #e07070; }
 .ndpl-info code  { background-color: #7098e0; }
 
-.ndpl-error pre,
-.ndpl-info pre {
+.ndpl-error .ndpl-pre,
+.ndpl-info .ndpl-pre {
     margin-bottom: 0;
 }
 
@@ -466,9 +466,11 @@
     position: fixed;
     right: 0;
     top: 0;
-    transition: left .5s ease;
     width: 100%;
     z-index: 9997;
+}
+.ndpl-mobile .ndpl-sidebar {
+    transition: left .5s ease;
 }
 .ndpl-sidebar.open {
     left: 0;
@@ -768,6 +770,13 @@
     top: -9999px;
 }
 
+@media only screen and (min-width: 35em) {
+    .ndpl-page {
+        max-width: 580px;
+        margin: 0 auto;
+    }
+}
+
 @media only screen and (min-width: 60em) {
     .ndpl-page,
     .ndpl-library {
@@ -877,8 +886,8 @@
         -webkit-flex-direction: row;
         flex-direction: row;
 
-        -ms-flew-wrap: wrap;
-        -webkit-flew-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
 
         margin-left: -36px;
@@ -1014,19 +1023,31 @@
 .ndpl-component__code {
     border-bottom: 1px solid #E0E6ED;
 }
-.ndpl-component__code pre {
+.ndpl-component__code .ndpl-pre {
     margin: 0;
 }
-.ndpl-component__code code {
+
+/* We apply the same code styling to page, description and component elements. */
+.ndpl-page pre code,
+.ndpl-component__description pre code,
+.ndpl-component__code .ndpl-code {
+    box-sizing: border-box;
+    color: #616367;
     font-size: 12px;
     line-height: 18px;
     opacity: 0.75;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     padding: 36px 12px;
     white-space: pre;
+    width: 100%;
 }
+.ndpl-page pre code,
+.ndpl-component__description pre code {
+    padding: 12px;
+}
+
 .ndpl-component__code-toggle {
     border-bottom: 1px solid transparent;
     color: #B0B1B3;
@@ -1046,6 +1067,9 @@
         border-radius: 6px 6px 0 0;
         padding: 36px;
     }
+    .ndpl-component__sample--disabled-code {
+        border-radius: 6px;
+    }
     .ndpl-component__sample-missing,
     .ndpl-component__sample-hidden {
         margin: 0;
@@ -1054,10 +1078,16 @@
         border: 1px solid #E0E6ED;
         border-top: none;
     }
-    .ndpl-component__code code {
+    .ndpl-page pre code,
+    .ndpl-component__description pre code,
+    .ndpl-component__code .ndpl-code {
         font-size: 15px;
         line-height: 21px;
         padding: 36px;
+    }
+    .ndpl-page pre code,
+    .ndpl-component__description pre code {
+        padding: 12px;
     }
     .ndpl-component__code-toggle {
         border-left: 1px solid transparent;

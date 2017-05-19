@@ -51,15 +51,15 @@ The following process is the best way to get your work included:
 	# Clone your fork of the repo into the current directory
 	$ git clone https://github.com/<your-username>/astrum.git
 	```
-			
-	```bash  
-	# Assign the original repo to a remote called "upstream"
-	$ git remote add upstream https://github.com/nodivide/astrum.git
-	```
 			   
 	```bash		
 	# Navigate to the newly cloned directory
 	$ cd astrum
+	```
+			
+	```bash  
+	# Assign the original repo to a remote called "upstream"
+	$ git remote add upstream https://github.com/nodivide/astrum.git
 	```
 	   
 	```bash	   

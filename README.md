@@ -112,7 +112,12 @@ The `data.json` file is central to how Astrum works and should be relatively sel
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max-width": null
+        "max-width": null,
+        "titles": {
+            "library_title": "Pattern Library",
+            "pages_title": "Overview",
+            "components_title": "Components"
+        }
     },
     "assets": {
         "css": [],
@@ -185,7 +190,12 @@ You can specify as many creators as you need. Astrum will automatically format t
         "sample_dark_background": "#333333",
         "show_project_name": true,
         "show_version": true,
-        "max_width": null
+        "max_width": null,
+        "titles": {
+            "library_title": "Pattern Library",
+            "pages_title": "Overview",
+            "components_title": "Components"
+        }
     },
 ```
 
@@ -203,6 +213,7 @@ sample_dark_background | #333333 | The color used for dark background component 
 show_project_name | true | Show the project name in the sidebar.
 show_version | true | Show the Astrum version at the bottom of the sidebar.
 max_width | null | A maximum width for the components container element.
+titles | object | Customise titles that appear on the sidebar. Set a title to null if you'd prefer for it not to be shown at all.
 
 <a href=“#assets”></a>
 #### Assets
@@ -294,9 +305,9 @@ The necessary files required for the new component are created for you automatic
 
 <a href=“#component-types”></a>
 ### Component Types
-Astrum currently supports two component types. The default component and a **colors** type. The **colors** type lets you include a color palette in your pattern library and to include it you use the `—type` option:
+Astrum currently supports two component types. The default component and a **colors** type. The **colors** type lets you include a color palette in your pattern library and to include it you use the `--type` option:
 
-`astrum new branding/color-palette —type colors`
+`astrum new branding/color-palette --type colors`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-new-colors.gif)
 
@@ -354,7 +365,8 @@ Components can also have special options that alter their behaviour. To use thes
     "name": "primary",
     "title": "Primary Navigation",
     "options": {
-	      "sample_dark_background": true
+	      "sample_dark_background": true,
+	      "disable_code_sample": true
     }
 }
 ```
@@ -364,8 +376,11 @@ The available options are:
 Key|Value|Description
 ---|---|---
 sample_dark_background|boolean|Set the background of the component sample area to be a dark color.
+sample_background_color|string|Override sample background color. This option take precident over the dark background color.
 sample_min_height|integer|Astrum detects if a component is hidden at desktop or mobile resolutions by detecting the components rendered height. When it’s hidden in your project CSS, Astrum shows a message to this effect. If the component is absolutely positioned, it has no height so you can set a min-height with this option to ensure it is shown properly and Astrum messaging is shown correctly.
-sample_mobile_hidden|boolean|Typically used in conjunction with the `sample_min_height` option if a component is meant to be hidden at mobile resolutions set this option to true.
+sample_overflow_hidden|boolean|Apply `overflow: hidden;` to the component sample.
+disabled_auto_sample_hiding|object|Astrum automatically detects if you've hidden a component at mobile or desktop resolutions in your stylesheets. You can disable this feature using this option. Add `show_on_mobile` and `show_on_desktop` keys to the object with boolean values to set how the component should behave.
+disable_code_sample|boolean|Don't display the component code sample.
 
 <a href=“#editing-components”></a>
 ## Editing Components
@@ -377,9 +392,9 @@ To edit a component use the `edit` command:
 
 <a href=“#editing-groups”></a>
 ## Editing Groups
-You can also edit a group using the `—group` option:
+You can also edit a group using the `--group` option:
 
-`astrum edit —group branding`
+`astrum edit --group branding`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-edit-group.gif)
 
@@ -403,9 +418,9 @@ To delete a component use the `delete` command:
 
 <a href=“#deleteing-groups”></a>
 ## Deleting Groups
-You can also delete an entire group along with all its components using the `—group` option:
+You can also delete an entire group along with all its components using the `--group` option:
 
-`astrum delete —group navigation`
+`astrum delete --group navigation`
 
 ![](https://dl.dropboxusercontent.com/u/251342/astrum-gifs/astrum-delete-group.gif)
 
@@ -420,6 +435,8 @@ Navigate to the route of your project and then update your Astrum instance e.g.:
 `astrum update`
 
 You will receive feedback that the update is complete.
+
+There is also a `--force` option that you can use to force an update in the event that your Astrum instance is already on the current version. This is if you need to restore your Astrum instance core files.
 
 <a href=“#docker”></a>
 
@@ -445,18 +462,15 @@ like nginx:
 
 `docker run -d -v /path-to-your-application/public/pattern-library:/usr/share/nginx/html:ro -p 8080:80 nginx:latest`
 
-
-
 Then you can access it on: `http://localhost:8080`
-
 
 <a href=“#contributing”></a>
 ## Contributing
-Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](CONTRIBUTING.md):
+Astrum was created by Ryan Taylor & Matt West of [No Divide](http://nodividestudio.com). We welcome anyone and everyone to contribute to the project and help us make Astrum as versatile as possible. If you decide to get involved, please take a moment to review our [contribution guidelines](.github/CONTRIBUTING.md):
 
-- [Bug reports](CONTRIBUTING.md#bugs)
-- [Feature requests](CONTRIBUTING.md#features)
-- [Pull requests](CONTRIBUTING.md#pull-requests)
+- [Bug reports](.github/CONTRIBUTING.md#bugs)
+- [Feature requests](.github/CONTRIBUTING.md#features)
+- [Pull requests](.github/CONTRIBUTING.md#pull-requests)
 
 <a href=“#browser-support”></a>
 ## Browser Support

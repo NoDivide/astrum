@@ -84,8 +84,23 @@ module.exports = {
         fs.copy(_this.pathify(_this.module_path + '/_template/app'), _this.$config.path + '/app');
         fs.copy(_this.pathify(_this.module_path + '/_template/index.html'), _this.$config.path + '/index.html');
         fs.copy(_this.pathify(_this.module_path + '/_template/LICENSE.txt'), _this.$config.path + '/LICENSE.txt');
-
+        
         _this.updateVersion(pjson.version);
+
+        /**
+         * Version 1.7.0 introduced customisable titles.
+         * If updating from pre-1.7.0 we need to add in the
+         * default titles.
+         */
+        if(!_this.$data.theme.hasOwnProperty("titles")) {
+            _this.$data.theme.titles = {
+                "library_title": "Pattern Library",
+                "pages_title": "Overview",
+                "components_title": "Components"
+            }
+
+            _this.saveData(function() {});
+        }
 
         return callback();
     },

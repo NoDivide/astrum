@@ -21,11 +21,18 @@ var ndplComponent = Vue.extend({
             var _this = this,
                 styles = '';
 
-            // Inline style are only applied after the component has fully loaded
+            // These inline style are only applied after the component has fully loaded
             if(_this.loaded) {
                 if(_this.component.options.sample_min_height) {
                     styles += 'min-height:' + _this.component.options.sample_min_height + 'px;';
                 }
+            }
+
+            if(_this.component.options.sample_overflow_hidden) {
+                styles += 'overflow: hidden;';
+            }
+            if(_this.component.options.sample_background_color) {
+                styles += 'background-color:' + _this.component.options.sample_background_color + ' !important;';
             }
 
             return styles;
@@ -34,12 +41,11 @@ var ndplComponent = Vue.extend({
 
     watch: {
         'component.html': function() {
+            var _this = this;
 
             // Apply syntax highlighting when component html is loaded
             if(this.component.html.length) {
-                var block = this.$el.querySelector('pre code');
-
-                hljs.highlightBlock(block);
+                _this.$root.applySyntaxHighlighting(_this.$el);
             }
         }
     },
@@ -63,7 +69,7 @@ var ndplComponent = Vue.extend({
         _this.$on('resizing', function(is_resizing) {
             _this.loaded = false;
 
-            if(!is_resizing) {
+            if(! is_resizing) {
                 _this.setHideSample(function() {
                     _this.loaded = true;
                 });
@@ -71,9 +77,7 @@ var ndplComponent = Vue.extend({
         });
 
         if (_this.component.html) {
-            var block = this.$el.querySelector('pre code');
-
-            hljs.highlightBlock(block);
+            _this.$root.applySyntaxHighlighting(_this.$el);
         }
     },
 
@@ -181,14 +185,28 @@ var ndplComponent = Vue.extend({
 
             setTimeout(function() {
                 if(_this.$el.querySelector('.ndpl-component__code')) {
+
+                    /**
+                     * Auto-detect hidden sample.
+                     */
                     if (_this.$el.querySelector('.ndpl-component__sample').offsetHeight <= 74 &&
-                        !_this.component.options.sample_always_show) {
+                        !_this.component.options.disabled_auto_sample_hiding) {
                         _this.hide_sample_code = true;
                     }
 
-                    if (!_this.$root.mobile_view &&
-                        _this.component.options.sample_min_height) {
-                        _this.hide_sample_code = false;
+                    /**
+                     * If manually specifying when to show nad hide samples.
+                     */
+                    if (_this.component.options.disabled_auto_sample_hiding &&
+                        _this.component.options.disabled_auto_sample_hiding.hasOwnProperty('show_on_mobile') &&
+                        _this.component.options.disabled_auto_sample_hiding.hasOwnProperty('show_on_desktop')) {
+
+
+                        if(_this.$root.mobile_view) {
+                            _this.hide_sample_code = !_this.component.options.disabled_auto_sample_hiding.show_on_mobile;
+                        } else {
+                            _this.hide_sample_code = !_this.component.options.disabled_auto_sample_hiding.show_on_desktop;
+                        }
                     }
                 }
 
@@ -240,8 +258,6 @@ var ndplScript = Vue.extend({
          * Loads TypeKit.
          */
         loadTypekit: function() {
-            var _this = this;
-
             try {
                 Typekit.load({
                     async: true
@@ -411,7 +427,7 @@ new Vue({
 
             if (_this.timeout === false && !_this.mobile_view) {
                 _this.timeout = true;
-                setTimeout(_this.resizeFadeToggle, _this.delta);
+                setTimeout(_this.trackResizing, _this.delta);
             }
         });
 
@@ -443,6 +459,25 @@ new Vue({
     methods: {
 
         /**
+         * Apply syntax highlighting to pre code elements
+         * within passed element.
+         *
+         * @param el
+         */
+        applySyntaxHighlighting: function(el) {
+
+            setTimeout(function() {
+                var blocks = el.querySelectorAll('pre code');
+
+                for(var i = 0; i < blocks.length; i++) {
+                    var block = blocks[i];
+
+                    hljs.highlightBlock(block);
+                }
+            }, 0);
+        },
+
+        /**
          * Reads the data.json file.
          */
         loadDataFile: function () {
@@ -466,7 +501,7 @@ new Vue({
             var _this = this,
                 hash = location.hash;
 
-            if(_this.content !== null && _this.content.pages.length) {
+            if(_this.content.pages !== undefined && _this.content.pages.length) {
 
                 if(hash) {
                     for (var i = 0; i < _this.content.pages.length; i++) {
@@ -554,6 +589,7 @@ new Vue({
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_always_show', group.components[j].options.sample_always_show ? group.components[j].options.sample_always_show : false);
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_mobile_hidden', group.components[j].options.sample_mobile_hidden ? group.components[j].options.sample_mobile_hidden : false);
                     _this.$set('groups[' + i + '].components[' + j + '].options.sample_dark_background', group.components[j].options.sample_dark_background ? group.components[j].options.sample_dark_background : false);
+                    _this.$set('groups[' + i + '].components[' + j + '].options.disable_code_sample', group.components[j].options.disable_code_sample ? group.components[j].options.disable_code_sample : false);
                     _this.$set('groups[' + i + '].components[' + j + '].code_show', false);
                     _this.$set('groups[' + i + '].components[' + j + '].type', group.components[j].type ? group.components[j].type : 'standard');
                     _this.$set('groups[' + i + '].components[' + j + '].width', group.components[j].width ? group.components[j].width : 'full');
@@ -778,24 +814,26 @@ new Vue({
             _this.open_group = null;
             _this.open_nav = false;
 
-            _this.$http.get(page.file).then(function (response) {
+            _this.$http.get(page.file + '?cb=' + new Date()).then(function (response) {
                 _this.$set('active_page.markup', marked(response.data));
+
+                _this.applySyntaxHighlighting(document);
             });
 
             _this.updateHash(page.name);
         },
 
         /**
-         * Toggle container fade on resize.
-         */
-        resizeFadeToggle: function() {
+         * Track resizing and broadcast resizing events.
+      */
+        trackResizing: function() {
             var _this = this;
 
             _this.resizing = true;
             _this.$broadcast('resizing', true);
 
             if (new Date() - _this.rtime < _this.delta) {
-                setTimeout(_this.resizeFadeToggle, _this.delta);
+                setTimeout(_this.trackResizing, _this.delta);
             } else {
                 _this.timeout = false;
 

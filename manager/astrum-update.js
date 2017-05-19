@@ -10,7 +10,8 @@ utils.init();
 
 program
     .usage('[path]')
-    .description(chalk.yellow('Update an existing pattern library.'));
+    .description(chalk.yellow('Update an existing pattern library.'))
+    .option('-f, --force', 'Force update the Astrum instance. ');
 
 /**
  * Override argv[1] so that usage command is
@@ -26,7 +27,22 @@ program.parse(process.argv);
 oldVersion = utils.$data.version;
 newVersion = utils.$pjson.version;
 
-if(newVersion !== oldVersion) {
+/**
+ * Force restore instance.
+ */
+if (program.force && newVersion == oldVersion) {
+    utils.update(function () {
+        console.log();
+        console.log(chalk.grey('----------------------------------------------------------------'));
+        console.log(chalk.green('\u2713 Pattern library forcibly restored to ' + newVersion + '.'));
+        console.log(chalk.grey('----------------------------------------------------------------'));
+        console.log();
+    });
+
+/**
+ * Update instance.
+ */
+} else if(newVersion !== oldVersion) {
     utils.update(function () {
         console.log();
         console.log(chalk.grey('----------------------------------------------------------------'));
@@ -34,6 +50,10 @@ if(newVersion !== oldVersion) {
         console.log(chalk.grey('----------------------------------------------------------------'));
         console.log();
     });
+
+/**
+ * Instance up-to-date.
+ */
 } else {
     console.log();
     console.log(chalk.grey('----------------------------------------------------------------'));
