@@ -586,7 +586,7 @@ var Astrum = new Vue({
                 style = document.createElement('style');
 
                 style.type = 'text/css';
-                style.appendChild(document.createTextNode('.hljs { background:' + _this.theme.highlight_color + ' !important; }'));
+                style.appendChild(document.createTextNode('.hljs { background:' + _this.theme.override_code_highlight_bg + ' !important; }'));
 
                 head.appendChild(style);
             }
