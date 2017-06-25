@@ -1,7 +1,6 @@
 var fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
-    dir = require('global-modules'),
     mkdirp = require('mkdirp'),
     isWindows = require('is-windows'),
     pjson = require('../package.json'),
