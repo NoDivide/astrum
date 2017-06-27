@@ -1,14 +1,14 @@
 var fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
-    dir = require('global-modules'),
     mkdirp = require('mkdirp'),
     isWindows = require('is-windows'),
-    pjson = require('../package.json');
+    pjson = require('../package.json'),
+    path = require('path');
 
 module.exports = {
 
-    module_path: dir + '/' + pjson.name,
+    module_path: path.resolve(`${__dirname}/..`),
     $root: process.cwd(),
     $config: null,
     $data: null,
@@ -84,7 +84,7 @@ module.exports = {
         fs.copy(_this.pathify(_this.module_path + '/_template/app'), _this.$config.path + '/app');
         fs.copy(_this.pathify(_this.module_path + '/_template/index.html'), _this.$config.path + '/index.html');
         fs.copy(_this.pathify(_this.module_path + '/_template/LICENSE.txt'), _this.$config.path + '/LICENSE.txt');
-        
+
         _this.updateVersion(pjson.version);
 
         /**
@@ -107,7 +107,7 @@ module.exports = {
 
     getConfig: function() {
         var _this = this;
-        
+
         return JSON.parse(fs.readFileSync(_this.pathify(_this.$root + '/astrum-config.json')));
     },
 
