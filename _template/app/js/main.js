@@ -1020,13 +1020,15 @@ var Astrum = new Vue({
             if(!hash) return;
             _this.scrolling_to = true;
 
-            smoothScroll.animateScroll(document.querySelector(hash), null, {
-                offset: offset,
-                callback: function() {
-                    _this.scrolling_to = false;
-                    _this.open_nav = false;
-                }
-            });
+            if(document.querySelector(hash)) {
+                smoothScroll.animateScroll(document.querySelector(hash), null, {
+                    offset: offset,
+                    callback: function() {
+                        _this.scrolling_to = false;
+                        _this.open_nav = false;
+                    }
+                });
+            }
         },
 
         /**
