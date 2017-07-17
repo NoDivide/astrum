@@ -1,5 +1,9 @@
 # Astrum
 
+***
+If you love Astrum why not come and work with us at [No Divide](http://nodividestudio.com)! We're on the lookout for a new developer to join our team. For full details visit [nodividestudio.com/vacancies](http://nodividestudio.com/vacancies).
+***
+
 ![](http://nodivide.imgix.net/astrum/header.jpg)
 
 Astrum is a lightweight pattern library designed to be included with any web project.
