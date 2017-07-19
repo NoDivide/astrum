@@ -485,13 +485,31 @@ new Vue({
 
             _this.$http.get('./data.json' + '?cb=' + new Date()).then(function (response) {
                 _this.initData(response.data, function() {
-                    if(_this.$data.groups.length) {
-                        _this.setupGroups();
-                    } else {
-                        _this.logInfo('You need to add a component to your library before it can be loaded.<br/>You can either do this manually by editing your <code>data.json</code> file,<br/> or you can use the command line helper: <code>astrum new [group_name/component_name]</code>');
-                    }
+                    _this.$http.get('./assets.json' + '?cb=' + new Date()).then(function (response) {                    
+                        _this.initCustomData(response.data, 'assets', function() {
+                            // Initialize groups after finding and merging custom asset overrides.
+                            _this.initializeGroups();
+                        });
+                    }).catch(function() {
+                        // Initialize groups after failing to find custom asset overrides.
+                        _this.initializeGroups();
+                    });
                 });
             });
+        },
+
+        /**
+         * Initialize the groups, display a message if no groups have been added.
+         */
+
+        initializeGroups: function() {
+            var _this = this;
+            
+            if(_this.$data.groups.length) {
+                _this.setupGroups();
+            } else {
+                _this.logInfo('You need to add a component to your library before it can be loaded.<br/>You can either do this manually by editing your <code>data.json</code> file,<br/> or you can use the command line helper: <code>astrum new [group_name/component_name]</code>');
+            }
         },
 
         /**
@@ -531,6 +549,23 @@ new Vue({
                 _this.$set(key, data[key]);
             }
 
+            callback();
+        },
+
+        /**
+         * Initilise data bindings.
+         *
+         * @param data
+         */
+        initCustomData: function(data, key, callback) {
+            callback = typeof callback !== 'undefined' ?  callback : function() {};
+
+            var _this = this;
+
+            // Override assets
+            if(data) {
+                _this.$set(key, data);
+            }
             callback();
         },
 
