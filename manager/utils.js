@@ -4,6 +4,7 @@ var fs = require('fs-extra'),
     mkdirp = require('mkdirp'),
     isWindows = require('is-windows'),
     pjson = require('../package.json'),
+    process = require('process'),
     path = require('path');
 
 module.exports = {
@@ -36,34 +37,76 @@ module.exports = {
         var _this = this,
             error = false;
 
-        fs.exists(path, function(r) {
-            if (r) {
-                throw(new Error(chalk.red('Pattern library has already been initialized.')));
-            }
-        });
+        function copyTemplateDir(){
 
-        _this.saveConfig(path, function() {
-            mkdirp(path, function (err) {
-                if (err) {
-                    console.error(chalk.red('Error: ' + err));
-                    error = true;
-                }
-
-                fs.copy(_this.pathify(_this.module_path + '/_template'), path, function (err) {
+            _this.saveConfig(path, function() {
+                mkdirp(path, function (err) {
                     if (err) {
-                        console.log(chalk.red('Error: ' + err));
+                        console.error(chalk.red('Error: ' + err));
                         error = true;
                     }
 
-                    _this.init();
-                    _this.updateVersion(pjson.version);
+                    fs.copy(_this.pathify(_this.module_path + '/_template'), path, function (err) {
+                        if (err) {
+                            console.log(chalk.red('Error: ' + err));
+                            error = true;
+                        }
 
-                    return callback();
+                        _this.init();
+                        _this.updateVersion(pjson.version);
+
+                        return callback();
+                    });
                 });
+
+                return ! error;
+            });
+        }
+
+
+        /**
+         * Enable the user to initialize the library in an existing folder.
+         * This is for users who want to commit only project specific files in their repositories
+         * and have all of the astrum files get generated through a CI Server
+         */
+        if (fs.existsSync(path) === true){
+
+            console.log(chalk.grey('----------------------------------------------------------------'));
+            console.log(chalk.grey('\u26A0 Info: Pattern library detected in the given folder'));
+            console.log(chalk.grey('----------------------------------------------------------------'));
+
+            inquirer.prompt(
+                {
+                    type: 'confirm',
+                    name: 'init_overwrite',
+                    message: 'This will copy/overwrite only the project idependent astrum files (html, css & js).\nDo you want to proceed?',
+                    default: true
+                }).then(function(answers){
+
+                if (answers.init_overwrite === true) {
+
+                    let appTemplateDir = `${_this.module_path}/_template`;
+                    let filePaths = [
+                        _this.pathify('/app'),
+                        _this.pathify('/index.html')
+                    ];
+
+                    filePaths.forEach(function(filePath){
+                        fs.copy(appTemplateDir + filePath, path + filePath, function(){
+
+                            console.log(chalk.yellow(`${path}${filePath} has been copied from the template folder.`));
+                        });
+                    });
+
+                }
             });
 
-            return ! error;
-        });
+        // Standard Use Case, initializing in an empty folder.
+        } else {
+            copyTemplateDir();
+        }
+
+
     },
 
     updateVersion: function(number) {
