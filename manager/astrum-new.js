@@ -148,7 +148,8 @@ if (group_name) {
                         type: 'list',
                         name: 'group_position',
                         message: 'Select group position:',
-                        choices: utils.getGroupPositionChoices()
+                        choices: utils.getGroupPositionChoices(),
+                        default: (utils.getGroupPositionChoices().length - 1)
                     }
                 ]).then(function (answers) {
                     newGroup.name = parts[0];
