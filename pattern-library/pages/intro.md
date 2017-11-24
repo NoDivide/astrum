@@ -6,6 +6,6 @@ For full documentation on how to use Astrum head to our GitHub page: [https://gi
 
 To report an issue please use GitHub's [issue tracker](https://github.com/NoDivide/astrum/issues).
 
-If you would like to contribute to the project please review our [contributing guidelines](https://github.com/NoDivide/astrum/blob/master/CONTRIBUTING.md).
+If you would like to contribute to the project please review our [contributing guidelines](https://github.com/NoDivide/astrum/blob/master/.github/CONTRIBUTING.md).
 
 Astrum is open source, release under [MIT license](https://github.com/NoDivide/astrum/blob/master/_template/LICENSE.txt).
