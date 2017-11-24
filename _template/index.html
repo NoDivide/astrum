@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
 
-        <title v-text="project_name ? project_name + ' | Pattern Library' : 'Pattern Library'"></title>
+        <title v-text="project_name ? project_name + ' | ' + (theme.titles.library_title ? theme.titles.library_title : 'Pattern Library') : 'Pattern Library'"></title>
 
         <!-- Astrum (https://github.com/NoDivide/astrum) -->
         <meta name="application-name" content="Astrum {{ version }}" />
@@ -67,7 +67,10 @@
             <div class="ndpl-cube3 ndpl-cube"></div>
         </div>
 
-        <h3 class="ndpl-loading__title" v-if="! loaded && !log.error.length && !log.info.length">Building pattern library...</h3>
+        <h3 class="ndpl-loading__title" v-if="! loaded && !log.error.length && !log.info.length">
+            <template v-if="theme.titles.library_title">Building {{ theme.titles.library_title }}...</template>
+            <template v-else>Building pattern library...</template>
+        </h3>
         <h3 class="ndpl-loading__title" v-if="log.error.length">Hold up! We have some errors...</h3>
         <h3 class="ndpl-loading__title" v-if="log.info.length && !log.error.length">Looks like you have some setup to do...</h3>
 
@@ -185,7 +188,9 @@
                         &copy; {{ copyright_year }} {{{ client }}}.
                     </template>
                     <template v-if="all_creators">
-                        <br/>Pattern library created by {{{ all_creators }}}.
+                        <br/>
+                        <template v-if="theme.titles.library_title">{{ theme.titles.library_title }} created by {{{ all_creators }}}.</template>
+                        <template v-else>Pattern library created by {{{ all_creators }}}.</template>
                     </template>
                 </p>
 
