@@ -71,9 +71,9 @@ module.exports = {
          */
         if (fs.existsSync(path) === true){
 
-            console.log(chalk.grey('----------------------------------------------------------------'));
-            console.log(chalk.grey('\u26A0 Info: Pattern library detected in the given folder'));
-            console.log(chalk.grey('----------------------------------------------------------------'));
+            console.log(chalk.yellow('----------------------------------------------------------------'));
+            console.log(chalk.yellow('\u26A0 Info: Pattern library detected in the given folder'));
+            console.log(chalk.yellow('----------------------------------------------------------------'));
 
             inquirer.prompt(
                 {
