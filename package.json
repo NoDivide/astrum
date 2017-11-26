@@ -4,6 +4,7 @@
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
+    "build": "webpack",
     "test": "snyk test"
   },
   "repository": {

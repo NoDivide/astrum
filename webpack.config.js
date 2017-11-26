@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: './_template/app/js/main.js',
     output: {
-        path: './_template/app/js',
+        path: path.resolve(__dirname, '_template/app/js'),
         filename: 'main.min.js'
     },
     plugins: [
