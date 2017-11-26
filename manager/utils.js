@@ -71,15 +71,15 @@ module.exports = {
          */
         if (fs.existsSync(path) === true){
 
-            console.log(chalk.yellow('----------------------------------------------------------------'));
-            console.log(chalk.yellow('\u26A0 Info: Pattern library detected in the given folder'));
-            console.log(chalk.yellow('----------------------------------------------------------------'));
+            console.log(chalk.red('----------------------------------------------------------------'));
+            console.log(chalk.red('\u26A0 Warning: Pattern library detected in the given folder'));
+            console.log(chalk.red('----------------------------------------------------------------'));
 
             inquirer.prompt(
                 {
                     type: 'confirm',
                     name: 'init_overwrite',
-                    message: 'This will copy/overwrite only the project idependent astrum files (html, css & js).\nDo you want to proceed?',
+                    message: 'This will copy/overwrite only the project independent astrum files (html, css & js).\nDo you want to proceed?',
                     default: true
                 }).then(function(answers){
 
