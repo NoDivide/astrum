@@ -1,14 +1,15 @@
 var fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
-    dir = require('global-modules'),
     mkdirp = require('mkdirp'),
     isWindows = require('is-windows'),
-    pjson = require('../package.json');
+    pjson = require('../package.json'),
+    process = require('process'),
+    path = require('path');
 
 module.exports = {
 
-    module_path: dir + '/' + pjson.name,
+    module_path: path.resolve(`${__dirname}/..`),
     $root: process.cwd(),
     $config: null,
     $data: null,
@@ -36,34 +37,76 @@ module.exports = {
         var _this = this,
             error = false;
 
-        fs.exists(path, function(r) {
-            if (r) {
-                throw(new Error(chalk.red('Pattern library has already been initialized.')));
-            }
-        });
+        function copyTemplateDir(){
 
-        _this.saveConfig(path, function() {
-            mkdirp(path, function (err) {
-                if (err) {
-                    console.error(chalk.red('Error: ' + err));
-                    error = true;
-                }
-
-                fs.copy(_this.pathify(_this.module_path + '/_template'), path, function (err) {
+            _this.saveConfig(path, function() {
+                mkdirp(path, function (err) {
                     if (err) {
-                        console.log(chalk.red('Error: ' + err));
+                        console.error(chalk.red('Error: ' + err));
                         error = true;
                     }
 
-                    _this.init();
-                    _this.updateVersion(pjson.version);
+                    fs.copy(_this.pathify(_this.module_path + '/_template'), path, function (err) {
+                        if (err) {
+                            console.log(chalk.red('Error: ' + err));
+                            error = true;
+                        }
 
-                    return callback();
+                        _this.init();
+                        _this.updateVersion(pjson.version);
+
+                        return callback();
+                    });
                 });
+
+                return ! error;
+            });
+        }
+
+
+        /**
+         * Enable the user to initialize the library in an existing folder.
+         * This is for users who want to commit only project specific files in their repositories
+         * and have all of the astrum files get generated through a CI Server
+         */
+        if (fs.existsSync(path) === true){
+
+            console.log(chalk.red('----------------------------------------------------------------'));
+            console.log(chalk.red('\u26A0 Warning: Pattern library detected in the given folder'));
+            console.log(chalk.red('----------------------------------------------------------------'));
+
+            inquirer.prompt(
+                {
+                    type: 'confirm',
+                    name: 'init_overwrite',
+                    message: 'This will copy/overwrite only the project independent Astrum files (html, css & js).\nDo you want to proceed?',
+                    default: true
+                }).then(function(answers){
+
+                if (answers.init_overwrite === true) {
+
+                    let appTemplateDir = `${_this.module_path}/_template`;
+                    let filePaths = [
+                        _this.pathify('/app'),
+                        _this.pathify('/index.html')
+                    ];
+
+                    filePaths.forEach(function(filePath){
+                        fs.copy(appTemplateDir + filePath, path + filePath, function(){
+
+                            console.log(chalk.yellow(`${path}${filePath} has been copied from the template folder.`));
+                        });
+                    });
+
+                }
             });
 
-            return ! error;
-        });
+        // Standard Use Case, initializing in an empty folder.
+        } else {
+            copyTemplateDir();
+        }
+
+
     },
 
     updateVersion: function(number) {
@@ -84,7 +127,7 @@ module.exports = {
         fs.copy(_this.pathify(_this.module_path + '/_template/app'), _this.$config.path + '/app');
         fs.copy(_this.pathify(_this.module_path + '/_template/index.html'), _this.$config.path + '/index.html');
         fs.copy(_this.pathify(_this.module_path + '/_template/LICENSE.txt'), _this.$config.path + '/LICENSE.txt');
-        
+
         _this.updateVersion(pjson.version);
 
         /**
@@ -117,7 +160,7 @@ module.exports = {
 
     getConfig: function() {
         var _this = this;
-        
+
         return JSON.parse(fs.readFileSync(_this.pathify(_this.$root + '/astrum-config.json')));
     },
 

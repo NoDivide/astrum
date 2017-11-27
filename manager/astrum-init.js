@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-var Command = require('commander').Command,
-    program = require('commander'),
+var program = require('commander'),
     fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer'),
@@ -10,11 +9,13 @@ program
     .usage('[path]')
     .description(chalk.yellow('Initilize a new pattern library.'));
 
+
+
 /**
  * Override argv[1] so that usage command is
  * formatted correctly.
  */
-process.argv[1] = 'patterns init';
+process.argv[1] = 'astrum init';
 
 program.parse(process.argv);
 
