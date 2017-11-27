@@ -79,7 +79,7 @@ module.exports = {
                 {
                     type: 'confirm',
                     name: 'init_overwrite',
-                    message: 'This will copy/overwrite only the project independent astrum files (html, css & js).\nDo you want to proceed?',
+                    message: 'This will copy/overwrite only the project independent Astrum files (html, css & js).\nDo you want to proceed?',
                     default: true
                 }).then(function(answers){
 
