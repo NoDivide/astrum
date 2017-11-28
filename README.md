@@ -57,6 +57,10 @@ Finally add your first component e.g.:
 
 Your pattern library should now be up and running though granted it will look a little sparse at this stage.
 
+> **Note**
+>
+> If you are using an <abbr title="Internet Information Services">IIS</abbr> setup to serve Astrum, you'll likely have to [add the `.md` MIME type](https://technet.microsoft.com/en-us/library/cc725608(v=ws.10).aspx). Further information can be found in [this StackOverflow answer](https://stackoverflow.com/a/10837005).
+
 <a href=“#how-astrum-works”></a>
 ## How Astrum Works
 Astrum is a single page, [Vue.js](https://vuejs.org) powered, app. As mentioned previously, it comprises of components organised into groups and loads its all important data from a core `data.json` file.
