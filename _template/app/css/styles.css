@@ -768,6 +768,8 @@
     left: -9999px;
     position: absolute;
     top: -9999px;
+    height: 0px;
+    width: 0px;
 }
 
 @media only screen and (min-width: 35em) {
