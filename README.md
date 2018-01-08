@@ -12,6 +12,17 @@ You also have the option to add pages of content, for example an introduction pa
 
 [View a demo](http://astrum.nodividestudio.com/pattern-library/)
 
+
+## Sponsors
+
+### BrowserStack
+We use BrowserStack to make sure that Astrum looks and works great in [modern browsers](#browser-support).
+
+<a href="http://browserstack.com/">
+	<img src="https://user-images.githubusercontent.com/8672583/34682058-aab3de2c-f495-11e7-8851-e24d1478d6a4.png" width="300" alt="Browserstack logo" style="margin: 0 auto;" />
+</a>
+
+
 ***
 
 ## Table of Contents
@@ -467,6 +478,7 @@ Astrum wouldn’t work without [Vue.js](http://vuejs.org/) and the work that Eva
 The nifty loading animation we use was created by [Tobias Ahlin](http://tobiasahlin.com/spinkit/).
 
 Our command-line tool is built using [Commander](https://www.npmjs.com/package/commander) by TJ Holowaychuk and [Inquirer](https://www.npmjs.com/package/inquirer) by Simon Boudrias.
+
 
 <a href=“#license”></a>
 ## License
