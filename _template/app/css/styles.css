@@ -768,6 +768,8 @@
     left: -9999px;
     position: absolute;
     top: -9999px;
+    display: table;
+    overflow: hidden;
 }
 
 @media only screen and (min-width: 35em) {
