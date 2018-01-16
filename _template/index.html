@@ -6,6 +6,12 @@
 
         <title v-text="project_name ? project_name + ' | Pattern Library' : 'Pattern Library'"></title>
 
+        <script>
+          if(location.pathname.slice(-1) !== '/') {
+            location.pathname += '/';
+          }
+        </script>
+
         <!-- Astrum (https://github.com/NoDivide/astrum) -->
         <meta name="application-name" content="Astrum {{ version }}" />
 
