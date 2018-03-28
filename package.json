@@ -4,7 +4,8 @@
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --mode development",
     "test": "snyk test"
   },
   "repository": {
@@ -45,6 +46,8 @@
     "snyk": "^1.14.3",
     "vue": "^2.1.8",
     "vue-resource": "^1.0.3",
-    "webpack": "^2.2.0-rc.4"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
   }
 }

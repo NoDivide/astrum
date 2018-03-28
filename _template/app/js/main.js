@@ -1,12 +1,14 @@
-const Vue = require('vue/dist/vue');
+import Vue from 'vue';
+import VueResource from 'vue-resource';
+
 const hljs = require('highlightjs');
 const marked = require('marked');
 const smoothScroll = require('smooth-scroll');
 const postcss = require('postcss');
 const prefixer = require('postcss-prefix-selector');
 
-Vue.use(require('vue-resource'));
 
+Vue.use(VueResource);
 
 /**
  * Component component
@@ -327,7 +329,7 @@ var Astrum = new Vue({
         breakpoint: 960,
         mobile_view: false,
         open_nav: false,
-        rtime: new Date(1, 1, 2000, 12,00,00),
+        rtime: new Date(1, 1, 2000, 12,0,0),
         timeout: false,
         delta: 200,
         return_load_time: false,
@@ -673,7 +675,7 @@ var Astrum = new Vue({
             head.appendChild(meta);
 
             // Set favicon.
-            link = document.createElement('link');
+            var link = document.createElement('link');
 
             link.rel = 'shortcut icon';
             link.href = _this.project_favicon;
@@ -705,7 +707,6 @@ var Astrum = new Vue({
          */
         loadDataFile: function () {
             var _this = this;
-
             _this.$http.get('./data.json' + '?cb=' + new Date()).then(function (response) {
                 _this.initData(response.data, function() {
                     _this.injectThemeStyles();
