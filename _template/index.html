@@ -51,10 +51,12 @@
 
                 <header class="ndpl-header">
 
-                    <img class="ndpl-header__logo"
-                         :src="project_logo"
-                         :alt="project_name"
-                         v-if="project_logo"/>
+                    <div class="ndpl-header__logo"
+                         v-if="project_logo">
+                        <img class="ndpl-header__logo"
+                             :src="project_logo"
+                             :alt="project_name" />
+                    </div>
 
                     <h1 class="ndpl-header__title ndpl-c-brand-ca">
                         <span v-if="theme.show_project_name" v-html="project"></span>
@@ -76,10 +78,11 @@
 
                     <header class="ndpl-sidebar__header">
 
-                        <img class="ndpl-sidebar__logo"
-                             :src="project_logo"
-                             :alt="project_name"
-                             v-if="project_logo"/>
+                        <div class="ndpl-sidebar__logo"
+                             v-if="project_logo">
+                            <img :src="project_logo"
+                                 :alt="project_name" />
+                        </div>
 
                         <h1 class="ndpl-sidebar__title ndpl-c-brand-ca">
                             <span v-if="theme.show_project_name" v-html="project"></span>

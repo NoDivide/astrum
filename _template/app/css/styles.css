@@ -418,6 +418,9 @@
     height: 28px;
     margin: 0 6px 0 0;
 }
+.ndpl-header__logo img {
+    height: 100%;
+}
 .ndpl-header__title {
     color: #303637;
     font-size: 18px;
@@ -481,7 +484,10 @@
 .ndpl-sidebar__logo {
     float: left;
     margin: 0 0 24px 0;
-    max-height: 50px;
+    height: 50px;
+}
+.ndpl-sidebar__logo img {
+    height: 100%;
 }
 
 @media only screen and (min-width: 60em) {
