@@ -1,12 +1,13 @@
-const Vue = require('vue/dist/vue');
-const hljs = require('highlightjs');
-const marked = require('marked');
-const smoothScroll = require('smooth-scroll');
-const postcss = require('postcss');
-const prefixer = require('postcss-prefix-selector');
+var Vue = require('vue/dist/vue'),
+    hljs = require('highlightjs'),
+    marked = require('marked'),
+    postcss = require('postcss'),
+    smoothScroll = require('smooth-scroll'),
+    prefixer = require('postcss-prefix-selector');
+
+smoothScroll = new smoothScroll;
 
 Vue.use(require('vue-resource'));
-
 
 /**
  * Component component
@@ -327,7 +328,7 @@ var Astrum = new Vue({
         breakpoint: 960,
         mobile_view: false,
         open_nav: false,
-        rtime: new Date(1, 1, 2000, 12,00,00),
+        rtime: new Date(1,1,2000,12,0,0),
         timeout: false,
         delta: 200,
         return_load_time: false,
