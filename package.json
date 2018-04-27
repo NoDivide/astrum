@@ -61,7 +61,8 @@
     "stringify": "^5.2.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "vue": "^2.1.8",
-    "vue-resource": "^1.0.3"
+    "vue": "^2.5.16",
+    "vue-resource": "^1.0.3",
+    "vuex": "^3.0.1"
   }
 }
