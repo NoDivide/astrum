@@ -869,12 +869,20 @@
 .ndpl-component__description {
     padding-bottom: 24px;
 }
+.ndpl-component__description p {
+    margin: 0;
+    padding: 0 0 24px;
+}
+.ndpl-component__description p:last-child {
+    padding-bottom: 0;
+}
 
 @media only screen and (min-width: 60em) {
 
     .ndpl-component__title,
     .ndpl-component__description {
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
