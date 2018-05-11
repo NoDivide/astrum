@@ -71,7 +71,7 @@ export default temporaryStorage = {
             localStorage.setItem(key, JSON.stringify(storeObject));
 
             // All sorted, so resolve our promise
-            resolve();
+            resolve(storeObject.data);
         });
     },
 
