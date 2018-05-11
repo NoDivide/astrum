@@ -10,12 +10,12 @@ import mutations from './mutations';
 import info from './modules/info';
 
 // Construct modules into an object 
-const modules = {
+export const modules = {
     info
 };
 
 // The core data structure of the store
-const state = {};
+export const state = {};
 
 Vue.use(VueX);
 

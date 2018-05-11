@@ -1,4 +1,4 @@
-export default temporaryStorage = {
+export default {
 
     /**
      * Retrieve data by a key. If the data has an expiration, it'll return 

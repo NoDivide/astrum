@@ -1,0 +1,1 @@
+import './_template/app/js/store/modules/info';

@@ -4,7 +4,8 @@
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
-    "test": "snyk test"
+    "test": "snyk test",
+    "app_test": "mocha --require babel-core/register || true"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,11 @@
     "inquirer": "^1.0.2",
     "is-windows": "^0.2.0",
     "mkdirp": "^0.5.1",
+    "module-alias": "^2.0.6",
     "update-notifier": "^2.1.0"
+  },
+  "_moduleAliases": {
+    "@appTemplate": "_template/app/"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -42,6 +47,7 @@
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
     "browserify": "^16.2.0",
+    "chai": "^4.1.2",
     "dotenv": "^5.0.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.3",
@@ -52,6 +58,7 @@
     "gulplog": "^1.0.0",
     "highlightjs": "^9.8.0",
     "marked": "^0.3.6",
+    "mocha": "^5.1.1",
     "postcss": "^5.2.10",
     "postcss-prefix-selector": "^1.5.0",
     "require-dir": "^1.0.0",

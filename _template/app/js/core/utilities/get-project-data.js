@@ -1,6 +1,13 @@
 import temporaryStorage from './temporary-storage';
 
-export default function getProjectData() {
+/**
+ * Return the main data file from either cache or via fetch
+ * 
+ * @export function
+ * @param {string} [path='data.json'] 
+ * @returns Promise 
+ */
+export default function getProjectData(path = 'data.json') {
     
     return new Promise((resolve, reject) => {
         
@@ -13,7 +20,7 @@ export default function getProjectData() {
         }
 
         // Get the data file
-        fetch('data.json')
+        fetch(path)
             .then(response => { return response.json() })
             .then(json => {
 

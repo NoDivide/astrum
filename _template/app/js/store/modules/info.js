@@ -1,4 +1,5 @@
-import getProjectData from '../../core/utilities/get-project-data';
+import 'module-alias/register';
+import getProjectData from '@appTemplate/js/core/utilities/get-project-data';
 
 export default {
     namespaced: true,
@@ -13,7 +14,7 @@ export default {
         creators: {} 
     },
     mutations: {
-        setState(state, payload) {
+        setInitialState(state, payload) {
 
             // Auto-override state values based on what was passed in
             Object.assign(state, payload);        
@@ -27,7 +28,7 @@ export default {
                 .then(data => {
 
                     // If it's all good, commit to state
-                    commit('info/SET_INITIAL_STATE', data);
+                    commit('info/setInitialState', data);
                 })
                 .catch(error => console.error(error));
         }
