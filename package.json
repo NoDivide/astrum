@@ -4,8 +4,8 @@
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
-    "test": "snyk test",
-    "app_test": "mocha --require babel-core/register || true"
+    "snyk": "snyk test",
+    "test": "mocha --require babel-core/register || true"
   },
   "repository": {
     "type": "git",
