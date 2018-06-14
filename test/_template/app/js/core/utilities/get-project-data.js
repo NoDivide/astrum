@@ -7,6 +7,10 @@ describe('App/Core/Utilities', () => {
 
     jsdom();
 
+    /**
+     * Make sure that an object is always returned. In this test context, we're 
+     * forcing an error.
+     */
     it('If nothing is found, we should still get an empty object back', async () => {
         const responseData = await getProjectData('this-should-error.json');
 
