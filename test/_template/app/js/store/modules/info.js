@@ -1,6 +1,6 @@
 import 'module-alias/register';
 import { expect } from 'chai';
-import { mutations, state } from '@appTemplate/js/store/modules/info';
+import { mutations, state } from '@appTemplate/js/store/modules/info.js';
 
 describe('App/Store/Info', () => {
 

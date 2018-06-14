@@ -94,8 +94,9 @@ export default {
             return true;
         }
         catch(ex) {
+            
             // Something didn't work. Base our response on the following: 
-            return ex instanceof DOMException && (
+            return (
 
                 // Every browser except Firefox
                 ex.code === 22 ||

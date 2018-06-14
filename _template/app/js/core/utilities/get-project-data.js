@@ -9,7 +9,7 @@ import temporaryStorage from './temporary-storage';
  */
 export default function getProjectData(path = 'data.json') {
     
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         
         let cachedData = temporaryStorage.get('astrum-core-data');
 
@@ -27,7 +27,10 @@ export default function getProjectData(path = 'data.json') {
                 // Set the data in local storage for 5 seconds
                 return temporaryStorage.set('astrum-core-data', json, 5000);
             })
-            .then(resolve(data))
-            .catch(reject('There was an issue loading the project data'));
+            .then((data) => resolve(data))
+            .catch(error => {
+                console.warn(`There was an issue loading the project data: "${error}". Loading empty object instead.`);
+                resolve({});
+            });
     });
 };
