@@ -10,23 +10,31 @@ describe('App/Store/Info', () => {
      */
     it('Payload should override inital state', () => {
 
-        const intialState = {
+        let intialState = {
             shallowProp: 'Default value',
             deep: {
                 prop: 'Default value 2'
             }
         };
 
-        const payload = {
+        let payload = {
+            shallowProp: 'New value',
+            deep: {
+                prop: 'New value 2'
+            },
+            deleteMe: 'plz'
+        };
+
+        const desiredResult = {
             shallowProp: 'New value',
             deep: {
                 prop: 'New value 2'
             }
-        };
+        }
 
         mutations.setInitialState(intialState, payload);
 
-        expect(intialState).to.deep.equal(payload);
+        expect(intialState).to.deep.equal(desiredResult);
     });
 
     /**
@@ -42,7 +50,8 @@ describe('App/Store/Info', () => {
             copyright_start_year: null,
             client_name: null,
             client_url: null,
-            creators: {} 
+            creators: [],
+            version: '' 
         };
         
         expect(defaultState).to.deep.equal(state);
