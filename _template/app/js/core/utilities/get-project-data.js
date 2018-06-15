@@ -24,8 +24,9 @@ export default function getProjectData(path = 'data.json') {
             .then(response => { return response.json() })
             .then(json => {
 
-                // Set the data in local storage for 5 seconds
-                return temporaryStorage.set('astrum-core-data', json, 5000);
+                // Set the data in local storage for 20 seconds
+                // TODO: When we've got some socket/live reload stuff, we can extend this and invalidate when it changes instead
+                return temporaryStorage.set('astrum-core-data', json, 20000);
             })
             .then((data) => resolve(data))
             .catch(error => {
