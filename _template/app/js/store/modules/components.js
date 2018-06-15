@@ -22,7 +22,7 @@ export default {
                 .then(data => {
 
                     // If it's all good, commit to state
-                    commit('info/setInitialState', data);
+                    commit('components/setInitialState', data);
                 })
                 .catch(error => console.error(error));
         }

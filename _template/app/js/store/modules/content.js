@@ -5,21 +5,21 @@ import limitedAssign from '@appTemplate/js/core/utilities/limited-assign.js';
 export default {
     namespaced: true,
     state: {
-        assets: {
-            css: [],
-            js: []
-        },
-        font_libraries: {
-            typekit_code: null,
-            typography_web_fonts: null,
-            google_web_fonts: null
-        }
+        show_first_page_on_load: true,
+        title: 'Overview',
+        pages: [
+            {
+                name: 'introduction',
+                title: 'Introduction',
+                file: './pages/intro.md'
+            }
+        ]
     },
     mutations: {
         setInitialState(state, payload) {
             
             // Auto-override state values based on what was passed in
-            Object.assign(state, limitedAssign(state, payload));
+            Object.assign(state, limitedAssign(state, payload.content));
         }
     },
     actions: {
@@ -30,7 +30,7 @@ export default {
                 .then(data => {
 
                     // If it's all good, commit to state
-                    commit('assets/setInitialState', data);
+                    commit('content/setInitialState', data);
                 })
                 .catch(error => console.error(error));
         }
