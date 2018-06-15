@@ -11,46 +11,47 @@ describe('App/Store/Assets', () => {
     it('Payload should override inital state', () => {
 
         let intialState = {
-            css: [],
-            js: [],
-            fontLibraries: {
-                'typekitCode': null,
-                'typographyWebFonts': null,
-                'googleWebFonts': null
+            assets: {
+                css: [],
+                js: []
+            },
+            font_libraries: {
+                typekit_code: null,
+                typography_web_fonts: null,
+                google_web_fonts: null
             }
         };
 
         let payload = {
-            css: [
-                '/path/to/styles.css'
-            ],
-            js: [
-                '/path/to/large-bundle.js'
-            ],
-            fontLibraries: {
-                'typekitCode': 'random-string',
-                'typographyWebFonts': null,
-                'googleWebFonts': null
-            },
+            assets: {
+                css: [
+                    '/path/to/styles.css'
+                ],
+                js: [
+                    '/path/to/large-bundle.js'
+                ]
+            },  
             deleteMe: 'plz'
         };
 
         const desiredResult = {
-            css: [
-                '/path/to/styles.css'
-            ],
-            js: [
-                '/path/to/large-bundle.js'
-            ],
-            fontLibraries: {
-                'typekitCode': 'random-string',
-                'typographyWebFonts': null,
-                'googleWebFonts': null
+            assets: {
+                css: [
+                    '/path/to/styles.css'
+                ],
+                js: [
+                    '/path/to/large-bundle.js'
+                ]
+            },  
+            font_libraries: {
+                typekit_code: null,
+                typography_web_fonts: null,
+                google_web_fonts: null
             }
         }
 
         mutations.setInitialState(intialState, payload);
-
+        
         expect(intialState).to.deep.equal(desiredResult);
     });
 
@@ -60,13 +61,15 @@ describe('App/Store/Assets', () => {
      */
     it('Default state should be predictable', () => {
         const defaultState = {
-            css: [],
-            js: [],
-            fontLibraries: {
-                'typekitCode': null,
-                'typographyWebFonts': null,
-                'googleWebFonts': null
-            }
+            assets: {
+                css: [],
+                js: []
+            },
+            font_libraries: {
+                typekit_code: null,
+                typography_web_fonts: null,
+                google_web_fonts: null
+        }
         };
         
         expect(defaultState).to.deep.equal(state);

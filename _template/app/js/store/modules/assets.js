@@ -5,12 +5,14 @@ import limitedAssign from '@appTemplate/js/core/utilities/limited-assign.js';
 export default {
     namespaced: true,
     state: {
-        css: [],
-        js: [],
-        fontLibraries: {
-            'typekitCode': null,
-            'typographyWebFonts': null,
-            'googleWebFonts': null
+        assets: {
+            css: [],
+            js: []
+        },
+        font_libraries: {
+            typekit_code: null,
+            typography_web_fonts: null,
+            google_web_fonts: null
         }
     },
     mutations: {
