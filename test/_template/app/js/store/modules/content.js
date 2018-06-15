@@ -2,6 +2,18 @@ import 'module-alias/register';
 import { expect } from 'chai';
 import { mutations, state } from '@appTemplate/js/store/modules/content.js';
 
+const defaultState = {
+    show_first_page_on_load: true,
+    title: 'Overview',
+    pages: [
+        {
+            name: 'introduction',
+            title: 'Introduction',
+            file: './pages/intro.md'
+        }
+    ]
+};
+        
 describe('App/Store/Content', () => {
 
     /**
@@ -10,17 +22,7 @@ describe('App/Store/Content', () => {
      */
     it('Payload should override inital state', () => {
 
-        let intialState = {
-            show_first_page_on_load: true,
-            title: 'Overview',
-            pages: [
-                {
-                    name: 'introduction',
-                    title: 'Introduction',
-                    file: './pages/intro.md'
-                }
-            ]
-        };
+        let intialState = Object.assign({}, defaultState);
 
         // data.json will have a content namesapce, so account for it here 
         let payload = {
@@ -70,18 +72,6 @@ describe('App/Store/Content', () => {
      * we expect it to be
      */
     it('Default state should be predictable', () => {
-        const defaultState = {
-            show_first_page_on_load: true,
-            title: 'Overview',
-            pages: [
-                {
-                    name: 'introduction',
-                    title: 'Introduction',
-                    file: './pages/intro.md'
-                }
-            ]
-        };
-        
         expect(defaultState).to.deep.equal(state);
     });
 });

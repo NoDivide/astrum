@@ -2,6 +2,18 @@ import 'module-alias/register';
 import { expect } from 'chai';
 import { mutations, state } from '@appTemplate/js/store/modules/assets.js';
 
+const defaultState = {
+    assets: {
+        css: [],
+        js: []
+    },
+    font_libraries: {
+        typekit_code: null,
+        typography_web_fonts: null,
+        google_web_fonts: null
+    }
+};
+        
 describe('App/Store/Assets', () => {
 
     /**
@@ -10,17 +22,7 @@ describe('App/Store/Assets', () => {
      */
     it('Payload should override inital state', () => {
 
-        let intialState = {
-            assets: {
-                css: [],
-                js: []
-            },
-            font_libraries: {
-                typekit_code: null,
-                typography_web_fonts: null,
-                google_web_fonts: null
-            }
-        };
+        let intialState = Object.assign({}, defaultState);
 
         let payload = {
             assets: {
@@ -60,18 +62,6 @@ describe('App/Store/Assets', () => {
      * we expect it to be
      */
     it('Default state should be predictable', () => {
-        const defaultState = {
-            assets: {
-                css: [],
-                js: []
-            },
-            font_libraries: {
-                typekit_code: null,
-                typography_web_fonts: null,
-                google_web_fonts: null
-        }
-        };
-        
         expect(defaultState).to.deep.equal(state);
     });
 });

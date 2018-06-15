@@ -2,6 +2,10 @@ import 'module-alias/register';
 import { expect } from 'chai';
 import { mutations, state } from '@appTemplate/js/store/modules/components.js';
 
+const defaultState = {
+    groups: []
+};
+        
 describe('App/Store/Components', () => {
 
     /**
@@ -10,9 +14,7 @@ describe('App/Store/Components', () => {
      */
     it('Payload should override inital state', () => {
 
-        let intialState = {
-            groups: [],
-        };
+        let intialState = Object.assign({}, defaultState);
 
         let payload = {
             groups: [
@@ -59,10 +61,6 @@ describe('App/Store/Components', () => {
      * we expect it to be
      */
     it('Default state should be predictable', () => {
-        const defaultState = {
-            groups: []
-        };
-        
         expect(defaultState).to.deep.equal(state);
     });
 });
