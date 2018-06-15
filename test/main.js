@@ -9,3 +9,4 @@ import './_template/app/js/store/modules/assets.js';
 import './_template/app/js/store/modules/components.js';
 import './_template/app/js/store/modules/content.js';
 import './_template/app/js/store/modules/info.js';
+import './_template/app/js/store/modules/theme.js';
