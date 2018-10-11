@@ -58,7 +58,6 @@
     <body id="top"
           class="ndpl-body ndpl-c-background"
           :class="{ 'ndpl-inverted': theme.invert_text, 'ndpl-desktop': !mobile_view, 'ndpl-mobile': mobile_view, 'ndpl-disable-scrolling': sidebar_scrolling }">
-
     <div class="ndpl-loading" :class="{ 'in-progress': ! loaded }">
         <div class="ndpl-folding-cube" v-if="!log.error.length && !log.info.length">
             <div class="ndpl-cube1 ndpl-cube"></div>
@@ -194,7 +193,7 @@
             </div>
         </div>
 
-        <div class="ndpl-content" data-app="astrum">
+        <div class="ndpl-content" id="ndpl-content" data-app="astrum">
             <div class="ndpl-page ndpl-c-brand-cai" :style="library_inline_styles" v-if="active_page">{{{ active_page.markup }}}</div>
             <div class="ndpl-library" :style="library_inline_styles" :class="{ 'ndpl-preloaded': active_page }">
 

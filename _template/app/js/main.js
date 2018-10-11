@@ -1,6 +1,7 @@
 /**
  * Component component
  */
+
 var ndplComponent = Vue.extend({
 
     data: function() {
@@ -454,6 +455,30 @@ new Vue({
                 _this.loadPage(page);
             }
         }, 0);
+    },
+
+    /**
+    * Runs any scripts that were added inline to a particular component.
+    */
+    compiled: function () {
+      this.$nextTick(function () {
+        setTimeout(function(){
+            var app = document.getElementById('ndpl-content');
+            var inlineScripts = app.getElementsByTagName('script');
+            if (inlineScripts.length) {
+                for (var i = 0; i < inlineScripts.length; i++) {
+                    var thisScript = inlineScripts[i];
+                    var thisScriptText = thisScript.innerHTML;
+                    
+                    var newScript = document.createElement("script");
+                    var newScriptText = document.createTextNode(thisScriptText);
+                    newScript.appendChild(newScriptText);
+
+                    document.body.appendChild(newScript); 
+                }
+            }
+        }, 2000);
+      })
     },
 
     methods: {
