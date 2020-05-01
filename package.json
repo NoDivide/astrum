@@ -4,7 +4,9 @@
   "description": "A lightweight pattern library designed to be included with any web project.",
   "main": "./manager/astrum.js",
   "scripts": {
-    "test": "snyk test"
+    "test": "snyk test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -32,9 +34,9 @@
     "fs-extra": "^0.28.0",
     "inquirer": "^1.0.2",
     "is-windows": "^0.2.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "snyk": "^1.316.1"
   },
-  "devDependencies": {
-    "snyk": "^1.14.3"
-  }
+  "devDependencies": {},
+  "snyk": true
 }
