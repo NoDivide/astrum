@@ -1,6 +1,8 @@
 # Astrum
 
-![](http://nodivide.imgix.net/astrum/header.jpg)
+***
+Astrum is nolonger actively maintained. We're fans of [Storybook](https://storybook.js.org) which you should check out as an alternative.
+***
 
 Astrum is a lightweight pattern library designed to be included with any web project.
 
