@@ -47,6 +47,7 @@ We use BrowserStack to make sure that Astrum looks and works great in [modern br
 - [Deleting Components](#deleting-components)
 - [Deleting Groups](#deleting-groups)
 - [Updating Astrum](#updating-astrum)
+- [Docker](#docker)
 - [Contributing](#contributing)
 - [Browser Support](#browser-support)
 - [Acknowledgements](#acknowledgements)
@@ -453,6 +454,32 @@ Navigate to the route of your project and then update your Astrum instance e.g.:
 You will receive feedback that the update is complete.
 
 There is also a `--force` option that you can use to force an update in the event that your Astrum instance is already on the current version. This is if you need to restore your Astrum instance core files.
+
+<a href=“#docker”></a>
+
+To build the docker image:
+
+`docker build -t you/astrum .`
+
+Then to use it:
+
+`docker run -it --rm -v /path-to-your-application:/app you/astrum init ./public/pattern-library`
+
+*Hint* You can always set an alias to make it more compact:
+
+`alias astrum="docker run -it --rm -v $PWD:/app test/astrum"`
+
+As you can see, you don't need to specify the `astrum` binary, as is configured
+to be the entrypoint of docker container.
+
+It is important to mount the local volumes to `/app` as is the base working dir.
+
+You can use Docker also to run the generated applications, using a webserver
+like nginx:
+
+`docker run -d -v /path-to-your-application/public/pattern-library:/usr/share/nginx/html:ro -p 8080:80 nginx:latest`
+
+Then you can access it on: `http://localhost:8080`
 
 <a href=“#contributing”></a>
 ## Contributing
