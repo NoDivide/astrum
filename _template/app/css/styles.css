@@ -2,6 +2,9 @@
  * Base styles
  * ----------------------------------------//
  */
+ html {
+ 	margin-left: calc(100vw - 100%);
+ }
 .ndpl-body {
     background-color: #FFF;
     -ms-overflow-style: -ms-autohiding-scrollbar;
