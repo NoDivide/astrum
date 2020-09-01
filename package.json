@@ -32,7 +32,7 @@
     "fs-extra": "^0.28.0",
     "inquirer": "^1.0.2",
     "is-windows": "^0.2.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^1.0.0"
   },
   "devDependencies": {
     "snyk": "^1.14.3"
